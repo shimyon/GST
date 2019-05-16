@@ -16,6 +16,9 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientService } from 'src/services/HttpClientService';
 import { CustomMaterialModule } from 'src/core/CustomMaterialModule';
+import { LoadingBarHttpModule } from '@ngx-loading-bar/http';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { CustomMaterialModule } from 'src/core/CustomMaterialModule';
     MatCardModule,
     HttpModule,
     HttpClientModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    LoadingBarHttpModule,
+    LoadingBarHttpClientModule,
+    LoadingBarRouterModule,
   ],
   providers: [MatDividerModule, MatDatepickerModule, HttpClientService],
   bootstrap: [AppComponent]
