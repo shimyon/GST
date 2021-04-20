@@ -1,0 +1,217 @@
+.top-container {
+    background: #ffffff;
+    transition: all 0.3s;
+    /*box-shadow: 0px 2px 5px 0px #dddddd;*/
+    border-bottom: solid 1px #E6E6E6;
+}
+
+.logo {
+    background-position: 0 0;
+    width: 140px;
+    height: 40px;
+    top: 2px;
+}
+
+.topactions {
+    list-style-type: none;
+    margin: 0 10px 0 0;
+    padding: 0;
+    top: 5px;
+}
+
+    .topactions li {
+        display: inline-block;
+        margin-left: 3px;
+    }
+
+        .topactions li:hover {
+        }
+
+.search, .recentitems, .notifybell, .quickactions, .settings, .searchclose {
+    height: 35px;
+    width: 30px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.search {
+    background-position: -7px -57px;
+    position: relative;
+    z-index: 2;
+}
+
+.gsearch {
+    width: 600px;
+    border-radius: 20px;
+    border: solid 1px #b9b9b9;
+    padding: 8px 10px 8px 10px;
+    position: relative;
+    top: -10px;
+    right: -42px;
+    z-index: 1;
+}
+
+    .gsearch:focus {
+        outline: none;
+    }
+
+.searchclose {
+    background-position: -7px -512px;
+    position: relative;
+    z-index: 2;
+    transition: left 0.5s,width 0.5s;
+}
+
+.recentitems {
+    background-position: -9px -110px;
+}
+
+.notifybell {
+    background-position: -10px -163px;
+}
+
+.quickactions {
+    background-position: -7px -276px;
+}
+
+.settings {
+    background-position: -7px -221px;
+}
+
+.pp {
+    border: 1px solid transparent;
+    border-radius: 50px;
+    width: 34px;
+    height: 34px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+    .pp img {
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+.sidebar {
+    transition: left 0.5s,width 0.5s;
+    height: calc(100vh - 28px);
+    background: #252e35;
+    width: 75px;
+    font-size: 13px;
+}
+
+    .sidebar.hidelabel .sidermenutext {
+        display:none;
+    }
+
+    .sidebar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        .sidebar ul li {
+            list-style-type: none;
+            display: block;
+            text-align: center;
+            border-left: 3px solid transparent;
+            opacity: 0.8;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+            .sidebar ul li a {
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block;
+                padding: 10px 0;
+                color: #FFF;
+                text-align: center;
+            }
+
+            .sidebar ul li:hover {
+                background: rgba(59, 71, 81, 0.6);
+                opacity: 1;
+            }
+
+            .sidebar ul li.active {
+                background: #0CAD77;
+                opacity: 1;
+            }
+
+.dashboard, .patient, .scheduler, .charting, .billing, .reports, .admin, .tools {
+    height: 30px;
+    width: 30px;
+    display: block;
+    margin: 0 auto 0 auto;
+}
+
+.dashboard {
+    background-position: -63px -57px;
+}
+
+.patient {
+    background-position: -108px -59px;
+}
+
+.scheduler {
+    background-position: -144px -62px;
+}
+
+.charting {
+    background-position: -188px -61px;
+}
+
+.billing {
+    background-position: -234px -62px;
+}
+
+.reports {
+    background-position: -278px -62px;
+}
+
+.admin {
+    background-position: -325px -56px;
+    margin-bottom: 5px;
+}
+
+.tools {
+    background-position: -377px -59px;
+}
+
+
+.sidebar ul li.active .dashboard {
+    background-position: -63px -107px;
+}
+
+.sidebar ul li.active .patient {
+    background-position: -108px -109px;
+}
+
+.sidebar ul li.active .scheduler {
+    background-position: -144px -112px;
+}
+
+.sidebar ul li.active .charting {
+    background-position: -188px -111px;
+}
+
+.sidebar ul li.active .billing {
+    background-position: -234px -112px;
+}
+
+.sidebar ul li.active .reports {
+    background-position: -278px -112px;
+}
+
+.sidebar ul li.active .admin {
+    background-position: -325px -109px;
+    margin-bottom: 5px;
+}
+
+.sidebar ul li.active .tools {
+    background-position: -377px -110px;
+}
