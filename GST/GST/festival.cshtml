@@ -1,0 +1,261 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+<h3>
+    Festival
+</h3>
+<div class="row">
+    <div class="col-md-2">
+        <form action="" id="uploadForm" method="POST" style="margin-top: 45px;">
+            <span class="help-block">
+                Select the image to watermark
+            </span>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-primary btn-file">
+                        Browse&hellip; <input type="file" id="target">
+                    </span>
+                </span>
+                <input type="text" class="form-control" readonly>
+            </div>
+
+            @*<span class="help-block">
+                    Select the watermark image
+                </span>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <span id="watermark-button" type="button" class="btn btn-primary btn-file" disabled>
+                            Browse&hellip; <input type="file" id="watermark">
+                        </span>
+                    </span>
+                    <input type="text" class="form-control" id="watermark-name" readonly>
+                    <div id="wartermakdiv"></div>
+                </div>*@
+
+            <div class="card mt-5" style="width: 18rem;">
+                <div id="wartermakdiv">
+                </div>
+                <canvas id="canvas"></canvas>
+
+                <div class="card-body">
+                    <h5 class="card-title">Select the logo image</h5>
+                    @*<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>*@
+                    <input type="text" class="form-control" id="watermark-name" readonly>
+                    <span id="watermark-button" type="button" class="btn btn-primary btn-file" disabled>
+                        Browse&hellip; <input type="file" id="watermark">
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-12">
+                    <h3>Position</h3>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col col-sm-6">
+                    <div class="radio">
+                        <label><input type="radio" name="position" value="lowerRight" checked disabled>Lower Right</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="position" value="lowerLeft" disabled>Lower Left</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="position" value="upperRight" disabled>Upper Right</label>
+                    </div>
+                </div>
+                <div class="col col-sm-6">
+                    <div class="radio">
+                        <label><input type="radio" name="position" value="upperLeft" disabled>Upper Left</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="position" value="center" disabled>Center</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-offset-1 col-md-7" id="preview">
+        <h2 class="text" style="margin-top:0">Preview</h2>
+        <button type="button" class="btn btn-primary btn-sm" onclick="downloadimge();">Download</button>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/watermark.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+        });
+
+        function downloadimge() {
+            if ($("#preview img").length > 0) {
+                var a = document.createElement('a');
+                a.href = $("#preview img").attr("src");
+                a.download = "emoiss.png";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+        }
+
+        (function () {
+            'use strict';
+            var original;
+
+            /**
+             * ids for aws related inputs
+             */
+            var awsFields = ['accessKeyId', 'policy', 'signature', 'bucket'];
+
+            /**
+             * Enable fields identified by ids
+             */
+            function enableFields(ids) {
+                ids.forEach(function (id) {
+                    document.getElementById(id).removeAttribute('disabled');
+                })
+            }
+
+            /**
+             * Determine if inputs identified by ids have values
+             */
+            function inputsComplete(ids) {
+                return ids.every(function (id) {
+                    var val = document.getElementById(id);
+                    return !!val.value;
+                });
+            }
+
+            /**
+             * Given a file input, set the value of the readonly text input associated with it
+             */
+            function setText(input) {
+                var group = input.parentNode.parentNode.parentNode;
+                group.querySelector('.form-control').value = input.files[0].name;
+            }
+
+            /**
+             * A listener that fires when the target image is selected
+             */
+            function setTarget(file) {
+                enableFields(['watermark-button']);
+                Array.prototype.forEach.call(document.querySelectorAll('input[type=radio]'), function (radio) {
+                    radio.removeAttribute('disabled');
+                });
+                watermark([file])
+                  .image(function (target) { return target; })
+                  .then(function (img) {
+                      document.getElementById('preview').appendChild(img);
+                  });
+            }
+
+            function setWatermarkFile(file) {
+                $("#wartermakdiv").children().remove();
+
+                watermark([file])
+                  .image(function (target) { return target; })
+                  .then(function (img) {
+                      document.getElementById('wartermakdiv').appendChild(img);
+                      $("#wartermakdiv img").addClass("card-img-top");
+                      setWatermark();
+                  });
+
+
+            }
+
+            /**
+             * A listener that fires when the watermark image has been selected
+             */
+            function setWatermark() {
+
+
+                if ($("#wartermakdiv img").length === 0) {
+                    alert("Select logo image");
+                    return;
+                }
+                var file = $("#wartermakdiv img")[0];
+                var canvas = document.getElementById("canvas");
+                var ctx = canvas.getContext("2d");
+                var img = new Image();
+
+                img.onload = function () {
+
+                    // set size proportional to image
+
+                    //canvas.height = canvas.width * (img.height / img.width);
+
+                    // step 1 - resize to 50%
+                    var oc = document.createElement('canvas'),
+                        octx = oc.getContext('2d');
+
+                    //oc.width = img.width * 0.5;
+                    var imgwidth = img.width,
+                        imgheight = img.height;
+                    //imgwidth = 200;
+                    oc.width = imgwidth;
+                    oc.height = imgheight;
+                    octx.drawImage(img, 0, 0, oc.width, oc.height);
+
+                    // step 2
+                    octx.drawImage(oc, 0, 0, imgwidth, imgheight);
+
+                    // step 3, resize to final size
+                    ctx.drawImage(oc, 0, 0, imgwidth, imgheight, 0, 0, canvas.width, canvas.height);
+
+                    var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+
+                    setPreviewImg(image);
+                }
+                img.src = file.src;
+            }
+
+            function setPreviewImg(file) {
+                var preview = document.getElementById('preview'),
+                    img = preview.querySelector('img'),
+                    position = document.querySelector('input[type=radio]:checked').value;
+
+                if (!original) {
+                    original = img;
+                }
+
+                watermark([original, file])
+                  .image(watermark.image[position](0.8))
+                  .then(function (marked) {
+                      preview.replaceChild(marked, img);
+                  });
+            }
+
+
+
+            /**
+             * Check if the watermark has been selected
+             */
+            function isWatermarkSelected() {
+                var watermark = document.getElementById('watermark-name');
+                return !!watermark.value;
+            }
+
+
+            document.addEventListener('DOMContentLoaded', function () {
+
+                document.addEventListener('change', function (e) {
+                    var input = e.target;
+
+                    if (input.type === 'file') {
+                        setText(input);
+                        input.id === 'target' ? setTarget(input.files[0]) : setWatermarkFile(input.files[0]);
+                    }
+
+                    if (input.type === 'radio' && isWatermarkSelected()) {
+                        setWatermark(document.getElementById('watermark').files[0]);
+                    }
+                });
+
+            });
+
+        })();
+    </script>
+}
