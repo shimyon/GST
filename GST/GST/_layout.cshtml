@@ -35,6 +35,7 @@
     <link href="~/Content/fonts/fontawesome-free-5.15.2-web/css/fontawesome.css" rel="stylesheet">
     <link href="~/Content/fonts/fontawesome-free-5.15.2-web/css/brands.css" rel="stylesheet">
     <link href="~/Content/fonts/fontawesome-free-5.15.2-web/css/solid.css" rel="stylesheet">
+    @RenderSection("style", required: false)
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
@@ -98,11 +99,12 @@
 
     <div class="body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Emoiss</p>
-        </footer>
-    </div>
+    </div>    
+    <hr />
+    
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Emoiss</p>
+    </footer>
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
 

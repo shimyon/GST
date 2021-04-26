@@ -1,0 +1,132 @@
+﻿@{
+    var version = System.Configuration.ConfigurationManager.AppSettings["webpages:Version"].ToString();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoiss Wishes</title>
+
+    <style type="text/css">
+        .bgimg {
+            background: url('./Content/images/ngcp.svg') no-repeat;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="~/Content/images/logo.png" />
+    <link href="~/Content/bootstrap.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/site.css?v=@version" rel="stylesheet" />
+
+    <link href="~/Content/css/header.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/css/common.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/css/leftnav.css?v=@version" rel="stylesheet" />
+
+    <link href="~/Content/css/utils.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/css/override.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/css/my.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/alertify/alertify.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/alertify/theme/alertyfy.bootstrap.min.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/select2.min.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.structure.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.theme.css?v=@version" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="~/Content/fonts/fontawesome-free-5.15.2-web/css/fontawesome.css" rel="stylesheet">
+    <link href="~/Content/fonts/fontawesome-free-5.15.2-web/css/brands.css" rel="stylesheet">
+    <link href="~/Content/fonts/fontawesome-free-5.15.2-web/css/solid.css" rel="stylesheet">
+    @RenderSection("style", required: false)
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="~/Content/images/logo.png" style="width: 30px;" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-center text-white" href="#">
+                        <i class="fa fa-home"></i>
+                        <h6>Home</h6>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-center text-white" href="#">
+                        <i class="fa fa-user-check"></i>
+                        <h6>Clients</h6>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-center text-white" href="~/festival">
+                        <i class="fa fa-drum"></i>
+                        <h6>Festival</h6>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-center text-white" href="#">
+                        <i class="fa fa-birthday-cake"></i>
+                        <h6>Birthday</h6>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-center text-white" href="#">
+                        <i class="fa fa-history"></i>
+                        <h6>History</h6>
+                    </a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-list"></i>
+                        </a>
+                        <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </nav>
+
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Emoiss</p>
+        </footer>
+    </div>
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/App/config.js?v=@version"></script>
+    <script src="~/Scripts/App/dashboard.js?v=@version"></script>
+    <script src="~/Scripts/alertify/alertify.js?v=@version"></script>
+    <script src="~/Scripts/select2.min.js?v=@version"></script>
+    <script src="~/Scripts/validate.js?v=@version"></script>
+    <script src="~/Scripts/jquery-ui.js?v=@version"></script>
+    <script src="~/Scripts/App/storage.js?v=@version"></script>
+    <script src="~/Scripts/App/ajaxcall.js?v=@version"></script>
+    <script type="text/javascript">
+        //override defaults
+        //alertify.defaults.transition = "slide";
+        alertify.defaults.theme.ok = "btn btn-primary";
+        alertify.defaults.theme.cancel = "btn btn-danger";
+        alertify.defaults.theme.input = "form-control";
+
+        $(document).ready(function () {
+
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

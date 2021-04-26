@@ -1,0 +1,178 @@
+
+.newform > div {
+    position: relative;
+    overflow: hidden;
+}
+
+.newform input[type=text],
+.newform textarea, .newform input[type=text].minical {
+    width: 100%;
+    background: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding: 10px;
+    outline: 0;
+    font-size: 15px;
+    height: 29px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.newform textarea {
+    height: 50px;
+}
+
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+.newform label.newlabel {
+    position: absolute;
+    color: #999;
+    padding: 3px 7px;
+    margin-bottom: 0;
+    top: 12px;
+    font-size: 12px;
+    left: 15px;
+    /*max-width: 280px;*/
+}
+
+.newform input[type=text], .newform input[type=text]:focus, .newform input[type=text]:valid {
+    padding-top: 24px;
+    height: 15px;
+}
+
+.newform textarea, .newform textarea:focus, .newform textarea:valid {
+    padding-top: 24px;
+    height: 36px;
+}
+
+    .newform input[type=text]:invalid, .newform textarea:invalid {
+        -webkit-box-shadow: none !important;
+        -moz-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+
+    .newform input[type=text]:focus + label.newlabel, .newform textarea:focus + label.newlabel, .newform input[type=text] + label.newlabel, .newform input[type=text]:valid + label.newlabel, .newform textarea + label.newlabel, .newform textarea:valid + label.newlabel {
+        transition: top 0.2s, right 0.2s, left 0.2s;
+        position: absolute;
+        color: #000;
+        padding: 3px 7px;
+        margin-bottom: 0;
+        top: 0;
+        background: #f7f7f7;
+        width: calc(100% - 20px);
+        font-size: 12px;
+    }
+
+    .newform textarea + label.newlabel {
+        width: calc(100% - 35px);
+        margin-left: -15px;
+    }
+
+.newform .minical {
+    height: 17px;
+    width: 17px;
+    background-position: -1715px -5px;
+    position: absolute;
+    right: 0;
+    top: 24px;
+}
+
+.modtxt {
+    width: 30px !important;
+    height: 25px !important;
+    padding: 2px !important;
+    text-align: center !important;
+}
+
+.nonotes {
+    height: 15px;
+    width: 15px;
+    background-position: -59px -176px;
+}
+
+.notesadded {
+    height: 15px;
+    width: 15px;
+    background-position: -92px -176px;
+}
+
+.newform select.nselect {
+    width: 100%;
+    height: 65px;
+    padding: 5px;
+    position: absolute;
+    top: -5px;
+    z-index: 99;
+    opacity: 0;
+}
+
+.newform .select2 {
+    width: 370px;
+    top: -47px;
+    z-index: 1000;
+    opacity: 0;
+}
+
+.newform .select2-container .select2-selection--single {
+    height: 45px;
+}
+
+.ddarrow {
+    height: 15px;
+    width: 15px;
+    background-position: -13px -325px;
+    position: relative;
+    top: 26px;
+    right: 15px;
+    display: none;
+}
+
+.newform .remove {
+    position: relative;
+    top: -20px;
+    float: right;
+}
+
+.greencircle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #28a745;
+}
+
+.section:hover {
+    background: #f7f7f7;
+}
+
+.new, .existing {
+    float: left;
+    height: 193px;
+    width: 5px;
+    position: relative;
+    left: 0;
+}
+
+.new, .newlegend {
+    background: #0C87C9;
+}
+
+.existing, .exlegend {
+    background: #30C90C;
+}
+
+.newlegend, .exlegend {
+    width: 5px;
+    height: 15px;
+}
+
+.newform *, .newform *::after, .newform::before {
+    box-sizing: unset;
+}
