@@ -123,7 +123,9 @@
   <ItemGroup>
     <Compile Include="ApplicationLevel.cs" />
     <Compile Include="BaseEntity.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="DatabaseTable\Company.cs" />
+    <Compile Include="DatabaseTable\product.cs" />
+    <Compile Include="DatabaseTable\contact.cs" />
     <Compile Include="DatabaseTable\lookup.cs" />
     <Compile Include="DatabaseTable\template.cs" />
     <Compile Include="DatabaseTable\User.cs" />
