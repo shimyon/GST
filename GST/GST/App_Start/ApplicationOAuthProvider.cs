@@ -43,11 +43,15 @@ namespace GST
 
             var oAuthIdentity = new ClaimsIdentity(context.Options.AuthenticationType);
             ClaimsIdentity cookiesIdentity = new ClaimsIdentity();
+
+            oAuthIdentity.AddClaim(new Claim("UserId", user.Id.ToString()));
+            oAuthIdentity.AddClaim(new Claim("Username", user.Username));
+
             //ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
             //   OAuthDefaults.AuthenticationType);
             //ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager, CookieAuthenticationDefaults.AuthenticationType);
 
-            AuthenticationProperties properties = CreateProperties(user.Username);
+            AuthenticationProperties properties = CreateProperties(user);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -89,11 +93,12 @@ namespace GST
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName)
+        public static AuthenticationProperties CreateProperties(user usr)
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                { "userid", usr.Id.ToString() },
+                { "userName", usr.Username }
             };
             return new AuthenticationProperties(data);
         }

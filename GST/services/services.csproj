@@ -123,8 +123,12 @@
   <ItemGroup>
     <Compile Include="AppDb.cs" />
     <Compile Include="Common\CommonService.cs" />
+    <Compile Include="Common\EmailService.cs" />
     <Compile Include="Common\PasswordCryptoService.cs" />
+    <Compile Include="Interface\iCRUD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateService.cs" />
+    <Compile Include="QuoteService.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>

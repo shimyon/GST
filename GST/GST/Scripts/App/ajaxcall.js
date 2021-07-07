@@ -1,12 +1,16 @@
 ﻿var ajaxcall = {
     post: (param) => {
         return new Promise((resolve, reject) => {
+            var usreid = localStorage.getItem('userid') || "";
             $.ajax({
                 type: "POST",
                 url: param.url,
                 data: param.data || null,
                 //dataType: "json",
-                contentType: "application/x-www-form-urlencoded",
+                headers: {
+                    'contentType': "application/x-www-form-urlencoded",
+                    'userid': usreid
+                },
                 success: function (res) {
                     resolve(res);
                 },
@@ -18,12 +22,17 @@
     },
     get: (param) => {
         return new Promise((resolve, reject) => {
+            var usreid = localStorage.getItem('userid') || "";
             $.ajax({
                 type: "GET",
                 url: param.url,
                 data: param.data || null,
                 dataType: "json",
-                contentType: "application/x-www-form-urlencoded",
+                headers: {
+                    'contentType': "application/x-www-form-urlencoded",
+                    'userid': usreid
+                },
+                //contentType: "application/x-www-form-urlencoded",
                 success: function (res) {
                     resolve(res);
                 },

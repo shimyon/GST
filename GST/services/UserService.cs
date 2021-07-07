@@ -44,8 +44,8 @@ namespace services
             using (var db = new AppDb())
             {
                 services.Common.PasswordCryptoService crypto = new Common.PasswordCryptoService();
-                string encpass = crypto.DecryptText(password);
-                var user = db.users.FirstOrDefault(f => f.Email == userName && password == encpass);
+                string encpass = crypto.EncryptText(password);
+                var user = db.users.FirstOrDefault(f => f.Username == userName && f.Password == encpass);
                 return user;
             }
         }

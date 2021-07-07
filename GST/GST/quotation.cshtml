@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+
+
+<div>
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            setTimeout(function () {
+                debugger
+                ajaxcall.post({
+                    url: AppConfig.ApiPath + "Template/GetTemplate",
+                    data: { TemplateFor: "Quote" }
+                }).then(e => {
+                    debugger
+                }, err => {
+                    debugger
+                });
+            }, 2000);
+        })
+    </script>
+}

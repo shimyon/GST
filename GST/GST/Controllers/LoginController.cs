@@ -14,6 +14,7 @@ namespace GST.Controllers
     {
         UserService service = new UserService();
         CommonService comm = new CommonService();
+        EmailService email = new EmailService();
 
         // GET: api/Login
         public IEnumerable<string> Get()
@@ -51,9 +52,20 @@ namespace GST.Controllers
                 return Content(HttpStatusCode.BadRequest, "Invalid Email address");
             }
 
+            if (!login.IsForgotPass)
+            {
+                String passErrMsg = String.Empty;
+                bool isValidPass = comm.ValidatePassword(login.Password, out passErrMsg);
+                if (!isValidPass)
+                {
+                    return Content(HttpStatusCode.BadRequest, passErrMsg);
+                }
+            }
+
             try
             {
-                string pass = Membership.GeneratePassword(4, 0);
+                //string pass = Membership.GeneratePassword(4, 0);
+                string pass = login.Password;
                 services.Common.PasswordCryptoService crypto = new services.Common.PasswordCryptoService();
                 string encpass = crypto.EncryptText(pass);
                 if (login.IsForgotPass)
@@ -74,6 +86,7 @@ namespace GST.Controllers
                         Password = encpass,
                         CreatedDate = DateTime.Now
                     });
+                    
                 }
                 return Ok();
             }

@@ -125,12 +125,16 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DatabaseTable\lookup.cs" />
+    <Compile Include="DatabaseTable\template.cs" />
     <Compile Include="DatabaseTable\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AuthDetails.cs" />
     <Compile Include="ViewModels\Datatable.cs" />
     <Compile Include="ViewModels\LoginDetailsViewModel.cs" />
     <Compile Include="ViewModels\LookupViewModel.cs" />
+    <Compile Include="ViewModels\MailSettingViewModel.cs" />
     <Compile Include="ViewModels\ServiceLocationViewModel.cs" />
+    <Compile Include="ViewModels\TemplateViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
