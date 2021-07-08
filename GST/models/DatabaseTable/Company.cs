@@ -16,9 +16,9 @@ namespace models.DatabaseTable
 
         public string Address { get; set; }
 
-        public int Phone1 { get; set; }
+        public string Phone1 { get; set; }
 
-        public int Phone2 { get; set; }
+        public string Phone2 { get; set; }
 
         public string Email { get; set; }
 

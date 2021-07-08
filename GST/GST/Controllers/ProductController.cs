@@ -12,7 +12,7 @@ namespace GST.Controllers
         ProductServices service = new ProductServices();
 
         [HttpPost]
-        public IHttpActionResult GetProduct(ProductViewModel obj)
+        public IHttpActionResult GetById(ProductViewModel obj)
         {
             var getProduct = service.Get(obj.Id);
             return Ok(getProduct);

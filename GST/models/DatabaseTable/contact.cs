@@ -11,8 +11,7 @@ namespace models.DatabaseTable
     [Table("contact")]
     public class contact : BaseEntity
     {
-        [StringLength(10)]
-        public string CompanyID { get; set; }
+        public int CompanyID { get; set; }
 
         public string FirstName { get; set; }
 
@@ -20,9 +19,9 @@ namespace models.DatabaseTable
 
         public string SurName { get; set; }
 
-        public int Phone1 { get; set; }
+        public string Phone1 { get; set; }
 
-        public int Phone2 { get; set; }
+        public string Phone2 { get; set; }
 
         public string Email { get; set; }
     }
