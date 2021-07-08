@@ -8,14 +8,20 @@ using System.Threading.Tasks;
 
 namespace models.DatabaseTable
 {
-    public class lookup:BaseEntity
+    [Table("company")]
+    public class company : BaseEntity
     {
+        [StringLength(10)]
+        public string CompanyName { get; set; }
 
+        public string Address { get; set; }
 
-        public string Class { get; set; }
+        public int Phone1 { get; set; }
 
-        public string Code { get; set; }
+        public int Phone2 { get; set; }
 
-        public string Description { get; set; }
+        public string Email { get; set; }
+
+        public string GSTNo { get; set; }
     }
 }

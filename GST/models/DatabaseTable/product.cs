@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace models.DatabaseTable
 {
-    [Table("company")]
-    public class company : BaseEntity
+    [Table("product")]
+    public class product : BaseEntity
     {
 
         [StringLength(10)]
@@ -17,9 +17,9 @@ namespace models.DatabaseTable
 
         public string Address { get; set; }
 
-        public string Phone1 { get; set; }
+        public int Phone1 { get; set; }
 
-        public string Phone2 { get; set; }
+        public int Phone2 { get; set; }
 
         public string Enail { get; set; }
 
