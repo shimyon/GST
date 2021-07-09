@@ -1,4 +1,5 @@
-﻿using models.ViewModels;
+﻿using models.DatabaseTable;
+using models.ViewModels;
 using services;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,13 @@ namespace GST.Controllers
             var getProduct = service.Get(obj.Id);
             return Ok(getProduct);
         }
+
+        [HttpPost]
+        public IHttpActionResult AddData(product productobj)
+        {
+            var result = service.Add(productobj);
+            return Ok(result);
+        }
     }
+
 }

@@ -24,7 +24,7 @@ namespace services
                     }
                     else
                     {
-                        ctx.product.Add(obj);
+                        ctx.product.Add(productData);
                     }
                     return ctx.SaveChanges();
                 }

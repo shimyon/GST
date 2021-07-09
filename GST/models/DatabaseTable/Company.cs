@@ -11,7 +11,7 @@ namespace models.DatabaseTable
     [Table("company")]
     public class company : BaseEntity
     {
-        [StringLength(10)]
+        [StringLength(50)]
         public string CompanyName { get; set; }
 
         public string Address { get; set; }

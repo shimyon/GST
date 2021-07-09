@@ -16,14 +16,14 @@ namespace services
             {
                 using (var ctx = new AppDb())
                 {
-                    var obj = ctx.contact.FirstOrDefault(f => f.Id == companyData.Id);
+                    var obj = ctx.company.FirstOrDefault(f => f.Id == companyData.Id);
                     if (obj != null)
                     {
                         ctx.Entry(obj).CurrentValues.SetValues(companyData);
                     }
                     else
                     {
-                        ctx.contact.Add(obj);
+                        ctx.company.Add(companyData);
                     }
                     return ctx.SaveChanges();
                 }

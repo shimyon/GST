@@ -1,4 +1,5 @@
-﻿using models.ViewModels;
+﻿using models.DatabaseTable;
+using models.ViewModels;
 using services;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,13 @@ namespace GST.Controllers
         {
             var getContact = service.Get(obj.Id);
             return Ok(getContact);
+        }
+
+        [HttpPost]
+        public IHttpActionResult AddData(contact contactobj)
+        {
+            var result = service.Add(contactobj);
+            return Ok(result);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace services
                     }
                     else
                     {
-                        ctx.contact.Add(obj);
+                        ctx.contact.Add(contactData);
                     }
                     return ctx.SaveChanges();
                 }

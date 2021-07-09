@@ -5,25 +5,48 @@
 <div class="container">
     <div class="sechead pb5 fs14 mt20 "><b>Product</b></div>
 
-        <form>
-            <div class="col-md-4 offset-md-4 mt-5">
-                <label for="inputAddress">Product Name</label>
-                <input type="text" class="form-control" id="ProductName">
-            </div>
-            <div class="col-md-4 offset-md-4 mt-3">
-                <label for="inputAddress">Masure of Unit</label>
-                <input type="text" class="form-control" id="MasureofUnit">
-            </div>
-            <div class="col-md-4 offset-md-4 mt-3">
-                <label for="inputAddress2">Defult Rate</label>
-                <input type="text" class="form-control" id="DefultRate">
-            </div>
-            <div class="col-md-4 offset-md-4 mt-5">
-                <button type="submit" style="width: 100%" class="btn btn-primary">Save</button>
-            </div>
-        </form>
+    <form>
+        <div class="col-md-4 offset-md-4 mt-5">
+            <label for="inputAddress">Product Name</label>
+            <input type="text" class="form-control" id="ProductName">
+        </div>
+        <div class="col-md-4 offset-md-4 mt-3">
+            <label for="inputAddress">Masure of Unit</label>
+            <input type="text" class="form-control" id="MasureofUnit">
+        </div>
+        <div class="col-md-4 offset-md-4 mt-3">
+            <label for="inputAddress2">Defult Rate</label>
+            <input type="text" class="form-control" id="DefultRate">
+        </div>
+        <div class="col-md-4 offset-md-4 mt-5">
+            <button type="submit" style="width: 100%" class="btn btn-primary" onclick="saveData()">Save</button>
+        </div>
+    </form>
 
-    </div>
+</div>
+
+
+@section scripts{
+    <scripts>
+        $(function(){
+        GetById();
+        })
+
+        function GetById(){
+            ajaxcall.post({
+                  url: AppConfig.ApiPath + "Product/GetById",
+                  data:{"Id": querySt("id")}
+             }).then(function(res){
+                  debugger
+                 $("#ProductName").val(res.ProductName);
+                 $("#MasureofUnit").val(res.MasureofUnit);
+                 $("#DefultRate").val(res.DefultRate);
+         })
+        }
+
+        function saveData(){}
+    </scripts>
+}
 
 
 
