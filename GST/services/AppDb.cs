@@ -25,5 +25,8 @@ namespace services
         public DbSet<user> users { get; set; }
 
         public DbSet<template> template { get; set; }
+        public DbSet<product> product { get; set; }
+        public DbSet<contact> contact { get; set; }
+        public DbSet<company> company { get; set; }
     }
 }

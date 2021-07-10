@@ -123,16 +123,21 @@
   <ItemGroup>
     <Compile Include="ApplicationLevel.cs" />
     <Compile Include="BaseEntity.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="DatabaseTable\company.cs" />
+    <Compile Include="DatabaseTable\product.cs" />
+    <Compile Include="DatabaseTable\contact.cs" />
     <Compile Include="DatabaseTable\lookup.cs" />
     <Compile Include="DatabaseTable\template.cs" />
     <Compile Include="DatabaseTable\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AuthDetails.cs" />
+    <Compile Include="ViewModels\CompanyViewModel.cs" />
+    <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\Datatable.cs" />
     <Compile Include="ViewModels\LoginDetailsViewModel.cs" />
     <Compile Include="ViewModels\LookupViewModel.cs" />
     <Compile Include="ViewModels\MailSettingViewModel.cs" />
+    <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\ServiceLocationViewModel.cs" />
     <Compile Include="ViewModels\TemplateViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />

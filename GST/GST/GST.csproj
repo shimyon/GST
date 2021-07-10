@@ -209,8 +209,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\QuoteController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\_BaseApiController.cs" />
@@ -2265,6 +2268,8 @@
     <Content Include="Content\fonts\icomoon\selection.json" />
     <Content Include="Content\css\Lato-Regular.ttf" />
     <Content Include="Content\css\NunitoSans-Regular.ttf" />
+    <Content Include="Contact.cshtml" />
+    <Content Include="Product.cshtml" />
     <None Include="Properties\PublishProfiles\FilePublish.pubxml" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
@@ -2413,9 +2418,13 @@
     <Content Include="Scripts\umd\popper.js.flow" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Template.cshtml" />
+    <Content Include="Company.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Company\" />
+    <Folder Include="Views\Contact\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

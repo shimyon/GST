@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="sechead pb5 fs14 mt20 "><b>Contact</b></div>
+
+    <form>
+        <div class="col-md-4 offset-md-4 mt-5">
+            <label for="inputAddress">Company Name</label>
+            <input type="text" class="form-control" id="CompanyID">
+        </div>
+        <div class="col-md-4 offset-md-4 mt-3">
+            <label for="inputAddress">First Name</label>
+            <input type="text" class="form-control" id="FirstName">
+        </div>
+        <div class="col-md-4 offset-md-4 mt-3">
+            <label for="inputAddress2">Last Name</label>
+            <input type="text" class="form-control" id="LastName">
+        </div>
+        <div class="col-md-4 offset-md-4 mt-3">
+            <label for="inputAddress">Sur Name</label>
+            <input type="text" class="form-control" id="SurName">
+        </div>
+        <div class="col-md-4 offset-md-4 mt-3">
+            <label for="inputAddress2">Phone1</label>
+            <input type="text" class="form-control" id="Phone1">
+        </div>
+        <div class="col-md-4 offset-md-4 mt-3">
+            <label for="inputAddress">Phone2</label>
+            <input type="text" class="form-control" id="Phone2">
+        </div>
+        <div class="col-md-4 offset-md-4 mt-3">
+            <label for="inputAddress2">Email</label>
+            <input type="text" class="form-control" id="Email">
+        </div>
+        <div class="col-md-4 offset-md-4 mt-5">
+            <button type="submit" style="width: 100%" class="btn btn-primary" onclick="saveData()">Save</button>
+        </div>
+    </form>
+
+</div>
+
+
+
+@section scripts{
+    <scripts>
+        $(function(){
+        GetById();
+        })
+
+        function GetById(){
+             ajaxcall.post({
+                 url: AppConfig.ApiPath + "Contact/GetById",
+                 data:{"Id": querySt("id")}
+            }).then(function(res){
+                debugger
+                
+        $("#CompanyID").val(res.CompanyID);
+        $("#FirstName").val(res.FirstName);
+        $("#LastName").val(res.LastName);
+        $("#SurName").val(res.SurName);
+        $("#Phone1").val(res.Phone1);
+        $("#Phone2").val(res.Phone2);
+        $("#Email").val(res.Email);
+         })
+        }
+
+        function saveData(){}
+    </scripts>
+}
