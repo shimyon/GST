@@ -6,7 +6,7 @@
 <div class="container">
     <div class="sechead pb5 fs14 mt20 "><b>Contact</b></div>
 
-    <form>
+    <div>
         <div class="col-md-4 offset-md-4 mt-5">
             <label for="inputAddress">Company Name</label>
             <input type="text" class="form-control" id="CompanyID">
@@ -36,16 +36,16 @@
             <input type="text" class="form-control" id="Email">
         </div>
         <div class="col-md-4 offset-md-4 mt-5">
-            <button type="submit" style="width: 100%" class="btn btn-primary" onclick="saveData()">Save</button>
+            <button type="submit" style="width: 100%" class="btn btn-primary" onclick="saveData();">Save</button>
         </div>
-    </form>
+    </div>
 
 </div>
 
 
 
 @section scripts{
-    <scripts>
+    <script  type="text/javascript">
         $(function(){
         GetById();
         })
@@ -57,16 +57,88 @@
             }).then(function(res){
                 debugger
                 
-        $("#CompanyID").val(res.CompanyID);
-        $("#FirstName").val(res.FirstName);
-        $("#LastName").val(res.LastName);
-        $("#SurName").val(res.SurName);
-        $("#Phone1").val(res.Phone1);
-        $("#Phone2").val(res.Phone2);
-        $("#Email").val(res.Email);
+        //$("#CompanyID").val(res.CompanyID);
+       // $("#FirstName").val(res.FirstName);
+       // $("#LastName").val(res.LastName);
+       // $("#SurName").val(res.SurName);
+       // $("#Phone1").val(res.Phone1);
+      //  $("#Phone2").val(res.Phone2);
+       // $("#Email").val(res.Email);
          })
         }
 
-        function saveData(){}
-    </scripts>
+        function saveData(){
+
+                    if (!$("#CompanyID").val()) {
+                        alert('Please enter Company Name');
+                        $("#CompanyID").focus()
+                        return false;
+                    }
+
+                    if (!$("#FirstName").val()) {
+                        alert('Please enter First Name');
+                        $("#FirstName").focus()
+                        return false;
+                    }
+
+                    if (!$("#LastName").val()) {
+                        alert('Please enter Last Name');
+                        $("#LastName").focus()
+                        return false;
+                    }
+
+                    if (!$("#SurName").val()) {
+                        alert('Please enter Sur Name');
+                        $("#SurName").focus()
+                        return false;
+                    }
+
+                    if (!$("#Phone1").val()) {
+                        alert('Please enter Phone1');
+                        $("#Phone1").focus()
+                        return false;
+                    }
+
+                    if (!$("#Phone2").val()) {
+                        alert('Please enter Phone2');
+                        $("#Phone2").focus()
+                        return false;
+                    }
+
+                    if (!$("#Email").val()) {
+                        alert('Please enter Email');
+                        $("#Email").focus()
+                        return false;
+                    }
+
+        var obj = {
+                CompanyID: $("#CompanyID").val(),
+                FirstName: $("#FirstName").val(),
+                LastName: $("#LastName").val(),
+                SurName: $("#SurName").val(),
+                Phone1: $("#Phone1").val(),
+                Phone2: $("#Phone2").val(),
+                Email: $("#Email").val()
+        };
+        $.ajax({
+            type: "POST",
+            url: AppConfig.ApiPath + "Contact/AddData",
+            data: JSON.stringify(obj),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (res) {
+            if (res.code == 0) {
+            alert("Saved successfully");
+            RefreshDatatable();
+            }
+            else {
+            alert(res.message);
+            }
+        },
+            error: function () {
+            alert("Error while inserting data");
+        }
+        });
+        }
+    </script>
 }
