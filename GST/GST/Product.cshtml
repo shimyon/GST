@@ -5,7 +5,7 @@
 <div class="container">
     <div class="sechead pb5 fs14 mt20 "><b>Product</b></div>
 
-    <form>
+    <div>
         <div class="col-md-4 offset-md-4 mt-5">
             <label for="inputAddress">Product Name</label>
             <input type="text" class="form-control" id="ProductName">
@@ -19,17 +19,17 @@
             <input type="text" class="form-control" id="DefultRate">
         </div>
         <div class="col-md-4 offset-md-4 mt-5">
-            <button type="submit" style="width: 100%" class="btn btn-primary" onclick="saveData()">Save</button>
+            <button type="button" style="width: 100%" class="btn btn-primary" onclick="saveData();">Save</button>
         </div>
-    </form>
+    </div>
 
 </div>
 
 
 @section scripts{
-    <scripts>
+    <script type="text/javascript">
         $(function(){
-        GetById();
+            GetById();
         })
 
         function GetById(){
@@ -38,14 +38,58 @@
                   data:{"Id": querySt("id")}
              }).then(function(res){
                   debugger
-                 $("#ProductName").val(res.ProductName);
-                 $("#MasureofUnit").val(res.MasureofUnit);
-                 $("#DefultRate").val(res.DefultRate);
-         })
+                // $("#ProductName").val(res.ProductName);
+                // $("#MasureofUnit").val(res.MasureofUnit);
+                // $("#DefultRate").val(res.DefultRate);
+            })
         }
 
-        function saveData(){}
-    </scripts>
+        function saveData(){
+
+                if (!$("#ProductName").val()) {
+                        alert('Please enter Product Name');
+                        $("#ProductName").focus()
+                        return false;
+                }
+
+                if (!$("#MasureofUnit").val()) {
+                        alert('Please enter Masure of Unit');
+                        $("#MasureofUnit").focus()
+                        return false;
+                }
+
+                if (!$("#DefultRate").val()) {
+                        alert('Please enter Defult Rate');
+                        $("#DefultRate").focus()
+                        return false;
+                }
+
+        var obj = {
+            ProductName: $("#ProductName").val(),
+            MasureofUnit: $("#MasureofUnit").val(),
+            DefultRate: $("#DefultRate").val()
+        };
+        $.ajax({
+        type: "POST",
+        url: AppConfig.ApiPath + "Product/AddData",
+        data: JSON.stringify(obj),
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function (res) {
+            if (res.code == 0) {
+                alert("Saved successfully");
+                RefreshDatatable();
+             }
+            else {
+                alert(res.message);
+            }
+            },
+         error: function () {
+            alert("Error while inserting data");
+         }
+        });
+        }
+    </script>
 }
 
 

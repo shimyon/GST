@@ -7,7 +7,7 @@
 <div class="container">
     <div class="sechead pb5 fs14 mt20 "><b>Company</b></div>
 
-    <form>
+    <div>
         <div class="col-md-4 offset-md-4 mt-5">
             <label for="inputAddress">Company Name</label>
             <input type="text" class="form-control" id="CompanyName">
@@ -33,14 +33,14 @@
             <input type="text" class="form-control" id="GSTNo">
         </div>
         <div class="col-md-4 offset-md-4 mt-5">
-            <button type="submit" style="width: 100%" class="btn btn-primary" onclick="saveData()">Save</button>
+            <button type="submit" style="width: 100%" class="btn btn-primary" onclick="saveData();">Save</button>
         </div>
-    </form>
+    </div>
 
 </div>
 
 @section scripts{
-<script>
+<script  type="text/javascript">
     $(function(){
          GetById();
     })
@@ -52,16 +52,81 @@
         }).then(function(res){
                      debugger
 
-                    $("#CompanyName").val(res.CompanyName);
-                    $("#Address").val(res.Address);
-                    $("#Phone1").val(res.Phone1);
-                    $("#Phone2").val(res.Phone2);
-                    $("#Email").val(res.Email);
-                    $("#GSTNo").val(res.GSTNo);
+                   // $("#CompanyName").val(res.CompanyName);
+                   // $("#Address").val(res.Address);
+                  //  $("#Phone1").val(res.Phone1);
+                 //   $("#Phone2").val(res.Phone2);
+                  //  $("#Email").val(res.Email);
+                 //   $("#GSTNo").val(res.GSTNo);
         })
     }
 
-    function saveData(){}
+    function saveData(){
+
+                    if (!$("#CompanyName").val()) {
+                        alert('Please enter Company Name');
+                        $("#CompanyName").focus()
+                        return false;
+                    }
+
+                    if (!$("#Address").val()) {
+                        alert('Please enter Address');
+                        $("#Address").focus()
+                        return false;
+                    }
+
+                    if (!$("#Phone1").val()) {
+                        alert('Please enter Phone1');
+                        $("#Phone1").focus()
+                        return false;
+                    }
+
+                    if (!$("#Phone2").val()) {
+                        alert('Please enter Phone2');
+                        $("#Phone2").focus()
+                        return false;
+                    }
+
+                    if (!$("#Email").val()) {
+                        alert('Please enter Email');
+                        $("#Email").focus()
+                        return false;
+                    }
+
+                    if (!$("#GSTNo").val()) {
+                        alert('Please enter GST No');
+                        $("#GSTNo").focus()
+                        return false;
+                    }
+
+        var obj = {
+                CompanyName: $("#CompanyName").val(),
+                Address: $("#Address").val(),
+                Phone1: $("#Phone1").val(),
+                Phone2: $("#Phone2").val(),
+                Email: $("#Email").val(),
+                GSTNo: $("#GSTNo").val()
+        };
+        $.ajax({
+            type: "POST",
+            url: AppConfig.ApiPath + "Company/AddData",
+            data: JSON.stringify(obj),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (res) {
+                if (res.code == 0) {
+                alert("Saved successfully");
+                RefreshDatatable();
+            }
+            else {
+            alert(res.message);
+            }
+        },
+            error: function () {
+            alert("Error while inserting data");
+            }
+        });
+        }
 
 </script>
 }
