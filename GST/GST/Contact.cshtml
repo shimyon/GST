@@ -56,14 +56,16 @@
                  data:{"Id": querySt("id")}
             }).then(function(res){
                 debugger
-                
-        //$("#CompanyID").val(res.CompanyID);
-       // $("#FirstName").val(res.FirstName);
-       // $("#LastName").val(res.LastName);
-       // $("#SurName").val(res.SurName);
-       // $("#Phone1").val(res.Phone1);
-      //  $("#Phone2").val(res.Phone2);
-       // $("#Email").val(res.Email);
+                if (res) {
+                    $("#CompanyID").val(res.CompanyID);
+                    $("#FirstName").val(res.FirstName);
+                    $("#LastName").val(res.LastName);
+                    $("#SurName").val(res.SurName);
+                    $("#Phone1").val(res.Phone1);
+                    $("#Phone2").val(res.Phone2);
+                    $("#Email").val(res.Email);
+                }
+
          })
         }
 
@@ -112,6 +114,7 @@
                     }
 
         var obj = {
+                
                 CompanyID: $("#CompanyID").val(),
                 FirstName: $("#FirstName").val(),
                 LastName: $("#LastName").val(),
