@@ -47,7 +47,7 @@
 @section scripts{
     <script  type="text/javascript">
         $(function(){
-            GetById();
+        GetById();
         })
 
         function GetById(){
@@ -55,61 +55,66 @@
                  url: AppConfig.ApiPath + "Contact/GetById",
                  data:{"Id": querySt("id")}
             }).then(function(res){
-                debugger                
-                //$("#CompanyID").val(res.CompanyID);
-                // $("#FirstName").val(res.FirstName);
-                // $("#LastName").val(res.LastName);
-                // $("#SurName").val(res.SurName);
-                // $("#Phone1").val(res.Phone1);
-                //  $("#Phone2").val(res.Phone2);
-                // $("#Email").val(res.Email);
-            })
+                debugger
+                if (res) {
+                    $("#CompanyID").val(res.CompanyID);
+                    $("#FirstName").val(res.FirstName);
+                    $("#LastName").val(res.LastName);
+                    $("#SurName").val(res.SurName);
+                    $("#Phone1").val(res.Phone1);
+                    $("#Phone2").val(res.Phone2);
+                    $("#Email").val(res.Email);
+                }
+
+         })
         }
 
         function saveData(){
-            if (!$("#CompanyID").val()) {
-                alert('Please enter Company Name');
-                $("#CompanyID").focus()
-                return false;
-            }
 
-            if (!$("#FirstName").val()) {
-                alert('Please enter First Name');
-                $("#FirstName").focus()
-                return false;
-            }
+                    if (!$("#CompanyID").val()) {
+                        alert('Please enter Company Name');
+                        $("#CompanyID").focus()
+                        return false;
+                    }
 
-            if (!$("#LastName").val()) {
-                alert('Please enter Last Name');
-                $("#LastName").focus()
-                return false;
-            }
+                    if (!$("#FirstName").val()) {
+                        alert('Please enter First Name');
+                        $("#FirstName").focus()
+                        return false;
+                    }
 
-            if (!$("#SurName").val()) {
-                alert('Please enter Sur Name');
-                $("#SurName").focus()
-                return false;
-            }
+                    if (!$("#LastName").val()) {
+                        alert('Please enter Last Name');
+                        $("#LastName").focus()
+                        return false;
+                    }
 
-            if (!$("#Phone1").val()) {
-                alert('Please enter Phone1');
-                $("#Phone1").focus()
-                return false;
-            }
+                    if (!$("#SurName").val()) {
+                        alert('Please enter Sur Name');
+                        $("#SurName").focus()
+                        return false;
+                    }
 
-            if (!$("#Phone2").val()) {
-                alert('Please enter Phone2');
-                $("#Phone2").focus()
-                return false;
-            }
+                    if (!$("#Phone1").val()) {
+                        alert('Please enter Phone1');
+                        $("#Phone1").focus()
+                        return false;
+                    }
 
-            if (!$("#Email").val()) {
-                alert('Please enter Email');
-                $("#Email").focus()
-                return false;
-            }
+                    if (!$("#Phone2").val()) {
+                        alert('Please enter Phone2');
+                        $("#Phone2").focus()
+                        return false;
+                    }
 
-            var obj = {
+                    if (!$("#Email").val()) {
+                        alert('Please enter Email');
+                        $("#Email").focus()
+                        return false;
+                    }
+
+        var obj = {
+                
                 CompanyID: $("#CompanyID").val(),
                 FirstName: $("#FirstName").val(),
                 LastName: $("#LastName").val(),
@@ -117,26 +122,26 @@
                 Phone1: $("#Phone1").val(),
                 Phone2: $("#Phone2").val(),
                 Email: $("#Email").val()
-            };
-            $.ajax({
-                type: "POST",
-                url: AppConfig.ApiPath + "Contact/AddData",
-                data: JSON.stringify(obj),
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function (res) {
-                    if (res.code == 0) {
-                        alert("Saved successfully");
-                        RefreshDatatable();
-                    }
-                    else {
-                        alert(res.message);
-                    }
-                },
-                error: function () {
-                    alert("Error while inserting data");
-                }
-            });
+        };
+        $.ajax({
+            type: "POST",
+            url: AppConfig.ApiPath + "Contact/AddData",
+            data: JSON.stringify(obj),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (res) {
+            if (res.code == 0) {
+            alert("Saved successfully");
+            RefreshDatatable();
+            }
+            else {
+            alert(res.message);
+            }
+        },
+            error: function () {
+            alert("Error while inserting data");
+        }
+        });
         }
     </script>
 }

@@ -8,7 +8,12 @@ namespace models.ViewModels
 {
     public class TemplateViewModel
     {
-        public string TemplateFor { get; set; }
         public int UserId { get; set; }
+        
+        public string TemplateName { get; set; }
+
+        public string TemplateFor { get; set; }
+
+        public string TemplateData { get; set; }
     }
 }

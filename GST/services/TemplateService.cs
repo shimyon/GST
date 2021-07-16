@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace services
 {
-    public class TemplateService : iCRUD<models.DatabaseTable.template>
+    public class TemplateService : iCRUD<template>
     {
         public int Add(template templateData)
         {
@@ -23,7 +23,7 @@ namespace services
                     }
                     else
                     {
-                        ctx.template.Add(obj);
+                        ctx.template.Add(templateData);
                     }
                     return ctx.SaveChanges();
                 }
@@ -39,16 +39,6 @@ namespace services
             throw new NotImplementedException();
         }
 
-        public template Get(int UserId, string TemplateFor)
-        {
-            using (var db = new AppDb())
-            {
-                var data = db.template.FirstOrDefault(f => f.userid == UserId && f.TemplateFor == TemplateFor);
-                return data;
-            }
-        }
-
-
         public template Get(int Id)
         {
             using (var db = new AppDb())
@@ -57,5 +47,7 @@ namespace services
                 return data;
             }
         }
+
     }
 }
+

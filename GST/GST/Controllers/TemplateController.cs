@@ -1,4 +1,5 @@
-﻿using models.ViewModels;
+﻿using models.DatabaseTable;
+using models.ViewModels;
 using services;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,17 @@ namespace GST.Controllers
         TemplateService service = new TemplateService();
 
         [HttpPost]
-        public IHttpActionResult GetTemplate(TemplateViewModel login)
+        public IHttpActionResult GetById(TemplateViewModel obj)
         {
-            AuthDetails authDet = LoginUserDetails();
-            Int32 userid = authDet.UserId;
-            var getTemplate = service.Get(userid, login.TemplateFor);
-            return Ok(getTemplate);
+            var getProduct = service.Get(obj.Id);
+            return Ok(getProduct);
+        }
+
+        [HttpPost]
+        public IHttpActionResult AddData(template productobj)
+        {
+            var result = service.Add(productobj);
+            return Ok(result);
         }
     }
 }
