@@ -27,7 +27,6 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\System.Runtime.CompilerServi
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Ubiety.Dns.Core.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Zstandard.Net.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\models.pdb
-D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\models.dll.config
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\EntityFramework.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\EntityFramework.SqlServer.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Google.Protobuf.xml
@@ -48,9 +47,6 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Renci.SshNet.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\System.Buffers.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\System.Memory.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.csproj.AssemblyReference.cache
-D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.csproj.CoreCompileInputs.cache
-D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.csproj.CopyComplete
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.pdb
 E:\Emoiss_wish\GST\GST\services\bin\Debug\services.dll.config
@@ -105,3 +101,4 @@ E:\Emoiss_wish\GST\GST\services\bin\Debug\System.Runtime.CompilerServices.Unsafe
 E:\Emoiss_wish\GST\GST\services\obj\Debug\services.csprojResolveAssemblyReference.cache
 E:\Emoiss_wish\GST\GST\services\obj\Debug\services.dll
 E:\Emoiss_wish\GST\GST\services\obj\Debug\services.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.csprojResolveAssemblyReference.cache

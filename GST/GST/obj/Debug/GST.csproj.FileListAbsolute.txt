@@ -1,5 +1,3 @@
-D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.csproj.AssemblyReference.cache
-D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.csproj.CoreCompileInputs.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\ApplicationInsights.config
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\roslyn\csc.exe
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -68,9 +66,7 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\K4os.Compression.LZ4.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\K4os.Hash.xxHash.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Memory.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\models.pdb
-D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\models.dll.config
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\services.pdb
-D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\services.dll.config
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Microsoft.AI.DependencyCollector.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Microsoft.AI.Web.xml
@@ -112,7 +108,6 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Buffers.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\K4os.Compression.LZ4.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\K4os.Hash.xxHash.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Memory.xml
-D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.csproj.CopyComplete
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.pdb
 E:\Emoiss_wish\GST\GST\GST\bin\ApplicationInsights.config
@@ -228,3 +223,4 @@ E:\Emoiss_wish\GST\GST\GST\bin\System.Memory.xml
 E:\Emoiss_wish\GST\GST\GST\obj\Debug\GST.csprojResolveAssemblyReference.cache
 E:\Emoiss_wish\GST\GST\GST\obj\Debug\GST.dll
 E:\Emoiss_wish\GST\GST\GST\obj\Debug\GST.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.csprojResolveAssemblyReference.cache

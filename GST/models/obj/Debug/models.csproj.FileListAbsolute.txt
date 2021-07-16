@@ -45,11 +45,8 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\Renci.SshNet.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\System.Buffers.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\System.Memory.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.csproj.CoreCompileInputs.cache
-D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.csproj.CopyComplete
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.pdb
-D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.csproj.AssemblyReference.cache
 E:\Emoiss_wish\GST\GST\models\bin\Debug\models.dll.config
 E:\Emoiss_wish\GST\GST\models\bin\Debug\models.dll
 E:\Emoiss_wish\GST\GST\models\bin\Debug\models.pdb
@@ -100,3 +97,4 @@ E:\Emoiss_wish\GST\GST\models\bin\Debug\System.Runtime.CompilerServices.Unsafe.x
 E:\Emoiss_wish\GST\GST\models\obj\Debug\models.csprojResolveAssemblyReference.cache
 E:\Emoiss_wish\GST\GST\models\obj\Debug\models.dll
 E:\Emoiss_wish\GST\GST\models\obj\Debug\models.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.csprojResolveAssemblyReference.cache
