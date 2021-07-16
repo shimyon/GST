@@ -22,6 +22,9 @@ namespace GST.Controllers
         [HttpPost]
         public IHttpActionResult AddData(product productobj)
         {
+            AuthDetails authdet = LoginUserDetails();
+            productobj.UpdatedBy = authdet.UserId;
+            productobj.CreatedBy = authdet.UserId;
             var result = service.Add(productobj);
             return Ok(result);
         }

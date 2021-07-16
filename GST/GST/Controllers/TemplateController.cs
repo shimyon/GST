@@ -18,14 +18,18 @@ namespace GST.Controllers
         [HttpPost]
         public IHttpActionResult GetById(TemplateViewModel obj)
         {
-            var getProduct = service.Get(obj.Id);
+            var getProduct = service.Get(obj.UserId);
             return Ok(getProduct);
         }
 
         [HttpPost]
-        public IHttpActionResult AddData(template productobj)
+        public IHttpActionResult AddData(template templateobj)
         {
-            var result = service.Add(productobj);
+            AuthDetails authdet = LoginUserDetails();
+            templateobj.userid = authdet.UserId;
+            templateobj.CreatedBy = authdet.UserId;
+            templateobj.UpdatedBy = authdet.UserId;
+            var result = service.Add(templateobj);
             return Ok(result);
         }
     }

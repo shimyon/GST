@@ -18,6 +18,9 @@ namespace models.DatabaseTable
         [StringLength(10)]
         public string TemplateFor { get; set; }
 
-        public string Template { get; set; }        
+        [StringLength(50)]
+        public string TemplateName { get; set; }
+
+        public string TemplateData { get; set; }
     }
 }

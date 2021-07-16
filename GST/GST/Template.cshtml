@@ -34,12 +34,28 @@
 <script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
 
 <script type="text/javascript">
+    var id = querySt("id");
 
-         $(function(){
-                // GetById();
-                CKEDITOR.replace( 'TemplateData' );
-          })
+        $(function() {
+            if (id) {
+                GetById();
+            }
+             CKEDITOR.replace( 'TemplateData' );
+        })
 
+    function GetById(){
+             ajaxcall.post({
+                 url: AppConfig.ApiPath + "Template/GetById",
+                 data:{"Id": id }
+            }).then(function(res){
+                if (res) {
+                    $("#TemplateName").val(res.TemplateName);
+                    $("#TemplateFor").val(res.TemplateFor);
+                    $("#TemplateData").val(res.TemplateData);
+                }
+
+         })
+        }
          function saveData(){
 
                 if (!$("#TemplateName").val()) {
@@ -53,37 +69,25 @@
                         $("#TemplateFor").focus()
                         return false;
                 }
-            debugger
                 var value = CKEDITOR.instances['TemplateData'].getData()
                 if (!value) {
                     alert('Please enter Template Data');
                     return false;
                 }
 
-        var obj = {
-            TemplateName: $("#TemplateName").val(),
-            TemplateFor: $("#TemplateFor").val(),
-            TemplateData: value
-        };
-        $.ajax({
-        type: "POST",
-        url: AppConfig.ApiPath + "Template/AddData",
-        data: JSON.stringify(obj),
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: function (res) {
-            if (res.code == 0) {
+     ajaxcall.post({
+                url: AppConfig.ApiPath + "Template/AddData",
+                data: {
+                    Id : id,
+                    TemplateName: $("#TemplateName").val(),
+                    TemplateFor: $("#TemplateFor").val(),
+                    TemplateData: value
+                }
+            }).then(res => {
                 alert("Saved successfully");
-                RefreshDatatable();
-             }
-            else {
-                alert(res.message);
-            }
-            },
-         error: function () {
-            alert("Error while inserting data");
-         }
-        });
+            }, err => {
+                alert(err.responseJSON);
+            })
         }
 </script>
 }

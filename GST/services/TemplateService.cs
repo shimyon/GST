@@ -34,6 +34,11 @@ namespace services
             }
         }
 
+        public object Get(object id)
+        {
+            throw new NotImplementedException();
+        }
+
         public int Delete(int Id)
         {
             throw new NotImplementedException();

@@ -41,92 +41,83 @@
 
 @section scripts{
 <script  type="text/javascript">
-    $(function(){
-         GetById();
+    var id = querySt("id");
+
+    $(function() {
+        if (id) {
+            GetById();
+        }
     })
 
-    function GetById(){
+    function GetById() {
         ajaxcall.post({
             url: AppConfig.ApiPath + "Company/GetById",
-            data:{"Id": querySt("id")}
-        }).then(function(res){
-                     debugger
-
-                   // $("#CompanyName").val(res.CompanyName);
-                   // $("#Address").val(res.Address);
-                  //  $("#Phone1").val(res.Phone1);
-                 //   $("#Phone2").val(res.Phone2);
-                  //  $("#Email").val(res.Email);
-                 //   $("#GSTNo").val(res.GSTNo);
+            data:{"Id": id }
+        }).then(function(res) {
+            if (res) {
+                $("#CompanyName").val(res.CompanyName);
+                $("#Address").val(res.Address);
+                $("#Phone1").val(res.Phone1);
+                $("#Phone2").val(res.Phone2);
+                $("#Email").val(res.Email);
+                $("#GSTNo").val(res.GSTNo);
+            }
         })
     }
 
-    function saveData(){
+    function saveData() {
+        if (!$("#CompanyName").val()) {
+            alert('Please enter Company Name');
+            $("#CompanyName").focus()
+            return false;
+        }
 
-                    if (!$("#CompanyName").val()) {
-                        alert('Please enter Company Name');
-                        $("#CompanyName").focus()
-                        return false;
-                    }
+        if (!$("#Address").val()) {
+            alert('Please enter Address');
+            $("#Address").focus()
+            return false;
+        }
 
-                    if (!$("#Address").val()) {
-                        alert('Please enter Address');
-                        $("#Address").focus()
-                        return false;
-                    }
+        if (!$("#Phone1").val()) {
+            alert('Please enter Phone1');
+            $("#Phone1").focus()
+            return false;
+        }
 
-                    if (!$("#Phone1").val()) {
-                        alert('Please enter Phone1');
-                        $("#Phone1").focus()
-                        return false;
-                    }
+        if (!$("#Phone2").val()) {
+            alert('Please enter Phone2');
+            $("#Phone2").focus()
+            return false;
+        }
 
-                    if (!$("#Phone2").val()) {
-                        alert('Please enter Phone2');
-                        $("#Phone2").focus()
-                        return false;
-                    }
+        if (!$("#Email").val()) {
+            alert('Please enter Email');
+            $("#Email").focus()
+            return false;
+        }
 
-                    if (!$("#Email").val()) {
-                        alert('Please enter Email');
-                        $("#Email").focus()
-                        return false;
-                    }
+        if (!$("#GSTNo").val()) {
+            alert('Please enter GST No');
+            $("#GSTNo").focus()
+            return false;
+        }
 
-                    if (!$("#GSTNo").val()) {
-                        alert('Please enter GST No');
-                        $("#GSTNo").focus()
-                        return false;
-                    }
-
-        var obj = {
+        ajaxcall.post({
+            url: AppConfig.ApiPath + "Company/AddData",
+            data: {
+                Id : id,
                 CompanyName: $("#CompanyName").val(),
                 Address: $("#Address").val(),
                 Phone1: $("#Phone1").val(),
                 Phone2: $("#Phone2").val(),
                 Email: $("#Email").val(),
                 GSTNo: $("#GSTNo").val()
-        };
-        $.ajax({
-            type: "POST",
-            url: AppConfig.ApiPath + "Company/AddData",
-            data: JSON.stringify(obj),
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function (res) {
-                if (res.code == 0) {
-                alert("Saved successfully");
-                RefreshDatatable();
             }
-            else {
-            alert(res.message);
-            }
-        },
-            error: function () {
-            alert("Error while inserting data");
-            }
-        });
-        }
-
+        }).then(res => {
+            alert("Saved successfully");
+        }, err => {
+            alert(err.responseJSON);
+        })
+    }
 </script>
 }

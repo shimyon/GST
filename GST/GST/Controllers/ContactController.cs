@@ -22,6 +22,9 @@ namespace GST.Controllers
         [HttpPost]
         public IHttpActionResult AddData(contact contactobj)
         {
+            AuthDetails authdet = LoginUserDetails();
+            contactobj.UpdatedBy = authdet.UserId;
+            contactobj.CreatedBy = authdet.UserId;
             var result = service.Add(contactobj);
             return Ok(result);
         }

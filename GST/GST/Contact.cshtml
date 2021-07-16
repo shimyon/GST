@@ -46,16 +46,19 @@
 
 @section scripts{
     <script  type="text/javascript">
-        $(function(){
-        GetById();
+        var id = querySt("id");
+
+        $(function() {
+            if (id) {
+                GetById();
+            }
         })
 
         function GetById(){
              ajaxcall.post({
                  url: AppConfig.ApiPath + "Contact/GetById",
-                 data:{"Id": querySt("id")}
+                 data:{"Id": id }
             }).then(function(res){
-                debugger
                 if (res) {
                     $("#CompanyID").val(res.CompanyID);
                     $("#FirstName").val(res.FirstName);
@@ -113,35 +116,23 @@
                         return false;
                     }
 
-        var obj = {
-                
-                CompanyID: $("#CompanyID").val(),
-                FirstName: $("#FirstName").val(),
-                LastName: $("#LastName").val(),
-                SurName: $("#SurName").val(),
-                Phone1: $("#Phone1").val(),
-                Phone2: $("#Phone2").val(),
-                Email: $("#Email").val()
-        };
-        $.ajax({
-            type: "POST",
-            url: AppConfig.ApiPath + "Contact/AddData",
-            data: JSON.stringify(obj),
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function (res) {
-            if (res.code == 0) {
-            alert("Saved successfully");
-            RefreshDatatable();
-            }
-            else {
-            alert(res.message);
-            }
-        },
-            error: function () {
-            alert("Error while inserting data");
-        }
-        });
+         ajaxcall.post({
+                url: AppConfig.ApiPath + "Contact/AddData",
+                data: {
+                     Id : id,
+                     CompanyID: $("#CompanyID").val(),
+                     FirstName: $("#FirstName").val(),
+                     LastName: $("#LastName").val(),
+                     SurName: $("#SurName").val(),
+                     Phone1: $("#Phone1").val(),
+                     Phone2: $("#Phone2").val(),
+                     Email: $("#Email").val()
+                }
+            }).then(res => {
+                alert("Saved successfully");
+            }, err => {
+                alert(err.responseJSON);
+            })
         }
     </script>
 }

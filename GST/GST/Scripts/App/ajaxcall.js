@@ -47,6 +47,11 @@
 // Global ajax settings....
 $(function () {
     var title = document.title;
+	$.ajaxSetup({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + (localStorage['Token'] || ''));
+        }
+    });
     $(document).ajaxStart(function () {
         document.title = 'Wait...';
         $('#waitLoading').show();
