@@ -11,7 +11,6 @@ namespace models.DatabaseTable
     [Table("contact")]
     public class contact : BaseEntity
     {
-        [StringLength(10)]
         public int CompanyID { get; set; }
 
         [StringLength(50)]

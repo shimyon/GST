@@ -25,11 +25,11 @@ namespace models
 
         public DateTime? UpdatedDate { get; set; }
 
-        [ForeignKey("CreatedBy")]
-        public virtual user CreatedByUser { get; set; }
+        //[ForeignKey("CreatedBy")]
+        //public virtual user CreatedByUser { get; set; }
 
-        [ForeignKey("UpdatedBy")]
-        public virtual user UpdatedByUser { get; set; }
+        //[ForeignKey("UpdatedBy")]
+        //public virtual user UpdatedByUser { get; set; }
 
         public BaseEntity()
         {

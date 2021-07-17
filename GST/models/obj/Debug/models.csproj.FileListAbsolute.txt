@@ -97,6 +97,5 @@ E:\Emoiss_wish\GST\GST\models\bin\Debug\Renci.SshNet.xml
 E:\Emoiss_wish\GST\GST\models\bin\Debug\System.Buffers.xml
 E:\Emoiss_wish\GST\GST\models\bin\Debug\System.Memory.xml
 E:\Emoiss_wish\GST\GST\models\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-E:\Emoiss_wish\GST\GST\models\obj\Debug\models.csprojResolveAssemblyReference.cache
 E:\Emoiss_wish\GST\GST\models\obj\Debug\models.dll
 E:\Emoiss_wish\GST\GST\models\obj\Debug\models.pdb

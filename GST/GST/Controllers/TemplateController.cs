@@ -18,8 +18,8 @@ namespace GST.Controllers
         [HttpPost]
         public IHttpActionResult GetById(TemplateViewModel obj)
         {
-            var getProduct = service.Get(obj.UserId);
-            return Ok(getProduct);
+            var getTemplate = service.Get(obj.Id);
+            return Ok(getTemplate);
         }
 
         [HttpPost]

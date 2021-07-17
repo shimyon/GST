@@ -35,10 +35,10 @@
 
 <script type="text/javascript">
     var id = querySt("id");
-
         $(function() {
             if (id) {
                 GetById();
+                CKEDITOR.replace( 'TemplateData' ).setData(data);
             }
              CKEDITOR.replace( 'TemplateData' );
         })
@@ -52,6 +52,7 @@
                     $("#TemplateName").val(res.TemplateName);
                     $("#TemplateFor").val(res.TemplateFor);
                     $("#TemplateData").val(res.TemplateData);
+
                 }
 
          })
@@ -69,6 +70,7 @@
                         $("#TemplateFor").focus()
                         return false;
                 }
+
                 var value = CKEDITOR.instances['TemplateData'].getData()
                 if (!value) {
                     alert('Please enter Template Data');

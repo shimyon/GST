@@ -9,7 +9,9 @@ namespace models.ViewModels
     public class TemplateViewModel
     {
         public int UserId { get; set; }
-        
+
+        public int Id { get; set; }
+
         public string TemplateName { get; set; }
 
         public string TemplateFor { get; set; }
