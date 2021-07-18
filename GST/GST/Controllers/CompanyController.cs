@@ -31,6 +31,9 @@ namespace GST.Controllers
         [HttpPost]
         public IHttpActionResult AddData(company companyobj)
         {
+            AuthDetails authdet = LoginUserDetails();
+            companyobj.UpdatedBy = authdet.UserId;
+            companyobj.CreatedBy = authdet.UserId;
             var result = service.Add(companyobj);
             return Ok(result);
         }

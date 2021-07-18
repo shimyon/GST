@@ -28,19 +28,24 @@
 
 @section scripts{
     <script type="text/javascript">
-        $(function(){
-            GetById();
-        })
+         var id = querySt("id");
+
+        $(function() {
+            if (id) {
+                GetById();
+            }
+         })
 
         function GetById(){
             ajaxcall.post({
                   url: AppConfig.ApiPath + "Product/GetById",
-                  data:{"Id": querySt("id")}
+                  data:{"Id": id }
              }).then(function(res){
-                  debugger
-                // $("#ProductName").val(res.ProductName);
-                // $("#MasureofUnit").val(res.MasureofUnit);
-                // $("#DefultRate").val(res.DefultRate);
+                    if (res) {
+                         $("#ProductName").val(res.ProductName);
+                         $("#MasureofUnit").val(res.MasureofUnit);
+                         $("#DefultRate").val(res.DefultRate);
+                    }
             })
         }
 
@@ -64,30 +69,19 @@
                         return false;
                 }
 
-        var obj = {
-            ProductName: $("#ProductName").val(),
-            MasureofUnit: $("#MasureofUnit").val(),
-            DefultRate: $("#DefultRate").val()
-        };
-        $.ajax({
-        type: "POST",
-        url: AppConfig.ApiPath + "Product/AddData",
-        data: JSON.stringify(obj),
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: function (res) {
-            if (res.code == 0) {
+         ajaxcall.post({
+                url: AppConfig.ApiPath + "Product/AddData",
+                data: {
+                        Id : id,
+                        ProductName: $("#ProductName").val(),
+                        MasureofUnit: $("#MasureofUnit").val(),
+                        DefultRate: $("#DefultRate").val()
+                }
+            }).then(res => {
                 alert("Saved successfully");
-                RefreshDatatable();
-             }
-            else {
-                alert(res.message);
-            }
-            },
-         error: function () {
-            alert("Error while inserting data");
-         }
-        });
+            }, err => {
+                alert(err.responseJSON);
+            })
         }
     </script>
 }

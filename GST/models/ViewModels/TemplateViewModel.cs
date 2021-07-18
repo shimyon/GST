@@ -11,7 +11,9 @@ namespace models.ViewModels
         public int Id { get; set; }
 
         public int UserId { get; set; }
-        
+
+        public int Id { get; set; }
+
         public string TemplateName { get; set; }
 
         public string TemplateFor { get; set; }
