@@ -8,6 +8,8 @@ namespace models.ViewModels
 {
     public class TemplateViewModel
     {
+        public int Id { get; set; }
+
         public int UserId { get; set; }
         
         public string TemplateName { get; set; }
