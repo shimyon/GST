@@ -1,9 +1,8 @@
 ﻿@{
     Layout = "_Layout.cshtml";
 }
-
-<div class="container">
-    <div class="sechead pb5 fs14 mt20 "><b>Product</b></div>
+<div class="sechead pb5 fs14 mt20 "><b>Product</b></div>
+<div class="container mt-5">
 
     <div>
         <div class="col-md-4 offset-md-4 mt-5">
@@ -28,54 +27,54 @@
 
 @section scripts{
     <script type="text/javascript">
-         var id = querySt("id");
+        var id = querySt("id");
 
-        $(function() {
+        $(function () {
             if (id) {
                 GetById();
             }
-         })
+        })
 
-        function GetById(){
+        function GetById() {
             ajaxcall.post({
-                  url: AppConfig.ApiPath + "Product/GetById",
-                  data:{"Id": id }
-             }).then(function(res){
-                    if (res) {
-                         $("#ProductName").val(res.ProductName);
-                         $("#MasureofUnit").val(res.MasureofUnit);
-                         $("#DefultRate").val(res.DefultRate);
-                    }
+                url: AppConfig.ApiPath + "Product/GetById",
+                data: { "Id": id }
+            }).then(function (res) {
+                if (res) {
+                    $("#ProductName").val(res.ProductName);
+                    $("#MasureofUnit").val(res.MasureofUnit);
+                    $("#DefultRate").val(res.DefultRate);
+                }
             })
         }
 
-        function saveData(){
+        function saveData() {
 
-                if (!$("#ProductName").val()) {
-                        alert('Please enter Product Name');
-                        $("#ProductName").focus()
-                        return false;
-                }
+            if (!$("#ProductName").val()) {
+                alert('Please enter Product Name');
+                $("#ProductName").focus()
+                return false;
+            }
 
-                if (!$("#MasureofUnit").val()) {
-                        alert('Please enter Masure of Unit');
-                        $("#MasureofUnit").focus()
-                        return false;
-                }
+            if (!$("#MasureofUnit").val()) {
+                alert('Please enter Masure of Unit');
+                $("#MasureofUnit").focus()
+                return false;
+            }
 
-                if (!$("#DefultRate").val()) {
-                        alert('Please enter Defult Rate');
-                        $("#DefultRate").focus()
-                        return false;
-                }
+            if (!$("#DefultRate").val()) {
+                alert('Please enter Defult Rate');
+                $("#DefultRate").focus()
+                return false;
+            }
 
-         ajaxcall.post({
+            ajaxcall.post({
                 url: AppConfig.ApiPath + "Product/AddData",
                 data: {
-                        Id : id,
-                        ProductName: $("#ProductName").val(),
-                        MasureofUnit: $("#MasureofUnit").val(),
-                        DefultRate: $("#DefultRate").val()
+                    Id: id,
+                    ProductName: $("#ProductName").val(),
+                    MasureofUnit: $("#MasureofUnit").val(),
+                    DefultRate: $("#DefultRate").val()
                 }
             }).then(res => {
                 alert("Saved successfully");

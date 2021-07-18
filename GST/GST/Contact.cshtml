@@ -2,41 +2,61 @@
     Layout = "_Layout.cshtml";
 }
 
+<div class="sechead pb5 fs14 mt20 "><b>Contact</b></div>
+<div class="container mt-5">
 
-<div class="container">
-    <div class="sechead pb5 fs14 mt20 "><b>Contact</b></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Select Company</label>
+                <select class="form-control" id="CompanyID">
+                    <option value="">Select Company</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 ">
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" id="FirstName">
+            </div>
+        </div>
+        <div class="col-md-4 ">
+            <div class="form-group">
+                <label>Middle Name</label>
+                <input type="text" class="form-control" id="MiddleName">
+            </div>
+        </div>
+        <div class="col-md-4 ">
+            <div class="form-group">
+                <label for="inputAddress2">Last Name</label>
+                <input type="text" class="form-control" id="LastName">
+            </div>
+        </div>
+        <div class="col-md-4 ">
+            <div class="form-group">
+                <label for="inputAddress2">Phone1</label>
+                <input type="text" class="form-control" id="Phone1">
+            </div>
+        </div>
+        <div class="col-md-4 ">
+            <div class="form-group">
+                <label>Phone2</label>
+                <input type="text" class="form-control" id="Phone2">
+            </div>
+        </div>
+        <div class="col-md-4 ">
+            <div class="form-group">
+                <label for="inputAddress2">Email</label>
+                <input type="text" class="form-control" id="Email">
+            </div>
+        </div>
+    </div>
 
-    <div>
-        <div class="col-md-4 offset-md-4 mt-5">
-            <label for="inputAddress">Company Name</label>
-            <input type="text" class="form-control" id="CompanyID">
-        </div>
-        <div class="col-md-4 offset-md-4 mt-3">
-            <label for="inputAddress">First Name</label>
-            <input type="text" class="form-control" id="FirstName">
-        </div>
-        <div class="col-md-4 offset-md-4 mt-3">
-            <label for="inputAddress2">Last Name</label>
-            <input type="text" class="form-control" id="LastName">
-        </div>
-        <div class="col-md-4 offset-md-4 mt-3">
-            <label for="inputAddress">Sur Name</label>
-            <input type="text" class="form-control" id="SurName">
-        </div>
-        <div class="col-md-4 offset-md-4 mt-3">
-            <label for="inputAddress2">Phone1</label>
-            <input type="text" class="form-control" id="Phone1">
-        </div>
-        <div class="col-md-4 offset-md-4 mt-3">
-            <label for="inputAddress">Phone2</label>
-            <input type="text" class="form-control" id="Phone2">
-        </div>
-        <div class="col-md-4 offset-md-4 mt-3">
-            <label for="inputAddress2">Email</label>
-            <input type="text" class="form-control" id="Email">
-        </div>
-        <div class="col-md-4 offset-md-4 mt-5">
-            <button type="submit" style="width: 100%" class="btn btn-primary" onclick="saveData();">Save</button>
+    <div class="row">
+        <div class="col col-md-12">
+            <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
         </div>
     </div>
 
@@ -45,88 +65,108 @@
 
 
 @section scripts{
-    <script  type="text/javascript">
+    <script type="text/javascript">
         var id = querySt("id");
 
-        $(function() {
+        $(function () {
+            init();
+        })
+
+        async function init() {
+            await CompanyDropDownAll();
             if (id) {
                 GetById();
             }
-        })
+        }
 
-        function GetById(){
-             ajaxcall.post({
-                 url: AppConfig.ApiPath + "Contact/GetById",
-                 data:{"Id": id }
-            }).then(function(res){
+        function CompanyDropDownAll() {
+            return new Promise((result, error) => {
+                ajaxcall.get({
+                    url: AppConfig.ApiPath + "Company/CompanyDropDownAll"
+                }).then((res) => {
+                    if (res) {
+                        for (var i in res) {
+                            $("<option>").val(res[i].value).text(res[i].label).appendTo("#CompanyID");
+                        }
+                    }
+                    result();
+                }, err => error(err));
+            });
+        }
+
+        function GetById() {
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Contact/GetById",
+                data: { "Id": id }
+            }).then(function (res) {
                 if (res) {
                     $("#CompanyID").val(res.CompanyID);
                     $("#FirstName").val(res.FirstName);
                     $("#LastName").val(res.LastName);
-                    $("#SurName").val(res.SurName);
+                    $("#MiddleName").val(res.MiddleName);
                     $("#Phone1").val(res.Phone1);
                     $("#Phone2").val(res.Phone2);
                     $("#Email").val(res.Email);
                 }
 
-         })
+            })
         }
 
-        function saveData(){
+        function saveData() {
 
-                    if (!$("#CompanyID").val()) {
-                        alert('Please enter Company Name');
-                        $("#CompanyID").focus()
-                        return false;
-                    }
+            //if (!$("#CompanyID").val()) {
+            //    alert('Please enter Company Name');
+            //    $("#CompanyID").focus()
+            //    return false;
+            //}
 
-                    if (!$("#FirstName").val()) {
-                        alert('Please enter First Name');
-                        $("#FirstName").focus()
-                        return false;
-                    }
+            if (!$("#FirstName").val()) {
+                alert('Please enter First Name');
+                $("#FirstName").focus()
+                return false;
+            }
 
-                    if (!$("#LastName").val()) {
-                        alert('Please enter Last Name');
-                        $("#LastName").focus()
-                        return false;
-                    }
+            if (!$("#LastName").val()) {
+                alert('Please enter Last Name');
+                $("#LastName").focus()
+                return false;
+            }
 
-                    if (!$("#SurName").val()) {
-                        alert('Please enter Sur Name');
-                        $("#SurName").focus()
-                        return false;
-                    }
+            if (!$("#MiddleName").val()) {
+                alert('Please enter Sur Name');
+                $("#MiddleName").focus()
+                return false;
+            }
 
-                    if (!$("#Phone1").val()) {
-                        alert('Please enter Phone1');
-                        $("#Phone1").focus()
-                        return false;
-                    }
+            if (!$("#Phone1").val()) {
+                alert('Please enter Phone1');
+                $("#Phone1").focus()
+                return false;
+            }
 
-                    if (!$("#Phone2").val()) {
-                        alert('Please enter Phone2');
-                        $("#Phone2").focus()
-                        return false;
-                    }
+            if (!$("#Phone2").val()) {
+                alert('Please enter Phone2');
+                $("#Phone2").focus()
+                return false;
+            }
 
-                    if (!$("#Email").val()) {
-                        alert('Please enter Email');
-                        $("#Email").focus()
-                        return false;
-                    }
+            if (!$("#Email").val()) {
+                alert('Please enter Email');
+                $("#Email").focus()
+                return false;
+            }
 
-         ajaxcall.post({
+            ajaxcall.post({
                 url: AppConfig.ApiPath + "Contact/AddData",
                 data: {
-                     Id : id,
-                     CompanyID: $("#CompanyID").val(),
-                     FirstName: $("#FirstName").val(),
-                     LastName: $("#LastName").val(),
-                     SurName: $("#SurName").val(),
-                     Phone1: $("#Phone1").val(),
-                     Phone2: $("#Phone2").val(),
-                     Email: $("#Email").val()
+                    Id: id,
+                    CompanyID: $("#CompanyID").val(),
+                    FirstName: $("#FirstName").val(),
+                    LastName: $("#LastName").val(),
+                    MiddleName: $("#MiddleName").val(),
+                    Phone1: $("#Phone1").val(),
+                    Phone2: $("#Phone2").val(),
+                    Email: $("#Email").val()
                 }
             }).then(res => {
                 alert("Saved successfully");

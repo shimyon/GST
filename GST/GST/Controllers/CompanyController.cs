@@ -21,6 +21,13 @@ namespace GST.Controllers
         //    return Ok(getCompany);
         //}
 
+        [HttpGet]
+        public IHttpActionResult CompanyDropDownAll()
+        {
+            var getCompany = service.CompanyDropDownAll();
+            return Ok(getCompany);
+        }
+
         [HttpPost]
         public IHttpActionResult GetById(CompanyViewModel obj)
         {
@@ -37,5 +44,7 @@ namespace GST.Controllers
             var result = service.Add(companyobj);
             return Ok(result);
         }
+
+
     }
 }

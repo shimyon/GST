@@ -1,4 +1,5 @@
 ﻿using models.DatabaseTable;
+using models.ViewModels;
 using services.Interface;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,19 @@ namespace services
             using (var db = new AppDb())
             {
                 var data = db.company.FirstOrDefault(f => f.Id == Id);
+                return data;
+            }
+        }
+
+        public List<KeyValueViewModel> CompanyDropDownAll()
+        {
+            using (var db = new AppDb())
+            {
+                var data = db.company.Select(s => new KeyValueViewModel
+                {
+                    value = s.Id,
+                    label = s.CompanyName
+                }).ToList() ;
                 return data;
             }
         }

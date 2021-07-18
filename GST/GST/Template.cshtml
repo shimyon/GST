@@ -1,12 +1,8 @@
-﻿
-@{
+﻿@{
     Layout = "_Layout.cshtml";
 }
-
-
-<div class="container">
-    <div class="sechead pb5 fs14 mt20 "><b>Template</b></div>
-
+<div class="sechead pb5 fs14 mt20 "><b>Template</b></div>
+<div class="container mt-5">
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputAddress">Template Name</label>
@@ -14,7 +10,10 @@
         </div>
         <div class="form-group col-md-6">
             <label for="inputAddress">Template For</label>
-            <input type="text" class="form-control" id="TemplateFor">
+            <select class="form-control" id="TemplateFor">
+                <option>Quotation</option>
+                <option>Invoice</option>
+            </select>
         </div>
     </div>
     <div class="form-group">
@@ -26,61 +25,60 @@
     <div class="col-md-4 offset-md-4 mt-5">
         <button type="submit" style="width: 100%" class="btn btn-primary" onclick="saveData();">Save</button>
     </div>
-    </div>
+</div>
 
 
 
 @section scripts{
-<script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
 
-<script type="text/javascript">
-    var id = querySt("id");
-        $(function() {
+    <script type="text/javascript">
+        var id = querySt("id");
+        $(function () {
+            CKEDITOR.replace('TemplateData');
             if (id) {
                 GetById();
-                CKEDITOR.replace( 'TemplateData' ).setData(data);
             }
-             CKEDITOR.replace( 'TemplateData' );
         })
 
-    function GetById(){
-             ajaxcall.post({
-                 url: AppConfig.ApiPath + "Template/GetById",
-                 data:{"Id": id }
-            }).then(function(res){
+        function GetById() {
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Template/GetById",
+                data: { "Id": id }
+            }).then(function (res) {
                 if (res) {
                     $("#TemplateName").val(res.TemplateName);
                     $("#TemplateFor").val(res.TemplateFor);
-                    $("#TemplateData").val(res.TemplateData);
-
+                    debugger
+                    CKEDITOR.instances['TemplateData'].setData(res.TemplateData);
                 }
 
-         })
+            })
         }
-         function saveData(){
+        function saveData() {
 
-                if (!$("#TemplateName").val()) {
-                        alert('Please enter Template Name');
-                        $("#TemplateName").focus()
-                        return false;
-                }
+            if (!$("#TemplateName").val()) {
+                alert('Please enter Template Name');
+                $("#TemplateName").focus()
+                return false;
+            }
 
-                if (!$("#TemplateFor").val()) {
-                        alert('Please enter Template For');
-                        $("#TemplateFor").focus()
-                        return false;
-                }
+            if (!$("#TemplateFor").val()) {
+                alert('Please enter Template For');
+                $("#TemplateFor").focus()
+                return false;
+            }
 
-                var value = CKEDITOR.instances['TemplateData'].getData()
-                if (!value) {
-                    alert('Please enter Template Data');
-                    return false;
-                }
+            var value = CKEDITOR.instances['TemplateData'].getData()
+            if (!value) {
+                alert('Please enter Template Data');
+                return false;
+            }
 
-     ajaxcall.post({
+            ajaxcall.post({
                 url: AppConfig.ApiPath + "Template/AddData",
                 data: {
-                    Id : id,
+                    Id: id,
                     TemplateName: $("#TemplateName").val(),
                     TemplateFor: $("#TemplateFor").val(),
                     TemplateData: value
@@ -91,5 +89,5 @@
                 alert(err.responseJSON);
             })
         }
-</script>
+    </script>
 }

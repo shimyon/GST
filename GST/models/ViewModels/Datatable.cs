@@ -48,6 +48,7 @@ namespace models.ViewModels
 
     public abstract class DataTableSearch
     {
+        public int UserId { get; set; }
         public int draw { get; set; }
         public Column[] columns { get; set; }
         public object[] order { get; set; }

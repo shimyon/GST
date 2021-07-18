@@ -1,4 +1,6 @@
 ﻿using models.DatabaseTable;
+using models.ViewModels;
+using MySql.Data.MySqlClient;
 using services.Interface;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,22 @@ namespace services
 {
     public class TemplateService : iCRUD<template>
     {
+        services.Common.DatatableService datatableService = new Common.DatatableService();
+        public DataTable<TemplateDatatable> GetList(TemplateSearch search, List<MySqlParameter> filters)
+        {
+            try
+            {
+                using (var ctx = new AppDb())
+                {
+                    var result = datatableService.GetDataTableResult<TemplateDatatable>("template_list_sp", search, filters);
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public int Add(template templateData)
         {
             try

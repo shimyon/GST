@@ -11,16 +11,17 @@ namespace models.DatabaseTable
     [Table("contact")]
     public class contact : BaseEntity
     {
-        public int CompanyID { get; set; }
+        public int? CompanyID { get; set; }
 
         [StringLength(50)]
         public string FirstName { get; set; }
 
         [StringLength(50)]
-        public string LastName { get; set; }
+        public string MiddleName { get; set; }
 
         [StringLength(50)]
-        public string SurName { get; set; }
+        public string LastName { get; set; }
+
 
         [StringLength(15)]
         public string Phone1 { get; set; }

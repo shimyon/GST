@@ -96,4 +96,14 @@ E:\Emoiss_wish\GST\GST\models\bin\Debug\System.Memory.xml
 E:\Emoiss_wish\GST\GST\models\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 E:\Emoiss_wish\GST\GST\models\obj\Debug\models.dll
 E:\Emoiss_wish\GST\GST\models\obj\Debug\models.pdb
-D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.csprojResolveAssemblyReference.cache
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.csproj.CoreCompileInputs.cache
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.csproj.CopyComplete
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\MySqlConnector.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\OptimizedDataReader.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\Savage.Data.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\Savage.Data.MySqlClient.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\Google.Protobuf.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\MySqlConnector.xml
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.csproj.AssemblyReference.cache

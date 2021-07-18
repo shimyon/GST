@@ -1,26 +1,87 @@
-﻿
-@{
+﻿@{
     Layout = "_Layout.cshtml";
 }
 
 
-<div class="container">
-    <div class="sechead pb5 fs14 mt20"><b>Template List</b></div>
-    <div style="margin-top:20px">
-        <table class="table table-striped table-bordered table-hover"
-               id="tblTemplate"
-               cellspacing="0"
-               align="center"
-               width="100%">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Template Name</th>
-                    <th>Template For</th>
-                    <th>Template Data</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+<div class="row mt-2">
+    <div class="col-sm-10"><h4>Template List</h4></div>
+    <div class="col-sm-2 text-right">
+        <button type="button"
+                class="btn btn-info btn-sm" style="float:right;" onclick="AddPatient()">
+            Add New
+        </button>
     </div>
 </div>
+<div class="row">
+    <div style="width:100%;padding:15px;">
+        <table class="table table-hover"
+               id="tblTemplateList"
+               cellspacing="0"
+               align="center"
+               width="100%"></table>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            LoadTable();
+        })
+
+        function LoadTable() {
+            $('#tblTemplateList').DataTable({
+                dom: "<'row'<'col-sm-3'l><'col-sm-6'p><'col-sm-3 text-align-right'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i>>",
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": AppConfig.ApiPath + "Template/GetList",
+                    "type": "POST",
+                    "processing": true,
+                    "serverSide": true,
+                    "datetype": "json",
+                    "data": {}
+                },
+                "drawCallback": function () {
+                    $(".paginate_button.current").addClass(" actionbtn hor mr-0 ml-1 active").removeClass("paginate_button current");
+                    $(".paginate_button").addClass(" actionbtn hor mr-0 ml-1").removeClass("paginate_button");
+
+                    AfterDrawTable();
+                },
+                "columns": [
+                    {
+                        title: "",
+                        data: "Id",
+                        class: "text-center",
+                        render: (data, display, alldata) => {
+                            return `<button class ='btnedit actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-edit'></i>Edit</button>`;
+                        }
+                    },
+                    {
+                        title: "Template Name",
+                        data: "TemplateName",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Template For",
+                        data: "TemplateFor",
+                        class: "text-center"
+                    }
+                ]
+            });
+        }
+
+        function AfterDrawTable() {
+            var that = this;
+            $(".btnedit").click(function () {
+                let id = $(this).attr('data-id');
+                window.location.assign("./Template?id=" + id);
+            })
+        }
+
+        function AddPatient() {
+            window.location.assign("Template");
+        }
+    </script>
+}

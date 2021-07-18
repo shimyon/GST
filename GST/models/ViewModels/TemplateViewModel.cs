@@ -8,8 +8,6 @@ namespace models.ViewModels
 {
     public class TemplateViewModel
     {
-        public int Id { get; set; }
-
         public int UserId { get; set; }
 
         public int Id { get; set; }
@@ -19,5 +17,19 @@ namespace models.ViewModels
         public string TemplateFor { get; set; }
 
         public string TemplateData { get; set; }
+    }
+
+    public class TemplateSearch : DataTableSearch
+    {
+
+    }
+
+    public class TemplateDatatable : DatatableCommon
+    {
+        public Int32 Id { get; set; }
+
+        public string TemplateFor { get; set; }
+
+        public string TemplateName { get; set; }
     }
 }
