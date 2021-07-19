@@ -107,3 +107,12 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\Google.Protobuf.pdb
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\MySqlConnector.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.csproj.AssemblyReference.cache
+E:\Emoiss_wish\GST\GST\models\bin\Debug\MySqlConnector.dll
+E:\Emoiss_wish\GST\GST\models\bin\Debug\OptimizedDataReader.dll
+E:\Emoiss_wish\GST\GST\models\bin\Debug\Savage.Data.dll
+E:\Emoiss_wish\GST\GST\models\bin\Debug\Savage.Data.MySqlClient.dll
+E:\Emoiss_wish\GST\GST\models\bin\Debug\System.Threading.Tasks.Extensions.dll
+E:\Emoiss_wish\GST\GST\models\bin\Debug\Google.Protobuf.pdb
+E:\Emoiss_wish\GST\GST\models\bin\Debug\MySqlConnector.xml
+E:\Emoiss_wish\GST\GST\models\bin\Debug\System.Threading.Tasks.Extensions.xml
+E:\Emoiss_wish\GST\GST\models\obj\Debug\models.csprojResolveAssemblyReference.cache

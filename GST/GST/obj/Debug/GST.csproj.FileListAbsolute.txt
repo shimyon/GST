@@ -237,3 +237,11 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\MySqlConnector.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Google.Protobuf.pdb
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Runtime.CompilerServices.Unsafe.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Threading.Tasks.Extensions.xml
+E:\Emoiss_wish\GST\GST\GST\bin\OptimizedDataReader.dll
+E:\Emoiss_wish\GST\GST\GST\bin\Savage.Data.dll
+E:\Emoiss_wish\GST\GST\GST\bin\Savage.Data.MySqlClient.dll
+E:\Emoiss_wish\GST\GST\GST\bin\System.Runtime.CompilerServices.Unsafe.dll
+E:\Emoiss_wish\GST\GST\GST\bin\System.Threading.Tasks.Extensions.dll
+E:\Emoiss_wish\GST\GST\GST\bin\Google.Protobuf.pdb
+E:\Emoiss_wish\GST\GST\GST\bin\System.Runtime.CompilerServices.Unsafe.xml
+E:\Emoiss_wish\GST\GST\GST\bin\System.Threading.Tasks.Extensions.xml

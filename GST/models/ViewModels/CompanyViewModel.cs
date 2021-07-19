@@ -15,5 +15,7 @@
         public string Email { get; set; }
 
         public string GSTNo { get; set; }
+
+        public string PANNo { get; set; }
     }
 }

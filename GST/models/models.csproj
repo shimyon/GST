@@ -139,6 +139,7 @@
     <Compile Include="ApplicationLevel.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="DatabaseTable\company.cs" />
+    <Compile Include="DatabaseTable\date.cs" />
     <Compile Include="DatabaseTable\product.cs" />
     <Compile Include="DatabaseTable\contact.cs" />
     <Compile Include="DatabaseTable\lookup.cs" />

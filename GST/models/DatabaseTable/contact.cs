@@ -22,6 +22,7 @@ namespace models.DatabaseTable
         [StringLength(50)]
         public string LastName { get; set; }
 
+        public string DOB { get; set; }
 
         [StringLength(15)]
         public string Phone1 { get; set; }

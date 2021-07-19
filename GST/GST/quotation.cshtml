@@ -3,25 +3,143 @@
 }
 
 
-<div>
-    <div class="row">
-        <div class="col">
-
+@*<div class="sechead pb5 fs14 mt20 "><b>Quotation</b></div>*@
+<div class="mt-5">
+    <div style="margin-top:20px">
+        <table class="table table-striped table-hover"
+               id="tblQuotation"
+               cellspacing="0"
+               width="100%">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>HSN Code</th>
+                    <th>Quantity</th>
+                    <th>Rate</th>
+                    <th>Discount</th>
+                    <th>Discounted Price</th>
+                    <th>Tax%</th>
+                    <th>Tax</th>
+                    <th>Total</th>
+                    <th>Account</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input id="ProductName" class="form-control" name="ProductName" type="text" required placeholder="Product Name" /></td>
+                    <td><input id="HSNCode" class="form-control" name="HSNCode" type="text" required placeholder="HSN Code" /></td>
+                    <td>
+                        <div class="col">
+                            <div class="row">
+                                <div  class="col pr-0">
+                                    <input type="text" class="form-control" id="Quantity" placeholder="Quantity">
+                                </div>
+                                <div class="col pl-0">
+                                    <select class="form-control" id="Quantity">
+                                        <option value="">-- Select --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input id="Rate" class="form-control" name="Rate" type="text" required placeholder="Rate" /></td>
+                    <td>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col pr-0">
+                                    <input type="text" class="form-control" id="Discount" placeholder="Discount">
+                                </div>
+                                <div class="col pl-0">
+                                    <select class="form-control" id="Discount">
+                                        <option value="">-- Select --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><label for="inputAddress">Discounted Price</label></td>
+                    <td><input id="Tax%" class="form-control" name="Tax%" type="text" required placeholder="Tax%" /></td>
+                    <td><label for="inputAddress">Tax</label></td>
+                    <td><label for="inputAddress">Total</label></td>
+                    <td><input id="Account" class="form-control" name="Account" type="text" required placeholder="Account" /></td>
+                    <td><label for="inputAddress">delete</label></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-outline-primary btn-sm">+ Add New</button>
+    <div clss="text-right" style="margin-top: 10px">
+        <div class="row text-right">
+            <div class="col-md-4 offset-md-6">
+                <label for="inputAddress">Sub Total :</label>
+            </div>
+            <div class="col-md-2">
+                <label for="inputAddress">Rs.0.00000</label>
+            </div>
         </div>
+
+        <div class="row text-right">
+            <div class="col-md-4 offset-md-6">
+                <label for="inputAddress">Total Tax :</label>
+            </div>
+            <div class="col-md-2">
+                <label for="inputAddress">Rs.0.00000</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 offset-md-6">
+                <div class="form-group">
+                    <select class="form-control" id="TDS">
+                        <option value="">Select TDS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control float-right" placeholder="0.00000">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 offset-md-6">
+                <div class="form-group">
+                    <select class="form-control" id="TCS">
+                        <option value="">Select TCS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="text" class="form-control float-right" placeholder="0.00000">
+            </div>
+        </div>
+
+        <div class="row text-right">
+            <div class="col-md-4 offset-md-6">
+                <label for="inputAddress">Total :</label>
+            </div>
+            <div class="col-md-2">
+                <label for="inputAddress">Rs.0.00000</label>
+            </div>
+        </div>
+
+        <div style="margin-top: 10px">
+            <label for="inputAddress"><u>Extra Charges</u></label>
+            <button type="button" class="btn btn-outline-primary btn-sm float-right">+ Add New</button>
+        </div>
+
     </div>
 </div>
 @section scripts {
     <script type="text/javascript">
         $(function () {
             setTimeout(function () {
-                debugger
                 ajaxcall.post({
                     url: AppConfig.ApiPath + "Template/GetTemplate",
                     data: { TemplateFor: "Quote" }
                 }).then(e => {
                     debugger
                 }, err => {
-                    debugger
                 });
             }, 2000);
         })
