@@ -20,6 +20,9 @@
         <div class="col-md-4 offset-md-4 mt-5">
             <button type="button" style="width: 100%" class="btn btn-primary" onclick="saveData();">Save</button>
         </div>
+        <div class="col-md-4 offset-md-4 mt-1">
+            <button type="button" style="width: 100%" class="btn btn-primary" onclick="goBack();">Cancel</button>
+        </div>
     </div>
 
 </div>
@@ -78,9 +81,14 @@
                 }
             }).then(res => {
                 alert("Saved successfully");
+                window.history.back();
             }, err => {
                 alert(err.responseJSON);
             })
+        }
+
+        function goBack() {
+                 window.history.back();
         }
     </script>
 }

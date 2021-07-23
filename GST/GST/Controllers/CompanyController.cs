@@ -1,6 +1,8 @@
 ﻿using models.DatabaseTable;
 using models.ViewModels;
+using MySql.Data.MySqlClient;
 using services;
+using services.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,18 @@ namespace GST.Controllers
     public class CompanyController : BaseApiController
     {
         CompanyServices service = new CompanyServices();
+        DatatableService datatableService = new DatatableService();
+        [HttpPost]
+        public IHttpActionResult GetList(CompanySearch search)
+        {
+            AuthDetails authdet = LoginUserDetails();
+            var filters = new List<MySqlParameter>
+            {
+                datatableService.CreateSqlParameter("@pUserId", authdet.UserId,  MySqlDbType.Int32)
+            };
+            var result = service.GetList(search, filters);
+            return Ok(result);
+        }
 
         //[HttpPost]
         //public IHttpActionResult GetCompany(CompanyViewModel login)

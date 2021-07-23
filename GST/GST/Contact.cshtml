@@ -61,8 +61,11 @@
     </div>
 
     <div class="row">
-        <div class="col col-md-12">
+        <div class="col col-md-1">
             <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
+        </div>
+        <div class="col col-md-1">
+            <button type="button" class="btn btn-primary" onclick="goBack();">Cancel</button>
         </div>
     </div>
 
@@ -114,7 +117,7 @@
                     $("#FirstName").val(res.FirstName);
                     $("#LastName").val(res.LastName);
                     $("#MiddleName").val(res.MiddleName);
-                    $("#DOB").val(dateValue);
+                    $("#DOB").val(res.DOBformate);
                     $("#Phone1").val(res.Phone1);
                     $("#Phone2").val(res.Phone2);
                     $("#Email").val(res.Email);
@@ -188,9 +191,14 @@
                 }
             }).then(res => {
                 alert("Saved successfully");
+                 window.history.back();
             }, err => {
                 alert(err.responseJSON);
             })
+        }
+
+        function goBack() {
+                 window.history.back();
         }
     </script>
 }

@@ -1,19 +1,32 @@
-﻿namespace GST.Controllers
+﻿using models.ViewModels;
+using System;
+
+namespace GST.Controllers
 {
     public class ProductViewModel
     {
         public int Id { get; set; }
 
-        public string CompanyName { get; set; }
+        public string ProductName { get; set; }
 
-        public string Address { get; set; }
+        public string MasureofUnit { get; set; }
 
-        public int Phone1 { get; set; }
+        public decimal DefultRate { get; set; }
+    }
 
-        public int Phone2 { get; set; }
+    public class ProductSearch : DataTableSearch
+    {
 
-        public string Enail { get; set; }
+    }
 
-        public string GSTNo { get; set; }
+    public class ProductDatatable : DatatableCommon
+    {
+        public Int32 Id { get; set; }
+
+        public string ProductName { get; set; }
+
+        public string MasureofUnit { get; set; }
+
+        public decimal DefultRate { get; set; }
     }
 }

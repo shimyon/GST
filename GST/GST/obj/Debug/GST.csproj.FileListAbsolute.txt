@@ -245,3 +245,4 @@ E:\Emoiss_wish\GST\GST\GST\bin\System.Threading.Tasks.Extensions.dll
 E:\Emoiss_wish\GST\GST\GST\bin\Google.Protobuf.pdb
 E:\Emoiss_wish\GST\GST\GST\bin\System.Runtime.CompilerServices.Unsafe.xml
 E:\Emoiss_wish\GST\GST\GST\bin\System.Threading.Tasks.Extensions.xml
+E:\Emoiss_wish\GST\GST\GST\bin\MySqlConnector.dll

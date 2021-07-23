@@ -19,56 +19,15 @@
                     <th>Discount</th>
                     <th>Discounted Price</th>
                     <th>Tax%</th>
-                    <th>Tax</th>
                     <th>Total</th>
-                    <th>Account</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><input id="ProductName" class="form-control" name="ProductName" type="text" required placeholder="Product Name" /></td>
-                    <td><input id="HSNCode" class="form-control" name="HSNCode" type="text" required placeholder="HSN Code" /></td>
-                    <td>
-                        <div class="col">
-                            <div class="row">
-                                <div  class="col pr-0">
-                                    <input type="text" class="form-control" id="Quantity" placeholder="Quantity">
-                                </div>
-                                <div class="col pl-0">
-                                    <select class="form-control" id="Quantity">
-                                        <option value="">-- Select --</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td><input id="Rate" class="form-control" name="Rate" type="text" required placeholder="Rate" /></td>
-                    <td>
-                        <div class="col">
-                            <div class="row">
-                                <div class="col pr-0">
-                                    <input type="text" class="form-control" id="Discount" placeholder="Discount">
-                                </div>
-                                <div class="col pl-0">
-                                    <select class="form-control" id="Discount">
-                                        <option value="">-- Select --</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td><label for="inputAddress">Discounted Price</label></td>
-                    <td><input id="Tax%" class="form-control" name="Tax%" type="text" required placeholder="Tax%" /></td>
-                    <td><label for="inputAddress">Tax</label></td>
-                    <td><label for="inputAddress">Total</label></td>
-                    <td><input id="Account" class="form-control" name="Account" type="text" required placeholder="Account" /></td>
-                    <td><label for="inputAddress">delete</label></td>
-                </tr>
             </tbody>
         </table>
     </div>
-    <button type="button" class="btn btn-outline-primary btn-sm">+ Add New</button>
+    <button type="button" class="btn btn-outline-primary btn-sm" onclick="AddNewRow();">+ Add New</button>
     <div clss="text-right" style="margin-top: 10px">
         <div class="row text-right">
             <div class="col-md-4 offset-md-6">
@@ -132,16 +91,118 @@
 </div>
 @section scripts {
     <script type="text/javascript">
-        $(function () {
-            setTimeout(function () {
-                ajaxcall.post({
-                    url: AppConfig.ApiPath + "Template/GetTemplate",
-                    data: { TemplateFor: "Quote" }
-                }).then(e => {
-                    debugger
-                }, err => {
-                });
-            }, 2000);
+         var productList = [];
+
+         $(function () {
+            init();
         })
+
+        async function init() {
+            await ProductDropDownAll();
+        }
+
+         function ProductDropDownAll() {
+            return new Promise((result, error) => {
+                ajaxcall.get({
+                    url: AppConfig.ApiPath + "Product/ProductDropDownAll"
+                }).then((res) => {
+                    if (res) {
+                       productList = res;
+                    }
+                    result();
+                }, err => error(err));
+            });
+        }
+
+        function AddProducts() {
+            for (var i in productList) {
+                    $("<option>").val(productList[i].value).text(productList[i].label).data('DefaultRate',productList[i].DefultRate).appendTo('.ProductNameSel:last');
+            }
+            bindEvent();
+        }
+
+        function bindEvent() {
+            $('.ProductNameSel').change(function(){
+                var rate = $(this).find(':selected').data('DefaultRate');
+                $(this).closest('.trOrder').find('.RateTxt').val(rate);
+                update_amounts();
+            });
+
+            $('.txtQuentity').change(function(){
+                update_amounts();
+            });
+
+            $('.Ratetxt').change(function(){
+                update_amounts();
+            });
+
+            $('.txtDiscount').change(function(){
+                discount();
+            });
+
+             $('.txtTax').change(function(){
+                tax();
+            });
+
+        }
+
+        function update_amounts() {
+            $('.trOrder').each(function() {
+                var qty = $(this).find('.txtQuentity').val();
+                var price = $(this).find('.RateTxt').val();
+                var amount = (qty*price);
+                $(this).find('.txtTotal').val(amount);
+            });
+        }
+
+         function discount() {
+            $('.trOrder').each(function() {
+                var ttl = $(this).find('.txtTotal').val();
+                var disc = $(this).find('.txtDiscount').val();
+                var amount = (ttl*disc)/100;
+                var ttlprice = (ttl-amount);
+
+                $(this).find('.txtDiscountedPrice').val(amount);
+                $(this).find('.txtTotal').val(ttlprice);
+            });
+        }
+
+        function tax() {
+            $('.trOrder').each(function() {
+                var ttl = $(this).find('.txtTotal').val();
+                var tax = $(this).find('.txtTax').val();
+                var amount = (ttl*tax)/100;
+                var ttlprice = parseInt(ttl, 10) + parseInt(amount, 10);
+
+                $(this).find('.txtTotal').val(ttlprice);
+            });
+        }
+        function AddNewRow(){
+             $('#tblQuotation > tbody').append(`  <tr class="trOrder">
+                    <td>
+                        <div class="col pl-0 pr-0">
+                            <select class="ProductNameSel">
+                                <option value="">Product Name</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td><input class="" name="HSNCode" type="text" required placeholder="HSN Code" /></td>
+                    <td>
+                     <input type="number" class="txtQuentity" placeholder="Quantity">
+                    </td>
+                    <td><input class="RateTxt" name="Rate" type="number" required placeholder="Rate" /></td>
+                    <td>
+                        <input class="txtDiscount" name="Discount" type="number" required placeholder="Discount" min="0" max="100" />
+                    </td>
+                    <td><input class="txtDiscountedPrice" name="Discounted Price" type="number" required placeholder="Discounted Price"/></td>
+                    <td><input class="txtTax" name="Tax" type="number" required placeholder="Tax%" min="0" max="100"/></td>
+                    <td><input class="txtTotal" name="Total" type="text" required placeholder="Total" /></td>
+                    <td><i class="fas fa-times btnDelete"></i></td>
+                </tr>`);
+            $("#tblQuotation").on('click', '.btnDelete', function () {
+             $(this).closest('tr').remove();
+           });
+           AddProducts();
+        }
     </script>
 }

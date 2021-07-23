@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace GST.Controllers
 {
-    public class QuoteController : ApiController
+    public class QuoteController : BaseApiController
     {
     }
 }

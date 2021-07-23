@@ -1,4 +1,7 @@
-﻿using models.DatabaseTable;
+﻿using GST.Controllers;
+using models.DatabaseTable;
+using models.ViewModels;
+using MySql.Data.MySqlClient;
 using services.Interface;
 using System;
 using System.Collections.Generic;
@@ -10,6 +13,22 @@ namespace services
 {
     public class ProductServices : iCRUD<product>
     {
+        services.Common.DatatableService datatableService = new Common.DatatableService();
+        public DataTable<ProductDatatable> GetList(ProductSearch search, List<MySqlParameter> filters)
+        {
+            try
+            {
+                using (var ctx = new AppDb())
+                {
+                    var result = datatableService.GetDataTableResult<ProductDatatable>("product_list_sp", search, filters);
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public int Add(product productData)
         {
@@ -45,6 +64,20 @@ namespace services
             using (var db = new AppDb())
             {
                 var data = db.product.FirstOrDefault(f => f.Id == Id);
+                return data;
+            }
+        }
+
+        public object ProductDropDownAll()
+        {
+            using (var db = new AppDb())
+            {
+                var data = db.product.Select(s => new
+                {
+                    value = s.Id,
+                    label = s.ProductName,
+                    s.DefultRate
+                }).ToList();
                 return data;
             }
         }
