@@ -1,9 +1,11 @@
 ﻿using models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Web.Http;
 
@@ -27,6 +29,22 @@ namespace GST.Controllers
                 authdet.UserName = claim.Value;
             }
             return authdet;
+        }
+
+        public HttpResponseMessage PDFResponse(string filename, byte[] buffer)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.BadRequest);
+            var statuscode = HttpStatusCode.OK;
+            response = Request.CreateResponse(statuscode);
+            response.Content = new StreamContent(new MemoryStream(buffer));
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
+            response.Content.Headers.ContentLength = buffer.Length;
+            ContentDispositionHeaderValue contentDisposition = null;
+            if (ContentDispositionHeaderValue.TryParse("inline; filename=" + filename + ".pdf", out contentDisposition))
+            {
+                response.Content.Headers.ContentDisposition = contentDisposition;
+            }
+            return response;
         }
     }
 }
