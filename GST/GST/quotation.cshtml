@@ -19,6 +19,7 @@
                     <th>Discount</th>
                     <th>Discounted Price</th>
                     <th>Tax%</th>
+                    <th>Tax Amount</th>
                     <th>Total</th>
                     <th>Action</th>
                 </tr>
@@ -34,7 +35,7 @@
                 <label for="inputAddress">Sub Total :</label>
             </div>
             <div class="col-md-2">
-                <label for="inputAddress">Rs.0.00000</label>
+                <label class="txtSubTotal" for="inputAddress">Rs.0.00000</label>
             </div>
         </div>
 
@@ -172,8 +173,9 @@
                 var ttl = $(this).find('.txtTotal').val();
                 var tax = $(this).find('.txtTax').val();
                 var amount = (ttl*tax)/100;
-                var ttlprice = parseInt(ttl, 10) + parseInt(amount, 10);
+                var ttlprice = parseInt(ttl) + parseInt(amount);
 
+                $(this).find('.txtTaxAmount').val(amount);
                 $(this).find('.txtTotal').val(ttlprice);
             });
         }
@@ -196,6 +198,7 @@
                     </td>
                     <td><input class="txtDiscountedPrice" name="Discounted Price" type="number" required placeholder="Discounted Price"/></td>
                     <td><input class="txtTax" name="Tax" type="number" required placeholder="Tax%" min="0" max="100"/></td>
+                    <td><input class="txtTaxAmount" name="Tax" type="number" required placeholder="Tax%" min="0" max="100"/></td>
                     <td><input class="txtTotal" name="Total" type="text" required placeholder="Total" /></td>
                     <td><i class="fas fa-times btnDelete"></i></td>
                 </tr>`);
@@ -203,6 +206,28 @@
              $(this).closest('tr').remove();
            });
            AddProducts();
+           subTotal();
         }
+
+
+      function subTotal(){
+        var sum = 0;
+        var ttl = $(this).find('.txtTotal').val();
+
+        // we use jQuery each() to loop through all the textbox with 'price' class
+        // and compute the sum for each loop
+
+        $('.txtTotal').each(function() {
+            sum += Number($(this).val());
+        });
+
+        // set the computed value to 'totalPrice' textbox
+         $(this).find('.txtSubTotal').val(+sum + ttl);
+
+
+         //   total= total=ttltotal
+        }
+
+
     </script>
 }
