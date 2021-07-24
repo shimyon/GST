@@ -1,0 +1,94 @@
+﻿
+@{
+    Layout = "_Layout.cshtml";
+}
+
+
+<div class="row mt-2">
+    <div class="col-sm-10"><h4>Product List</h4></div>
+    <div class="col-sm-2 text-right">
+        <button type="button"
+                class="btn btn-info btn-sm" style="float:right;" onclick="AddProduct()">
+            Add New
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div style="width:100%;padding:15px;">
+        <table class="table table-hover"
+               id="tblProductList"
+               cellspacing="0"
+               align="center"
+               width="100%"></table>
+    </div>
+</div>
+
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            LoadTable();
+        })
+
+        function LoadTable() {
+            $('#tblProductList').DataTable({
+                dom: "<'row'<'col-sm-3'l><'col-sm-6'p><'col-sm-3 text-align-right'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i>>",
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": AppConfig.ApiPath + "Product/GetList",
+                    "type": "POST",
+                    "processing": true,
+                    "serverSide": true,
+                    "datetype": "json",
+                    "data": {}
+                },
+                "drawCallback": function () {
+                    $(".paginate_button.current").addClass(" actionbtn hor mr-0 ml-1 active").removeClass("paginate_button current");
+                    $(".paginate_button").addClass(" actionbtn hor mr-0 ml-1").removeClass("paginate_button");
+
+                    AfterDrawTable();
+                },
+                "columns": [
+                    {
+                        title: "",
+                        data: "Id",
+                        class: "text-center",
+                        render: (data, display, alldata) => {
+                            return `<button class ='btnedit actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-edit'></i>Edit</button>`;
+                        }
+                    },
+                    {
+                        title: "Product Nmae",
+                        data: "ProductName",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Masure of Unit",
+                        data: "MasureofUnit",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Defult Rate",
+                        data: "DefultRate",
+                        class: "text-center"
+                    }
+                ]
+            });
+        }
+
+        function AfterDrawTable() {
+            var that = this;
+            $(".btnedit").click(function () {
+                let id = $(this).attr('data-id');
+                window.location.assign("./Product?id=" + id);
+            })
+        }
+
+        function AddProduct() {
+            window.location.assign("Product");
+        }
+    </script>
+}
