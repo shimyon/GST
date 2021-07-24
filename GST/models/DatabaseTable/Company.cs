@@ -28,5 +28,8 @@ namespace models.DatabaseTable
 
         [StringLength(50)]
         public string GSTNo { get; set; }
+
+        [StringLength(50)]
+        public string PANNo { get; set; }
     }
 }

@@ -1,4 +1,7 @@
-﻿using models.DatabaseTable;
+﻿using GST.Controllers;
+using models.DatabaseTable;
+using models.ViewModels;
+using MySql.Data.MySqlClient;
 using services.Interface;
 using System;
 using System.Collections.Generic;
@@ -10,6 +13,23 @@ namespace services
 {
     public class ContactServices : iCRUD<contact>
     {
+        services.Common.DatatableService datatableService = new Common.DatatableService();
+        public DataTable<ContactDatatable> GetList(ContactSearch search, List<MySqlParameter> filters)
+        {
+            try
+            {
+                using (var ctx = new AppDb())
+                {
+                    var result = datatableService.GetDataTableResult<ContactDatatable>("contact_list_sp", search, filters);
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public int Add(contact contactData)
         {
             try

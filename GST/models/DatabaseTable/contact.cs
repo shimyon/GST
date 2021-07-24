@@ -22,6 +22,16 @@ namespace models.DatabaseTable
         [StringLength(50)]
         public string LastName { get; set; }
 
+        public DateTime DOB { get; set; }
+
+        [NotMapped]
+        public string DOBformate
+        {
+            get
+            {
+                return DOB.ToString("yyyy-MM-dd");
+            }
+        }
 
         [StringLength(15)]
         public string Phone1 { get; set; }

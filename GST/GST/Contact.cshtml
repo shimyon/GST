@@ -36,6 +36,12 @@
         </div>
         <div class="col-md-4 ">
             <div class="form-group">
+                <label for="inputAddress2">DOB</label>
+                <input type="date" class="form-control" id="DOB">
+            </div>
+        </div>
+        <div class="col-md-4 ">
+            <div class="form-group">
                 <label for="inputAddress2">Phone1</label>
                 <input type="text" class="form-control" id="Phone1">
             </div>
@@ -55,8 +61,11 @@
     </div>
 
     <div class="row">
-        <div class="col col-md-12">
+        <div class="col col-md-1">
             <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
+        </div>
+        <div class="col col-md-1">
+            <button type="button" class="btn btn-primary" onclick="goBack();">Cancel</button>
         </div>
     </div>
 
@@ -99,11 +108,16 @@
                 url: AppConfig.ApiPath + "Contact/GetById",
                 data: { "Id": id }
             }).then(function (res) {
+        console.log(res.DOB);
+        const newdate = new Date(res.DOB);
+        const dateValue = newdate.toLocaleDateString();
+
                 if (res) {
                     $("#CompanyID").val(res.CompanyID);
                     $("#FirstName").val(res.FirstName);
                     $("#LastName").val(res.LastName);
                     $("#MiddleName").val(res.MiddleName);
+                    $("#DOB").val(res.DOBformate);
                     $("#Phone1").val(res.Phone1);
                     $("#Phone2").val(res.Phone2);
                     $("#Email").val(res.Email);
@@ -138,6 +152,12 @@
                 return false;
             }
 
+           if (!$("#DOB").val()) {
+                alert('Please enter Date of Birth');
+                $("#DOB").focus()
+                return false;
+            }
+
             if (!$("#Phone1").val()) {
                 alert('Please enter Phone1');
                 $("#Phone1").focus()
@@ -164,15 +184,21 @@
                     FirstName: $("#FirstName").val(),
                     LastName: $("#LastName").val(),
                     MiddleName: $("#MiddleName").val(),
+                    DOB: $("#DOB").val(),
                     Phone1: $("#Phone1").val(),
                     Phone2: $("#Phone2").val(),
                     Email: $("#Email").val()
                 }
             }).then(res => {
                 alert("Saved successfully");
+                 window.history.back();
             }, err => {
                 alert(err.responseJSON);
             })
+        }
+
+        function goBack() {
+                 window.history.back();
         }
     </script>
 }

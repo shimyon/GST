@@ -3,34 +3,62 @@
 }
 <div class="sechead pb5 fs14 mt20 "><b>Company</b></div>
 <div class="container mt-5">
-    <div>
-        <div class="col-md-4 offset-md-4 mt-5">
-            <label for="inputAddress">Company Name</label>
-            <input type="text" class="form-control" id="CompanyName">
+    <div class="container mt-5">
+
+        <div class="row">
+            <div class="col-md-12">
+                <label>Company Name</label>
+                <input type="text" class="form-control" id="CompanyName">
+            </div>
         </div>
-        <div class="col-md-4 offset-md-4 mt-3">
-            <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="Address">
+        <div class="row">
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label>Addresse</label>
+                    <input type="text" class="form-control" id="Address">
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label>Phone1</label>
+                    <input type="text" class="form-control" id="Phone1">
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label for="inputAddress2">Phone2</label>
+                    <input type="text" class="form-control" id="Phone2">
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label for="inputAddress2">Email</label>
+                    <input type="text" class="form-control" id="Email">
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label>GST No.</label>
+                    <input type="text" class="form-control" id="GSTNo">
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label for="inputAddress2">Add PAN No.</label>
+                    <input type="text" class="form-control" id="PANNo">
+                </div>
+            </div>
         </div>
-        <div class="col-md-4 offset-md-4 mt-3">
-            <label for="inputAddress2">Phone1</label>
-            <input type="text" class="form-control" id="Phone1">
+
+        <div class="row">
+            <div class="col col-md-1">
+                <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
+            </div>
+            <div class="col col-md-1">
+                <button type="button" class="btn btn-primary" onclick="goBack();">Cancel</button>
+            </div>
         </div>
-        <div class="col-md-4 offset-md-4 mt-3">
-            <label for="inputAddress">Phone2</label>
-            <input type="text" class="form-control" id="Phone2">
-        </div>
-        <div class="col-md-4 offset-md-4 mt-3">
-            <label for="inputAddress2">Email</label>
-            <input type="text" class="form-control" id="Email">
-        </div>
-        <div class="col-md-4 offset-md-4 mt-3">
-            <label for="inputAddress">GST No.</label>
-            <input type="text" class="form-control" id="GSTNo">
-        </div>
-        <div class="col-md-4 offset-md-4 mt-5">
-            <button type="submit" style="width: 100%" class="btn btn-primary" onclick="saveData();">Save</button>
-        </div>
+
     </div>
 
 </div>
@@ -57,6 +85,7 @@
                     $("#Phone2").val(res.Phone2);
                     $("#Email").val(res.Email);
                     $("#GSTNo").val(res.GSTNo);
+                    $("#PANNo").val(res.PANNo);
                 }
             })
         }
@@ -98,6 +127,12 @@
                 return false;
             }
 
+           if (!$("#PANNo").val()) {
+                alert('Please enter PAN No');
+                $("#PANNo").focus()
+                return false;
+            }
+
             ajaxcall.post({
                 url: AppConfig.ApiPath + "Company/AddData",
                 data: {
@@ -107,13 +142,19 @@
                     Phone1: $("#Phone1").val(),
                     Phone2: $("#Phone2").val(),
                     Email: $("#Email").val(),
-                    GSTNo: $("#GSTNo").val()
+                    GSTNo: $("#GSTNo").val(),
+                    PANNo: $("#PANNo").val()
                 }
             }).then(res => {
                 alert("Saved successfully");
+                window.history.back();
             }, err => {
                 alert(err.responseJSON);
             })
+        }
+
+        function goBack() {
+                 window.history.back();
         }
     </script>
 }
