@@ -5,6 +5,13 @@ using System.Collections.Generic;
 using System.Web.Http;
 using services.Common;
 using MySql.Data.MySqlClient;
+using System.Net.Http;
+using System.IO;
+using iTextSharp.text.pdf;
+using System.Net.Http.Headers;
+using System.Web.Http.Results;
+using System.Net;
+using iTextSharp.text;
 
 namespace GST.Controllers
 {
@@ -12,6 +19,7 @@ namespace GST.Controllers
     {
         TemplateService service = new TemplateService();
         DatatableService datatableService = new DatatableService();
+        CommonService commsrv = new CommonService();
         [HttpPost]
         public IHttpActionResult GetList(TemplateSearch search)
         {
@@ -40,6 +48,17 @@ namespace GST.Controllers
             templateobj.UpdatedBy = authdet.UserId;
             var result = service.Add(templateobj);
             return Ok(result);
+        }
+
+        [HttpGet]
+        public HttpResponseMessage SamplePDF()
+        {
+            string filename = "Sample";
+            var example_html = @"<p>This <em>is </em><span class=""headline"" style=""text-decoration: underline;"">some</span> <strong>sample <em> text</em></strong><span style=""color: red;"">!!!</span></p>";
+            var example_css = @".headline{font-size:200%}";
+            byte[] buffer = commsrv.PdfGenerate(example_html, example_css);
+            HttpResponseMessage response = PDFResponse(filename, buffer);
+            return response;
         }
     }
 }

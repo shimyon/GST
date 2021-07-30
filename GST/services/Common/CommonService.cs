@@ -1,5 +1,8 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -69,6 +72,35 @@ namespace services
             {
                 return true;
             }
+        }
+
+        public byte[] PdfGenerate(string html, string css)
+        {
+            byte[] buffer = new byte[0];
+            using (MemoryStream stream = new MemoryStream())
+            {
+                // Create the itext pdf
+                using (Document document = new Document())
+                {
+                    using (var writer = PdfWriter.GetInstance(document, stream))
+                    {
+                        document.Open();
+                        var example_html = html;//@"<p>This <em>is </em><span class=""headline"" style=""text-decoration: underline;"">some</span> <strong>sample <em> text</em></strong><span style=""color: red;"">!!!</span></p>";
+                        var example_css = css;// @".headline{font-size:200%}";
+                        using (var msCss = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(example_css)))
+                        {
+                            using (var msHtml = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(example_html)))
+                            {
+                                //Parse the HTML
+                                iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, msHtml, msCss);
+                            }
+                        }
+                        document.Close();
+                    }
+                };
+                buffer = stream.ToArray();
+            };
+            return buffer;
         }
     }
 }
