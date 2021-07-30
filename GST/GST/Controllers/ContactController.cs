@@ -26,6 +26,13 @@ namespace GST.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        public IHttpActionResult ContactDropDownAll()
+        {
+            var getContact = service.ContactDropDownAll();
+            return Ok(getContact);
+        }
+
         [HttpPost]
         public IHttpActionResult GetById(ContactViewModel obj)
         {

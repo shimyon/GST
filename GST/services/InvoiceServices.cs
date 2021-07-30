@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 
 namespace services
 {
-    public class ContactServices : iCRUD<contact>
+    public class InvoiceServices : iCRUD<invoice>
     {
         services.Common.DatatableService datatableService = new Common.DatatableService();
-        public DataTable<ContactDatatable> GetList(ContactSearch search, List<MySqlParameter> filters)
+        public DataTable<InvoiceDatatable> GetList(InvoiceSearch search, List<MySqlParameter> filters)
         {
             try
             {
                 using (var ctx = new AppDb())
                 {
-                    var result = datatableService.GetDataTableResult<ContactDatatable>("contact_list_sp", search, filters);
+                    var result = datatableService.GetDataTableResult<InvoiceDatatable>("invoice_list_sp", search, filters);
                     return result;
                 }
             }
@@ -30,22 +30,23 @@ namespace services
             }
         }
 
-        public int Add(contact contactData)
+        public int Add(invoice invoiceData)
         {
             try
             {
                 using (var ctx = new AppDb())
                 {
-                    var obj = ctx.contact.FirstOrDefault(f => f.Id == contactData.Id);
+                    var obj = ctx.invoice.FirstOrDefault(f => f.Id == invoiceData.Id);
                     if (obj != null)
                     {
-                        ctx.Entry(obj).CurrentValues.SetValues(contactData);
+                        ctx.Entry(obj).CurrentValues.SetValues(invoiceData);
                     }
                     else
                     {
-                        ctx.contact.Add(contactData);
+                        ctx.invoice.Add(invoiceData);
                     }
-                    return ctx.SaveChanges();
+                    ctx.SaveChanges();
+                    return invoiceData.Id;
                 }
             }
             catch (Exception ex)
@@ -60,24 +61,11 @@ namespace services
         }
 
 
-       public contact Get(int Id)
+        public invoice Get(int Id)
         {
             using (var db = new AppDb())
             {
-                var data = db.contact.FirstOrDefault(f => f.Id == Id);
-                return data;
-            }
-        }
-
-        public List<KeyValueViewModel> ContactDropDownAll()
-        {
-            using (var db = new AppDb())
-            {
-                var data = db.contact.Select(s => new KeyValueViewModel
-                {
-                    value = s.Id,
-                    label = s.FirstName + " "+s.LastName
-                }).ToList();
+                var data = db.invoice.FirstOrDefault(f => f.Id == Id);
                 return data;
             }
         }

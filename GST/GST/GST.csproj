@@ -262,6 +262,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\QuotationController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -2853,6 +2855,7 @@
     <Content Include="Content\ckeditor\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Content\ckeditor\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Content\ckeditor\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Quotation_List.cshtml" />
     <None Include="Properties\PublishProfiles\FilePublish.pubxml" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
@@ -2860,6 +2863,7 @@
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="quotation.cshtml" />
     <Content Include="Invoice.cshtml" />
+    <Content Include="Invoice_List.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

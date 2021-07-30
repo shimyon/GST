@@ -7,7 +7,7 @@ namespace GST.Controllers
     {
         public int Id { get; set; }
 
-        public string CompanyID { get; set; }
+        public int CompanyID { get; set; }
 
         public string FirstName { get; set; }
 
