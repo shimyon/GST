@@ -18,10 +18,10 @@ namespace models.DatabaseTable
         [StringLength(100)]
         public string Lastname { get; set; }
         
-        [StringLength(20)]
+        [StringLength(100)]
         public string Username { get; set; }
 
-        [StringLength(20)]
+        [StringLength(100)]
         public string Email { get; set; }
 
         [StringLength(100)]
