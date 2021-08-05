@@ -27,7 +27,9 @@ namespace GST
             _publicClientId = publicClientId;
         }
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             services.UserService usr = new services.UserService();
             user user = usr.Auth(context.UserName, context.Password);

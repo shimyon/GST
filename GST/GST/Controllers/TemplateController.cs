@@ -32,6 +32,13 @@ namespace GST.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        public IHttpActionResult templateDropDownAll()
+        {
+            var getTemplate = service.templateDropDownAll();
+            return Ok(getTemplate);
+        }
+
         [HttpPost]
         public IHttpActionResult GetById(TemplateViewModel obj)
         {

@@ -71,6 +71,20 @@ namespace services
             }
         }
 
+        public object templateDropDownAll()
+        {
+            using (var db = new AppDb())
+            {
+                var data = db.template.Select(s => new 
+                {
+                    value = s.Id,
+                    label = s.TemplateFor,
+                    s.TemplateData
+                }).ToList();
+                return data;
+            }
+        }
+
     }
 }
 

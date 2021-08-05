@@ -12,9 +12,46 @@
         .bgimg {
             background: url('./Content/images/ngcp.svg') no-repeat;
         }
+
+        #mySidenav a {
+            position: absolute;
+            left: -80px;
+            transition: 0.3s;
+            padding: 15px;
+            width: 100px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            border-radius: 0 5px 5px 0;
+        }
+
+            #mySidenav a:hover {
+                left: 0;
+            }
+
+        #about {
+            top: 20px;
+            background-color: #04AA6D;
+        }
+
+        #blog {
+            top: 80px;
+            background-color: #2196F3;
+        }
+
+        #projects {
+            top: 140px;
+            background-color: #f44336;
+        }
+
+        #contact {
+            top: 200px;
+            background-color: #555
+        }
     </style>
     <link rel="icon" type="image/png" href="~/Content/images/logo.png" />
     <link href="~/Content/bootstrap.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/site.css?v=@version" rel="stylesheet" />
 
     <link href="~/Content/css/header.css?v=@version" rel="stylesheet" />
@@ -37,50 +74,24 @@
     <link href="~/Content/fonts/fontawesome-free-5.15.2-web/css/solid.css" rel="stylesheet">
     @RenderSection("style", required: false)
 </head>
+
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+
         <a class="navbar-brand" href="#">
-            <img src="~/Content/images/logo.png" style="width: 30px;" />
+            <img src="~/Content/images/logo.png" style="width: 30px; margin-left:10px" />
         </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link text-center text-white" href="#">
-                        <i class="fa fa-home"></i>
-                        <h6>Home</h6>
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link text-center text-white" href="#">
-                        <i class="fa fa-user-check"></i>
-                        <h6>Clients</h6>
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link text-center text-white" href="~/festival">
-                        <i class="fa fa-drum"></i>
-                        <h6>Festival</h6>
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link text-center text-white" href="#">
-                        <i class="fa fa-birthday-cake"></i>
-                        <h6>Birthday</h6>
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link text-center text-white" href="#">
-                        <i class="fa fa-history"></i>
-                        <h6>History</h6>
-                    </a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <ul>
+
+            <form class="form-inline my-2 my-lg-0 ml-auto">
+                <ul id="layoutuseraction" style="display: none;">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-list"></i>
@@ -89,26 +100,99 @@
                             <a class="dropdown-item" href="#">Action</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                            <a class="dropdown-item" href="javascript:void(0);" onclick="layout.logout();"><i class="fa fa-sign-out-alt"></i> Logout</a>
                         </div>
                     </li>
                 </ul>
+                <a href="~/Login" id="layoutlogin" class="text-white" style="display: none;"><i class="fa fa-sign-out-alt"></i> Login</a>
             </form>
         </div>
     </nav>
+    <div class="row mr-0" style="height: calc(100vh - 96px);">
+        <div class="col-2 col-sm-2 col-xl-1 bg-dark leftnavbar">
+            <ul class="navbar-nav flex-column mr-auto navbar-light">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">
+                        <i class="fa fa-home"></i>
+                        <span id="nav-label">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="~/Company_List.cshtml">
+                        <i class="fa fa-building"></i>
+                        <span id="nav-label">Company</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="~/Contact_List.cshtml">
+                        <i class="fa fa-address-book"></i>
+                        <span id="nav-label">Contact</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="~/Product_List.cshtml">
+                        <i class="fa fa-barcode"></i>
+                        <span id="nav-label">Product</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="~/Quotation_List.cshtml">
+                        <i class="fa fa-print"></i>
+                        <span id="nav-label">Quotation</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="~/Invoice_List.cshtml">
+                        <i class="fa fa-file-invoice"></i>
+                        <span id="nav-label">Invoice</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="~/festival">
+                        <i class="fa fa-drum"></i>
+                        <span id="nav-label">Festival</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">
+                        <i class="fa fa-birthday-cake"></i>
+                        <span id="nav-label">Birthday</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="~/Template_List">
+                        <i class="fa fa-clone"></i>
+                        <span id="nav-label">Template</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">
+                        <i class="fa fa-history"></i>
+                        <span id="nav-label">History</span>
+                    </a>
 
-    <div class="body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Emoiss</p>
-        </footer>
+                </li>
+            </ul>
+        </div>
+        <div class="col-10 col-sm-10 col-xl-11">
+            <div class="body-content">
+                @RenderBody()
+            </div>
+        </div>
     </div>
+
+
+    <hr style="margin:0px;" />
+
+    <footer class="appfooter">
+        <div class="footercopyright">&copy; @DateTime.Now.Year - Emoiss</div>
+    </footer>
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
 
     <script src="~/Scripts/App/config.js?v=@version"></script>
-    <script src="~/Scripts/App/dashboard.js?v=@version"></script>
+    <script src="~/Scripts/App/layout.js?v=@version"></script>
     <script src="~/Scripts/alertify/alertify.js?v=@version"></script>
     <script src="~/Scripts/select2.min.js?v=@version"></script>
     <script src="~/Scripts/validate.js?v=@version"></script>

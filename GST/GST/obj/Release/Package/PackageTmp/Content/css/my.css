@@ -17,17 +17,6 @@ select.form-control {
     padding-top: 2px;
 }
 
-
-.dataTables_wrapper .dataTables_length {
-    /*margin-top: 5px;*/
-}
-
-.dataTables_wrapper .dataTables_length select {
-    /*padding-top: 0px;
-    padding-bottom: 0px;*/
-    padding: 0.2em 0.25em 0.2em 0.25em;
-}
-
 /* width */
 ::-webkit-scrollbar {
     width: 10px;

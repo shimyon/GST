@@ -244,3 +244,6 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.csprojResolveAssemblyReferenc
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\itextsharp.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\itextsharp.xmlworker.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\itextsharp.xml
+E:\Emoiss_wish\GST\GST\GST\bin\itextsharp.dll
+E:\Emoiss_wish\GST\GST\GST\bin\itextsharp.xmlworker.dll
+E:\Emoiss_wish\GST\GST\GST\bin\itextsharp.xml

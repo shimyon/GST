@@ -90,9 +90,15 @@
 
         </div>
     </div>
-    <div class="col-md-offset-1 col-md-10" id="preview">
-        <h2 class="text" style="margin-top:0">Preview</h2>
-        <button type="button" class="btn btn-primary btn-sm" onclick="downloadimge();">Download</button>
+    <div class="col-md-offset-1 col-md-10">
+        <div class="card bg-light">
+            <div class="card-header">
+                Preview <button type="button" class="btn btn-primary btn-sm" style="display: none;" id="downloadbtn" onclick="downloadimge();">Download</button> 
+            </div>
+            <div class="card-body p-0">
+                <div  id="preview"></div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -100,15 +106,6 @@
     <script src="~/Scripts/watermark.js"></script>
     <script type="text/javascript">
         var original;
-
-        /**
-         * ids for aws related inputs
-         */
-        var awsFields = ['accessKeyId', 'policy', 'signature', 'bucket'];
-
-        /**
-         * Enable fields identified by ids
-         */
 
         function downloadimge() {
             if ($("#preview img").length > 0) {
@@ -148,7 +145,7 @@
          * A listener that fires when the target image is selected
          */
         function setTarget(file) {
-            $("#logodiv").show();
+            $("#logodiv,#downloadbtn").show();
             enableFields(['watermark-button']);
             Array.prototype.forEach.call(document.querySelectorAll('input[type=radio]'), function (radio) {
                 radio.removeAttribute('disabled');
