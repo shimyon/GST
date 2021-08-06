@@ -24,8 +24,9 @@ namespace GST.Controllers
         [HttpPost]
         public IHttpActionResult GetById(PrintViewModel obj)
         {
-            var getPrint = service.Get(obj.Id);
-            return Ok(getPrint);
+            //var getPrint = service.Get(obj.Id);
+            //return Ok(getPrint);
+            return Ok();
         }
     }
 }

@@ -11,9 +11,9 @@ namespace models.DatabaseTable
     [Table("quotation")]
     public class quotation : BaseEntity
     {
-        public int CompanyID { get; set; }
+        public int? CompanyID { get; set; }
 
-        public int ContactID { get; set; }
+        public int? ContactID { get; set; }
 
         public DateTime QuotationDate { get; set; }
 

@@ -71,11 +71,24 @@ namespace services
             }
         }
 
+        public object GetTemplatesByGroup(string templateFor)
+        {
+            using (var db = new AppDb())
+            {
+                var data = db.template.Where(w => w.TemplateFor == templateFor).Select(s => new
+                {
+                    value = s.Id,
+                    label = s.TemplateName
+                }).ToList();
+                return data;
+            }
+        }
+
         public object templateDropDownAll()
         {
             using (var db = new AppDb())
             {
-                var data = db.template.Select(s => new 
+                var data = db.template.Select(s => new
                 {
                     value = s.Id,
                     label = s.TemplateFor,

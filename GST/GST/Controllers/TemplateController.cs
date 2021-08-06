@@ -33,6 +33,13 @@ namespace GST.Controllers
         }
 
         [HttpGet]
+        public IHttpActionResult GetTemplatesByGroup(string templateFor)
+        {
+            var getTemplate = service.GetTemplatesByGroup(templateFor);
+            return Ok(getTemplate);
+        }
+
+        [HttpGet]
         public IHttpActionResult templateDropDownAll()
         {
             var getTemplate = service.templateDropDownAll();
