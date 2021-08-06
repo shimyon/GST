@@ -112,3 +112,13 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Memory.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.csprojResolveAssemblyReference.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\itextsharp.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\itextsharp.xmlworker.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\OptimizedDataReader.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Savage.Data.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Savage.Data.MySqlClient.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Threading.Tasks.Extensions.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Google.Protobuf.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\itextsharp.xml
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Threading.Tasks.Extensions.xml

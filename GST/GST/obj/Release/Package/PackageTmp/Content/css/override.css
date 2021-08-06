@@ -1,19 +1,14 @@
-:focus {
+/*:focus {
     outline: none;
-    /*outline: -webkit-focus-ring-color auto 1px;
-    outline-color: -webkit-focus-ring-color;
-    outline-style: auto;
-    outline-width: 1px;*/
 }
 
 .form-control, .form-control-sm {
     height: 30px;
-    /* width: 282px; */
 }
 
 .col-form-label-sm {
     padding-right: 0;
-}
+}*/
 
 /* Datatable css */
 .dataTables_filter input[type=search] {

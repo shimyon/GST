@@ -48,3 +48,12 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\System.Runtime.CompilerServi
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Release\models.csprojResolveAssemblyReference.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Release\models.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Release\models.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\itextsharp.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\itextsharp.xmlworker.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\MySqlConnector.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\OptimizedDataReader.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\Savage.Data.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\Savage.Data.MySqlClient.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\System.Threading.Tasks.Extensions.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\itextsharp.xml
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\System.Threading.Tasks.Extensions.xml
