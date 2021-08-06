@@ -6,14 +6,11 @@
 @*<div class="sechead pb5 fs14 mt20 "><b>Quotation</b></div>*@
 <div class="mt-5">
     <ul id="myTab" class="nav nav-tabs">
-        <li class="active">
-            <a class="nav-link" href="#Quotation" data-toggle="tab" aria-selected="true">Quotation</a>
+        <li class="active"><a class="nav-link" href="#Quotation" data-toggle="tab" aria-selected="true">Quotation</a></li>
 
-        </li>
-        <li>
-            <a class="nav-link" href="#Quotation_items" data-toggle="tab">Quotation items</a>
+        <li><a class="nav-link" href="#Quotation_items" data-toggle="tab">Quotation items</a></li>
 
-        </li>
+        <li><a class="nav-link" href="#Template" data-toggle="tab">Template</a></li>
     </ul>
     <div id="Content" class="tab-content">
         <div class="tab-pane fade in active" id="Quotation">
@@ -50,6 +47,7 @@
                 </div>
             </div>
         </div>
+
         <div class="tab-pane fade" id="Quotation_items">
             <div class="mt-1">
                 <div style="margin-top:20px">
@@ -140,6 +138,29 @@
             </div>
 
         </div>
+
+        <div class="tab-pane fade in active" id="Template">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Remplate Name</label>
+                        <select class="form-control" id="tmpQuotation">
+                            <option value="CompanyName">Quotation</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <textarea name="TemplateData" id="TemplateData" rows="10" cols="80"></textarea>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col">
+                    <button type="button" class="btn btn-primary" onclick="PrintPDF();">Print</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -149,6 +170,8 @@
 
 
 @section scripts {
+<script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
+
     <script type="text/javascript">
         var id = querySt("id");
          var productList = [];
@@ -156,13 +179,16 @@
          var quotID;
 
          $(function () {
+            CKEDITOR.replace('TemplateData');
             init();
+            $('a[href="#Quotation"]').click();
         })
 
         async function init() {
             await ProductDropDownAll();
             await CompanyDropDownAll();
             await ContactDropDownAll();
+            await templateDropDownAll();
             if (id) {
                    GetById();
              }
@@ -211,21 +237,47 @@
             });
         }
 
+        function templateDropDownAll() {
+            return new Promise((result, error) => {
+                ajaxcall.get({
+                    url: AppConfig.ApiPath + "Template/templateDropDownAll"
+                }).then((res) => {
+                    if (res) {
+                        for (var i in res) {
+                         $("<option>").val(res[i].value).text(res[i].label).appendTo("#tmpQuotation");
+                        }
+                    }
+                    result();
+                }, err => error(err));
+            });
+        }
+
+        function PrintPDF(){
+                ajaxcall.post({
+                            url: AppConfig.ApiPath + "Print",
+                            data: {
+                                Id: id,
+                                TemplateFor: $("#tmpQuotation").val(),
+                                TemplateData: $("#TemplateData").val(),
+                            }
+                        }).then(res => {
+                            alert("Saved successfully");
+                        }, err => {
+                            alert(err.responseJSON);
+                        })
+
+        }
+
         function GetById() {
             ajaxcall.post({
                 url: AppConfig.ApiPath + "Quotation/GetUsingID",
                 data: { "Id": id }
             }).then(function (res) {
-        console.log(res.DOB);
-        const newdate = new Date(res.DOB);
-        const dateValue = newdate.toLocaleDateString();
-
                 if (res) {
                     $("#CompanyName").val(res.CompanyID);
                     $("#ContactName").val(res.ContactID);
                     $("#QuotationDate").val(res.QuotationDateformate);
                 }
-
             })
         }
 
@@ -345,8 +397,8 @@
              ajaxcall.post({
                     url: AppConfig.ApiPath + "Quotation/AddQuotData",
                     data: {
-                        CompanyName: $("#CompanyName").val(),
-                        ContactName: $("#ContactName").val(),
+                        CompanyID: $("#CompanyName").val(),
+                        ContactID: $("#ContactName").val(),
                         QuotationDate: $("#QuotationDate").val()
                     }
 

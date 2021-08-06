@@ -31,5 +31,7 @@ namespace models.ViewModels
         public string TemplateFor { get; set; }
 
         public string TemplateName { get; set; }
+
+        public string TemplateData { get; set; }
     }
 }
