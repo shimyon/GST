@@ -22,11 +22,17 @@ namespace GST.Controllers
         CommonService commsrv = new CommonService();
 
         [HttpPost]
-        public IHttpActionResult GetById(PrintViewModel obj)
+        public HttpResponseMessage PrintPDF(PrintViewModel obj)
         {
-            //var getPrint = service.Get(obj.Id);
-            //return Ok(getPrint);
-            return Ok();
+            //IHttpActionResult
+            string filename = "Sample";
+            var example_html = obj.TemplateData;
+            var example_css = @".headline{font-size:200%}";
+            byte[] buffer = commsrv.PdfGenerate(example_html, example_css);
+            HttpResponseMessage response = PDFResponse(filename, buffer);
+            return response;
+            //string pdfBase64= PDFbase64String(buffer);
+            //return Ok(pdfBase64);
         }
     }
 }

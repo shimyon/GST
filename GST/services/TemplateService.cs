@@ -98,6 +98,24 @@ namespace services
             }
         }
 
+        public object AllTokens()
+        {
+            using (var db = new AppDb())
+            {
+                var data = db.token.GroupBy(g => g.TokenType).Select(s => s.ToList()).ToList();
+                return data;
+            }
+        }
+
+
+        public Dictionary<string, string> GetTokensByModulName(string Name)
+        {
+            using (var db = new AppDb())
+            {
+                var data = db.token.Where(w => w.TokenType == "Common" || w.TokenType == Name).ToDictionary(key => key.TokenType + "." + key.TokenName, val => "");
+                return data;
+            }
+        }
     }
 }
 

@@ -32,5 +32,6 @@ namespace services
         public DbSet<quotation_items> quotation_items { get; set; }
         public DbSet<quotation> quotation { get; set; }
         public DbSet<invoice> invoice { get; set; }
+        public DbSet<token> token { get; set; }
     }
 }

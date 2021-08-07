@@ -12,7 +12,7 @@
 
         <li><a class="nav-link" href="#Template" data-toggle="tab">Template</a></li>
     </ul>
-    <div id="Content" class="tab-content">
+    <div id="Content" class="tab-content" style="height: 100%;">
         <div class="tab-pane fade in active" id="Quotation">
             <div class="row">
                 <div class="col-md-4">
@@ -165,20 +165,35 @@
 </div>
 
 
+<div class="modal fade" id="PrintPreview">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe id="the-frame" src="" style="width:100%; min-height:300px;height:100%;" allowfullscreen webkitallowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
 
 @section scripts {
-<script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
 
     <script type="text/javascript">
         var id = querySt("id");
-         var productList = [];
-         var $tabs = $('#Content');
-         var quotID;
+        var productList = [];
+        var $tabs = $('#Content');
+        var quotID;
 
-         $(function () {
+        $(function () {
             CKEDITOR.replace('TemplateData');
             init();
             $('a[href="#Quotation"]').click();
@@ -270,20 +285,49 @@
         }
 
         function PrintPDF(){
-                ajaxcall.post({
-                            url: AppConfig.ApiPath + "Print",
-                            data: {
-                                Id: id,
-                                TemplateFor: $("#tmpQuotation").val(),
-                                TemplateData: $("#TemplateData").val(),
-                            }
-                        }).then(res => {
-                            alert("Saved successfully");
-                        }, err => {
-                            alert(err.responseJSON);
-                        })
-
+            var value = CKEDITOR.instances['TemplateData'].getData()
+            if (!value) {
+                alert('Please enter Template Data');
+                return false;
+            }
+            ajaxcall.file({
+                url: AppConfig.ApiPath + "Print/PrintPDF",
+                data: {
+                    Id: id,
+                    Action: 'Quotation',
+                    TemplateFor: $("#tmpQuotation").val(),
+                    TemplateData: CKEDITOR.instances['TemplateData'].getData(),
+                }
+            }).then(blobData => {
+                var path = GenBlobURL(blobData);
+                $('#the-frame').attr('src',path);
+                //DownloadFileFromURL(blobData);
+                $("#PrintPreview").modal('show');
+            }, err => {
+                alert(err.responseText);
+            })
         }
+
+        function convertDataURIToBinary(base64) {
+            var raw = window.atob(base64);
+            var rawLength = raw.length;
+            var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+            for (var i = 0; i < rawLength; i++) {
+                array[i] = raw.charCodeAt(i);
+            }
+            return array;
+        }
+
+        function ConvertDataToObject(Data) {
+            var pdfAsDataUri = Data;
+            var pdfAsArray = convertDataURIToBinary(pdfAsDataUri);
+            var binaryData = [];
+            binaryData.push(pdfAsArray);
+            var dataPdf = url + window.URL.createObjectURL(new Blob(binaryData, { type: "application/pdf" }))
+            return dataPdf;
+        }
+
 
         function GetById() {
             ajaxcall.post({
