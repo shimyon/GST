@@ -32,6 +32,8 @@ namespace LiveData
         {
 
             services.AddControllers();
+            services.AddSingleton<IWebSocketHolder, WebSocketHolder>();
+
             //services.AddSwaggerGen(c =>
             //{
             //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "LiveData", Version = "v1" });
@@ -58,30 +60,51 @@ namespace LiveData
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
+            app.UseWebSockets();
+            app.MapWebSocketHolder("/ws");
 
-            var webSocketOptions = new WebSocketOptions()
-            {
-                KeepAliveInterval = TimeSpan.FromSeconds(120),
-            };
+            //var webSocketOptions = new WebSocketOptions()
+            //{
+            //    KeepAliveInterval = TimeSpan.FromSeconds(120),
+            //};
 
-            app.UseWebSockets(webSocketOptions);
-            app.Use(async (context, next) =>
-            {
-                if (context.Request.Path == "/ws")
-                {
-                    if (context.WebSockets.IsWebSocketRequest)
-                    {
-                        using (WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync())
-                        {
-                            await Send(context, webSocket);
-                        }
-                    }
-                    else
-                    {
-                        context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    }
-                }
-            });
+            //app.UseWebSockets(webSocketOptions);
+
+            //app.Use(async (context, next) =>
+            //{
+            //    if (context.Request.Path == "/ws")
+            //    {
+            //        if (context.WebSockets.IsWebSocketRequest)
+            //        {
+            //            using (WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync())
+            //            {
+            //                await Send(context, webSocket);
+            //            }
+            //        }
+            //        else
+            //        {
+            //            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            //        }
+            //    }
+            //});
+
+            //app.Use(async (context, next) =>
+            //{
+            //    if (context.Request.Path == "/ws")
+            //    {
+            //        if (context.WebSockets.IsWebSocketRequest)
+            //        {
+            //            using (WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync())
+            //            {
+            //                await Send(context, webSocket);
+            //            }
+            //        }
+            //        else
+            //        {
+            //            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            //        }
+            //    }
+            //});
 
             //app.UseEndpoints(endpoints =>
             //{
