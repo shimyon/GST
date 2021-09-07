@@ -7,7 +7,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emoiss Wishes</title>
-
+    <script type="text/javascript">
+        if (localStorage['Token']) {
+            var GlobalExpirydate = new Date(localStorage['.expires']);
+            var GlobalCurdate = new Date();
+            if (GlobalExpirydate < GlobalCurdate) {
+                alert('Session expired please login again.');
+                location.replace("/Login");
+            }
+        } else {
+            location.replace("/Login");
+        }
+    </script>
     <style type="text/css">
         .bgimg {
             background: url('./Content/images/ngcp.svg') no-repeat;

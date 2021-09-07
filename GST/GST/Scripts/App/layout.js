@@ -21,3 +21,18 @@ $(function() {
         $("#layoutlogin").show();
     }
 })
+
+
+function GenBlobURL(blobData) {
+	let blob = new Blob([blobData], {type: 'application/pdf'});
+	return downloadUrl = URL.createObjectURL(blob);
+}
+
+function DownloadFileFromURL(blobData) {
+	let downloadUrl = GenBlobURL(blobData);
+	let a = document.createElement("a");
+	a.href = downloadUrl;
+	a.download = "file.pdf";
+	document.body.appendChild(a);
+	a.click();
+}

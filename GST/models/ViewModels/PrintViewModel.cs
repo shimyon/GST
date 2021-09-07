@@ -10,6 +10,8 @@ namespace models.ViewModels
     {
         public int Id { get; set; }
 
+        public string Action { get; set; }
+
         public string TemplateFor { get; set; }
 
         public string TemplateData { get; set; }

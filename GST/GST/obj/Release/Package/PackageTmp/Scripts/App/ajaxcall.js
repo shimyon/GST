@@ -1,4 +1,21 @@
 ﻿var ajaxcall = {
+	file: (param) => {
+		return new Promise((resolve, reject) => {
+			fetch(param.url, {
+				body: JSON.stringify(param.data),
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json; charset=utf-8'
+				}
+			})
+			.then(response => response.blob())
+			.then(response => {
+				resolve(response);
+			}, error => {
+				reject(response);
+			});
+		});
+	},
     post: (param) => {
         return new Promise((resolve, reject) => {
             var usreid = localStorage.getItem('userid') || "";

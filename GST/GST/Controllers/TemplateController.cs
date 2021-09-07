@@ -47,6 +47,19 @@ namespace GST.Controllers
         }
 
         [HttpPost]
+        public string GetTokensByModulName(Dictionary<string, string> tokensDictionary)
+        {
+            string resultMessage = string.Empty;
+            if (tokensDictionary != null)
+            {
+            }
+            else
+            {
+            }
+            return resultMessage;
+        }
+
+        [HttpPost]
         public IHttpActionResult GetById(TemplateViewModel obj)
         {
             var getTemplate = service.Get(obj.Id);

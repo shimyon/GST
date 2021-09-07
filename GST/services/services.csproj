@@ -157,6 +157,7 @@
     <Compile Include="Common\PasswordCryptoService.cs" />
     <Compile Include="InvoiceServices.cs" />
     <Compile Include="QuotationServices.cs" />
+    <Compile Include="Invoice_itemsServices.cs" />
     <Compile Include="Quotation_itemsServices.cs" />
     <Compile Include="ProductServices.cs" />
     <Compile Include="ContactServices.cs" />

@@ -40,11 +40,18 @@ namespace GST.Controllers
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/pdf");
             response.Content.Headers.ContentLength = buffer.Length;
             ContentDispositionHeaderValue contentDisposition = null;
+            //inline
             if (ContentDispositionHeaderValue.TryParse("inline; filename=" + filename + ".pdf", out contentDisposition))
             {
                 response.Content.Headers.ContentDisposition = contentDisposition;
             }
             return response;
+        }
+
+        public string PDFbase64String(byte[] pdfByteArray)
+        {
+            string base64EncodedPDF = System.Convert.ToBase64String(pdfByteArray);
+            return base64EncodedPDF;
         }
     }
 }
