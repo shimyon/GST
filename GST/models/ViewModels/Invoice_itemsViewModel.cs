@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace GST.Controllers
 {
-    public class Quotation_itemsViewModel
+    public class Invoice_itemsViewModel
     {
         public int Id { get; set; }
 
@@ -26,18 +26,18 @@ namespace GST.Controllers
         public int Total { get; set; }
     }
 
-    public class QuotataionListAdd
+    public class InvoiceListAdd
     {
-        public List<quotation_items> quotation_itemsobj { get; set; }
+        public List<invoice_items> invoice_itemsobj { get; set; }
     }
 }
 
-public class Quotation_itemsSearch : DataTableSearch
+public class Invoice_itemsSearch : DataTableSearch
 {
 
 }
 
-public class Quotation_itemsDatatable : DatatableCommon
+public class Invoice_itemsDatatable : DatatableCommon
 {
     public Int32 Id { get; set; }
 

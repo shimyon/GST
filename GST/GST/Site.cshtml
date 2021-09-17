@@ -1,0 +1,102 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+<div class="sechead pb5 fs14 mt20 "><h4><b>Site</b></h4></div>
+<div class="container mt-5">
+    <div class="container mt-5">
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Name</label>
+                <input type="text" class="form-control" id="Name">
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label>Addresse</label>
+                    <input type="text" class="form-control" id="Address">
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label for="inputAddress2">Owner Name</label>
+                    <input type="text" class="form-control" id="OwnerName">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col col-md-1">
+                <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
+            </div>
+            <div class="col col-md-1">
+                <button type="button" class="btn btn-danger" onclick="goBack();">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+  
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        var id = querySt("id");
+
+        $(function () {
+            if (id) {
+                GetById();
+            }
+        })
+
+        function GetById() {
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Site/GetById",
+                data: { "Id": id }
+            }).then(function (res) {
+                if (res) {
+                    $("#Name").val(res.Name);
+                    $("#Address").val(res.Address);
+                    $("#OwnerName").val(res.OwnerName);
+                }
+            })
+        }
+
+        function saveData() {
+            if (!$("#Name").val()) {
+                alert('Please enter Name');
+                $("#Name").focus()
+                return false;
+            }
+
+            if (!$("#Address").val()) {
+                alert('Please enter Address');
+                $("#Address").focus()
+                return false;
+            }
+
+            if (!$("#OwnerName").val()) {
+                alert('Please enter Owner Name');
+                $("#OwnerName").focus()
+                return false;
+            }
+
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Site/AddData",
+                data: {
+                    Id: id,
+                    Name: $("#Name").val(),
+                    Address: $("#Address").val(),
+                    OwnerName: $("#OwnerName").val()
+                }
+            }).then(res => {
+                alert("Saved successfully");
+                window.history.back();
+            }, err => {
+                alert(err.responseJSON);
+            })
+        }
+
+        function goBack() {
+                 window.history.back();
+        }
+    </script>
+}

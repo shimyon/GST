@@ -30,8 +30,13 @@ namespace services
         public DbSet<contact> contact { get; set; }
         public DbSet<company> company { get; set; }
         public DbSet<quotation_items> quotation_items { get; set; }
+        public DbSet<invoice_items> invoice_items { get; set; }
         public DbSet<quotation> quotation { get; set; }
         public DbSet<invoice> invoice { get; set; }
         public DbSet<token> token { get; set; }
+        public DbSet<site> site { get; set; }
+        public DbSet<plot> plot { get; set; }
+        public DbSet<customer> customer { get; set; }
+        public DbSet<payment> payment { get; set; }
     }
 }

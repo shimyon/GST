@@ -12,6 +12,8 @@ namespace GST.Controllers
         public string ContactName { get; set; }
 
         public DateTime InvoiceDate { get; set; }
+
+        public int Total { get; set; }
     }
 
     public class InvoiceSearch : DataTableSearch
@@ -28,6 +30,8 @@ namespace GST.Controllers
         public string ContactName { get; set; }
 
         public DateTime InvoiceDate { get; set; }
+
+        public int Total { get; set; }
     }
 }
 

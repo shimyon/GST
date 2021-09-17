@@ -112,3 +112,4 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\System.Runtime.CompilerService
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.pdb
+E:\Emoiss_wish\GST\GST\models\obj\Debug\models.csprojResolveAssemblyReference.cache

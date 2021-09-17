@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace models.DatabaseTable
 {
-    [Table("quotation_items")]
-    public class quotation_items : BaseEntity
+    [Table("Invoice_items")]
+    public class invoice_items : BaseEntity
     {
-        public int? QuotationID { get; set; }
+        public int? InvoiceID { get; set; }
 
         [StringLength(50)]
         public string ProductName { get; set; }

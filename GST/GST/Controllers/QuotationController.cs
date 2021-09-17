@@ -13,7 +13,19 @@ namespace GST.Controllers
     public class QuotationController : BaseApiController
     { 
         Quotation_itemsServices service = new Quotation_itemsServices();
-       
+        DatatableService datatableService = new DatatableService();
+        [HttpPost]
+        public IHttpActionResult GetQuot_itemsList(Quotation_itemsSearch search)
+        {
+            AuthDetails authdet = LoginUserDetails();
+            var filters = new List<MySqlParameter>
+            {
+                datatableService.CreateSqlParameter("@pUserId", authdet.UserId,  MySqlDbType.Int32)
+            };
+            var result = service.GetQuot_itemsList(search, filters);
+            return Ok(result);
+        }
+
         [HttpPost]
         public IHttpActionResult GetById(Quotation_itemsViewModel obj)
         {
@@ -22,21 +34,36 @@ namespace GST.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult AddData(quotation_items quotation_itemsobj)
+        public IHttpActionResult AddData(QuotataionListAdd QuoteObj)
         {
-            var result = service.Add(quotation_itemsobj);
-            return Ok(result);
+            if (QuoteObj.quotation_itemsobj != null)
+            {
+                AuthDetails authdet = LoginUserDetails();
+                foreach (var quote in QuoteObj.quotation_itemsobj)
+                {
+                    quote.UpdatedBy = authdet.UserId;
+                    quote.CreatedBy = authdet.UserId;
+                }
+                var result = service.AddItems(QuoteObj.quotation_itemsobj);
+                return Ok(result);
+            }
+            else
+            {
+                return Ok(0);
+            }
+
+            
         }
 
         QuotationServices service1 = new QuotationServices();
-        DatatableService datatableService = new DatatableService();
+        DatatableService datatableService1 = new DatatableService();
         [HttpPost]
         public IHttpActionResult GetList(QuotationSearch search)
         {
             AuthDetails authdet = LoginUserDetails();
             var filters = new List<MySqlParameter>
             {
-                datatableService.CreateSqlParameter("@pUserId", authdet.UserId,  MySqlDbType.Int32)
+                datatableService1.CreateSqlParameter("@pUserId", authdet.UserId,  MySqlDbType.Int32)
             };
             var result = service1.GetList(search, filters);
             return Ok(result);

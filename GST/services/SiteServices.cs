@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 
 namespace services
 {
-    public class InvoiceServices : iCRUD<invoice>
+    public class SiteServices : iCRUD<site>
     {
         services.Common.DatatableService datatableService = new Common.DatatableService();
-        public DataTable<InvoiceDatatable> GetList(InvoiceSearch search, List<MySqlParameter> filters)
+        public DataTable<SiteDatatable> GetList(SiteSearch search, List<MySqlParameter> filters)
         {
             try
             {
                 using (var ctx = new AppDb())
                 {
-                    var result = datatableService.GetDataTableResult<InvoiceDatatable>("invoice_list_sp", search, filters);
+                    var result = datatableService.GetDataTableResult<SiteDatatable>("site_list_sp", search, filters);
                     return result;
                 }
             }
@@ -30,24 +30,22 @@ namespace services
             }
         }
 
-        public int Add(invoice invoiceData)
+        public int Add(site sitetData)
         {
             try
             {
                 using (var ctx = new AppDb())
                 {
-                    var obj = ctx.invoice.FirstOrDefault(f => f.Id == invoiceData.Id);
+                    var obj = ctx.site.FirstOrDefault(f => f.Id == sitetData.Id);
                     if (obj != null)
                     {
-                        ctx.Entry(obj).CurrentValues.SetValues(invoiceData);
+                        ctx.Entry(obj).CurrentValues.SetValues(sitetData);
                     }
                     else
                     {
-                        ctx.invoice.Add(invoiceData);
+                        ctx.site.Add(sitetData);
                     }
-                    ctx.SaveChanges();
-                    return invoiceData.Id;
-
+                    return ctx.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -61,14 +59,14 @@ namespace services
             throw new NotImplementedException();
         }
 
-
-        public invoice Get(int Id)
+        public site Get(int Id)
         {
             using (var db = new AppDb())
             {
-                var data = db.invoice.FirstOrDefault(f => f.Id == Id);
+                var data = db.site.FirstOrDefault(f => f.Id == Id);
                 return data;
             }
         }
+
     }
 }

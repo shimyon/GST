@@ -25,5 +25,7 @@ namespace models.DatabaseTable
                 return InvoiceDate.ToString("yyyy-MM-dd");
             }
         }
+
+        public int Total { get; set; }
     }
 }
