@@ -33,7 +33,7 @@ namespace GST.Controllers
     {
         public Int32 Id { get; set; }
 
-        public string CompanyID { get; set; }
+        public string CompanyName { get; set; }
 
         public string FirstName { get; set; }
 
@@ -41,7 +41,7 @@ namespace GST.Controllers
 
         public string LastName { get; set; }
 
-        public DateTime DOB { get; set; }
+        public DateTime? DOB { get; set; }
 
         public string Phone1 { get; set; }
 

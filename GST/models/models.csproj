@@ -152,6 +152,10 @@
   <ItemGroup>
     <Compile Include="ApplicationLevel.cs" />
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="DatabaseTable\plot.cs" />
+    <Compile Include="DatabaseTable\payment.cs" />
+    <Compile Include="DatabaseTable\customer.cs" />
+    <Compile Include="DatabaseTable\site.cs" />
     <Compile Include="DatabaseTable\invoice.cs" />
     <Compile Include="DatabaseTable\quotation.cs" />
     <Compile Include="DatabaseTable\invoice_items.cs" />
@@ -165,6 +169,10 @@
     <Compile Include="DatabaseTable\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AuthDetails.cs" />
+    <Compile Include="ViewModels\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\PlotViewModel.cs" />
+    <Compile Include="ViewModels\SiteViewModel.cs" />
     <Compile Include="ViewModels\InvoiceViewModel.cs" />
     <Compile Include="ViewModels\QuotationViewModel.cs" />
     <Compile Include="ViewModels\Invoice_itemsViewModel.cs" />
