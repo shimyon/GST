@@ -10,7 +10,6 @@
                 <div class="form-group">
                     <label>Site ID</label>
                     <select class="form-control" id="Name">
-                        <option value="">Site ID</option>
                     </select>
                 </div>
             </div>
@@ -57,7 +56,7 @@
                 }).then((res) => {
                     if (res) {
                         for (var i in res) {
-                            $("<option>").val(res[i].value).text(res[i].label).appendTo("#SiteID");
+                            $("<option>").val(res[i].value).text(res[i].label).appendTo("#Name");
                         }
                     }
                     result();

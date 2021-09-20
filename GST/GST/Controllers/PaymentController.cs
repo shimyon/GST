@@ -10,12 +10,12 @@ using System.Web;
 using System.Web.Http;
 namespace GST.Controllers
 {
-    public class CustomerController : BaseApiController
+    public class PaymentController : BaseApiController
     {
-        CustomerServices service = new CustomerServices();
+        PaymentServices service = new PaymentServices();
         DatatableService datatableService = new DatatableService();
         [HttpPost]
-        public IHttpActionResult GetList(CustomerSearch search)
+        public IHttpActionResult GetList(PaymentSearch search)
         {
             AuthDetails authdet = LoginUserDetails();
             var filters = new List<MySqlParameter>
@@ -26,29 +26,20 @@ namespace GST.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
-        public IHttpActionResult CustomerIDDropDownAll()
-        {
-            var getCustomer = service.CustomerIDDropDownAll();
-            return Ok(getCustomer);
-        }
-
-
-
         [HttpPost]
-        public IHttpActionResult GetById(CustomerViewModel obj)
+        public IHttpActionResult GetById(PaymentViewModel obj)
         {
-            var getCustomer = service.Get(obj.Id);
-            return Ok(getCustomer);
+            var getPayment = service.Get(obj.Id);
+            return Ok(getPayment);
         }
 
         [HttpPost]
-        public IHttpActionResult AddData(customer customerobj)
+        public IHttpActionResult AddData(payment paymentobj)
         {
             AuthDetails authdet = LoginUserDetails();
-            customerobj.UpdatedBy = authdet.UserId;
-            customerobj.CreatedBy = authdet.UserId;
-            var result = service.Add(customerobj);
+            paymentobj.UpdatedBy = authdet.UserId;
+            paymentobj.CreatedBy = authdet.UserId;
+            var result = service.Add(paymentobj);
             return Ok(result);
         }
     }

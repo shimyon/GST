@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 
 namespace services
 {
-    public class CustomerServices : iCRUD<customer>
+    public class PaymentServices : iCRUD<payment>
     {
         services.Common.DatatableService datatableService = new Common.DatatableService();
-        public DataTable<CustomerDatatable> GetList(CustomerSearch search, List<MySqlParameter> filters)
+        public DataTable<PaymentDatatable> GetList(PaymentSearch search, List<MySqlParameter> filters)
         {
             try
             {
                 using (var ctx = new AppDb())
                 {
-                    var result = datatableService.GetDataTableResult<CustomerDatatable>("customer_list_sp", search, filters);
+                    var result = datatableService.GetDataTableResult<PaymentDatatable>("payment_list_sp", search, filters);
                     return result;
                 }
             }
@@ -30,20 +30,20 @@ namespace services
             }
         }
 
-        public int Add(customer customerData)
+        public int Add(payment paymentData)
         {
             try
             {
                 using (var ctx = new AppDb())
                 {
-                    var obj = ctx.customer.FirstOrDefault(f => f.Id == customerData.Id);
+                    var obj = ctx.payment.FirstOrDefault(f => f.Id == paymentData.Id);
                     if (obj != null)
                     {
-                        ctx.Entry(obj).CurrentValues.SetValues(customerData);
+                        ctx.Entry(obj).CurrentValues.SetValues(paymentData);
                     }
                     else
                     {
-                        ctx.customer.Add(customerData);
+                        ctx.payment.Add(paymentData);
                     }
                     return ctx.SaveChanges();
                 }
@@ -59,24 +59,11 @@ namespace services
             throw new NotImplementedException();
         }
 
-        public customer Get(int Id)
+        public payment Get(int Id)
         {
             using (var db = new AppDb())
             {
-                var data = db.customer.FirstOrDefault(f => f.Id == Id);
-                return data;
-            }
-        }
-
-        public object CustomerIDDropDownAll()
-        {
-            using (var db = new AppDb())
-            {
-                var data = db.customer.Select(s => new
-                {
-                    value = s.Id,
-                    label = s.Name
-                }).ToList();
+                var data = db.payment.FirstOrDefault(f => f.Id == Id);
                 return data;
             }
         }
