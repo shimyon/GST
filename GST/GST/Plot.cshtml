@@ -7,8 +7,12 @@
 
         <div class="row">
             <div class="col-md-4">
-                <label>Site ID</label>
-                <input type="text" class="form-control" id="SiteID">
+                <div class="form-group">
+                    <label>Site ID</label>
+                    <select class="form-control" id="Name">
+                        <option value="">Site ID</option>
+                    </select>
+                </div>
             </div>
             <div class="col-md-4 ">
                 <div class="form-group">
@@ -20,7 +24,7 @@
 
         <div class="row">
             <div class="col col-md-1">
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
             </div>
             <div class="col col-md-1">
                 <button type="button" class="btn btn-danger" onclick="goBack();">Cancel</button>
@@ -33,7 +37,69 @@
 
 @section scripts{
     <script type="text/javascript">
+         var id = querySt("id");
 
+        $(function () {
+            init();
+        })
+
+        async function init() {
+            await SiteNameDropDownAll();
+            if (id) {
+                GetById();
+            }
+        }
+
+        function SiteNameDropDownAll() {
+            return new Promise((result, error) => {
+                ajaxcall.get({
+                    url: AppConfig.ApiPath + "Site/SiteNameDropDownAll"
+                }).then((res) => {
+                    if (res) {
+                        for (var i in res) {
+                            $("<option>").val(res[i].value).text(res[i].label).appendTo("#SiteID");
+                        }
+                    }
+                    result();
+                }, err => error(err));
+            });
+        }
+
+        function GetById() {
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Plot/GetById",
+                data: { "Id": id }
+            }).then(function (res) {
+                if (res) {
+                    $("#Name").val(res.Name);
+                    $("#PlotNo").val(res.PlotNo);
+                }
+
+            })
+        }
+
+        function saveData() {
+
+            if (!$("#PlotNo").val()) {
+                alert('Please enter Plot Number');
+                $("#PlotNo").focus()
+                return false;
+            }
+
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Plot/AddData",
+                data: {
+                    Id: id,
+                    Name: $("#Name").val(),
+                    PlotNo: $("#PlotNo").val(),
+                }
+            }).then(res => {
+                alert("Saved successfully");
+                 window.history.back();
+            }, err => {
+                alert(err.responseJSON);
+            })
+        }
         function goBack() {
                  window.history.back();
         }

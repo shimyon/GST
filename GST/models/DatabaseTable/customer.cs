@@ -11,7 +11,7 @@ namespace models.DatabaseTable
     [Table("customer")]
     public class customer : BaseEntity
     {
-        public int PlotID { get; set; }
+        public int PlotNo { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }

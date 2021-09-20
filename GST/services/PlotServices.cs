@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 
 namespace services
 {
-    public class SiteServices : iCRUD<site>
+    public class PlotServices : iCRUD<plot>
     {
         services.Common.DatatableService datatableService = new Common.DatatableService();
-        public DataTable<SiteDatatable> GetList(SiteSearch search, List<MySqlParameter> filters)
+        public DataTable<PlotDatatable> GetList(PlotSearch search, List<MySqlParameter> filters)
         {
             try
             {
                 using (var ctx = new AppDb())
                 {
-                    var result = datatableService.GetDataTableResult<SiteDatatable>("site_list_sp", search, filters);
+                    var result = datatableService.GetDataTableResult<PlotDatatable>("plot_list_sp", search, filters);
                     return result;
                 }
             }
@@ -30,20 +30,20 @@ namespace services
             }
         }
 
-        public int Add(site sitetData)
+        public int Add(plot plotData)
         {
             try
             {
                 using (var ctx = new AppDb())
                 {
-                    var obj = ctx.site.FirstOrDefault(f => f.Id == sitetData.Id);
+                    var obj = ctx.plot.FirstOrDefault(f => f.Id == plotData.Id);
                     if (obj != null)
                     {
-                        ctx.Entry(obj).CurrentValues.SetValues(sitetData);
+                        ctx.Entry(obj).CurrentValues.SetValues(plotData);
                     }
                     else
                     {
-                        ctx.site.Add(sitetData);
+                        ctx.plot.Add(plotData);
                     }
                     return ctx.SaveChanges();
                 }
@@ -59,23 +59,23 @@ namespace services
             throw new NotImplementedException();
         }
 
-        public site Get(int Id)
+        public plot Get(int Id)
         {
             using (var db = new AppDb())
             {
-                var data = db.site.FirstOrDefault(f => f.Id == Id);
+                var data = db.plot.FirstOrDefault(f => f.Id == Id);
                 return data;
             }
         }
 
-        public object SiteNameDropDownAll()
+        public object PlotIDDropDownAll()
         {
             using (var db = new AppDb())
             {
-                var data = db.site.Select(s => new
+                var data = db.plot.Select(s => new
                 {
                     value = s.Id,
-                    label = s.Name
+                    label = s.PlotNo
                 }).ToList();
                 return data;
             }

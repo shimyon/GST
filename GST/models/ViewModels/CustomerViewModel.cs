@@ -7,7 +7,7 @@ namespace GST.Controllers
     {
         public int Id { get; set; }
 
-        public int PlotID { get; set; }
+        public int PlotNo { get; set; }
 
         public string Name { get; set; }
 
@@ -15,7 +15,7 @@ namespace GST.Controllers
 
         public int AdharCard { get; set; }
 
-        public int PANCard { get; set; }
+        public string PANCard { get; set; }
 
         public string Address { get; set; }
 
@@ -33,7 +33,7 @@ namespace GST.Controllers
     {
         public int Id { get; set; }
 
-        public int PlotID { get; set; }
+        public int PlotNo { get; set; }
 
         public string Name { get; set; }
 
@@ -41,7 +41,7 @@ namespace GST.Controllers
 
         public int AdharCard { get; set; }
 
-        public int PANCard { get; set; }
+        public string PANCard { get; set; }
 
         public string Address { get; set; }
 

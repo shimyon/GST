@@ -271,6 +271,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\PlotController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Controllers\QuotationController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -2869,6 +2871,7 @@
     <Content Include="Plot.cshtml" />
     <Content Include="Payment.cshtml" />
     <Content Include="Site_List.cshtml" />
+    <Content Include="Customer_List.cshtml" />
     <None Include="Properties\PublishProfiles\FilePublish.pubxml" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
@@ -2997,6 +3000,7 @@
     <Content Include="Template_List.cshtml" />
     <Content Include="Site.cshtml" />
     <Content Include="Customer.cshtml" />
+    <Content Include="Plot_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

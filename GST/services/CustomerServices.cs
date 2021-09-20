@@ -11,16 +11,16 @@ using System.Threading.Tasks;
 
 namespace services
 {
-    public class SiteServices : iCRUD<site>
+    public class CustomerServices : iCRUD<customer>
     {
         services.Common.DatatableService datatableService = new Common.DatatableService();
-        public DataTable<SiteDatatable> GetList(SiteSearch search, List<MySqlParameter> filters)
+        public DataTable<CustomerDatatable> GetList(CustomerSearch search, List<MySqlParameter> filters)
         {
             try
             {
                 using (var ctx = new AppDb())
                 {
-                    var result = datatableService.GetDataTableResult<SiteDatatable>("site_list_sp", search, filters);
+                    var result = datatableService.GetDataTableResult<CustomerDatatable>("customer_list_sp", search, filters);
                     return result;
                 }
             }
@@ -30,20 +30,20 @@ namespace services
             }
         }
 
-        public int Add(site sitetData)
+        public int Add(customer customerData)
         {
             try
             {
                 using (var ctx = new AppDb())
                 {
-                    var obj = ctx.site.FirstOrDefault(f => f.Id == sitetData.Id);
+                    var obj = ctx.customer.FirstOrDefault(f => f.Id == customerData.Id);
                     if (obj != null)
                     {
-                        ctx.Entry(obj).CurrentValues.SetValues(sitetData);
+                        ctx.Entry(obj).CurrentValues.SetValues(customerData);
                     }
                     else
                     {
-                        ctx.site.Add(sitetData);
+                        ctx.customer.Add(customerData);
                     }
                     return ctx.SaveChanges();
                 }
@@ -59,24 +59,11 @@ namespace services
             throw new NotImplementedException();
         }
 
-        public site Get(int Id)
+        public customer Get(int Id)
         {
             using (var db = new AppDb())
             {
-                var data = db.site.FirstOrDefault(f => f.Id == Id);
-                return data;
-            }
-        }
-
-        public object SiteNameDropDownAll()
-        {
-            using (var db = new AppDb())
-            {
-                var data = db.site.Select(s => new
-                {
-                    value = s.Id,
-                    label = s.Name
-                }).ToList();
+                var data = db.customer.FirstOrDefault(f => f.Id == Id);
                 return data;
             }
         }

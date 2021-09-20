@@ -1,0 +1,67 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+<div class="sechead pb5 fs14 mt20 "><h4><b>Payment</b></h4></div>
+<div class="container mt-5">
+    <div class="container mt-5">
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Plot ID</label>
+                <input type="text" class="form-control" id="PlotID">
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label>Customer ID</label>
+                    <input type="text" class="form-control" id="CustomerID">
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label for="inputAddress2">Cheque No</label>
+                    <input type="text" class="form-control" id="ChequeNo">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Bank</label>
+                <input type="text" class="form-control" id="Bank">
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="text" class="form-control" id="Date">
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label for="inputAddress2">SI No</label>
+                    <input type="text" class="form-control" id="SINO">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col col-md-1">
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+            <div class="col col-md-1">
+                <button type="button" class="btn btn-danger" onclick="goBack();">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+  
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+        function goBack() {
+                 window.history.back();
+        }
+    </script>
+}
