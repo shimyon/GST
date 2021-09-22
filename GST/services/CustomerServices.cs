@@ -75,7 +75,7 @@ namespace services
                 var data = db.customer.Select(s => new
                 {
                     value = s.Id,
-                    label = s.Name
+                    label = s.CustomerName
                 }).ToList();
                 return data;
             }

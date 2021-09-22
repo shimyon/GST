@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-4">
                 <label>Name</label>
-                <input type="text" class="form-control" id="Name">
+                <input type="text" class="form-control" id="SiteName">
             </div>
             <div class="col-md-4 ">
                 <div class="form-group">
@@ -53,7 +53,7 @@
                 data: { "Id": id }
             }).then(function (res) {
                 if (res) {
-                    $("#Name").val(res.Name);
+                    $("#SiteName").val(res.SiteName);
                     $("#Address").val(res.Address);
                     $("#OwnerName").val(res.OwnerName);
                 }
@@ -61,9 +61,9 @@
         }
 
         function saveData() {
-            if (!$("#Name").val()) {
+            if (!$("#SiteName").val()) {
                 alert('Please enter Name');
-                $("#Name").focus()
+                $("#SiteName").focus()
                 return false;
             }
 
@@ -83,7 +83,7 @@
                 url: AppConfig.ApiPath + "Site/AddData",
                 data: {
                     Id: id,
-                    Name: $("#Name").val(),
+                    Name: $("#SiteName").val(),
                     Address: $("#Address").val(),
                     OwnerName: $("#OwnerName").val()
                 }

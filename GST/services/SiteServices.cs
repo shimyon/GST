@@ -75,7 +75,7 @@ namespace services
                 var data = db.site.Select(s => new
                 {
                     value = s.Id,
-                    label = s.Name
+                    label = s.SiteName
                 }).ToList();
                 return data;
             }

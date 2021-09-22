@@ -12,8 +12,30 @@ namespace models.DatabaseTable
     public class plot : BaseEntity
     {
         [StringLength(50)]
-        public string Name { get; set; }
+        public string SiteName { get; set; }
 
         public int PlotNo { get; set; }
+
+        public int SquareArea { get; set; }
+
+        [StringLength(50)]
+        public string SuperBuildUp { get; set; }
+
+        [StringLength(50)]
+        public string DirectionsNorth { get; set; }
+
+        [StringLength(50)]
+        public string DirectionsSouth { get; set; }
+
+        [StringLength(50)]
+        public string DirectionsEast { get; set; }
+
+        [StringLength(50)]
+        public string DirectionsWest { get; set; }
+
+        public int SellAmount { get; set; }
+
+        public int Installments { get; set; }
+
     }
 }

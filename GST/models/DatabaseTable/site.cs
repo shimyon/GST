@@ -12,7 +12,7 @@ namespace models.DatabaseTable
     public class site : BaseEntity
     {
         [StringLength(50)]
-        public string Name { get; set; }
+        public string SiteName { get; set; }
 
         [StringLength(50)]
         public string Address { get; set; }

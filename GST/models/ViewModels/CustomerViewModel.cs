@@ -9,7 +9,9 @@ namespace GST.Controllers
 
         public int PlotNo { get; set; }
 
-        public string Name { get; set; }
+        public string SiteName { get; set; }
+
+        public string CustomerName { get; set; }
 
         public int Age { get; set; }
 
@@ -35,7 +37,9 @@ namespace GST.Controllers
 
         public int PlotNo { get; set; }
 
-        public string Name { get; set; }
+        public string SiteName { get; set; }
+
+        public string CustomerName { get; set; }
 
         public int Age { get; set; }
 

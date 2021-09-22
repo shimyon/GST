@@ -14,7 +14,10 @@ namespace models.DatabaseTable
         public int PlotNo { get; set; }
 
         [StringLength(50)]
-        public string Name { get; set; }
+        public string SiteName { get; set; }
+
+        [StringLength(50)]
+        public string CustomerName { get; set; }
 
         public int Age { get; set; }
 
