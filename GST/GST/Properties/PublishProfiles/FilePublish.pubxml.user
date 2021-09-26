@@ -31,7 +31,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/13/2020 15:09:34</publishTime>
     </File>
     <File Include="bin/GST.dll">
-      <publishTime>09/22/2021 22:47:50</publishTime>
+      <publishTime>09/24/2021 21:37:17</publishTime>
     </File>
     <File Include="bin/itextsharp.dll">
       <publishTime>08/27/2020 11:20:20</publishTime>
@@ -239,6 +239,204 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Contact_List.cshtml">
       <publishTime>09/16/2021 17:31:39</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/adminlte.css">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/adminlte.css.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/adminlte.min.css">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/adminlte.min.css.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.components.css">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.components.css.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.components.min.css">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.components.min.css.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.core.css">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.core.css.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.core.min.css">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.core.min.css.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.extra-components.css">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.extra-components.css.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.extra-components.min.css">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.extra-components.min.css.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.pages.css">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.pages.css.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.pages.min.css">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.pages.min.css.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.plugins.css">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.plugins.css.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.plugins.min.css">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/css/alt/adminlte.plugins.min.css.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/AdminLTELogo.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/avatar.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/avatar2.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/avatar3.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/avatar4.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/avatar5.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/boxed-bg.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/boxed-bg.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/credit/american-express.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/credit/cirrus.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/credit/mastercard.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/credit/paypal.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/credit/paypal2.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/credit/visa.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/default-150x150.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/icons.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/photo1.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/photo2.png">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/photo3.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/photo4.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/prod-1.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/prod-2.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/prod-3.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/prod-4.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/prod-5.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/user1-128x128.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/user2-160x160.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/user3-128x128.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/user4-128x128.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/user5-128x128.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/user6-128x128.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/user7-128x128.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/img/user8-128x128.jpg">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/js/.eslintrc.json">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/js/adminlte.js">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/js/adminlte.js.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/js/adminlte.min.js">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/js/adminlte.min.js.map">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/js/demo.js">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/js/pages/dashboard.js">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/js/pages/dashboard2.js">
+      <publishTime>03/22/2021 13:00:50</publishTime>
+    </File>
+    <File Include="Content/adminlte/js/pages/dashboard3.js">
+      <publishTime>03/22/2021 13:00:50</publishTime>
     </File>
     <File Include="Content/alertify/alertify.css">
       <publishTime>07/07/2021 13:27:59</publishTime>
@@ -7581,6 +7779,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/images/logo.svg">
       <publishTime>07/07/2021 13:28:00</publishTime>
     </File>
+    <File Include="Content/images/logoemoiss.jpg">
+      <publishTime>09/24/2021 20:59:39</publishTime>
+    </File>
     <File Include="Content/images/logo_text.png">
       <publishTime>07/07/2021 13:28:00</publishTime>
     </File>
@@ -7615,7 +7816,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/19/2021 10:04:21</publishTime>
     </File>
     <File Include="Customer.cshtml">
-      <publishTime>09/21/2021 17:55:14</publishTime>
+      <publishTime>09/25/2021 14:58:55</publishTime>
     </File>
     <File Include="Customer_List.cshtml">
       <publishTime>09/21/2021 17:49:50</publishTime>
@@ -8410,7 +8611,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2021 12:44:16</publishTime>
     </File>
     <File Include="_layout.cshtml">
-      <publishTime>09/20/2021 14:28:10</publishTime>
+      <publishTime>09/24/2021 21:22:16</publishTime>
     </File>
     <File Include="_ViewStart.cshtml">
       <publishTime>07/07/2021 13:28:01</publishTime>
