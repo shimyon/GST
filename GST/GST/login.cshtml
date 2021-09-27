@@ -90,7 +90,7 @@
 </head>
 <body class="text-center">
     <form class="form-signin">
-        <img class="mb-4" src="~/Content/images/logo_text.png" alt="" height="72">
+        <img class="mb-4" src="~/Content/images/logoemoiss.jpg" alt="" height="150">
 
         <div class="accordion" id="accordionExample">
             <div class="card">
@@ -178,7 +178,7 @@
                 localStorage.setItem("token_type", res['token_type']);
                 localStorage.setItem("userid", res['userid']);
                 localStorage.setItem("userName", res['userName']);
-                location.replace("./");
+                location.replace("./Customer_List");
 
             }, err => {
                 alertify.error(err.responseJSON.error_description);

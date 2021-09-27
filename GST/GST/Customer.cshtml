@@ -3,33 +3,16 @@
 }
 <div class="container mt-3">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-6">
             <div class="form-group">
-                <label>Plot ID</label>
-                <select class="form-control" id="PlotNo"></select>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label>Site ID</label>
+                <label>Site Name</label>
                 <select class="form-control" id="SiteName"></select>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
             <div class="form-group">
-                <label>SellAmount</label>
-                <input type="number" class="form-control" id="SellAmount">
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label>Installments</label>
-                <input type="number" class="form-control" value="10" id="Installments">
-            </div>
-        </div>
-        <div class="row offset-11">
-            <div class="col col-md-1">
-                <button type="button" class="btn btn-primary" onclick="savePlotData();">Save</button>
+                <label>Shop/Office</label>
+                <select class="form-control" id="PlotNo"></select>
             </div>
         </div>
     </div>
@@ -88,6 +71,18 @@
                             <input type="email" class="form-control" id="Email">
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Sale Amount</label>
+                            <input type="number" class="form-control" id="SaleAmount">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Installments</label>
+                            <input type="number" class="form-control" value="10" id="Installments">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -96,6 +91,9 @@
                     </div>
                     <div class="col col-md-1">
                         <button type="button" class="btn btn-danger" onclick="goBack();">Cancel</button>
+                    </div>
+                    <div class="col col-md-2">
+                        <button type="button" class="btn btn-primary" onclick="">Joint Holder</button>
                     </div>
                 </div>
             </div>
