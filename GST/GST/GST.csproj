@@ -3070,6 +3070,7 @@
     <Content Include="Site.cshtml" />
     <Content Include="Customer.cshtml" />
     <Content Include="Plot_List.cshtml" />
+    <Content Include="User.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

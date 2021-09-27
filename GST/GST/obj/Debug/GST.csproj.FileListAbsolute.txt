@@ -243,6 +243,10 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Microsoft.Owin.Security.Google.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\MySql.Data.EntityFramework.xml
-D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.csprojResolveAssemblyReference.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\models.dll.config
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\services.dll.config
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.csproj.AssemblyReference.cache
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.csproj.CoreCompileInputs.cache
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.csproj.CopyComplete

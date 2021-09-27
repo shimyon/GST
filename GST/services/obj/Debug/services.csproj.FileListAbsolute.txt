@@ -115,6 +115,9 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\System.Buffers.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\System.Memory.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\System.Threading.Tasks.Extensions.xml
-D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.csprojResolveAssemblyReference.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\models.dll.config
+D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.csproj.AssemblyReference.cache
+D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.csproj.CoreCompileInputs.cache
+D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.csproj.CopyComplete

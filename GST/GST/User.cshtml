@@ -1,0 +1,162 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+<div class="sechead pb5 fs14"><h4><b>User</b></h4></div>
+<div class="">
+    <ul id="myTab" class="nav nav-tabs">
+        <li><a class="nav-link" href="#list" data-toggle="tab" aria-selected="true">List</a></li>
+        <li class="active"><a class="nav-link active" href="#add" data-toggle="tab">Add</a></li>
+    </ul>
+    <div id="Content" class="tab-content" style="height: 100%;">
+        <div class=" tab-pane fade show" id="list" aria-labelledby="add-tab">
+            <table class="table table-hover dataTable no-footer">
+                <thead>
+                    <tr>
+                        <th style="max-width:100px;">&nbsp;</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="max-width:80px;">
+                            <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-edit"></i>Edit</button>
+                            <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-trash"></i> Delete</button>
+                        </td>
+                        <td>Demo Admin</td>
+                        <td>demo@tes.com</td>
+                        <td>Admin</td>
+                    </tr>
+                    <tr>
+                        <td style="max-width:80px;">
+                            <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-edit"></i>Edit</button>
+                            <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-trash"></i> Delete</button>
+                        </td>
+                        <td>Demo Manager</td>
+                        <td>manager@tes.com</td>
+                        <td>Manager</td>
+                    </tr>
+                    <tr>
+                        <td style="max-width:80px;">
+                            <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-edit"></i>Edit</button>
+                            <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-trash"></i> Delete</button>
+                        </td>
+                        <td>Demo Sales</td>
+                        <td>sales@tes.com</td>
+                        <td>Sale</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class=" tab-pane fade show active" id="add" aria-labelledby="home-tab">
+            <div class="row">
+                <div class="col-md-12">
+                    <label>Name</label>
+                    <input type="text" class="form-control" id="SiteName">
+                </div>
+                <div class="col-md-12 ">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" id="Address">
+                    </div>
+                </div>
+                <div class="col-md-12 ">
+                    <div class="form-group">
+                        <label for="inputAddress2">User Name</label>
+                        <input type="text" class="form-control" id="OwnerName">
+                    </div>
+                </div>
+                <div class="col-md-12 ">
+                    <div class="form-group">
+                        <label for="inputAddress2">Password</label>
+                        <input type="text" class="form-control" id="OwnerName">
+                    </div>
+                </div>
+                <div class="col-md-12 ">
+                    <div class="form-group">
+                        <label for="inputAddress2">Role</label>
+                        <select class="form-control">
+                            <option>Admin</option>
+                            <option>Manager</option>
+                            <option>Sale</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col col-md-12">
+                    <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
+                    <button type="button" class="btn btn-danger" onclick="goBack();">Cancel</button>
+                    <button type="button" class="btn btn-dark" onclick="goBack();">Reset</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        var id = querySt("id");
+
+        $(function () {
+            if (id) {
+                //GetById();
+            }
+        })
+
+        function GetById() {
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Site/GetById",
+                data: { "Id": id }
+            }).then(function (res) {
+                if (res) {
+                    $("#SiteName").val(res.SiteName);
+                    $("#Address").val(res.Address);
+                    $("#OwnerName").val(res.OwnerName);
+                }
+            })
+        }
+
+        function saveData() {
+            if (!$("#SiteName").val()) {
+                alert('Please enter Name');
+                $("#SiteName").focus()
+                return false;
+            }
+
+            if (!$("#Address").val()) {
+                alert('Please enter Address');
+                $("#Address").focus()
+                return false;
+            }
+
+            if (!$("#OwnerName").val()) {
+                alert('Please enter Owner Name');
+                $("#OwnerName").focus()
+                return false;
+            }
+
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Site/AddData",
+                data: {
+                    Id: id,
+                    Name: $("#SiteName").val(),
+                    Address: $("#Address").val(),
+                    OwnerName: $("#OwnerName").val()
+                }
+            }).then(res => {
+                alert("Saved successfully");
+                window.history.back();
+            }, err => {
+                alert(err.responseJSON);
+            })
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+}
