@@ -45,7 +45,6 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\Renci.SshNet.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\System.Buffers.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\System.Memory.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
-D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Release\models.csprojResolveAssemblyReference.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Release\models.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Release\models.pdb
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Release\itextsharp.dll
@@ -115,3 +114,6 @@ E:\Emoiss_wish\GST\GST\models\bin\Release\System.Threading.Tasks.Extensions.xml
 E:\Emoiss_wish\GST\GST\models\obj\Release\models.csprojResolveAssemblyReference.cache
 E:\Emoiss_wish\GST\GST\models\obj\Release\models.dll
 E:\Emoiss_wish\GST\GST\models\obj\Release\models.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Release\models.csproj.AssemblyReference.cache
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Release\models.csproj.CoreCompileInputs.cache
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Release\models.csproj.CopyComplete

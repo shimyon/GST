@@ -99,6 +99,7 @@
     <link href="~/Content/fonts/fontawesome-free-5.15.2-web/css/fontawesome.css" rel="stylesheet">
     <link href="~/Content/fonts/fontawesome-free-5.15.2-web/css/brands.css" rel="stylesheet">
     <link href="~/Content/fonts/fontawesome-free-5.15.2-web/css/solid.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css" rel="stylesheet" />
     @RenderSection("style", required: false)
 </head>
 
@@ -139,7 +140,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
-                <img src="../../content/images/logoemoiss.jpg"  class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="../../content/images/logoemoiss.jpg" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">Emoiss</span>
             </a>
 
@@ -162,89 +163,88 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-         with font-awesome or any other icon font library -->
-                       
-                                                @*
-                                 <li class="nav-item">
-                                <a class="nav-link text-white" href="#">
-                                    <i class="fa fa-home"></i>
-                                    <span id="nav-label">Home</span>
-                                </a>
-                            </li><li class="nav-item">
-            <a class="nav-link text-white" href="~/Company_List.cshtml">
-                <i class="fa fa-building"></i>
-                <span id="nav-label">Company</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="~/Contact_List.cshtml">
-                <i class="fa fa-address-book"></i>
-                <span id="nav-label">Contact</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="~/Product_List.cshtml">
-                <i class="fa fa-barcode"></i>
-                <span id="nav-label">Product</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="~/Quotation_List.cshtml">
-                <i class="fa fa-print"></i>
-                <span id="nav-label">Quotation</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="~/Invoice_List.cshtml">
-                <i class="fa fa-file-invoice"></i>
-                <span id="nav-label">Invoice</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="~/festival">
-                <i class="fa fa-drum"></i>
-                <span id="nav-label">Festival</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-white" href="#">
-                <i class="fa fa-birthday-cake"></i>
-                <span id="nav-label">Birthday</span>
-            </a>
-        </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="~/Site_List.cshtml">
+                        with font-awesome or any other icon font library -->
+                        @*
+                                                     <li class="nav-item">
+                                                    <a class="nav-link text-white" href="#">
+                                                        <i class="fa fa-home"></i>
+                                                        <span id="nav-label">Home</span>
+                                                    </a>
+                                                </li><li class="nav-item">
+                                <a class="nav-link text-white" href="~/Company_List.cshtml">
                                     <i class="fa fa-building"></i>
-                                    <span id="nav-label">Site</span>
+                                    <span id="nav-label">Company</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="~/Plot_List.cshtml">
-                                    <i class="fa fa-building"></i>
-                                    <span id="nav-label">Plot</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="~/Payment_List.cshtml">
-                                    <i class="fa fa-rupee-sign"></i>
-                                    <span id="nav-label">Payment</span>
+                                <a class="nav-link text-white" href="~/Contact_List.cshtml">
+                                    <i class="fa fa-address-book"></i>
+                                    <span id="nav-label">Contact</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="~/Template_List">
-                                    <i class="fa fa-clone"></i>
-                                    <span id="nav-label">Template</span>
+                                <a class="nav-link text-white" href="~/Product_List.cshtml">
+                                    <i class="fa fa-barcode"></i>
+                                    <span id="nav-label">Product</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="~/Quotation_List.cshtml">
+                                    <i class="fa fa-print"></i>
+                                    <span id="nav-label">Quotation</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="~/Invoice_List.cshtml">
+                                    <i class="fa fa-file-invoice"></i>
+                                    <span id="nav-label">Invoice</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="~/festival">
+                                    <i class="fa fa-drum"></i>
+                                    <span id="nav-label">Festival</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="#">
-                                    <i class="fa fa-history"></i>
-                                    <span id="nav-label">History</span>
+                                    <i class="fa fa-birthday-cake"></i>
+                                    <span id="nav-label">Birthday</span>
                                 </a>
-
                             </li>
-                                                *@
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-white" href="~/Site_List.cshtml">
+                                                        <i class="fa fa-building"></i>
+                                                        <span id="nav-label">Site</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-white" href="~/Plot_List.cshtml">
+                                                        <i class="fa fa-building"></i>
+                                                        <span id="nav-label">Plot</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-white" href="~/Payment_List.cshtml">
+                                                        <i class="fa fa-rupee-sign"></i>
+                                                        <span id="nav-label">Payment</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-white" href="~/Template_List">
+                                                        <i class="fa fa-clone"></i>
+                                                        <span id="nav-label">Template</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-white" href="#">
+                                                        <i class="fa fa-history"></i>
+                                                        <span id="nav-label">History</span>
+                                                    </a>
+
+                                                </li>
+                        *@
                         <li class="nav-item">
                             <a class="nav-link text-white" href="~/Customer_List.cshtml">
                                 <i class="fa fa-user-friends"></i>
@@ -433,6 +433,8 @@
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    
     <!-- ChartJS -->
     <script src="~/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->

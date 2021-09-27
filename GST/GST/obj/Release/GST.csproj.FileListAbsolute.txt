@@ -109,7 +109,6 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Buffers.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\K4os.Compression.LZ4.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\K4os.Hash.xxHash.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Memory.xml
-D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.csprojResolveAssemblyReference.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.pdb
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\itextsharp.dll
@@ -246,3 +245,8 @@ E:\Emoiss_wish\GST\GST\GST\bin\MySql.Data.EntityFramework.xml
 E:\Emoiss_wish\GST\GST\GST\obj\Release\GST.csprojResolveAssemblyReference.cache
 E:\Emoiss_wish\GST\GST\GST\obj\Release\GST.dll
 E:\Emoiss_wish\GST\GST\GST\obj\Release\GST.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\models.dll.config
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\services.dll.config
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.csproj.AssemblyReference.cache
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.csproj.CoreCompileInputs.cache
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.csproj.CopyComplete
