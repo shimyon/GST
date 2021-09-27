@@ -3,37 +3,249 @@
 }
 <div class="sechead pb5 fs14 mt20 "><h4><b>Plot</b></h4></div>
 <div class="container mt-5">
-    <div class="container mt-5">
 
-        <div class="row">
-            <div class="col-md-4">
-                <label>Site ID</label>
-                <input type="text" class="form-control" id="SiteID">
-            </div>
-            <div class="col-md-4 ">
-                <div class="form-group">
-                    <label>Plot Number</label>
-                    <input type="text" class="form-control" id="PlotNo">
-                </div>
-            </div>
+    <div class="card mt-5">
+        <div class="card-header">
+            Site
         </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Site ID</label>
+                            <select class="form-control" id="SiteName"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Plot Number</label>
+                            <input type="text" class="form-control" id="PlotNo">
+                        </div>
+                    </div>
+                </div>
+            </blockquote>
+        </div>
+    </div>
 
-        <div class="row">
+    <div class="card mt-5">
+        <div class="card-header">
+            Area
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <div class="form-group">
+                            <label>Square Area</label>
+                            <input type="number" class="form-control" id="SquareArea">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>SuperBuildUp</label>
+                            <input type="text" class="form-control" id="SuperBuildUp">
+                        </div>
+                    </div>
+                </div>
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="card mt-5">
+        <div class="card-header">
+            Area
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Directions North</label>
+                            <input type="text" class="form-control" id="DirectionsNorth" maxlength="100">
+                        </div>
+                    </div>
+                    <div class="col-md-3 ">
+                        <div class="form-group">
+                            <label>Directions South</label>
+                            <input type="text" class="form-control" id="DirectionsSouth" maxlength="100">
+                        </div>
+                    </div>
+                    <div class="col-md-3 ">
+                        <div class="form-group">
+                            <label>Directions East</label>
+                            <input type="text" class="form-control" id="DirectionsEast" maxlength="100">
+                        </div>
+                    </div>
+                    <div class="col-md-3 ">
+                        <div class="form-group">
+                            <label>Directions West</label>
+                            <input type="text" class="form-control" id="DirectionsWest" maxlength="100">
+                        </div>
+                    </div>
+                </div>
+            </blockquote>
+        </div>
+    </div>
+
+    <div class="card mt-5">
+        <div class="card-header">
+            Area
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <div class="form-group">
+                            <label>SellAmount</label>
+                            <input type="number" class="form-control" id="SellAmount">
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class="form-group">
+                            <label>Installments</label>
+                            <input type="number" class="form-control" value="10" id="Installments">
+                        </div>
+                    </div>
+                </div>
+            </blockquote>
+        </div>
+    </div>
+
+        <div class="row mt-5">
             <div class="col col-md-1">
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
             </div>
             <div class="col col-md-1">
                 <button type="button" class="btn btn-danger" onclick="goBack();">Cancel</button>
             </div>
         </div>
-
-    </div>
   
 </div>
 
 @section scripts{
     <script type="text/javascript">
+         var id = querySt("id");
 
+        $(function () {
+            init();
+        })
+
+        async function init() {
+            await SiteNameDropDownAll();
+            if (id) {
+                GetById();
+            }
+        }
+
+        function SiteNameDropDownAll() {
+            return new Promise((result, error) => {
+                ajaxcall.get({
+                    url: AppConfig.ApiPath + "Site/SiteNameDropDownAll"
+                }).then((res) => {
+                    if (res) {
+                        for (var i in res) {
+                            $("<option>").val(res[i].value).text(res[i].label).appendTo("#SiteName");
+                        }
+                    }
+                    result();
+                }, err => error(err));
+            });
+        }
+
+        function GetById() {
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Plot/GetById",
+                data: { "Id": id }
+            }).then(function (res) {
+                if (res) {
+                    $("#SiteName").val(res.SiteName);
+                    $("#PlotNo").val(res.PlotNo);
+                    $("#SquareArea").val(res.SquareArea);
+                    $("#SuperBuildUp").val(res.SuperBuildUp);
+                    $("#DirectionsNorth").val(res.DirectionsNorth);
+                    $("#DirectionsSouth").val(res.DirectionsSouth);
+                    $("#DirectionsEast").val(res.DirectionsEast);
+                    $("#DirectionsWest").val(res.DirectionsWest);
+                    $("#SellAmount").val(res.SellAmount);
+                    $("#Installments").val(res.Installments);
+                }
+
+            })
+        }
+
+        function saveData() {
+
+            if (!$("#PlotNo").val()) {
+                alert('Please enter Plot Number');
+                $("#PlotNo").focus()
+                return false;
+            }
+
+             if (!$("#SquareArea").val()) {
+                alert('Please enter Square Area');
+                $("#SquareArea").focus()
+                return false;
+            }
+
+             if (!$("#SuperBuildUp").val()) {
+                alert('Please enter SuperBuildUp');
+                $("#SuperBuildUp").focus()
+                return false;
+            }
+
+             if (!$("#DirectionsNorth").val()) {
+                alert('Please enter Directions North');
+                $("#DirectionsNorth").focus()
+                return false;
+            }
+
+             if (!$("#DirectionsSouth").val()) {
+                alert('Please enter Directions South');
+                $("#DirectionsSouth").focus()
+                return false;
+            }
+
+             if (!$("#DirectionsEast").val()) {
+                alert('Please enter Directions East');
+                $("#PlotNo").focus()
+                return false;
+            }
+
+             if (!$("#DirectionsWest").val()) {
+                alert('Please enter Directions West');
+                $("#DirectionsWest").focus()
+                return false;
+            }
+
+             if (!$("#SellAmount").val()) {
+                alert('Please enter Sell Amount');
+                $("#SellAmount").focus()
+                return false;
+            }
+
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Plot/AddData",
+                data: {
+                    Id: id,
+                    SiteName: $("#SiteName").val(),
+                    PlotNo: $("#PlotNo").val(),
+                    SquareArea: $("#SquareArea").val(),
+                    SuperBuildUp: $("#SuperBuildUp").val(),
+                    DirectionsNorth: $("#DirectionsNorth").val(),
+                    DirectionsSouth: $("#DirectionsSouth").val(),
+                    DirectionsEast: $("#DirectionsEast").val(),
+                    DirectionsWest: $("#DirectionsWest").val(),
+                    SellAmount: $("#SellAmount").val(),
+                    Installments: $("#Installments").val()
+                }
+            }).then(res => {
+                alert("Saved successfully");
+                 window.history.back();
+            }, err => {
+                alert(err.responseJSON);
+            })
+        }
         function goBack() {
                  window.history.back();
         }

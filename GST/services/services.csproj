@@ -155,7 +155,10 @@
     <Compile Include="Common\DatatableService.cs" />
     <Compile Include="Common\EmailService.cs" />
     <Compile Include="Common\PasswordCryptoService.cs" />
+    <Compile Include="PaymentServices.cs" />
     <Compile Include="InvoiceServices.cs" />
+    <Compile Include="CustomerServices.cs" />
+    <Compile Include="PlotServices.cs" />
     <Compile Include="SiteServices.cs" />
     <Compile Include="QuotationServices.cs" />
     <Compile Include="Invoice_itemsServices.cs" />

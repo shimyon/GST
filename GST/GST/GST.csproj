@@ -271,6 +271,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PlotController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Controllers\QuotationController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -291,6 +294,57 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\adminlte\css\adminlte.css" />
+    <Content Include="Content\adminlte\css\adminlte.min.css" />
+    <Content Include="Content\adminlte\css\alt\adminlte.components.css" />
+    <Content Include="Content\adminlte\css\alt\adminlte.components.min.css" />
+    <Content Include="Content\adminlte\css\alt\adminlte.core.css" />
+    <Content Include="Content\adminlte\css\alt\adminlte.core.min.css" />
+    <Content Include="Content\adminlte\css\alt\adminlte.extra-components.css" />
+    <Content Include="Content\adminlte\css\alt\adminlte.extra-components.min.css" />
+    <Content Include="Content\adminlte\css\alt\adminlte.pages.css" />
+    <Content Include="Content\adminlte\css\alt\adminlte.pages.min.css" />
+    <Content Include="Content\adminlte\css\alt\adminlte.plugins.css" />
+    <Content Include="Content\adminlte\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Content\adminlte\img\AdminLTELogo.png" />
+    <Content Include="Content\adminlte\img\avatar.png" />
+    <Content Include="Content\adminlte\img\avatar2.png" />
+    <Content Include="Content\adminlte\img\avatar3.png" />
+    <Content Include="Content\adminlte\img\avatar4.png" />
+    <Content Include="Content\adminlte\img\avatar5.png" />
+    <Content Include="Content\adminlte\img\boxed-bg.jpg" />
+    <Content Include="Content\adminlte\img\boxed-bg.png" />
+    <Content Include="Content\adminlte\img\credit\american-express.png" />
+    <Content Include="Content\adminlte\img\credit\cirrus.png" />
+    <Content Include="Content\adminlte\img\credit\mastercard.png" />
+    <Content Include="Content\adminlte\img\credit\paypal.png" />
+    <Content Include="Content\adminlte\img\credit\paypal2.png" />
+    <Content Include="Content\adminlte\img\credit\visa.png" />
+    <Content Include="Content\adminlte\img\default-150x150.png" />
+    <Content Include="Content\adminlte\img\icons.png" />
+    <Content Include="Content\adminlte\img\photo1.png" />
+    <Content Include="Content\adminlte\img\photo2.png" />
+    <Content Include="Content\adminlte\img\photo3.jpg" />
+    <Content Include="Content\adminlte\img\photo4.jpg" />
+    <Content Include="Content\adminlte\img\prod-1.jpg" />
+    <Content Include="Content\adminlte\img\prod-2.jpg" />
+    <Content Include="Content\adminlte\img\prod-3.jpg" />
+    <Content Include="Content\adminlte\img\prod-4.jpg" />
+    <Content Include="Content\adminlte\img\prod-5.jpg" />
+    <Content Include="Content\adminlte\img\user1-128x128.jpg" />
+    <Content Include="Content\adminlte\img\user2-160x160.jpg" />
+    <Content Include="Content\adminlte\img\user3-128x128.jpg" />
+    <Content Include="Content\adminlte\img\user4-128x128.jpg" />
+    <Content Include="Content\adminlte\img\user5-128x128.jpg" />
+    <Content Include="Content\adminlte\img\user6-128x128.jpg" />
+    <Content Include="Content\adminlte\img\user7-128x128.jpg" />
+    <Content Include="Content\adminlte\img\user8-128x128.jpg" />
+    <Content Include="Content\adminlte\js\adminlte.js" />
+    <Content Include="Content\adminlte\js\adminlte.min.js" />
+    <Content Include="Content\adminlte\js\demo.js" />
+    <Content Include="Content\adminlte\js\pages\dashboard.js" />
+    <Content Include="Content\adminlte\js\pages\dashboard2.js" />
+    <Content Include="Content\adminlte\js\pages\dashboard3.js" />
     <Content Include="Content\alertify\alertify.css" />
     <Content Include="Content\alertify\alertify.min.css" />
     <Content Include="Content\alertify\theme\alertyfy.bootstrap.min.css" />
@@ -2635,6 +2689,7 @@
     <Content Include="Content\images\loginpage.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logo.svg" />
+    <Content Include="Content\images\logoemoiss.jpg" />
     <Content Include="Content\images\logo_text.png" />
     <Content Include="Content\images\ngcp.png" />
     <Content Include="Content\images\ngcp.svg" />
@@ -2869,6 +2924,23 @@
     <Content Include="Plot.cshtml" />
     <Content Include="Payment.cshtml" />
     <Content Include="Site_List.cshtml" />
+    <Content Include="Customer_List.cshtml" />
+    <Content Include="Payment_List.cshtml" />
+    <Content Include="Content\adminlte\css\adminlte.css.map" />
+    <Content Include="Content\adminlte\css\adminlte.min.css.map" />
+    <Content Include="Content\adminlte\css\alt\adminlte.components.css.map" />
+    <Content Include="Content\adminlte\css\alt\adminlte.components.min.css.map" />
+    <Content Include="Content\adminlte\css\alt\adminlte.core.css.map" />
+    <Content Include="Content\adminlte\css\alt\adminlte.core.min.css.map" />
+    <Content Include="Content\adminlte\css\alt\adminlte.extra-components.css.map" />
+    <Content Include="Content\adminlte\css\alt\adminlte.extra-components.min.css.map" />
+    <Content Include="Content\adminlte\css\alt\adminlte.pages.css.map" />
+    <Content Include="Content\adminlte\css\alt\adminlte.pages.min.css.map" />
+    <Content Include="Content\adminlte\css\alt\adminlte.plugins.css.map" />
+    <Content Include="Content\adminlte\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Content\adminlte\js\.eslintrc.json" />
+    <Content Include="Content\adminlte\js\adminlte.js.map" />
+    <Content Include="Content\adminlte\js\adminlte.min.js.map" />
     <None Include="Properties\PublishProfiles\FilePublish.pubxml" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
@@ -2997,9 +3069,11 @@
     <Content Include="Template_List.cshtml" />
     <Content Include="Site.cshtml" />
     <Content Include="Customer.cshtml" />
+    <Content Include="Plot_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="plugins\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

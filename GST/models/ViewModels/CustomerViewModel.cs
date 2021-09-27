@@ -7,15 +7,17 @@ namespace GST.Controllers
     {
         public int Id { get; set; }
 
-        public int PlotID { get; set; }
+        public int PlotNo { get; set; }
 
-        public string Name { get; set; }
+        public string SiteName { get; set; }
+
+        public string CustomerName { get; set; }
 
         public int Age { get; set; }
 
         public int AdharCard { get; set; }
 
-        public int PANCard { get; set; }
+        public string PANCard { get; set; }
 
         public string Address { get; set; }
 
@@ -33,15 +35,17 @@ namespace GST.Controllers
     {
         public int Id { get; set; }
 
-        public int PlotID { get; set; }
+        public int PlotNo { get; set; }
 
-        public string Name { get; set; }
+        public string SiteName { get; set; }
+
+        public string CustomerName { get; set; }
 
         public int Age { get; set; }
 
         public int AdharCard { get; set; }
 
-        public int PANCard { get; set; }
+        public string PANCard { get; set; }
 
         public string Address { get; set; }
 

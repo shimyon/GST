@@ -68,5 +68,18 @@ namespace services
             }
         }
 
+        public object SiteNameDropDownAll()
+        {
+            using (var db = new AppDb())
+            {
+                var data = db.site.Select(s => new
+                {
+                    value = s.Id,
+                    label = s.SiteName
+                }).ToList();
+                return data;
+            }
+        }
+
     }
 }

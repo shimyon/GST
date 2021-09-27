@@ -7,9 +7,9 @@ namespace GST.Controllers
     {
         public int Id { get; set; }
 
-        public int PlotID { get; set; }
+        public int PlotNo { get; set; }
 
-        public int CustomerID { get; set; }
+        public string Name { get; set; }
 
         public int ChequeNo { get; set; }
 
@@ -29,9 +29,9 @@ namespace GST.Controllers
     {
         public int Id { get; set; }
 
-        public int PlotID { get; set; }
+        public int PlotNo { get; set; }
 
-        public int CustomerID { get; set; }
+        public string Name { get; set; }
 
         public int ChequeNo { get; set; }
 

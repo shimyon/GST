@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Emoiss Wishes</title>
     <script type="text/javascript">
         if (localStorage['Token']) {
@@ -57,17 +57,33 @@
 
         #contact {
             top: 200px;
-            background-color: #555
+            background-color: #555;
         }
     </style>
     <link rel="icon" type="image/png" href="~/Content/images/logo.png" />
     <link href="~/Content/bootstrap.css?v=@version" rel="stylesheet" />
-    <link href="~/Content/DataTables/css/responsive.bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/site.css?v=@version" rel="stylesheet" />
+    @*<link rel="stylesheet" href="~/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">*@
 
-    <link href="~/Content/css/header.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/responsive.bootstrap.min.css" rel="stylesheet" />
+
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/adminlte/css/adminlte.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/plugins/summernote/summernote-bs4.min.css">
     <link href="~/Content/css/common.css?v=@version" rel="stylesheet" />
-    <link href="~/Content/css/leftnav.css?v=@version" rel="stylesheet" />
+    @*<link href="~/Content/site.css?v=@version" rel="stylesheet" />*@
+
+    @*<link href="~/Content/css/header.css?v=@version" rel="stylesheet" />
+    
+    <link href="~/Content/css/leftnav.css?v=@version" rel="stylesheet" />*@
 
     <link href="~/Content/css/utils.css?v=@version" rel="stylesheet" />
     <link href="~/Content/css/override.css?v=@version" rel="stylesheet" />
@@ -86,121 +102,336 @@
     @RenderSection("style", required: false)
 </head>
 
-<body>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-
-        <a class="navbar-brand" href="#">
-            <img src="~/Content/images/logo.png" style="width: 30px; margin-left:10px" />
-        </a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            <form class="form-inline my-2 my-lg-0 ml-auto">
-                <ul id="layoutuseraction" style="display: none;">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-list"></i>
-                        </a>
-                        <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void(0);" onclick="layout.logout();"><i class="fa fa-sign-out-alt"></i> Logout</a>
-                        </div>
-                    </li>
-                </ul>
-                <a href="~/Login" id="layoutlogin" class="text-white" style="display: none;"><i class="fa fa-sign-out-alt"></i> Login</a>
-            </form>
-        </div>
-    </nav>
-    <div class="row mr-0" style="height: calc(100vh - 96px);">
-        <div class="col-2 col-sm-2 col-xl-1 bg-dark leftnavbar">
-            <ul class="navbar-nav flex-column mr-auto navbar-light">
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white bg-dark">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">
-                        <i class="fa fa-home"></i>
-                        <span id="nav-label">Home</span>
-                    </a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="~/Company_List.cshtml">
-                        <i class="fa fa-building"></i>
-                        <span id="nav-label">Company</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="~/Contact_List.cshtml">
-                        <i class="fa fa-address-book"></i>
-                        <span id="nav-label">Contact</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="~/Product_List.cshtml">
-                        <i class="fa fa-barcode"></i>
-                        <span id="nav-label">Product</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="~/Quotation_List.cshtml">
-                        <i class="fa fa-print"></i>
-                        <span id="nav-label">Quotation</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="~/Invoice_List.cshtml">
-                        <i class="fa fa-file-invoice"></i>
-                        <span id="nav-label">Invoice</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="~/festival">
-                        <i class="fa fa-drum"></i>
-                        <span id="nav-label">Festival</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">
-                        <i class="fa fa-birthday-cake"></i>
-                        <span id="nav-label">Birthday</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="~/Template_List">
-                        <i class="fa fa-clone"></i>
-                        <span id="nav-label">Template</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">
-                        <i class="fa fa-history"></i>
-                        <span id="nav-label">History</span>
-                    </a>
-
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Home</a>
                 </li>
             </ul>
-        </div>
-        <div class="col-10 col-sm-10 col-xl-11">
-            <div class="body-content">
-                @RenderBody()
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+
+                        <form class="form-inline my-2 my-lg-0 ml-auto">
+                            <ul id="layoutuseraction" style="display: none;">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-list"></i>
+                                    </a>
+                                    <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="javascript:void(0);" onclick="layout.logout();"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <a href="~/Login" id="layoutlogin" class="text-white" style="display: none;"><i class="fa fa-sign-out-alt"></i> Login</a>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-link">
+                <img src="../../content/images/logoemoiss.jpg"  class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">Emoiss</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+
+                <!-- SidebarSearch Form -->
+                <div class="form-inline">
+                    <div class="input-group" data-widget="sidebar-search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-sidebar">
+                                <i class="fas fa-search fa-fw"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+         with font-awesome or any other icon font library -->
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">
+                                <i class="fa fa-home"></i>
+                                <span id="nav-label">Home</span>
+                            </a>
+                        </li>
+                        @*<li class="nav-item">
+        <a class="nav-link text-white" href="~/Company_List.cshtml">
+            <i class="fa fa-building"></i>
+            <span id="nav-label">Company</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-white" href="~/Contact_List.cshtml">
+            <i class="fa fa-address-book"></i>
+            <span id="nav-label">Contact</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-white" href="~/Product_List.cshtml">
+            <i class="fa fa-barcode"></i>
+            <span id="nav-label">Product</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-white" href="~/Quotation_List.cshtml">
+            <i class="fa fa-print"></i>
+            <span id="nav-label">Quotation</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-white" href="~/Invoice_List.cshtml">
+            <i class="fa fa-file-invoice"></i>
+            <span id="nav-label">Invoice</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-white" href="~/festival">
+            <i class="fa fa-drum"></i>
+            <span id="nav-label">Festival</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-white" href="#">
+            <i class="fa fa-birthday-cake"></i>
+            <span id="nav-label">Birthday</span>
+        </a>
+    </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Site_List.cshtml">
+                                <i class="fa fa-building"></i>
+                                <span id="nav-label">Site</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Plot_List.cshtml">
+                                <i class="fa fa-building"></i>
+                                <span id="nav-label">Plot</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Customer_List.cshtml">
+                                <i class="fa fa-user-friends"></i>
+                                <span id="nav-label">Customer</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Payment_List.cshtml">
+                                <i class="fa fa-rupee-sign"></i>
+                                <span id="nav-label">Payment</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Template_List">
+                                <i class="fa fa-clone"></i>
+                                <span id="nav-label">Template</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">
+                                <i class="fa fa-history"></i>
+                                <span id="nav-label">History</span>
+                            </a>
+
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
             </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        @*<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+
+                <a class="navbar-brand" href="#">
+                    <img src="~/Content/images/logo.png" style="width: 30px; margin-left:10px" />
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <form class="form-inline my-2 my-lg-0 ml-auto">
+                        <ul id="layoutuseraction" style="display: none;">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white text-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-list"></i>
+                                </a>
+                                <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="javascript:void(0);" onclick="layout.logout();"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="~/Login" id="layoutlogin" class="text-white" style="display: none;"><i class="fa fa-sign-out-alt"></i> Login</a>
+                    </form>
+                </div>
+            </nav>*@
+
+        @*<div class="row mr-0" style="height: calc(100vh - 96px);">
+                <div class="col-2 col-sm-2 col-xl-1 bg-dark leftnavbar">
+                    <ul class="navbar-nav flex-column mr-auto navbar-light">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">
+                                <i class="fa fa-home"></i>
+                                <span id="nav-label">Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Company_List.cshtml">
+                                <i class="fa fa-building"></i>
+                                <span id="nav-label">Company</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Contact_List.cshtml">
+                                <i class="fa fa-address-book"></i>
+                                <span id="nav-label">Contact</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Product_List.cshtml">
+                                <i class="fa fa-barcode"></i>
+                                <span id="nav-label">Product</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Quotation_List.cshtml">
+                                <i class="fa fa-print"></i>
+                                <span id="nav-label">Quotation</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Invoice_List.cshtml">
+                                <i class="fa fa-file-invoice"></i>
+                                <span id="nav-label">Invoice</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/festival">
+                                <i class="fa fa-drum"></i>
+                                <span id="nav-label">Festival</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">
+                                <i class="fa fa-birthday-cake"></i>
+                                <span id="nav-label">Birthday</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Site_List.cshtml">
+                                <i class="fa fa-birthday-cake"></i>
+                                <span id="nav-label">Site</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Plot_List.cshtml">
+                                <i class="fa fa-birthday-cake"></i>
+                                <span id="nav-label">Plot</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Customer_List.cshtml">
+                                <i class="fa fa-birthday-cake"></i>
+                                <span id="nav-label">Customer</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Payment_List.cshtml">
+                                <i class="fa fa-birthday-cake"></i>
+                                <span id="nav-label">Payment</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Template_List">
+                                <i class="fa fa-clone"></i>
+                                <span id="nav-label">Template</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">
+                                <i class="fa fa-history"></i>
+                                <span id="nav-label">History</span>
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-10 col-sm-10 col-xl-11">
+                    <div class="body-content">
+
+                    </div>
+                </div>
+            </div>*@
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </section>
         </div>
+
+
+        <footer class="appfooter">
+            <div class="footercopyright">&copy; @DateTime.Now.Year - Emoiss</div>
+        </footer>
     </div>
 
 
-    <hr style="margin:0px;" />
-
-    <footer class="appfooter">
-        <div class="footercopyright">&copy; @DateTime.Now.Year - Emoiss</div>
-    </footer>
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="~/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/plugins/moment/moment.min.js"></script>
+    <script src="~/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="~/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+
+    <!-- AdminLTE App -->
+    <script src="~/Content/adminlte/js/adminlte.js"></script>
+
+
 
     <script src="~/Scripts/App/config.js?v=@version"></script>
     <script src="~/Scripts/App/layout.js?v=@version"></script>

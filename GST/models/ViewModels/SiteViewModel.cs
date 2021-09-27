@@ -7,7 +7,7 @@ namespace GST.Controllers
     {
         public Int32 Id { get; set; }
 
-        public string Name { get; set; }
+        public string SiteName { get; set; }
 
         public string Address { get; set; }
 
@@ -23,7 +23,7 @@ namespace GST.Controllers
     {
         public Int32 Id { get; set; }
 
-        public string Name { get; set; }
+        public string SiteName { get; set; }
 
         public string Address { get; set; }
 
