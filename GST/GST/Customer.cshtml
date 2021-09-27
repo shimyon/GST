@@ -18,7 +18,7 @@
     </div>
 
 
-    <div class="mt-5">
+    <div class="">
         <ul id="myTab" class="nav nav-tabs">
             <li class="active"><a class="nav-link" href="#Customer" data-toggle="tab" aria-selected="true">Customer</a></li>
 
@@ -26,6 +26,27 @@
         </ul>
         <div id="Content" class="tab-content" style="height: 100%;">
             <div class="tab-pane fade in active" id="Customer">
+                <table class="table table-hover dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th style="max-width:100px;">&nbsp;</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Mobile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="max-width:80px;">
+                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-edit"></i>Edit</button>
+                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-trash"></i> Delete</button>
+                            </td>
+                            <td>Demo Customer</td>
+                            <td>30</td>
+                            <td>999999999</td>
+                        </tr>
+                    </tbody>
+                </table>
                 <div class="row">
                     <div class="col-md-4 ">
                         <div class="form-group">
@@ -100,9 +121,39 @@
 
             <div class="tab-pane fade" id="Payment">
                 <div class="row">
+                    <div class="col col-sm-6">
+                        <h4>Sale Amount: 10,00,000</h4>
+                    </div>
+                    <div class="col col-sm-6 text-right text-danger">
+                        <h4>Outstanding: 9,00,000</h4>
+                    </div>
+                </div>
+
+                <table class="table table-hover dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th style="max-width:100px;">&nbsp;</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Bank</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="max-width:80px;">
+                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-edit"></i>Edit</button>
+                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-trash"></i> Delete</button>
+                            </td>
+                            <td>27, Sep 2021</td>
+                            <td>Rs. 1,00,000</td>
+                            <td>BOB</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
                     <div class="col-md-4 ">
                         <div class="form-group">
-                            <label for="inputAddress2">Ammount</label>
+                            <label for="inputAddress2">Amount</label>
                             <input type="number" class="form-control" id="Ammount">
                         </div>
                     </div>
@@ -155,7 +206,7 @@
         var id = querySt("id");
 
         $(function () {
-        $('a[href="#Customer"]').click();
+            $('a[href="#Customer"]').click();
             init();
         })
 
@@ -237,7 +288,7 @@
                 return false;
             }
 
-           if (!$("#PANCard").val()) {
+            if (!$("#PANCard").val()) {
                 alert('Please enter PANCard');
                 $("#PANCard").focus()
                 return false;
@@ -302,7 +353,7 @@
                 return false;
             }
 
-           if (!$("#Date").val()) {
+            if (!$("#Date").val()) {
                 alert('Please enter Date');
                 $("#Date").focus()
                 return false;
@@ -332,7 +383,7 @@
         }
 
         function goBack() {
-                 window.history.back();
+            window.history.back();
         }
     </script>
 }
