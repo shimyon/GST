@@ -56,20 +56,21 @@
                         data: "Id",
                         class: "text-center",
                         render: (data, display, alldata) => {
-                            return `<button class ='btnedit actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-edit'></i>Edit</button>`;
+                            return `<button class ='btnedit actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-edit'></i>Edit</button>
+                                    <button class ='btndelete actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-trash'></i>Delete</button>`;
                         }
                     },
                     {
-                        title: "PlotID",
+                        title: "Site Name",
+                        data: "SiteName",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Shop/Office",
                         data: "PlotNo",
                         class: "text-center"
                     },
                     {
-                        title: "Site ID",
-                        data: "SiteName",
-                        class: "text-center"
-                    },
-         {
                         title: "Name",
                         data: "CustomerName",
                         class: "text-center"
