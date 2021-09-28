@@ -1,4 +1,4 @@
-﻿@{
+﻿a@{
     Layout = "_Layout.cshtml";
 }
 <div class="sechead pb5 fs14"><h4><b>User</b></h4></div>
@@ -53,30 +53,30 @@
             <div class="row">
                 <div class="col-md-12">
                     <label>Name</label>
-                    <input type="text" class="form-control" id="SiteName">
+                    <input type="text" class="form-control" id="Name">
                 </div>
                 <div class="col-md-12 ">
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="text" class="form-control" id="Address">
+                        <input type="text" class="form-control" id="Email">
                     </div>
                 </div>
                 <div class="col-md-12 ">
                     <div class="form-group">
                         <label for="inputAddress2">User Name</label>
-                        <input type="text" class="form-control" id="OwnerName">
+                        <input type="text" class="form-control" id="UserName">
                     </div>
                 </div>
                 <div class="col-md-12 ">
                     <div class="form-group">
                         <label for="inputAddress2">Password</label>
-                        <input type="text" class="form-control" id="OwnerName">
+                        <input type="text" class="form-control" id="Password">
                     </div>
                 </div>
                 <div class="col-md-12 ">
                     <div class="form-group">
                         <label for="inputAddress2">Role</label>
-                        <select class="form-control">
+                        <select class="form-control" id="Role">
                             <option>Admin</option>
                             <option>Manager</option>
                             <option>Sale</option>
@@ -87,7 +87,7 @@
 
             <div class="row">
                 <div class="col col-md-12">
-                    <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="saveUserData();">Save</button>
                     <button type="button" class="btn btn-danger" onclick="goBack();">Cancel</button>
                     <button type="button" class="btn btn-dark" onclick="goBack();">Reset</button>
                 </div>
@@ -149,7 +149,48 @@
                 }
             }).then(res => {
                 alert("Saved successfully");
-                window.history.back();
+            }, err => {
+                alert(err.responseJSON);
+            })
+        }
+
+        function saveUserData() {
+            if (!$("#Name").val()) {
+                alert('Please enter Name');
+                $("#Name").focus()
+                return false;
+            }
+
+            if (!$("#Email").val()) {
+                alert('Please enter Email');
+                $("#EMail").focus()
+                return false;
+            }
+
+            if (!$("#UserName").val()) {
+                alert('Please enter User Name');
+                $("#UserName").focus()
+                return false;
+            }
+
+            if (!$("#Password").val()) {
+                alert('Please enter Password');
+                $("#Password").focus()
+                return false;
+            }
+
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "UserStaff/AddData",
+                data: {
+                    Id: id,
+                    Name: $("#Name").val(),
+                    Email: $("#Email").val(),
+                    UserName: $("#UserName").val(),
+                    Password: $("#Password").val(),
+                    Role: $("#Role").val(),
+                }
+            }).then(res => {
+                alert("Saved successfully");
             }, err => {
                 alert(err.responseJSON);
             })

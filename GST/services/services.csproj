@@ -159,6 +159,7 @@
     <Compile Include="InvoiceServices.cs" />
     <Compile Include="CustomerServices.cs" />
     <Compile Include="PlotServices.cs" />
+    <Compile Include="UserStaffServices.cs" />
     <Compile Include="SiteServices.cs" />
     <Compile Include="QuotationServices.cs" />
     <Compile Include="Invoice_itemsServices.cs" />

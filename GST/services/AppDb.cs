@@ -38,5 +38,6 @@ namespace services
         public DbSet<plot> plot { get; set; }
         public DbSet<customer> customer { get; set; }
         public DbSet<payment> payment { get; set; }
+        public DbSet<userStaff> userStaff { get; set; }
     }
 }
