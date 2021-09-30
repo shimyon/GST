@@ -1,4 +1,7 @@
 ﻿using models.DatabaseTable;
+using models.ViewModels;
+using MySql.Data.MySqlClient;
+using services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +10,25 @@ using System.Threading.Tasks;
 
 namespace services
 {
-    public class UserService
+    public class UserService : iCRUD<user>
     {
+        services.Common.DatatableService datatableService = new Common.DatatableService();
+        public DataTable<UserDatatable> GetList(UserSearch search, List<MySqlParameter> filters)
+        {
+            try
+            {
+                using (var ctx = new AppDb())
+                {
+                    var result = datatableService.GetDataTableResult<UserDatatable>("users_list_sp", search, filters);
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public int Add(user usr)
         {
             using (var db = new AppDb())
@@ -48,6 +68,20 @@ namespace services
                 var user = db.users.FirstOrDefault(f => f.Username == userName && f.Password == encpass);
                 return user;
             }
+        }
+
+        public user Get(int Id)
+        {
+            using (var db = new AppDb())
+            {
+                var data = db.users.FirstOrDefault(f => f.Id == Id);
+                return data;
+            }
+        }
+
+        public int Delete(int Id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

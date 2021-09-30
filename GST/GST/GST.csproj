@@ -274,7 +274,6 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\PlotController.cs" />
-    <Compile Include="Controllers\UserStaffController.cs" />
     <Compile Include="Controllers\SiteController.cs" />
     <Compile Include="Controllers\QuotationController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -283,6 +282,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\QuoteController.cs" />
     <Compile Include="Controllers\PrintController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\_BaseApiController.cs" />
     <Compile Include="Global.asax.cs">

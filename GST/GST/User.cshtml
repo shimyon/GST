@@ -1,4 +1,4 @@
-﻿a@{
+﻿@{
     Layout = "_Layout.cshtml";
 }
 <div class="sechead pb5 fs14"><h4><b>User</b></h4></div>
@@ -8,8 +8,17 @@
         <li class="active"><a class="nav-link active" href="#add" data-toggle="tab">Add</a></li>
     </ul>
     <div id="Content" class="tab-content" style="height: 100%;">
-        <div class=" tab-pane fade show" id="list" aria-labelledby="add-tab">
-            <table class="table table-hover dataTable no-footer">
+        <div class=" tab-pane fade show active" id="list" aria-labelledby="add-tab">
+            <div class="row">
+                <div style="width:100%;padding:15px;">
+                    <table class="table table-hover"
+                           id="tblUserList"
+                           cellspacing="0"
+                           align="center"
+                           width="100%"></table>
+                </div>
+            </div>
+           @* <table class="table table-hover dataTable no-footer">
                 <thead>
                     <tr>
                         <th style="max-width:100px;">&nbsp;</th>
@@ -47,13 +56,17 @@
                         <td>Sale</td>
                     </tr>
                 </tbody>
-            </table>
+            </table>*@
         </div>
-        <div class=" tab-pane fade show active" id="add" aria-labelledby="home-tab">
+        <div class=" tab-pane fade show" id="add" aria-labelledby="home-tab">
             <div class="row">
                 <div class="col-md-12">
-                    <label>Name</label>
-                    <input type="text" class="form-control" id="Name">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" id="Firstname">
+                </div>
+                <div class="col-md-12">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" id="Lastname">
                 </div>
                 <div class="col-md-12 ">
                     <div class="form-group">
@@ -64,7 +77,7 @@
                 <div class="col-md-12 ">
                     <div class="form-group">
                         <label for="inputAddress2">User Name</label>
-                        <input type="text" class="form-control" id="UserName">
+                        <input type="text" class="form-control" id="Username">
                     </div>
                 </div>
                 <div class="col-md-12 ">
@@ -102,25 +115,89 @@
         var id = querySt("id");
 
         $(function () {
+
+             LoadTable();
+
             if (id) {
-                //GetById();
+               //GetUserList();
             }
         })
 
-        function GetById() {
+        function LoadTable() {
+            $('#tblUserList').DataTable({
+                dom: "<'row'<'col-sm-3'l><'col-sm-6'p><'col-sm-3 text-align-right'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i>>",
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": AppConfig.ApiPath + "User/GetUserList",
+                    "type": "POST",
+                    "processing": true,
+                    "serverSide": true,
+                    "datetype": "json",
+                    "data": {}
+                },
+                "drawCallback": function () {
+                    $(".paginate_button.current").addClass(" actionbtn hor mr-0 ml-1 active").removeClass("paginate_button current");
+                    $(".paginate_button").addClass(" actionbtn hor mr-0 ml-1").removeClass("paginate_button");
+
+                    AfterDrawTable();
+                },
+                "columns": [
+                    {
+                        title: "",
+                        data: "Id",
+                        class: "text-center",
+                        render: (data, display, alldata) => {
+                            return `<button class ='btnedit actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-edit'></i>Edit</button>`;
+                        }
+                    },
+                    {
+                        title: "Name",
+                        data: "Firstname",
+                        class: "text-center"
+                    },
+        {
+                        title: "Email",
+                        data: "Email",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Role",
+                        data: "Role",
+                        class: "text-center"
+                    }
+                ]
+            });
+        }
+
+        function AfterDrawTable() {
+            var that = this;
+            $(".btnedit").click(function () {
+                id = $(this).attr('data-id');
+                $('#myTab a[href="#add"]').tab('show');
+                GetUserList();
+            })
+        }
+
+        function GetUserList() {
             ajaxcall.post({
-                url: AppConfig.ApiPath + "Site/GetById",
+                url: AppConfig.ApiPath + "User/GetUserList",
                 data: { "Id": id }
             }).then(function (res) {
                 if (res) {
-                    $("#SiteName").val(res.SiteName);
-                    $("#Address").val(res.Address);
-                    $("#OwnerName").val(res.OwnerName);
+                    $("#Firstname").val(res.Firstname);
+                    $("#Lastname").val(res.Lastname);
+                    $("#Username").val(res.Username);
+                    $("#Email").val(res.Email);
+                    $("#Role").val(res.Role);
                 }
             })
         }
 
         function saveData() {
+
             if (!$("#SiteName").val()) {
                 alert('Please enter Name');
                 $("#SiteName").focus()
@@ -155,21 +232,28 @@
         }
 
         function saveUserData() {
-            if (!$("#Name").val()) {
-                alert('Please enter Name');
-                $("#Name").focus()
+
+            if (!$("#Firstname").val()) {
+                alert('Please enter Firstname');
+                $("#Firstname").focus()
+                return false;
+            }
+
+            if (!$("#Lastname").val()) {
+                alert('Please enter Lastname');
+                $("#Lastname").focus()
                 return false;
             }
 
             if (!$("#Email").val()) {
                 alert('Please enter Email');
-                $("#EMail").focus()
+                $("#Email").focus()
                 return false;
             }
 
-            if (!$("#UserName").val()) {
+            if (!$("#Username").val()) {
                 alert('Please enter User Name');
-                $("#UserName").focus()
+                $("#Username").focus()
                 return false;
             }
 
@@ -180,12 +264,13 @@
             }
 
             ajaxcall.post({
-                url: AppConfig.ApiPath + "UserStaff/AddData",
+                url: AppConfig.ApiPath + "User/AddData",
                 data: {
                     Id: id,
-                    Name: $("#Name").val(),
+                    Firstname: $("#Firstname").val(),
+                    Lastname: $("#Lastname").val(),
                     Email: $("#Email").val(),
-                    UserName: $("#UserName").val(),
+                    Username: $("#Username").val(),
                     Password: $("#Password").val(),
                     Role: $("#Role").val(),
                 }

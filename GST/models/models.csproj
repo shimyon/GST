@@ -152,7 +152,6 @@
   <ItemGroup>
     <Compile Include="ApplicationLevel.cs" />
     <Compile Include="BaseEntity.cs" />
-    <Compile Include="DatabaseTable\userStaff.cs" />
     <Compile Include="DatabaseTable\plot.cs" />
     <Compile Include="DatabaseTable\payment.cs" />
     <Compile Include="DatabaseTable\customer.cs" />
@@ -188,9 +187,8 @@
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\ServiceLocationViewModel.cs" />
     <Compile Include="ViewModels\PrintViewModel.cs" />
-    <Compile Include="ViewModels\TemplateViewModel.cs" />
-    <Compile Include="ViewModels\UserStaffViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\TemplateViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

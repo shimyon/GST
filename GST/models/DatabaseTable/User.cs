@@ -27,7 +27,10 @@ namespace models.DatabaseTable
         [StringLength(100)]
         public string Password { get; set; }
 
-        
+        [StringLength(100)]
+        public string Role { get; set; }
+
+
         public bool? IsDelete { get; set; }
 
         public Int32? CreatedBy { get; set; }

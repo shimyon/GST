@@ -1,21 +1,27 @@
 ﻿using models.DatabaseTable;
 using models.ViewModels;
-using MySql.Data.MySqlClient;
 using services;
-using services.Common;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
+using services.Common;
+using MySql.Data.MySqlClient;
+using System.Net.Http;
+using System.IO;
+using iTextSharp.text.pdf;
+using System.Net.Http.Headers;
+using System.Web.Http.Results;
+using System.Net;
+using iTextSharp.text;
+
 namespace GST.Controllers
 {
-    public class UserStaffController : BaseApiController
+    public class UserController : BaseApiController
     {
-        UserStaffServices service = new UserStaffServices();
+        UserService service = new UserService();
         DatatableService datatableService = new DatatableService();
+        CommonService commsrv = new CommonService();
         [HttpPost]
-        public IHttpActionResult GetList(UserStaffSearch search)
+        public IHttpActionResult GetUserList(UserSearch search)
         {
             AuthDetails authdet = LoginUserDetails();
             var filters = new List<MySqlParameter>
@@ -27,21 +33,16 @@ namespace GST.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult GetById(UserStaffViewModel obj)
+        public IHttpActionResult AddData(user userobj)
         {
-            var getuserStaff = service.Get(obj.Id);
-            return Ok(getuserStaff);
-        }
 
-        [HttpPost]
-        public IHttpActionResult AddData(userStaff userStaffobj)
-        {
             AuthDetails authdet = LoginUserDetails();
-            userStaffobj.UpdatedBy = authdet.UserId;
-            userStaffobj.CreatedBy = authdet.UserId;
-            var result = service.Add(userStaffobj);
+            userobj.CreatedBy = authdet.UserId;
+            userobj.UpdatedBy = authdet.UserId;
+            var result = service.Add(userobj);
             return Ok(result);
         }
-    }
 
+        
+    }
 }
