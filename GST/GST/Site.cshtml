@@ -41,7 +41,14 @@
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label for="uploadlogo">Logo</label>
+                    <input type="file" class="form-control" id="Logo" onchange="uploadFile()">
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col col-md-1">
                 <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
@@ -113,8 +120,34 @@
             })
         }
 
+
+
         function goBack() {
                  window.history.back();
+        }
+
+        function uploadFile() {
+            debugger
+            //var xhr = new XMLHttpRequest();
+            //var file = document.getElementById('Logo').files[0];
+            //xhr.open("POST", "api/LogoUpload");
+            //xhr.setRequestHeader("filename", file.name);
+            //xhr.send(file);
+
+            var data = new FormData();
+            var file = $('#Logo')[0].files[0];
+            data.append('file', file);
+            $.ajax({
+                url: AppConfig.ApiPath + '/site/UploadLogo',
+                processData: false,
+                contentType: false,
+                data: data,
+                type: 'POST'
+            }).done(function (result) {
+                alert(result);
+            }).fail(function (a, b, c) {
+                console.log(a, b, c);
+            });
         }
     </script>
 }
