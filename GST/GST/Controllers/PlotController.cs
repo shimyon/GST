@@ -27,9 +27,9 @@ namespace GST.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult PlotIDDropDownAll()
+        public IHttpActionResult PlotIDDropDownAll(int Id)
         {
-            var getPlot = service.PlotIDDropDownAll();
+            var getPlot = service.PlotIDDropDownAll(Id);
             return Ok(getPlot);
         }
 

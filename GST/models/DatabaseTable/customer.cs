@@ -12,9 +12,9 @@ namespace models.DatabaseTable
     public class customer : BaseEntity
     {
         [StringLength(50)]
-        public string SiteName { get; set; }
+        public string SiteId { get; set; }
 
-        public int PlotNo { get; set; }
+        public int PlotId { get; set; }
 
         [StringLength(50)]
         public string CustomerName { get; set; }

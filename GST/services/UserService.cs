@@ -44,6 +44,28 @@ namespace services
             }
         }
 
+        public int Edit(user usr)
+        {
+            using (var db = new AppDb())
+            {
+                var checkuser = db.users.FirstOrDefault(f => f.Id == usr.Id);
+                if (checkuser == null)
+                {
+                    throw new Exception("User not found!");
+                }
+                else
+                {
+                    checkuser.Lastname = usr.Lastname;
+                    checkuser.Firstname = usr.Firstname;
+                    checkuser.Role = usr.Role;
+                    checkuser.Email = usr.Email;
+                }
+                db.Entry(checkuser).State = System.Data.Entity.EntityState.Modified;
+                var rec = db.SaveChanges();
+                return rec;
+            }
+        }
+
         public int UpdatePass(user usr)
         {
             using (var db = new AppDb())

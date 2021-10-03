@@ -11,10 +11,10 @@ namespace models.DatabaseTable
     [Table("plot")]
     public class plot : BaseEntity
     {
-        [StringLength(50)]
-        public string SiteName { get; set; }
+        public int SiteID { get; set; }
 
-        public int PlotNo { get; set; }
+        [StringLength(50)]
+        public String PlotNo { get; set; }
 
         public int SquareArea { get; set; }
 

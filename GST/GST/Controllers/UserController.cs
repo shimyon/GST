@@ -43,6 +43,19 @@ namespace GST.Controllers
             return Ok(result);
         }
 
-        
+        [HttpPost]
+        public IHttpActionResult GetById(user userobj)
+        {
+            var result = service.Get(userobj.Id);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public IHttpActionResult Edit(user userobj)
+        {
+            var result = service.Edit(userobj);
+            return Ok(result);
+        }
+
     }
 }

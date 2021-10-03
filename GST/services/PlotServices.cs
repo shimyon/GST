@@ -68,11 +68,11 @@ namespace services
             }
         }
 
-        public object PlotIDDropDownAll()
+        public object PlotIDDropDownAll(int id)
         {
             using (var db = new AppDb())
             {
-                var data = db.plot.Select(s => new
+                var data = db.plot.Where(w => w.SiteID==id).Select(s => new
                 {
                     value = s.Id,
                     label = s.PlotNo

@@ -4,8 +4,8 @@
 <div class="sechead pb5 fs14"><h4><b>User</b></h4></div>
 <div class="">
     <ul id="myTab" class="nav nav-tabs">
-        <li><a class="nav-link" href="#list" data-toggle="tab" aria-selected="true">List</a></li>
-        <li class="active"><a class="nav-link active" href="#add" data-toggle="tab">Add</a></li>
+        <li class="active"><a class="nav-link active" href="#list" data-toggle="tab" aria-selected="true">List</a></li>
+        <li><a class="nav-link" href="#add" data-toggle="tab">Add</a></li>
     </ul>
     <div id="Content" class="tab-content" style="height: 100%;">
         <div class=" tab-pane fade show active" id="list" aria-labelledby="add-tab">
@@ -18,45 +18,45 @@
                            width="100%"></table>
                 </div>
             </div>
-           @* <table class="table table-hover dataTable no-footer">
-                <thead>
-                    <tr>
-                        <th style="max-width:100px;">&nbsp;</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="max-width:80px;">
-                            <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-edit"></i>Edit</button>
-                            <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-trash"></i> Delete</button>
-                        </td>
-                        <td>Demo Admin</td>
-                        <td>demo@tes.com</td>
-                        <td>Admin</td>
-                    </tr>
-                    <tr>
-                        <td style="max-width:80px;">
-                            <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-edit"></i>Edit</button>
-                            <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-trash"></i> Delete</button>
-                        </td>
-                        <td>Demo Manager</td>
-                        <td>manager@tes.com</td>
-                        <td>Manager</td>
-                    </tr>
-                    <tr>
-                        <td style="max-width:80px;">
-                            <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-edit"></i>Edit</button>
-                            <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-trash"></i> Delete</button>
-                        </td>
-                        <td>Demo Sales</td>
-                        <td>sales@tes.com</td>
-                        <td>Sale</td>
-                    </tr>
-                </tbody>
-            </table>*@
+            @* <table class="table table-hover dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th style="max-width:100px;">&nbsp;</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="max-width:80px;">
+                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-edit"></i>Edit</button>
+                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-trash"></i> Delete</button>
+                            </td>
+                            <td>Demo Admin</td>
+                            <td>demo@tes.com</td>
+                            <td>Admin</td>
+                        </tr>
+                        <tr>
+                            <td style="max-width:80px;">
+                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-edit"></i>Edit</button>
+                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-trash"></i> Delete</button>
+                            </td>
+                            <td>Demo Manager</td>
+                            <td>manager@tes.com</td>
+                            <td>Manager</td>
+                        </tr>
+                        <tr>
+                            <td style="max-width:80px;">
+                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-edit"></i>Edit</button>
+                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-trash"></i> Delete</button>
+                            </td>
+                            <td>Demo Sales</td>
+                            <td>sales@tes.com</td>
+                            <td>Sale</td>
+                        </tr>
+                    </tbody>
+                </table>*@
         </div>
         <div class=" tab-pane fade show" id="add" aria-labelledby="home-tab">
             <div class="row">
@@ -80,7 +80,7 @@
                         <input type="text" class="form-control" id="Username">
                     </div>
                 </div>
-                <div class="col-md-12 ">
+                <div class="col-md-12 hideinedit">
                     <div class="form-group">
                         <label for="inputAddress2">Password</label>
                         <input type="text" class="form-control" id="Password">
@@ -177,7 +177,20 @@
             $(".btnedit").click(function () {
                 id = $(this).attr('data-id');
                 $('#myTab a[href="#add"]').tab('show');
-                GetUserList();
+                ajaxcall.post({
+                    url: AppConfig.ApiPath + "User/GetById",
+                    data: { "Id": id }
+                }).then(function (res) {
+                    if (res) {
+                        debugger
+                        $("#Firstname").val(res.Firstname);
+                        $("#Lastname").val(res.Lastname);
+                        $("#Email").val(res.Email);
+                        $("#Role").val(res.Role);
+                        $('.hideinedit').hide();
+                        $("#Username").val(res.Username).prop("readonly",true);
+                    }
+                })
             })
         }
 
@@ -193,41 +206,6 @@
                     $("#Email").val(res.Email);
                     $("#Role").val(res.Role);
                 }
-            })
-        }
-
-        function saveData() {
-
-            if (!$("#SiteName").val()) {
-                alert('Please enter Name');
-                $("#SiteName").focus()
-                return false;
-            }
-
-            if (!$("#Address").val()) {
-                alert('Please enter Address');
-                $("#Address").focus()
-                return false;
-            }
-
-            if (!$("#OwnerName").val()) {
-                alert('Please enter Owner Name');
-                $("#OwnerName").focus()
-                return false;
-            }
-
-            ajaxcall.post({
-                url: AppConfig.ApiPath + "Site/AddData",
-                data: {
-                    Id: id,
-                    Name: $("#SiteName").val(),
-                    Address: $("#Address").val(),
-                    OwnerName: $("#OwnerName").val()
-                }
-            }).then(res => {
-                alert("Saved successfully");
-            }, err => {
-                alert(err.responseJSON);
             })
         }
 
@@ -257,14 +235,15 @@
                 return false;
             }
 
-            if (!$("#Password").val()) {
+            if (!$("#Password").val() && id == '0') {
                 alert('Please enter Password');
                 $("#Password").focus()
                 return false;
             }
-
+            debugger
+            var userUrl = (id == '0' ? "User/AddData" : "User/Edit");
             ajaxcall.post({
-                url: AppConfig.ApiPath + "User/AddData",
+                url: AppConfig.ApiPath + userUrl,
                 data: {
                     Id: id,
                     Firstname: $("#Firstname").val(),
@@ -276,6 +255,7 @@
                 }
             }).then(res => {
                 alert("Saved successfully");
+                window.history.back();
             }, err => {
                 alert(err.responseJSON);
             })
