@@ -72,13 +72,36 @@ namespace services
         {
             using (var db = new AppDb())
             {
-                var data = db.plot.Where(w => w.SiteID==id).Select(s => new
+                var data = db.plot.Where(w => w.SiteID == id).Select(s => new
                 {
                     value = s.Id,
                     label = s.PlotNo
                 }).ToList();
                 return data;
             }
+        }
+
+        public string AddPlots(List<plot> plots)
+        {
+            try
+            {
+                using (var db = new AppDb())
+                {
+                    plots.ForEach(f =>
+                    {
+                        f.SellAmount = 10000;
+                        f.Installments = 10;
+                    });
+                    db.plot.AddRange(plots);
+                    db.SaveChanges();
+                }
+                return plots.Count + " plots records were added";
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+
         }
 
     }
