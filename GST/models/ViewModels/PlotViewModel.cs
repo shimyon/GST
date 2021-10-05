@@ -39,9 +39,9 @@ namespace GST.Controllers
 
         public string SiteName { get; set; }
 
-        public int PlotNo { get; set; }
+        public String PlotNo { get; set; }
 
-        public int SquareArea { get; set; }
+        public String SquareArea { get; set; }
 
         public string SuperBuildUp { get; set; }
 

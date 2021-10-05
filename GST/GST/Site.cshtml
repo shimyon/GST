@@ -41,25 +41,34 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="display:none;" id="logodiv">
             <div class="col-md-4 ">
                 <div class="form-group">
                     <label for="uploadlogo">Logo</label>
                     <input type="file" class="form-control" id="Logo" onchange="uploadFile()">
                 </div>
             </div>
+            <div class="col-md-4 ">
+                <img src="~/Content/ClientLogo/emoiss/" alt="Client Logo" style="height:100px;" id="logoimg" />
+            </div>
+        </div>
+        <div class="row" style="display:none;" id="shopdiv">
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label for="uploadlogo">Upload Shop/Office excel file</label>
+                    <input type="file" class="form-control" id="shopexcel" onchange="shopfilechange()">
+                </div>
+            </div>
         </div>
         <div class="row">
-            <div class="col col-md-1">
+            <div class="col col-md-4">
                 <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
-            </div>
-            <div class="col col-md-1">
-                <button type="button" class="btn btn-danger" onclick="goBack();">Cancel</button>
+                <button type="button" class="btn btn-danger" style="margin-left:5px;" onclick="goBack();">Cancel</button>
             </div>
         </div>
 
     </div>
-  
+
 </div>
 
 @section scripts{
@@ -68,9 +77,16 @@
 
         $(function () {
             if (id) {
+                $("#logodiv, #shopdiv").show();
+                setLogo();
                 GetById();
             }
         })
+
+        function setLogo() {
+            let rondom = Math.round(Math.random() * 100000);
+            $("#logoimg").attr("src", `./Content/Images/SiteLogos/${id}.png?v=${rondom}`);
+        }
 
         function GetById() {
             ajaxcall.post({
@@ -123,22 +139,39 @@
 
 
         function goBack() {
-                 window.history.back();
+            window.history.back();
         }
 
         function uploadFile() {
-            debugger
-            //var xhr = new XMLHttpRequest();
-            //var file = document.getElementById('Logo').files[0];
-            //xhr.open("POST", "api/LogoUpload");
-            //xhr.setRequestHeader("filename", file.name);
-            //xhr.send(file);
-
             var data = new FormData();
             var file = $('#Logo')[0].files[0];
             data.append('file', file);
+            data.append('siteid', id);
             $.ajax({
                 url: AppConfig.ApiPath + '/site/UploadLogo',
+                processData: false,
+                contentType: false,
+                data: data,
+                type: 'POST'
+            }).done(function (result) {
+                if (result == "Uploaded") {
+                    setLogo();
+                    alert("Logo uploaded successfully!");
+                } else {
+                    alert(result);
+                }
+            }).fail(function (a, b, c) {
+                console.log(a, b, c);
+            });
+        }
+
+        function shopfilechange() {
+            var data = new FormData();
+            var file = $('#shopexcel')[0].files[0];
+            data.append('file', file);
+            data.append('siteid', id);
+            $.ajax({
+                url: AppConfig.ApiPath + '/site/UploadPlots',
                 processData: false,
                 contentType: false,
                 data: data,

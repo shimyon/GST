@@ -16,7 +16,8 @@ namespace models.DatabaseTable
         [StringLength(50)]
         public String PlotNo { get; set; }
 
-        public int SquareArea { get; set; }
+        [StringLength(50)]
+        public string SquareArea { get; set; }
 
         [StringLength(50)]
         public string SuperBuildUp { get; set; }

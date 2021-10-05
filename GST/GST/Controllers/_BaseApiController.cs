@@ -1,16 +1,19 @@
 ﻿using models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Security.Claims;
 using System.Web.Http;
 
 namespace GST.Controllers
 {
+    [Authorize]
     public class BaseApiController : ApiController
     {
         public AuthDetails LoginUserDetails()
@@ -53,5 +56,8 @@ namespace GST.Controllers
             string base64EncodedPDF = System.Convert.ToBase64String(pdfByteArray);
             return base64EncodedPDF;
         }
+
+
+     
     }
 }
