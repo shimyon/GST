@@ -14,41 +14,45 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Shop/Office</label>
-                <select class="form-control" id="PlotNo"></select>
+                <select class="form-control" id="PlotID" onchange="plotChange();"></select>
             </div>
         </div>
     </div>
 
 
-    <div class="" >
+    <div class="" id="subdetails" style="display:none;">
         <ul id="myTab" class="nav nav-tabs">
             <li class="active"><a class="nav-link" href="#Customer" data-toggle="tab" aria-selected="true">Customer</a></li>
-
             <li><a class="nav-link" href="#Payment" data-toggle="tab">Payment</a></li>
+            <li><a class="nav-link" href="#Document" data-toggle="tab">Document</a></li>
         </ul>
         <div id="Content" class="tab-content" style="height: 100%;">
             <div class="tab-pane fade in active" id="Customer">
-                <table class="table table-hover dataTable no-footer">
-                    <thead>
-                        <tr>
-                            <th style="max-width:100px;">&nbsp;</th>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Mobile</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="max-width:80px;">
-                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-edit"></i>Edit</button>
-                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-trash"></i> Delete</button>
-                            </td>
-                            <td>Demo Customer</td>
-                            <td>30</td>
-                            <td>999999999</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Sale Amount</label>
+                            <input type="number" class="form-control" value="1000000" id="SaleAmount">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Installments</label>
+                            <input type="number" class="form-control" value="10" id="Installments">
+                        </div>
+                    </div>
+                    <div class="col col-md-1 offset-3 mt-4">
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+                <div style="width:100%;padding:15px;">
+                    <table class="table table-hover"
+                           id="tblCustomerList"
+                           cellspacing="0"
+                           align="center"
+                           width="100%"></table>
+                </div>
+               
                 <div class="row">
                     <div class="col-md-4 ">
                         <div class="form-group">
@@ -94,18 +98,6 @@
                             <input type="email" class="form-control" id="Email">
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Sale Amount</label>
-                            <input type="number" class="form-control" id="SaleAmount">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Installments</label>
-                            <input type="number" class="form-control" value="10" id="Installments">
-                        </div>
-                    </div>
                 </div>
 
                 <div class="row">
@@ -123,40 +115,37 @@
 
             <div class="tab-pane fade" id="Payment">
                 <div class="row">
-                    <div class="col col-sm-6">
-                        <h4>Sale Amount: 10,00,000</h4>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Sale Amount</label>
+                            <input type="number" class="form-control" value="1000000" id="SaleAmount">
+                        </div>
                     </div>
-                    <div class="col col-sm-6 text-right text-danger">
-                        <h4>Outstanding: 9,00,000</h4>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Outstanding</label>
+                            <input type="number" class="form-control" id="Outstanding">
+                        </div>
+                    </div>
+                    <div class="col col-md-1 offset-3 mt-4">
+                        <button type="button" class="btn btn-primary" onclick="outstanding_amounts();">Save</button>
                     </div>
                 </div>
 
-                <table class="table table-hover dataTable no-footer">
-                    <thead>
-                        <tr>
-                            <th style="max-width:100px;">&nbsp;</th>
-                            <th>Date</th>
-                            <th>Amount</th>
-                            <th>Bank</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="max-width:80px;">
-                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-edit"></i>Edit</button>
-                                <button class="btnedit actionbtn btn  btn-sm" data-id="1"><i class="fa fa-trash"></i> Delete</button>
-                            </td>
-                            <td>27, Sep 2021</td>
-                            <td>Rs. 1,00,000</td>
-                            <td>BOB</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div style="width:100%;padding:15px;">
+                    <table class="table table-hover"
+                           id="tblPaymentList"
+                           cellspacing="0"
+                           align="center"
+                           width="100%"></table>
+                </div>
+
+               
                 <div class="row">
                     <div class="col-md-4 ">
                         <div class="form-group">
                             <label for="inputAddress2">Amount</label>
-                            <input type="number" class="form-control" id="Ammount">
+                            <input type="number" class="form-control"  id="Amount">
                         </div>
                     </div>
                     <div class="col-md-4 ">
@@ -174,14 +163,14 @@
                 <div class="row">
                     <div class="col-md-4 ">
                         <div class="form-group">
-                            <label>Date</label>
-                            <input type="date" class="form-control" id="Date">
+                            <label>Date of Issue</label>
+                            <input type="date" class="form-control" id="DateOfIssue">
                         </div>
                     </div>
                     <div class="col-md-4 ">
                         <div class="form-group">
-                            <label for="inputAddress2">SI No</label>
-                            <input type="text" class="form-control" id="SINo">
+                            <label>Check Date</label>
+                            <input type="date" class="form-control" id="ChequeDate">
                         </div>
                     </div>
                 </div>
@@ -197,6 +186,39 @@
                 </div>
 
             </div>
+
+            <div class="tab-pane fade" id="Document">
+                <table class="table table-hover dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th> SR No.</th>
+                            <th>Document</th>
+                            <th>Download</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Banakhat</td>
+                            <td><button type="button" class="btn"">Download</button></td>
+                            <td><button type="button" class="btn" ">Email</button></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Sale Deed</td>
+                            <td><button type="button" class="btn" ">Download</button></td>
+                            <td><button type="button" class="btn" ">Email</button></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Allotment Latter</td>
+                            <td><button type="button" class="btn" ">Download</button></td>
+                            <td><button type="button" class="btn" ">Email</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -210,6 +232,8 @@
         $(function () {
             $('a[href="#Customer"]').click();
             init();
+            LoadCustomerTable();
+            LoadPaymentTable();
         })
 
         async function init() {
@@ -222,6 +246,15 @@
 
         async function siteChange(){
             await PlotIDDropDownAll();
+            plotChange();
+        }
+
+        async function plotChange(){
+            if ($("#PlotID").val() != "0" ) {
+                $("#subdetails").show();
+            } else {
+                $("#subdetails").hide();
+            }
         }
 
         function PlotIDDropDownAll() {
@@ -233,10 +266,10 @@
                     }
                 }).then((res) => {
                     if (res) {
-                        $("#PlotNo").empty();
-                        $("<option>").val("0").text("Select").appendTo("#PlotNo");
+                        $("#PlotID").empty();
+                        $("<option>").val("0").text("Select").appendTo("#PlotID");
                         for (var i in res) {
-                            $("<option>").val(res[i].value).text(res[i].label).appendTo("#PlotNo");
+                            $("<option>").val(res[i].value).text(res[i].label).appendTo("#PlotID");
                         }
                     }
                     result();
@@ -279,6 +312,164 @@
                 }
 
             })
+        }
+
+         function LoadCustomerTable() {
+            $('#tblCustomerList').DataTable({
+                dom: "<'row'<'col-sm-3'l><'col-sm-6'p><'col-sm-3 text-align-right'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i>>",
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": AppConfig.ApiPath + "Customer/GetList",
+                    "type": "POST",
+                    "processing": true,
+                    "serverSide": true,
+                    "datetype": "json",
+                    "data": {}
+                },
+                "drawCallback": function () {
+                    $(".paginate_button.current").addClass(" actionbtn hor mr-0 ml-1 active").removeClass("paginate_button current");
+                    $(".paginate_button").addClass(" actionbtn hor mr-0 ml-1").removeClass("paginate_button");
+
+                   // AfterDrawTable();
+                },
+                "columns": [
+                    {
+                        title: "",
+                        data: "Id",
+                        class: "text-center",
+                        render: (data, display, alldata) => {
+                            return `<button class ='btnedit actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-edit'></i>Edit</button>
+                                    <button class ='btndelete actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-trash'></i>Delete</button>`;
+                        }
+                    },
+                    {
+                        title: "SiteID",
+                        data: "SiteID",
+                        class: "text-center"
+                    },
+                    {
+                        title: "PlotID",
+                        data: "PlotID",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Name",
+                        data: "CustomerName",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Age",
+                        data: "Age",
+                        class: "text-center"
+                    },
+                    {
+                        title: "AdharCard",
+                        data: "AdharCard",
+                        class: "text-center"
+                    },
+                    {
+                        title: "PANCard",
+                        data: "PANCard",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Address",
+                        data: "Address",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Mobile",
+                        data: "Mobile",
+                        class: "text-center"
+
+                    },
+                    {
+                        title: "Email",
+                        data: "Email",
+                        class: "text-center"
+                    }
+                ]
+            });
+        }
+
+
+        function LoadPaymentTable() {
+            $('#tblPaymentList').DataTable({
+                dom: "<'row'<'col-sm-3'l><'col-sm-6'p><'col-sm-3 text-align-right'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i>>",
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": AppConfig.ApiPath + "Payment/GetList",
+                    "type": "POST",
+                    "processing": true,
+                    "serverSide": true,
+                    "datetype": "json",
+                    "data": {}
+                },
+                "drawCallback": function () {
+                    $(".paginate_button.current").addClass(" actionbtn hor mr-0 ml-1 active").removeClass("paginate_button current");
+                    $(".paginate_button").addClass(" actionbtn hor mr-0 ml-1").removeClass("paginate_button");
+
+                   // AfterDrawTable();
+                },
+                "columns": [
+                    {
+                        title: "",
+                        data: "Id",
+                        class: "text-center",
+                        render: (data, display, alldata) => {
+                            return `<button class ='btnedit actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-edit'></i>Edit</button>
+                                    <button class ='btndelete actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-trash'></i>Delete</button>
+                                    <button class ='btndelete actionbtn btn  btn-sm' data-id='${data}'><i class ='fa'></i>Downolad</button>
+                                    <button class ='btndelete actionbtn btn  btn-sm' data-id='${data}'><i class ='fa'></i>Email</button>`;
+                        }
+                    },
+                    {
+                        title: "PlotID",
+                        data: "PlotID",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Amount",
+                        data: "Amount",
+                        class: "text-center"
+                    },
+                    {
+                        title: "ChequeNo",
+                        data: "ChequeNo",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Bank",
+                        data: "Bank",
+                        class: "text-center"
+                    },
+                    {
+                        title: "DateOfIssue",
+                        data: "DateOfIssue",
+                        class: "text-center"
+                    },
+                    {
+                        title: "ChequeDate",
+                        data: "ChequeDate",
+                        class: "text-center"
+                    }
+                ]
+            });
+        }
+
+
+        function outstanding_amounts() {
+        debugger;
+                var SaleAmt = 1000000;
+                var Amt = $(this).find('#Amount').val();
+                var amount = parseInt(SaleAmt) - parseInt(Amt);
+                $(this).find('#Outstanding').val(amount);
         }
 
         function saveCustomerData() {
@@ -329,6 +520,8 @@
                 url: AppConfig.ApiPath + "Customer/AddData",
                 data: {
                     Id: id,
+                    SiteID: $("#SiteID").val(),
+                    PlotID: $("#PlotID").val(),
                     CustomerName: $("#CustomerName").val(),
                     Age: $("#Age").val(),
                     AdharCard: $("#AdharCard").val(),
@@ -348,9 +541,9 @@
 
         function savePaymentData() {
 
-            if (!$("#Ammount").val()) {
-                alert('Please enter Ammount');
-                $("#Ammount").focus()
+            if (!$("#Amount").val()) {
+                alert('Please enter Amount');
+                $("#Amount").focus()
                 return false;
             }
 
@@ -366,15 +559,15 @@
                 return false;
             }
 
-            if (!$("#Date").val()) {
-                alert('Please enter Date');
-                $("#Date").focus()
+            if (!$("#DateOfIssue").val()) {
+                alert('Please enter Date Of Issue');
+                $("#DateOfIssue").focus()
                 return false;
             }
 
-            if (!$("#SINo").val()) {
-                alert('Please enter SI No');
-                $("#SINo").focus()
+            if (!$("#ChequeDate").val()) {
+                alert('Please enter Check Date');
+                $("#ChequeDate").focus()
                 return false;
             }
 
@@ -382,11 +575,12 @@
                 url: AppConfig.ApiPath + "Payment/AddData",
                 data: {
                     Id: id,
-                    Ammount: $("#Ammount").val(),
+                    PlotID: $("#PlotID").val(),
+                    Amount: $("#Amount").val(),
                     ChequeNo: $("#ChequeNo").val(),
                     Bank: $("#Bank").val(),
-                    Date: $("#Date").val(),
-                    SINo: $("#SINo").val()
+                    DateOfIssue: $("#DateOfIssue").val(),
+                    ChequeDate: $("#ChequeDate").val()
                 }
             }).then(res => {
                 alert("Saved successfully");

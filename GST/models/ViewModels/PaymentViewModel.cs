@@ -7,17 +7,19 @@ namespace GST.Controllers
     {
         public int Id { get; set; }
 
-        public int PlotNo { get; set; }
+        public string PlotID { get; set; }
 
-        public string Name { get; set; }
+        public int Amount { get; set; }
+
+        //public string Name { get; set; }
 
         public int ChequeNo { get; set; }
 
         public string Bank { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? DateOfIssue { get; set; }
 
-        public int SINo { get; set; }
+        public DateTime? ChequeDate { get; set; }
     }
 
     public class PaymentSearch : DataTableSearch
@@ -29,16 +31,18 @@ namespace GST.Controllers
     {
         public int Id { get; set; }
 
-        public int PlotNo { get; set; }
+        public string PlotID { get; set; }
 
-        public string Name { get; set; }
+        public int Amount { get; set; }
+
+        //public string Name { get; set; }
 
         public int ChequeNo { get; set; }
 
         public string Bank { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? DateOfIssue { get; set; }
 
-        public int SINo { get; set; }
+        public DateTime? ChequeDate { get; set; }
     }
 }

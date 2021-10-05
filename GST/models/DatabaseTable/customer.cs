@@ -11,10 +11,10 @@ namespace models.DatabaseTable
     [Table("customer")]
     public class customer : BaseEntity
     {
-        [StringLength(50)]
-        public string SiteId { get; set; }
+        public int SiteID { get; set; }
 
-        public int PlotId { get; set; }
+        [StringLength(50)]
+        public String PlotID { get; set; }
 
         [StringLength(50)]
         public string CustomerName { get; set; }
