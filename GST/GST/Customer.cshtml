@@ -201,20 +201,20 @@
                         <tr>
                             <td>1</td>
                             <td>Banakhat</td>
-                            <td><button type="button" class="btn"">Download</button></td>
-                            <td><button type="button" class="btn" ">Email</button></td>
+                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>Download</button></td>
+                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>Email</button></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Sale Deed</td>
-                            <td><button type="button" class="btn" ">Download</button></td>
-                            <td><button type="button" class="btn" ">Email</button></td>
+                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>Download</button></td>
+                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>Email</button></td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>Allotment Latter</td>
-                            <td><button type="button" class="btn" ">Download</button></td>
-                            <td><button type="button" class="btn" ">Email</button></td>
+                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>Download</button></td>
+                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>Email</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -346,13 +346,13 @@
                         }
                     },
                     {
-                        title: "SiteID",
-                        data: "SiteID",
+                        title: "Site Name",
+                        data: "SiteName",
                         class: "text-center"
                     },
                     {
-                        title: "PlotID",
-                        data: "PlotID",
+                        title: "Shop/Office",
+                        data: "PlotNo",
                         class: "text-center"
                     },
                     {
@@ -361,35 +361,10 @@
                         class: "text-center"
                     },
                     {
-                        title: "Age",
-                        data: "Age",
-                        class: "text-center"
-                    },
-                    {
-                        title: "AdharCard",
-                        data: "AdharCard",
-                        class: "text-center"
-                    },
-                    {
-                        title: "PANCard",
-                        data: "PANCard",
-                        class: "text-center"
-                    },
-                    {
-                        title: "Address",
-                        data: "Address",
-                        class: "text-center"
-                    },
-                    {
                         title: "Mobile",
                         data: "Mobile",
                         class: "text-center"
 
-                    },
-                    {
-                        title: "Email",
-                        data: "Email",
-                        class: "text-center"
                     }
                 ]
             });
@@ -423,15 +398,23 @@
                         data: "Id",
                         class: "text-center",
                         render: (data, display, alldata) => {
-                            return `<button class ='btnedit actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-edit'></i>Edit</button>
-                                    <button class ='btndelete actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-trash'></i>Delete</button>
-                                    <button class ='btndelete actionbtn btn  btn-sm' data-id='${data}'><i class ='fa'></i>Downolad</button>
-                                    <button class ='btndelete actionbtn btn  btn-sm' data-id='${data}'><i class ='fa'></i>Email</button>`;
+                            return `
+                                    <div class="dropdown">
+                                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Action
+                                      </button>
+                                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#"><i class ='fa fa-edit'></i>Edit</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class ='fa fa-trash'></i>Delete</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="fa fa-download"></i>Download</a></li>
+                                            <li><a class="dropdown-item" href="#"><i class="fa fa-envelope"></i>Email</a></li>
+                                      </ul>
+                                    </div>`;
                         }
                     },
                     {
-                        title: "PlotID",
-                        data: "PlotID",
+                        title: "Shop/Office",
+                        data: "PlotNo",
                         class: "text-center"
                     },
                     {
@@ -440,7 +423,7 @@
                         class: "text-center"
                     },
                     {
-                        title: "ChequeNo",
+                        title: "Cheque No",
                         data: "ChequeNo",
                         class: "text-center"
                     },
@@ -450,13 +433,13 @@
                         class: "text-center"
                     },
                     {
-                        title: "DateOfIssue",
-                        data: "DateOfIssue",
+                        title: "Date Of Issue",
+                        data: "DateOfIssueformate",
                         class: "text-center"
                     },
                     {
-                        title: "ChequeDate",
-                        data: "ChequeDate",
+                        title: "Cheque Date",
+                        data: "ChequeDateformate",
                         class: "text-center"
                     }
                 ]

@@ -31,7 +31,9 @@ namespace GST.Controllers
     {
         public int Id { get; set; }
 
-        public string PlotID { get; set; }
+        public int? PlotID { get; set; }
+
+        public string PlotNo { get; set; }
 
         public int Amount { get; set; }
 
@@ -43,6 +45,30 @@ namespace GST.Controllers
 
         public DateTime? DateOfIssue { get; set; }
 
+        public string DateOfIssueformate
+        {
+            get
+            {
+                if (DateOfIssue.HasValue)
+                {
+                    return DateOfIssue.Value.ToString("yyyy-MM-dd");
+                }
+                return string.Empty;
+            }
+        }
+
         public DateTime? ChequeDate { get; set; }
+
+        public string ChequeDateformate
+        {
+            get
+            {
+                if (ChequeDate.HasValue)
+                {
+                    return ChequeDate.Value.ToString("yyyy-MM-dd");
+                }
+                return string.Empty;
+            }
+        }
     }
 }
