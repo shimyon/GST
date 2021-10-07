@@ -36,3 +36,36 @@ select.form-control {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+#waitLoading {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 100000;
+    /*display:block!important;*/
+}
+
+    #waitLoading .background-shadow {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: #000;
+        opacity:0.2;
+    }
+
+    #waitLoading .pleasewait-div {
+        margin: auto;
+        position: absolute;
+        color: white;
+        height: 50px;
+        width: 50px;
+        vertical-align: middle;
+        display: block;
+        top: 30%;
+        /*bottom: 0;*/
+        left: 0;
+        right: 0;
+    }
+
