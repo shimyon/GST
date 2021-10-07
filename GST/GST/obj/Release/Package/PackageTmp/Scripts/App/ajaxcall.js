@@ -79,8 +79,12 @@ $(function () {
         $('#waitLoading').hide();
     });
 
-    $(document).ajaxError(function () {
-        document.title = title;
-        $('#waitLoading').hide();
+    $(document).ajaxError(function (xhr, stats, urls, data) {
+		if (data == "Unauthorized" ) {	
+			alert('Session expired please login again.');
+            location.replace("/Login");
+		}
+		document.title = title;
+		$('#waitLoading').hide();
     });
 });
