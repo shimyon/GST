@@ -17,10 +17,10 @@ namespace GST.Controllers
         [HttpPost]
         public IHttpActionResult GetList(PaymentSearch search)
         {
-            AuthDetails authdet = LoginUserDetails();
+            //AuthDetails authdet = LoginUserDetails();
             var filters = new List<MySqlParameter>
             {
-                datatableService.CreateSqlParameter("@pUserId", authdet.UserId,  MySqlDbType.Int32)
+                datatableService.CreateSqlParameter("@pPlotId", search.PlotId,  MySqlDbType.Int32)
             };
             var result = service.GetList(search, filters);
             return Ok(result);
