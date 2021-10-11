@@ -82,8 +82,8 @@
     @*<link href="~/Content/site.css?v=@version" rel="stylesheet" />*@
 
     @*<link href="~/Content/css/header.css?v=@version" rel="stylesheet" />
-    
-    <link href="~/Content/css/leftnav.css?v=@version" rel="stylesheet" />*@
+
+        <link href="~/Content/css/leftnav.css?v=@version" rel="stylesheet" />*@
 
     <link href="~/Content/css/utils.css?v=@version" rel="stylesheet" />
     <link href="~/Content/css/override.css?v=@version" rel="stylesheet" />
@@ -104,6 +104,12 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
+    <div id="waitLoading">
+        <div class="background-shadow"></div>
+        <div class="pleasewait-div" role="status">
+            <div class="spinner-border text-danger" role="status"></div>
+        </div>
+    </div>
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white bg-dark">
@@ -441,7 +447,6 @@
     <script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
     <!-- ChartJS -->
     <script src="~/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->

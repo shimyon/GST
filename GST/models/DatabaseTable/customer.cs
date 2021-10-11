@@ -13,15 +13,15 @@ namespace models.DatabaseTable
     {
         public int SiteID { get; set; }
 
-        [StringLength(50)]
-        public String PlotID { get; set; }
+        public int PlotID { get; set; }
 
         [StringLength(50)]
         public string CustomerName { get; set; }
 
         public int Age { get; set; }
 
-        public int AdharCard { get; set; }
+        [StringLength(50)]
+        public string AdharCard { get; set; }
 
         [StringLength(50)]
         public string PANCard { get; set; }
@@ -29,9 +29,13 @@ namespace models.DatabaseTable
         [StringLength(50)]
         public string Address { get; set; }
 
-        public int Mobile { get; set; }
+        [StringLength(15)]
+        public string Mobile { get; set; }
 
         [StringLength(50)]
         public string Email { get; set; }
+
+        [NotMapped]
+        public int? SellAmount { get; set; }
     }
 }

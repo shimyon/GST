@@ -24,6 +24,7 @@ namespace GST.Controllers
 
     public class PaymentSearch : DataTableSearch
     {
+        public int PlotId { get; set; }
 
     }
 

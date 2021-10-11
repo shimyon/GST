@@ -41,9 +41,10 @@
                 initComplete: function () {
 
                     $('#tblCustomerList thead tr')
-                        .clone(true)
+                        //.clone(true)
                         .addClass('filters')
-                        .appendTo('#tblCustomerList thead');
+                        //.appendTo('#tblCustomerList thead')
+                        ;
 
                     var api = this.api();
 
@@ -52,22 +53,23 @@
                         .columns()
                         .eq(0)
                         .each(function (colIdx) {
-                            if (colIdx == 0) return;
+                            if (colIdx == 4) return;
                             // Set the header cell to contain the input element
                             var cell = $('.filters th').eq(
                                 $(api.column(colIdx).header()).index()
                             );
                             var title = $(cell).text();
-                            $(cell).html('<input type="text" placeholder="' + title + '" />');
+                            //$(cell).html('<input type="text" placeholder="' + title + '" />');
+                            $(cell).append('<br><input type="text" placeholder="' + title + '" />');
 
                             // On every keypress in this input
-                            //$(
-                            //    'input',
-                            //    $('.filters th').eq($(api.column(colIdx).header()).index())
-                            //)
-                            //    .off('keyup change')
-                            //    .on('keyup change', function (e) {
-                            //        //e.stopPropagation();
+                            $(
+                                'input',
+                                $('.filters th').eq($(api.column(colIdx).header()).index())
+                            )
+                                .off('keyup change')
+                                .on('keyup change', function (e) {
+                                    e.stopPropagation();
 
                             //        //// Get the search value
                             //        //$(this).attr('title', $(this).val());
@@ -89,7 +91,7 @@
                             //        //$(this)
                             //        //    .focus()[0]
                             //        //    .setSelectionRange(cursorPosition, cursorPosition);
-                            //    });
+                                });
                         });
                 },
                 "ajax": {
@@ -108,13 +110,14 @@
                 },
                 "columns": [
                     {
-                        title: "",
-                        data: "Id",
-                        class: "text-center",
-                        render: (data, display, alldata) => {
-                            return `<button class ='btnedit actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-edit'></i>Edit</button>
-                                    <button class ='btndelete actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-trash'></i>Delete</button>`;
-                        }
+                        title: "Name",
+                        data: "CustomerName",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Mobile",
+                        data: "Mobile",
+                        class: "text-center"
                     },
                     {
                         title: "Site Name",
@@ -127,14 +130,13 @@
                         class: "text-center"
                     },
                     {
-                        title: "Name",
-                        data: "CustomerName",
-                        class: "text-center"
-                    },
-                    {
-                        title: "Mobile",
-                        data: "Mobile",
-                        class: "text-center"
+                        title: "",
+                        data: "Id",
+                        class: "text-center",
+                        render: (data, display, alldata) => {
+                            return `<button class ='btnedit actionbtn btn  btn-sm' data-plotid="${alldata.PlotID}" data-siteid="${alldata.SiteID}" data-id='${data}'><i class ='fa fa-edit'></i>&nbsp;Edit</button>
+                                    <button class ='btndelete actionbtn btn  btn-sm' data-plotid="${alldata.PlotID}" data-siteid="${alldata.SiteID}" data-id='${data}'><i class ='fa fa-trash'></i>&nbsp;Delete</button>`;
+                        }
                     }
                 ]
             });
@@ -144,7 +146,9 @@
             var that = this;
             $(".btnedit").click(function () {
                 let id = $(this).attr('data-id');
-                window.location.assign("./Customer?id=" + id);
+                let plotid = $(this).attr('data-plotid');
+                let siteid = $(this).attr('data-siteid');
+                window.location.assign(`./Customer?siteid=${siteid}&plotid=${plotid}`);
             })
         }
 

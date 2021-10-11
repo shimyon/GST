@@ -33,13 +33,26 @@ namespace GST.Controllers
             return Ok(getCustomer);
         }
 
-
-
         [HttpPost]
         public IHttpActionResult GetById(CustomerViewModel obj)
         {
             var getCustomer = service.Get(obj.Id);
             return Ok(getCustomer);
+        }
+
+        [HttpPost]
+        public IHttpActionResult GetAllByPlotId(CustomerViewModel obj)
+        {
+            var getCustomer = service.GetAllByPlotId(obj.PlotID);
+            return Ok(getCustomer);
+        }
+
+
+        [HttpPost]
+        public IHttpActionResult Delete(customer obj)
+        {
+            var objnew = service.Delete(obj.Id);
+            return Ok(objnew);
         }
 
         [HttpPost]

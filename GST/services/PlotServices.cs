@@ -75,7 +75,8 @@ namespace services
                 var data = db.plot.Where(w => w.SiteID == id).Select(s => new
                 {
                     value = s.Id,
-                    label = s.PlotNo
+                    label = s.PlotNo,
+                    SellAmount = s.SellAmount
                 }).ToList();
                 return data;
             }

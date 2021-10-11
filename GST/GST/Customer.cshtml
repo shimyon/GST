@@ -1,6 +1,17 @@
 ﻿@{
     Layout = "_Layout.cshtml";
 }
+@section style{
+    <style type="text/css">
+        #myTab li a.nav-link {
+            font-size: 20px;
+        }
+
+        .actioncol {
+            width: 200px;
+        }
+    </style>
+}
 <div class="container mt-3">
     <div class="row">
         <div class="col-md-6">
@@ -27,104 +38,83 @@
             <li><a class="nav-link" href="#Document" data-toggle="tab">Document</a></li>
         </ul>
         <div id="Content" class="tab-content" style="height: 100%;">
-            <div class="tab-pane fade in active" id="Customer">
-                <div class="row">
-                    <div class="card p-3">
-                        <div class="row">
-                            <label class="col-sm-2 col-form-label">Sale Amount</label>
-                            <div class="col-sm-2" style="margin-right:10p%">
-                                <input type="number" class="form-control" id="SaleAmount">
-                            </div>
-                            <label class="col-sm-2 col-form-label">Installments</label>
-                            <div class="col-sm-2">
-                                <input type="number" class="form-control" id="Installments">
-                            </div>
-                            <div class="col col-md-1">
-                                <button type="button" class="btn btn-primary">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="width:100%;padding:15px;">
-                    <table class="table table-hover"
-                           id="tblCustomerList"
-                           cellspacing="0"
-                           align="center"
-                           width="100%"></table>
-                </div>
-                <div class="row mt-4 mb-4">
-                    <button type="button" id="AddCusromerButton" class="btn btn-primary">Add New Customer</button>
-                </div> 
 
-                <div class="container" id="AddCusromer" style="display:none;">
+            <div class="tab-pane fade in active" id="Customer">
+
+                <div class="CustomerDiv shadow border border-light" style="padding:25px; margin-top: 10px">
                     <div class="row">
                         <div class="col-md-4 ">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" id="CustomerName">
+                                <input type="text" class="form-control CustomerName" id="CustomerName">
                             </div>
                         </div>
                         <div class="col-md-4 ">
                             <div class="form-group">
                                 <label for="inputAddress2">Age</label>
-                                <input type="number" class="form-control" id="Age">
+                                <input type="number" class="form-control Age" id="Age">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label>Adharcard</label>
-                            <input type="text" class="form-control" id="AdharCard" maxlength="12">
+                            <input type="text" class="form-control AdharCard" id="AdharCard" max="12" maxlength="12">
                         </div>
-
                     </div>
 
                     <div class="row">
                         <div class="col-md-4 ">
                             <div class="form-group">
                                 <label>PAN Card</label>
-                                <input type="text" class="form-control" id="PANCard">
+                                <input type="text" class="form-control PANCard" id="PANCard">
                             </div>
                         </div>
                         <div class="col-md-4 ">
                             <div class="form-group">
                                 <label for="inputAddress2">Address</label>
-                                <input type="text" class="form-control" id="Address">
+                                <input type="text" class="form-control Address" id="Address">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label>Mobile</label>
-                            <input type="number" class="form-control" id="Mobile" maxlength="10">
+                            <input type="text" class="form-control Mobile" id="Mobile" min="1000000000" max="9999999999" maxlength="10">
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-md-4 ">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" class="form-control" id="Email">
+                                <input type="email" class="form-control Email" id="Email">
+                            </div>
+                        </div>
+                        <div class="col-md-4 SaleAmountDiv">
+                            <div class="form-group">
+                                <label>Sale Amount</label>
+                                <input type="number" class="form-control SaleAmount" value="1000000" id="SaleAmount">
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col col-md-1">
-                            <button type="button" class="btn btn-primary" onclick="saveCustomerData();">Save</button>
-                        </div>
-                        <div class="col col-md-1">
-                            <button type="button" class="btn btn-danger" onclick="goBack();">Cancel</button>
-                        </div>
-                        <div class="col col-md-2">
-                            <button type="button" class="btn btn-primary" onclick="">Joint Holder</button>
+                        <div class="col col-md-4">
+                            <input type="hidden" class="customerid" value="0" />
+                            <button type="button" class="btn btn-primary" onclick="saveCustomerData(this);">Save</button>
+                            <button type="button" class="btn btn-warning btnjointholder" onclick="AddJointHolder()">Joint Holder</button>
+                            <button type="button" class="btn btn-danger btndelcustomer" onclick="DeleteCustomer(this)" style="display: none;">Delete</button>
                         </div>
                     </div>
+
                 </div>
+
             </div>
 
             <div class="tab-pane fade" id="Payment">
                 <div class="row" style="width:100%">
-                     <label class="col-sm-2 col-form-label"><h4>Sale Amount :</h4></label>
-                     <label class="col-sm-2 col-form-label"><h3>1000000</h3></label>
-                     <label class="col-sm-2 col-form-label offset-4" style="color:red"><h4>Outstanding :</h4></label>
-                     <label class="col-sm-2 col-form-label" style="color:red"><h3>900000</h3></label>
+                    <div class="col col-6 text-success" style="font-size: 20px">
+                        <span>Sale Amount:</span> <span id="saleAmountLbl">1000000</span>
+                    </div>
+                    <div class="col col-6 text-danger text-right" style="font-size: 20px">
+                        <span>Outstanding:</span> <span id="ountStandingAmountLbl">900000</span>
+                    </div>
                 </div>
 
                 <div style="width:100%;padding:15px;">
@@ -137,9 +127,9 @@
 
                 <div class="row mt-4 mb-4">
                     <button type="button" id="AddPaymentButton" class="btn btn-primary">Add New Payment</button>
-                </div> 
+                </div>
 
-                <div class="container" id="AddPayment"  style="display:none;">
+                <div class="container" id="AddPayment" style="display:none;">
                     <div class="row">
                         <div class="col-md-4 ">
                             <div class="form-group">
@@ -199,20 +189,20 @@
                         <tr>
                             <td>1</td>
                             <td>Banakhat</td>
-                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>Download</button></td>
-                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>Email</button></td>
+                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
+                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Sale Deed</td>
-                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>Download</button></td>
-                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>Email</button></td>
+                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
+                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>Allotment Latter</td>
-                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>Download</button></td>
-                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>Email</button></td>
+                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
+                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -225,51 +215,59 @@
 
 @section scripts{
     <script type="text/javascript">
-        var id = querySt("id");
-
+        var oPayTable,
+            id = querySt("id"),
+            siteid = querySt("siteid"),
+            plotid = querySt("plotid");
         $(function () {
             $('a[href="#Customer"]').click();
             init();
-            LoadCustomerTable();
-            LoadPaymentTable();
         })
 
-        const targetDiv = document.getElementById("AddCusromer");
-        const btn = document.getElementById("AddCusromerButton");
-        btn.onclick = function () {
-          if (targetDiv.style.display !== "none") {
-            targetDiv.style.display = "none";
-          } else {
-            targetDiv.style.display = "block";
-          }
-        };
+        //const targetDiv = document.getElementById("AddCusromer");
+        //const btn = document.getElementById("AddCusromerButton");
+        //btn.onclick = function () {
+        //    if (targetDiv.style.display !== "none") {
+        //        targetDiv.style.display = "none";
+        //    } else {
+        //        targetDiv.style.display = "block";
+        //    }
+        //};
 
         const targetDiv1 = document.getElementById("AddPayment");
         const btn1 = document.getElementById("AddPaymentButton");
         btn1.onclick = function () {
-          if (targetDiv1.style.display !== "none") {
-            targetDiv1.style.display = "none";
-          } else {
-            targetDiv1.style.display = "block";
-          }
+            if (targetDiv1.style.display !== "none") {
+                targetDiv1.style.display = "none";
+            } else {
+                targetDiv1.style.display = "block";
+            }
         };
 
         async function init() {
-           // await PlotIDDropDownAll();
+            // await PlotIDDropDownAll();
             await SiteNameDropDownAll();
-            if (id) {
-                GetById();
+            if (siteid) {
+                $("#SiteName").val(siteid);
+                await siteChange();
+                if (plotid) {
+                    $("#PlotID").val(plotid);
+                    plotChange();
+                }
+                $("#SiteName,#PlotID").attr("disabled", "disabled");
             }
         }
 
-        async function siteChange(){
+        async function siteChange() {
             await PlotIDDropDownAll();
             plotChange();
         }
 
-        async function plotChange(){
-            if ($("#PlotID").val() != "0" ) {
+        async function plotChange() {
+            if ($("#PlotID").val() != "0") {
                 $("#subdetails").show();
+                GetAllByPlotId();
+                LoadPaymentTable();
             } else {
                 $("#subdetails").hide();
             }
@@ -278,9 +276,9 @@
         function PlotIDDropDownAll() {
             return new Promise((result, error) => {
                 ajaxcall.get({
-                    url: AppConfig.ApiPath + "Plot/PlotIDDropDownAll?Id=" + $("#SiteName").val() ,
-                    data:{
-                        Id:$("#SiteName").val()
+                    url: AppConfig.ApiPath + "Plot/PlotIDDropDownAll?Id=" + $("#SiteName").val(),
+                    data: {
+                        Id: $("#SiteName").val()
                     }
                 }).then((res) => {
                     if (res) {
@@ -294,7 +292,6 @@
                 }, err => error(err));
             });
         }
-
 
         function SiteNameDropDownAll() {
             return new Promise((result, error) => {
@@ -318,7 +315,6 @@
                 url: AppConfig.ApiPath + "Customer/GetById",
                 data: { "Id": id }
             }).then(function (res) {
-
                 if (res) {
                     $("#CustomerName").val(res.CustomerName);
                     $("#Age").val(res.Age);
@@ -328,69 +324,41 @@
                     $("#Mobile").val(res.Mobile);
                     $("#Email").val(res.Email);
                 }
-
             })
         }
 
-         function LoadCustomerTable() {
-            $('#tblCustomerList').DataTable({
-                dom: "<'row'<'col-sm-3'l><'col-sm-6'p><'col-sm-3 text-align-right'f>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-5'i>>",
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
-                    "url": AppConfig.ApiPath + "Customer/GetList",
-                    "type": "POST",
-                    "processing": true,
-                    "serverSide": true,
-                    "datetype": "json",
-                    "data": {}
-                },
-                "drawCallback": function () {
-                    $(".paginate_button.current").addClass(" actionbtn hor mr-0 ml-1 active").removeClass("paginate_button current");
-                    $(".paginate_button").addClass(" actionbtn hor mr-0 ml-1").removeClass("paginate_button");
-
-                   // AfterDrawTable();
-                },
-                "columns": [
-                    {
-                        title: "",
-                        data: "Id",
-                        class: "text-center",
-                        render: (data, display, alldata) => {
-                            return `<button class ='btnedit actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-edit'></i>Edit</button>
-                                    <button class ='btndelete actionbtn btn  btn-sm' data-id='${data}'><i class ='fa fa-trash'></i>Delete</button>`;
+        function GetAllByPlotId() {
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Customer/GetAllByPlotId",
+                data: {
+                    "PlotID": $("#PlotID").val()
+                }
+            }).then(function (response) {
+                if (response) {
+                    $(".CustomerDiv:gt(0)").remove();
+                    response.forEach((res, i) => {
+                        if (i > 0) {
+                            AddJointHolder();
                         }
-                    },
-                    {
-                        title: "Site Name",
-                        data: "SiteName",
-                        class: "text-center"
-                    },
-                    {
-                        title: "Shop/Office",
-                        data: "PlotNo",
-                        class: "text-center"
-                    },
-                    {
-                        title: "Name",
-                        data: "CustomerName",
-                        class: "text-center"
-                    },
-                    {
-                        title: "Mobile",
-                        data: "Mobile",
-                        class: "text-center"
-
-                    }
-                ]
-            });
+                        let $custdiv = $(`.CustomerDiv:eq(${i})`);
+                        $(".customerid", $custdiv).val(res.Id);
+                        $(".CustomerName", $custdiv).val(res.CustomerName);
+                        $(".Age", $custdiv).val(res.Age);
+                        $(".AdharCard", $custdiv).val(res.AdharCard);
+                        $(".PANCard", $custdiv).val(res.PANCard);
+                        $(".Address", $custdiv).val(res.Address);
+                        $(".Mobile", $custdiv).val(res.Mobile);
+                        $(".Email", $custdiv).val(res.Email);
+                    });
+                }
+            })
         }
 
-
         function LoadPaymentTable() {
-            $('#tblPaymentList').DataTable({
+            if (oPayTable) {
+                $('#tblPaymentList').DataTable().clear().destroy();
+            }
+            oPayTable = $('#tblPaymentList').DataTable({
                 dom: "<'row'<'col-sm-3'l><'col-sm-6'p><'col-sm-3 text-align-right'f>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-5'i>>",
@@ -402,31 +370,33 @@
                     "processing": true,
                     "serverSide": true,
                     "datetype": "json",
-                    "data": {}
+                    "data": {
+                        PlotId: $("#PlotID").val()
+                    }
                 },
                 "drawCallback": function () {
                     $(".paginate_button.current").addClass(" actionbtn hor mr-0 ml-1 active").removeClass("paginate_button current");
                     $(".paginate_button").addClass(" actionbtn hor mr-0 ml-1").removeClass("paginate_button");
                     $('.dropdown').dropdown()
-                   // AfterDrawTable();
+                    // AfterDrawTable();
                 },
                 "columns": [
                     {
                         title: "",
                         data: "Id",
-                        class: "text-center",
+                        class: "text-center actioncol",
                         render: (data, display, alldata) => {
                             return ` <button class ='btnedit actionbtn btn  btn-sm' data-id='${data}' title="Edit"><i class ='fa fa-edit'></i></button>
-                                     <button class ='btnedit actionbtn btn  btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
-                                     <button class ='btnedit actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
-                                     <button class ='btnedit actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
+                                                             <button class ='btnedit actionbtn btn  btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
+                                                             <button class ='btnedit actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
+                                                             <button class ='btnedit actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
                         }
                     },
-                    {
-                        title: "Shop/Office",
-                        data: "PlotNo",
-                        class: "text-center"
-                    },
+                    //{
+                    //    title: "Shop/Office",
+                    //    data: "PlotNo",
+                    //    class: "text-center"
+                    //},
                     {
                         title: "Amount",
                         data: "Amount",
@@ -458,82 +428,81 @@
 
 
         function outstanding_amounts() {
-        debugger;
-                var SaleAmt = 1000000;
-                var Amt = $(this).find('#Amount').val();
-                var amount = parseInt(SaleAmt) - parseInt(Amt);
-                $(this).find('#Outstanding').val(amount);
+            debugger;
+            var SaleAmt = 1000000;
+            var Amt = $(this).find('#Amount').val();
+            var amount = parseInt(SaleAmt) - parseInt(Amt);
+            $(this).find('#Outstanding').val(amount);
         }
 
-        function saveCustomerData() {
-
-            if (!$("#CustomerName").val()) {
+        function saveCustomerData(obj) {
+            var $custdiv = $(obj).closest(".CustomerDiv");
+            if (!$(".CustomerName", $custdiv).val()) {
                 alert('Please enter Name');
-                $("#CustomerName").focus()
+                $(".CustomerName", $custdiv).focus()
                 return false;
             }
 
-            if (!$("#Age").val()) {
+            if (!$(".Age", $custdiv).val()) {
                 alert('Please enter Age');
-                $("#Age").focus()
+                $(".Age", $custdiv).focus()
                 return false;
             }
 
-            if (!$("#AdharCard").val()) {
+            if (!$(".AdharCard", $custdiv).val()) {
                 alert('Please enter AdharCard');
-                $("#AdharCard").focus()
+                $(".AdharCard", $custdiv).focus()
                 return false;
             }
 
-            if (!$("#PANCard").val()) {
+            if (!$(".PANCard", $custdiv).val()) {
                 alert('Please enter PANCard');
-                $("#PANCard").focus()
+                $(".PANCard", $custdiv).focus()
                 return false;
             }
 
-            if (!$("#Address").val()) {
+            if (!$(".Address", $custdiv).val()) {
                 alert('Please enter Address');
-                $("#Address").focus()
+                $(".Address", $custdiv).focus()
                 return false;
             }
 
-            if (!$("#Mobile").val()) {
+            if (!$(".Mobile", $custdiv).val()) {
                 alert('Please enter Mobile');
-                $("#Mobile").focus()
+                $(".Mobile", $custdiv).focus()
                 return false;
             }
 
-            if (!$("#Email").val()) {
+            if (!$(".Email", $custdiv).val()) {
                 alert('Please enter Email');
-                $("#Email").focus()
+                $(".Email", $custdiv).focus()
                 return false;
             }
 
             ajaxcall.post({
                 url: AppConfig.ApiPath + "Customer/AddData",
                 data: {
-                    Id: id,
+                    Id: $(".customerid", $custdiv).val(),
                     SiteID: $("#SiteID").val(),
                     PlotID: $("#PlotID").val(),
-                    CustomerName: $("#CustomerName").val(),
-                    Age: $("#Age").val(),
-                    AdharCard: $("#AdharCard").val(),
-                    PANCard: $("#PANCard").val(),
-                    Address: $("#Address").val(),
-                    Mobile: $("#Mobile").val(),
-                    Email: $("#Email").val()
+                    CustomerName: $(".CustomerName", $custdiv).val(),
+                    Age: $(".Age", $custdiv).val(),
+                    AdharCard: $(".AdharCard", $custdiv).val(),
+                    PANCard: $(".PANCard", $custdiv).val(),
+                    Address: $(".Address", $custdiv).val(),
+                    Mobile: $(".Mobile", $custdiv).val(),
+                    Email: $(".Email", $custdiv).val(),
+                    SellAmount: $(".SaleAmount", $custdiv).val()
                 }
             }).then(res => {
                 alert("Saved successfully");
-                $('a[href="#Payment"]').click();
+                //$('a[href="#Payment"]').click();
             }, err => {
                 alert(err.responseJSON);
             })
         }
 
-
         function savePaymentData() {
-
             if (!$("#Amount").val()) {
                 alert('Please enter Amount');
                 $("#Amount").focus()
@@ -577,6 +546,7 @@
                 }
             }).then(res => {
                 alert("Saved successfully");
+                LoadPaymentTable();
             }, err => {
                 alert(err.responseJSON);
             })
@@ -584,6 +554,41 @@
 
         function goBack() {
             window.history.back();
+        }
+
+        function AddJointHolder() {
+            var $custdiv = $(".CustomerDiv").clone();
+            $custdiv.find(".SaleAmountDiv,.btnjointholder").remove();
+            $custdiv.find(".btndelcustomer").show();
+            $custdiv.appendTo("#Customer");
+            $(".customerid", $custdiv).val('0');
+            $(".CustomerName", $custdiv).val('');
+            $(".Age", $custdiv).val('');
+            $(".AdharCard", $custdiv).val('');
+            $(".PANCard", $custdiv).val('');
+            $(".Address", $custdiv).val('');
+            $(".Mobile", $custdiv).val('');
+            $(".Email", $custdiv).val('');
+        }
+
+        async function DeleteCustomer(obj) {
+            if (!confirm("Are you sure?")) return;
+            var $custdiv = $(obj).closest(".CustomerDiv");
+            var custid = $custdiv.find(".customerId").val();
+            if (custid != "0") {
+                ajaxcall.post({
+                    url: AppConfig.ApiPath + "Customer/Delete",
+                    data: {
+                        Id: $(".customerid", $custdiv).val(),
+                    }
+                }).then(res => {
+                    $custdiv.remove();
+                }, err => {
+                    alert(err.responseJSON);
+                })
+            } else {
+                $custdiv.remove();
+            }
         }
     </script>
 }
