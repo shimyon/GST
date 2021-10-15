@@ -17,22 +17,23 @@
                 <option>Banakhat</option>
                 <option>Sale Deed</option>
                 <option>Payment</option>
-                <option>Dastavej</option>
+                <option>Allotment Letter</option>
             </select>
         </div>
     </div>
 
     <div class="row" style="margin-left:1px !important">
-        <div>
+        <div class="col-md-12">
             <textarea name="TemplateData" id="TemplateData" rows="10" cols="80"></textarea>
         </div>
+        <div class="col-md-1 mt-5">
+            <button type="submit" style="width: 100%" class="btn btn-primary" onclick="saveData();">Save</button>
+        </div>
+        <div class="col-md-1 mt-5">
+            <button type="submit" style="width: 100%" class="btn btn-danger " onclick="goBack();">Cancel</button>
+        </div>
     </div>
-    <div class="col-md-4 offset-md-4 mt-5">
-        <button type="submit" style="width: 100%" class="btn btn-primary" onclick="saveData();">Save</button>
-    </div>
-    <div class="col-md-4 offset-md-4 mt-1">
-        <button type="submit" style="width: 100%" class="btn btn-danger " onclick="goBack();">Cancel</button>
-    </div>
+    
 </div>
 
 
