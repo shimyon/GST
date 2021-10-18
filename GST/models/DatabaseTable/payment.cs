@@ -11,14 +11,13 @@ namespace models.DatabaseTable
     [Table("payment")]
     public class payment : BaseEntity
     {
-        [StringLength(50)]
-        public string PlotID { get; set; }
+        public int? PlotID { get; set; }
 
         //public string Name { get; set; }
 
-        public int ChequeNo { get; set; }
+        public int? ChequeNo { get; set; }
 
-        public int Amount { get; set; }
+        public int? Amount { get; set; }
 
         [StringLength(50)]
         public string Bank { get; set; }

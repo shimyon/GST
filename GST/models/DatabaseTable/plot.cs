@@ -38,5 +38,8 @@ namespace models.DatabaseTable
 
         public int Installments { get; set; }
 
+
+        [NotMapped]
+        public string DocumentType { get; set; }
     }
 }
