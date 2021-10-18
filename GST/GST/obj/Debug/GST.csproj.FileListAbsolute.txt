@@ -463,7 +463,6 @@ E:\shimyon\Other\emoiss\gst\GST\GST\bin\models.pdb
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\models.dll.config
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\services.pdb
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\services.dll.config
-E:\shimyon\Other\emoiss\gst\GST\GST\bin\Google.Protobuf.xml
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\itextsharp.xml
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\K4os.Compression.LZ4.xml
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\K4os.Compression.LZ4.Streams.xml
@@ -476,8 +475,6 @@ E:\shimyon\Other\emoiss\gst\GST\GST\bin\Microsoft.AI.Web.xml
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\Microsoft.AI.WindowsServer.xml
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\Microsoft.ApplicationInsights.xml
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\shimyon\Other\emoiss\gst\GST\GST\bin\MySql.Data.xml
-E:\shimyon\Other\emoiss\gst\GST\GST\bin\Renci.SshNet.xml
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\System.Buffers.xml
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\System.Memory.xml
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\System.Runtime.CompilerServices.Unsafe.xml

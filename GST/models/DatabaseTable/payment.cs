@@ -22,6 +22,9 @@ namespace models.DatabaseTable
         [StringLength(50)]
         public string Bank { get; set; }
 
+        [StringLength(15)]
+        public string Part { get; set; }
+
         public DateTime? DateOfIssue { get; set; }
 
         [NotMapped]
@@ -31,7 +34,7 @@ namespace models.DatabaseTable
             {
                 if (DateOfIssue.HasValue)
                 {
-                    return DateOfIssue.Value.ToString("yyyy-MM-dd");
+                    return DateOfIssue.Value.ToString("dd-MM-yyyy");
                 }
                 return string.Empty;
             }
@@ -46,7 +49,7 @@ namespace models.DatabaseTable
             {
                 if (ChequeDate.HasValue)
                 {
-                    return ChequeDate.Value.ToString("yyyy-MM-dd");
+                    return ChequeDate.Value.ToString("dd-MM-yyyy");
                 }
                 return string.Empty;
             }

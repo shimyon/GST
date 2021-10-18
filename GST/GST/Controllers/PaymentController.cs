@@ -52,10 +52,14 @@ namespace GST.Controllers
             var result = service.DownloadReceipt(paymentobj);
             string filename = "Sample";
             var example_html = "<html><body>" + result + "</body></html>";
-            var example_css = @".headline{font-size:200%}";
+            //example_html = "<h1>Test</h1>";
+            var example_css = "";
             byte[] buffer = commsrv.PdfGenerate(example_html, example_css);
             HttpResponseMessage response = PDFResponse(filename, buffer);
             return response;
+
+            //string pdfBase64 = PDFbase64String(buffer);
+            //return Ok(pdfBase64);
         }
 
 

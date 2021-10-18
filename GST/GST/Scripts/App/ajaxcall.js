@@ -5,11 +5,12 @@
 				body: JSON.stringify(param.data),
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json; charset=utf-8'
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Authorization': 'Bearer ' + (localStorage['Token'] || '')
 				}
 			})
 			.then(response => response.blob())
-			.then(response => {
+            .then(response => {
 				resolve(response);
 			}, error => {
 				reject(response);

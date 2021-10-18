@@ -93,30 +93,30 @@
                     </div>
 
                     @*<div class="row">
-                        <div class="col-md-4 offset-md-6">
-                            <div class="form-group">
-                                <select class="form-control" id="TDS">
-                                    <option value="">Select TDS</option>
-                                </select>
+                            <div class="col-md-4 offset-md-6">
+                                <div class="form-group">
+                                    <select class="form-control" id="TDS">
+                                        <option value="">Select TDS</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control float-right" placeholder="0.00000">
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control float-right" placeholder="0.00000">
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-4 offset-md-6">
-                            <div class="form-group">
-                                <select class="form-control" id="TCS">
-                                    <option value="">Select TCS</option>
-                                </select>
+                        <div class="row">
+                            <div class="col-md-4 offset-md-6">
+                                <div class="form-group">
+                                    <select class="form-control" id="TCS">
+                                        <option value="">Select TCS</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control float-right" placeholder="0.00000">
-                        </div>
-                    </div>*@
+                            <div class="col-md-2">
+                                <input type="text" class="form-control float-right" placeholder="0.00000">
+                            </div>
+                        </div>*@
 
                     <div class="row text-right">
                         <div class="col-md-4 offset-md-6">
@@ -162,7 +162,7 @@
             </div>
         </div>
     </div>
-   
+
 </div>
 
 <div class="modal fade" id="PrintPreview">
@@ -187,7 +187,7 @@
 
 
 @section scripts {
-<script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
     <script type="text/javascript">
         var id = querySt("id");
         var productList = [];
@@ -309,7 +309,7 @@
             }, err => alert(err));
         }
 
-        function PrintPDF(){
+        function PrintPDF() {
             var value = CKEDITOR.instances['TemplateData'].getData()
             if (!value) {
                 alert('Please enter Template Data');

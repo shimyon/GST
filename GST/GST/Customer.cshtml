@@ -455,9 +455,9 @@
                         class: "text-center actioncol",
                         render: (data, display, alldata) => {
                             return ` <button class ='btneditPay actionbtn btn  btn-sm' data-id='${data}' title="Edit"><i class ='fa fa-edit'></i></button>
-                                                                                         <button class ='btndelPay actionbtn btn  btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
-                                                                                         <button class ='btndownloadPay actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
-                                                                                         <button class ='btnemailPay actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
+                                                                                             <button class ='btndelPay actionbtn btn  btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
+                                                                                             <button class ='btndownloadPay actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
+                                                                                             <button class ='btnemailPay actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
                         }
                     },
                     //{
@@ -630,7 +630,7 @@
         }
 
         function DownloadReceipt(paymentId) {
-            ajaxcall.post({
+            ajaxcall.file({
                 url: AppConfig.ApiPath + "Payment/DownloadReceipt",
                 data: {
                     Id: paymentId
@@ -638,12 +638,32 @@
             }).then(blobData => {
                 var path = GenBlobURL(blobData);
                 $('#the-frame').attr('src', path);
-                //DownloadFileFromURL(blobData);
                 $("#PrintPreview").modal('show')
             }, err => {
                 alert(err.responseJSON);
             })
         }
+
+        function convertDataURIToBinary(base64) {
+            var raw = window.atob(base64);
+            var rawLength = raw.length;
+            var array = new Uint8Array(new ArrayBuffer(rawLength));
+
+            for (var i = 0; i < rawLength; i++) {
+                array[i] = raw.charCodeAt(i);
+            }
+            return array;
+        }
+
+        function ConvertDataToObject(Data) {
+            var pdfAsDataUri = Data;
+            var pdfAsArray = convertDataURIToBinary(pdfAsDataUri);
+            var binaryData = [];
+            binaryData.push(pdfAsArray);
+            var dataPdf = url + window.URL.createObjectURL(new Blob(binaryData, { type: "application/pdf" }))
+            return dataPdf;
+        }
+
 
         function goBack() {
             window.history.back();
@@ -686,7 +706,7 @@
 
         function DocumentDownload(DocumentType) {
             debugger
-            ajaxcall.post({
+            ajaxcall.file({
                 url: AppConfig.ApiPath + "Plot/DocumentDownload",
                 data: {
                     Id: $("#PlotID").val(),

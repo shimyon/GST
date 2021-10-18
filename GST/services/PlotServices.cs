@@ -175,7 +175,7 @@ namespace services
             }
         }
 
-        public string DownloadSaleDeed(payment paymentData)
+        public string DownloadSaleDeed(plot plotData)
         {
             try
             {
@@ -185,14 +185,15 @@ namespace services
                     TemplateService templateService = new TemplateService();
                     var tokens = templateService.GetTokensByModulName("Sale Deed");
 
-                    var objPay = ctx.payment.FirstOrDefault(f => f.Id == paymentData.Id);
-
-                    customer customer;
-                    var plotDetails = ctx.plot.First(f => f.Id == objPay.PlotID);
+                    List<customer> customer;
+                    var plotDetails = ctx.plot.First(f => f.Id == plotData.Id);
                     if (plotDetails != null)
                     {
-                        customer = ctx.customer.FirstOrDefault(f => f.PlotID == plotDetails.Id);
+                        customer = ctx.customer.Where(f => f.PlotID == plotDetails.Id).ToList();
                     }
+
+                    var objPay = ctx.payment.Where(f => f.PlotID == plotDetails.Id).ToList();
+
                     var template = ctx.template.FirstOrDefault(f => f.TemplateName == "ONE WEST-Sale Deed");
                     if (template != null)
                     {

@@ -74,7 +74,7 @@ namespace GST.Controllers
             }
             else if (plotObj.DocumentType == "Sale Deed")
             {
-                var result = service.DownloadBanakhat(plotObj);
+                var result = service.DownloadSaleDeed(plotObj);
                 example_html = "<html><body>" + result + "</body></html>";
                 example_css = @".headline{font-size:200%}";
             }
