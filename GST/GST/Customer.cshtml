@@ -92,6 +92,36 @@
                                 <input type="number" class="form-control SaleAmount" value="1000000" id="SaleAmount">
                             </div>
                         </div>
+                        <div class="col-md-4 SaleAmountDiv">
+                            <div class="form-group">
+                                <label>Reg No</label>
+                                <input type="number" class="form-control RegNo" value="" id="RegNo">
+                            </div>
+                        </div>
+                        <div class="col-md-4 SaleAmountDiv">
+                            <div class="form-group">
+                                <label>Reg Date</label>
+                                <input type="date" class="form-control RegDate" value="" id="RegDate">
+                            </div>
+                        </div>
+                        <div class="col-md-4 SaleAmountDiv">
+                            <div class="form-group">
+                                <label>Allotment Letter Date</label>
+                                <input type="number" class="form-control AllotmentLtDt" value="" id="AllotmentLtDt">
+                            </div>
+                        </div>
+                        <div class="col-md-4 SaleAmountDiv">
+                            <div class="form-group">
+                                <label>Title Clearence From</label>
+                                <input type="number" class="form-control TitleClearFrom" value="" id="TitleClearFrom">
+                            </div>
+                        </div>
+                        <div class="col-md-4 SaleAmountDiv">
+                            <div class="form-group">
+                                <label>Title Clearence Date</label>
+                                <input type="number" class="form-control TitleClearDt" value="" id="TitleClearDt">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -189,23 +219,39 @@
                         <tr>
                             <td>1</td>
                             <td>Banakhat</td>
-                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
+                            <td><button type="button" onclick="DocumentDownload('Banakhat');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
                             <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Sale Deed</td>
-                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
+                            <td><button type="button" onclick="DocumentDownload('Sale Deed');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
                             <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>Allotment Latter</td>
-                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
+                            <td><button type="button" onclick="DocumentDownload('AllotmentLetter');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
                             <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="PrintPreview">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe id="the-frame" src="" style="width:100%; min-height:300px;height:100%;" allowfullscreen webkitallowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -218,7 +264,8 @@
         var oPayTable,
             id = querySt("id"),
             siteid = querySt("siteid"),
-            plotid = querySt("plotid");
+            plotid = querySt("plotid"),
+            paymentId;
         $(function () {
             $('a[href="#Customer"]').click();
             init();
@@ -265,6 +312,10 @@
 
         async function plotChange() {
             if ($("#PlotID").val() != "0") {
+                var saleAmount = $("#PlotID").find(":selected").attr("SaleAmount");
+                $("#saleAmountLbl").text(saleAmount);
+                $("#SaleAmount").val(saleAmount);
+
                 $("#subdetails").show();
                 GetAllByPlotId();
                 LoadPaymentTable();
@@ -281,11 +332,12 @@
                         Id: $("#SiteName").val()
                     }
                 }).then((res) => {
+                    debugger
                     if (res) {
                         $("#PlotID").empty();
                         $("<option>").val("0").text("Select").appendTo("#PlotID");
                         for (var i in res) {
-                            $("<option>").val(res[i].value).text(res[i].label).appendTo("#PlotID");
+                            $("<option>").val(res[i].value).text(res[i].label).attr("SaleAmount", res[i].SellAmount).appendTo("#PlotID");
                         }
                     }
                     result();
@@ -379,6 +431,22 @@
                     $(".paginate_button").addClass(" actionbtn hor mr-0 ml-1").removeClass("paginate_button");
                     $('.dropdown').dropdown()
                     // AfterDrawTable();
+                    let totAmount = 0;
+                    $("td.amount-cell").each(function () {
+                        totAmount += parseFloat($(this).text());
+                    });
+                    let outStanding = parseFloat($("#SaleAmount").val()) - totAmount;
+                    $("#ountStandingAmountLbl").text(outStanding);
+
+                    $(".btndownloadPay").click(function () {
+                        let id = $(this).attr("data-id");
+                        DownloadReceipt(id);
+                    });
+
+                    $(".btneditPay").click(function () {
+                        paymentId = $(this).attr("data-id");
+                        savePaymentData(id);
+                    });
                 },
                 "columns": [
                     {
@@ -386,10 +454,10 @@
                         data: "Id",
                         class: "text-center actioncol",
                         render: (data, display, alldata) => {
-                            return ` <button class ='btnedit actionbtn btn  btn-sm' data-id='${data}' title="Edit"><i class ='fa fa-edit'></i></button>
-                                                             <button class ='btnedit actionbtn btn  btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
-                                                             <button class ='btnedit actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
-                                                             <button class ='btnedit actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
+                            return ` <button class ='btneditPay actionbtn btn  btn-sm' data-id='${data}' title="Edit"><i class ='fa fa-edit'></i></button>
+                                                                                         <button class ='btndelPay actionbtn btn  btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
+                                                                                         <button class ='btndownloadPay actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
+                                                                                         <button class ='btnemailPay actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
                         }
                     },
                     //{
@@ -400,7 +468,7 @@
                     {
                         title: "Amount",
                         data: "Amount",
-                        class: "text-center"
+                        class: "text-center amount-cell"
                     },
                     {
                         title: "Cheque No",
@@ -428,7 +496,6 @@
 
 
         function outstanding_amounts() {
-            debugger;
             var SaleAmt = 1000000;
             var Amt = $(this).find('#Amount').val();
             var amount = parseInt(SaleAmt) - parseInt(Amt);
@@ -546,7 +613,33 @@
                 }
             }).then(res => {
                 alert("Saved successfully");
+                ResetPayment();
                 LoadPaymentTable();
+            }, err => {
+                alert(err.responseJSON);
+            })
+        }
+
+        function ResetPayment() {
+            paymentId = null;
+            $("#Amount").val('0');
+            $("#ChequeNo").val('');
+            $("#Bank").val('');
+            $("#DateOfIssue").val('');
+            $("#ChequeDate").val('');
+        }
+
+        function DownloadReceipt(paymentId) {
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Payment/DownloadReceipt",
+                data: {
+                    Id: paymentId
+                }
+            }).then(blobData => {
+                var path = GenBlobURL(blobData);
+                $('#the-frame').attr('src', path);
+                //DownloadFileFromURL(blobData);
+                $("#PrintPreview").modal('show')
             }, err => {
                 alert(err.responseJSON);
             })
@@ -557,7 +650,7 @@
         }
 
         function AddJointHolder() {
-            var $custdiv = $(".CustomerDiv").clone();
+            var $custdiv = $(".CustomerDiv:first").clone();
             $custdiv.find(".SaleAmountDiv,.btnjointholder").remove();
             $custdiv.find(".btndelcustomer").show();
             $custdiv.appendTo("#Customer");
@@ -589,6 +682,24 @@
             } else {
                 $custdiv.remove();
             }
+        }
+
+        function DocumentDownload(DocumentType) {
+            debugger
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Plot/DocumentDownload",
+                data: {
+                    Id: $("#PlotID").val(),
+                    DocumentType: DocumentType
+                }
+            }).then(blobData => {
+                //var path = GenBlobURL(blobData);
+                //$('#the-frame').attr('src', path);
+                //$("#PrintPreview").modal('show');
+                DownloadFileFromURL(blobData);
+            }, err => {
+                alert(err.responseJSON);
+            })
         }
     </script>
 }

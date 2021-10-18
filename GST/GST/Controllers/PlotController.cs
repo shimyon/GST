@@ -6,6 +6,7 @@ using services.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 namespace GST.Controllers
@@ -14,6 +15,8 @@ namespace GST.Controllers
     {
         PlotServices service = new PlotServices();
         DatatableService datatableService = new DatatableService();
+        CommonService commsrv = new CommonService();
+
         [HttpPost]
         public IHttpActionResult GetList(PlotSearch search)
         {
@@ -48,6 +51,36 @@ namespace GST.Controllers
             plotobj.CreatedBy = authdet.UserId;
             var result = service.Add(plotobj);
             return Ok(result);
+        }
+
+
+        [HttpPost]
+        public HttpResponseMessage DocumentDownload(plot plotObj)
+        {
+            var example_html = "<html><body></body></html>";
+            var example_css = @".headline{font-size:200%}";
+            string filename = "Sample";
+            if (plotObj.DocumentType == "AllotmentLetter")
+            {
+                var result = service.DownloadAllotmentLetter(plotObj);
+                example_html = "<html><body>" + result + "</body></html>";
+                example_css = @".headline{font-size:200%}";
+            }
+            else if (plotObj.DocumentType == "Banakhat")
+            {
+                var result = service.DownloadBanakhat(plotObj);
+                example_html = "<html><body>" + result + "</body></html>";
+                example_css = @".headline{font-size:200%}";
+            }
+            else if (plotObj.DocumentType == "Sale Deed")
+            {
+                var result = service.DownloadBanakhat(plotObj);
+                example_html = "<html><body>" + result + "</body></html>";
+                example_css = @".headline{font-size:200%}";
+            }
+            byte[] buffer = commsrv.PdfGenerate(example_html, example_css);
+            HttpResponseMessage response = PDFResponse(filename, buffer);
+            return response;
         }
     }
 

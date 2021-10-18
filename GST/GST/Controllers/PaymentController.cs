@@ -6,6 +6,7 @@ using services.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 namespace GST.Controllers
@@ -14,6 +15,7 @@ namespace GST.Controllers
     {
         PaymentServices service = new PaymentServices();
         DatatableService datatableService = new DatatableService();
+        CommonService commsrv = new CommonService();
         [HttpPost]
         public IHttpActionResult GetList(PaymentSearch search)
         {
@@ -42,6 +44,21 @@ namespace GST.Controllers
             var result = service.Add(paymentobj);
             return Ok(result);
         }
+
+
+        [HttpPost]
+        public HttpResponseMessage DownloadReceipt(payment paymentobj)
+        {
+            var result = service.DownloadReceipt(paymentobj);
+            string filename = "Sample";
+            var example_html = "<html><body>" + result + "</body></html>";
+            var example_css = @".headline{font-size:200%}";
+            byte[] buffer = commsrv.PdfGenerate(example_html, example_css);
+            HttpResponseMessage response = PDFResponse(filename, buffer);
+            return response;
+        }
+
+
     }
 
 }

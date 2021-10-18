@@ -54,6 +54,41 @@ namespace services
             }
         }
 
+        public string DownloadReceipt(payment paymentData)
+        {
+            try
+            {
+                using (var ctx = new AppDb())
+                {
+                    string data = string.Empty;
+                    TemplateService templateService = new TemplateService();
+                    var tokens = templateService.GetTokensByModulName("PaymentReceipt");
+
+                    var objPay = ctx.payment.FirstOrDefault(f => f.Id == paymentData.Id);
+
+                    customer customer;
+                    var plotDetails = ctx.plot.First(f => f.Id == objPay.PlotID);
+                    if (plotDetails != null)
+                    {
+                        customer = ctx.customer.FirstOrDefault(f => f.PlotID == plotDetails.Id);
+                    }
+                    var template = ctx.template.FirstOrDefault(f => f.TemplateName == "AIM DEVLOPERD-Payment Receipt");
+                    if (template != null)
+                    {
+                        data = template.TemplateData;
+                    }
+
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public int Delete(int Id)
         {
             throw new NotImplementedException();

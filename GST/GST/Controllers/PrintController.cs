@@ -21,6 +21,7 @@ namespace GST.Controllers
         DatatableService datatableService = new DatatableService();
         CommonService commsrv = new CommonService();
 
+        [AllowAnonymous]
         [HttpPost]
         public HttpResponseMessage PrintPDF(PrintViewModel obj)
         {
