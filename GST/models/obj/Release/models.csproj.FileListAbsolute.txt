@@ -116,4 +116,3 @@ E:\Emoiss_wish\GST\GST\models\obj\Release\models.dll
 E:\Emoiss_wish\GST\GST\models\obj\Release\models.pdb
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Release\models.csproj.AssemblyReference.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Release\models.csproj.CoreCompileInputs.cache
-D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Release\models.csproj.CopyComplete
