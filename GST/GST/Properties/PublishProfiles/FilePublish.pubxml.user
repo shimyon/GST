@@ -7,7 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>D:\Publish\wish</_PublishTargetUrl>
-    <History>True|2021-10-15T09:26:56.6252750Z;</History>
+    <History>True|2021-10-19T08:59:18.8313005Z;True|2021-10-15T14:56:56.6252750+05:30;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ApplicationInsights.config">
@@ -38,10 +38,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/14/2020 02:27:28</publishTime>
     </File>
     <File Include="bin/GST.dll">
-      <publishTime>10/15/2021 14:56:07</publishTime>
+      <publishTime>10/19/2021 14:28:25</publishTime>
     </File>
     <File Include="bin/GST.pdb">
-      <publishTime>10/15/2021 14:56:07</publishTime>
+      <publishTime>10/19/2021 14:28:25</publishTime>
     </File>
     <File Include="bin/itextsharp.dll">
       <publishTime>07/24/2021 11:04:19</publishTime>
@@ -131,13 +131,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/23/2012 15:23:58</publishTime>
     </File>
     <File Include="bin/models.dll">
-      <publishTime>10/15/2021 14:56:05</publishTime>
+      <publishTime>10/19/2021 14:28:23</publishTime>
     </File>
     <File Include="bin/models.dll.config">
       <publishTime>07/24/2021 11:48:52</publishTime>
     </File>
     <File Include="bin/models.pdb">
-      <publishTime>10/15/2021 14:56:05</publishTime>
+      <publishTime>10/19/2021 14:28:23</publishTime>
     </File>
     <File Include="bin/MySql.Data.dll">
       <publishTime>04/27/2021 16:15:58</publishTime>
@@ -209,13 +209,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/12/2017 02:13:12</publishTime>
     </File>
     <File Include="bin/services.dll">
-      <publishTime>10/15/2021 14:56:05</publishTime>
+      <publishTime>10/19/2021 14:28:24</publishTime>
     </File>
     <File Include="bin/services.dll.config">
       <publishTime>07/24/2021 11:49:12</publishTime>
     </File>
     <File Include="bin/services.pdb">
-      <publishTime>10/15/2021 14:56:05</publishTime>
+      <publishTime>10/19/2021 14:28:24</publishTime>
     </File>
     <File Include="bin/System.Buffers.dll">
       <publishTime>02/19/2020 15:35:18</publishTime>
@@ -7856,10 +7856,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/18/2021 13:43:00</publishTime>
     </File>
     <File Include="Customer.cshtml">
-      <publishTime>10/10/2021 18:32:36</publishTime>
+      <publishTime>10/19/2021 14:01:58</publishTime>
     </File>
     <File Include="Customer_List.cshtml">
-      <publishTime>10/10/2021 18:40:05</publishTime>
+      <publishTime>10/19/2021 12:58:59</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>04/03/2021 16:10:14</publishTime>
@@ -7886,13 +7886,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/19/2021 16:14:18</publishTime>
     </File>
     <File Include="Invoice.cshtml">
-      <publishTime>09/17/2021 15:45:36</publishTime>
+      <publishTime>10/19/2021 11:18:31</publishTime>
     </File>
     <File Include="Invoice_List.cshtml">
       <publishTime>08/03/2021 10:48:27</publishTime>
     </File>
     <File Include="login.cshtml">
-      <publishTime>10/10/2021 11:59:52</publishTime>
+      <publishTime>10/19/2021 13:31:00</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>10/05/2021 14:48:51</publishTime>
@@ -7934,7 +7934,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/19/2021 16:36:08</publishTime>
     </File>
     <File Include="Scripts/App/ajaxcall.js">
-      <publishTime>10/05/2021 15:45:35</publishTime>
+      <publishTime>10/19/2021 11:18:31</publishTime>
     </File>
     <File Include="Scripts/App/common.js">
       <publishTime>08/07/2021 13:30:08</publishTime>
@@ -8555,10 +8555,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/18/2021 09:33:27</publishTime>
     </File>
     <File Include="Site.cshtml">
-      <publishTime>10/07/2021 15:39:31</publishTime>
+      <publishTime>10/19/2021 10:24:46</publishTime>
     </File>
     <File Include="Site_List.cshtml">
-      <publishTime>09/27/2021 13:28:48</publishTime>
+      <publishTime>10/19/2021 10:29:47</publishTime>
     </File>
     <File Include="Template.cshtml">
       <publishTime>10/15/2021 13:12:23</publishTime>
@@ -8567,7 +8567,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/18/2021 17:34:28</publishTime>
     </File>
     <File Include="User.cshtml">
-      <publishTime>10/07/2021 11:56:36</publishTime>
+      <publishTime>10/19/2021 13:12:48</publishTime>
     </File>
     <File Include="Views/Account/ConfirmEmail.cshtml">
       <publishTime>04/03/2021 16:10:26</publishTime>
@@ -8651,7 +8651,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/03/2021 16:10:14</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/15/2021 14:56:10</publishTime>
+      <publishTime>10/19/2021 14:28:28</publishTime>
     </File>
     <File Include="_layout.cshtml">
       <publishTime>10/15/2021 14:50:13</publishTime>

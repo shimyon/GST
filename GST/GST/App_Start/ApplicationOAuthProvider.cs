@@ -101,7 +101,9 @@ namespace GST
             {
                 { "userid", usr.Id.ToString() },
                 { "userName", usr.Username },
-                { "userRole", usr.Role }
+                {
+                    "userRole", usr.Role ?? "Admin"
+                }
             };
             return new AuthenticationProperties(data);
         }
