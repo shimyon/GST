@@ -17,7 +17,14 @@ namespace models.DatabaseTable
         public String PlotNo { get; set; }
 
         [StringLength(50)]
-        public string SquareArea { get; set; }
+        public string ConstructionArea { get; set; }
+
+
+        [StringLength(50)]
+        public string UndividedLand { get; set; }
+
+        [StringLength(50)]
+        public string CarpetArea { get; set; }
 
         [StringLength(50)]
         public string SuperBuildUp { get; set; }

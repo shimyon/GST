@@ -14,8 +14,15 @@ namespace models.DatabaseTable
         [StringLength(50)]
         public string SiteName { get; set; }
 
-        [StringLength(50)]
+        [StringLength(1000)]
         public string Address { get; set; }
+
+        [StringLength(500)]
+        public string Developer { get; set; }
+
+        [StringLength(100)]
+        public string WebSite { get; set; }
+
 
         [StringLength(50)]
         public string OwnerName { get; set; }
