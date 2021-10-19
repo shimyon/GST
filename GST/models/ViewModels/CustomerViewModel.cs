@@ -24,6 +24,8 @@ namespace GST.Controllers
         public string Mobile { get; set; }
 
         public string Email { get; set; }
+
+        public int? SellAmount { get; set; }
     }
 
     public class CustomerSearch : DataTableSearch
@@ -56,5 +58,7 @@ namespace GST.Controllers
         public string Mobile { get; set; }
 
         public string Email { get; set; }
+
+        public int? SellAmount { get; set; }
     }
 }

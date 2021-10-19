@@ -12,6 +12,10 @@ namespace GST.Controllers
         public string Address { get; set; }
 
         public string OwnerName { get; set; }
+
+        public string Developer { get; set; }
+
+        public string WebSite { get; set; }
     }
 
     public class SiteSearch : DataTableSearch
@@ -28,5 +32,9 @@ namespace GST.Controllers
         public string Address { get; set; }
 
         public string OwnerName { get; set; }
+
+        public string Developer { get; set; }
+
+        public string WebSite { get; set; }
     }
 }
