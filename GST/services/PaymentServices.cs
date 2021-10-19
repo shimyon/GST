@@ -54,6 +54,19 @@ namespace services
             }
         }
 
+        public int Delete(int Id)
+        {
+            using (var db = new AppDb())
+            {
+                var data = db.payment.FirstOrDefault(f => f.Id == Id);
+                if (data != null)
+                {
+                    db.Entry(data).State = System.Data.Entity.EntityState.Deleted;
+                    return db.SaveChanges();
+                }
+                return 0;
+            }
+        }
         public string DownloadReceipt(payment paymentData)
         {
             try
@@ -173,12 +186,6 @@ namespace services
             }
 
             return words;
-        }
-
-
-        public int Delete(int Id)
-        {
-            throw new NotImplementedException();
         }
 
         public payment Get(int Id)

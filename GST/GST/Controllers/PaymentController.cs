@@ -45,6 +45,12 @@ namespace GST.Controllers
             return Ok(result);
         }
 
+        [HttpPost]
+        public IHttpActionResult Delete(payment obj)
+        {
+            var objnew = service.Delete(obj.Id);
+            return Ok(objnew);
+        }
 
         [HttpPost]
         public HttpResponseMessage DownloadReceipt(payment paymentobj)

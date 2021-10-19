@@ -225,7 +225,7 @@ namespace services
                     foreach (var item in objPayList.Select((val, i) => new { val, i }))
                     {
                         totPay += item.val.Amount ?? 0;
-                        paymentTable += "<tr><th>" + item.i + "</th> <th>" + item.val.Amount + "</th> <th>" + item.val.ChequeNo + "</th> <th>" + item.val.ChequeDateformate + "</th> <th>" + item.val.Bank + "</th>";
+                        paymentTable += "<tr> <th>" + item.i + "</th> <th>" + item.val.Amount + "</th> <th>" + item.val.ChequeNo + "</th> <th>" + item.val.ChequeDateformate + "</th> <th>" + item.val.Bank + "</th> </tr>";
                     }
                     paymentTable += "</table>";
                     tokens["Payment.Table"] = paymentTable;
@@ -305,6 +305,10 @@ namespace services
                         tokens["Payment.ConstructionArea"] = plotDetails.ConstructionArea;
                         tokens["Payment.UndividedLand"] = plotDetails.UndividedLand;
                         tokens["Payment.SuperBuildUp"] = plotDetails.SuperBuildUp;
+                        tokens["Payment.DirectionsNorth"] = plotDetails.DirectionsNorth;
+                        tokens["Payment.DirectionsSouth"] = plotDetails.DirectionsSouth;
+                        tokens["Payment.DirectionsEast"] = plotDetails.DirectionsEast;
+                        tokens["Payment.DirectionsWest"] = plotDetails.DirectionsWest;
 
                         customer = ctx.customer.FirstOrDefault(f => f.PlotID == plotDetails.Id);
                         tokens["Payment.Customer"] = customer.CustomerName;
@@ -337,7 +341,7 @@ namespace services
                     foreach (var item in objPayList.Select((val, i) => new { val, i }))
                     {
                         totPay += item.val.Amount ?? 0;
-                        paymentTable += "<tr><th>" + item.i + "</th> <th>" + item.val.Amount + "</th> <th>" + item.val.ChequeNo + "</th> <th>" + item.val.ChequeDateformate + "</th> <th>" + item.val.Bank + "</th>";
+                        paymentTable += "<tr><th>" + item.i + "</th> <th>" + item.val.Amount + "</th> <th>" + item.val.ChequeNo + "</th> <th>" + item.val.ChequeDateformate + "</th> <th>" + item.val.Bank + "</th> </tr>";
                     }
                     paymentTable += "</table>";
                     tokens["Payment.Table"] = paymentTable;

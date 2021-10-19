@@ -241,7 +241,7 @@
                 return false;
             }
             debugger
-            var userUrl = (id == '0' ? "User/AddData" : "User/Edit");
+            var userUrl = (id == '0' || id == "" ? "User/AddData" : "User/Edit");
             ajaxcall.post({
                 url: AppConfig.ApiPath + userUrl,
                 data: {
@@ -255,7 +255,7 @@
                 }
             }).then(res => {
                 alert("Saved successfully");
-                window.history.back();
+                location.replace("/User");
             }, err => {
                 alert(err.responseJSON);
             })

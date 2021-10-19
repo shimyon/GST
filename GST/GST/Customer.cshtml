@@ -143,7 +143,7 @@
                         <span>Sale Amount:</span> <span id="saleAmountLbl">1000000</span>
                     </div>
                     <div class="col col-6 text-danger text-right" style="font-size: 20px">
-                        <span>Outstanding:</span> <span id="ountStandingAmountLbl">900000</span>
+                        <span>Outstanding:</span> <span id="ountStandingAmountLbl">0</span>
                     </div>
                 </div>
 
@@ -416,6 +416,49 @@
             })
         }
 
+        async function DeletePayment(Id) {
+            if (!confirm("Are you sure?")) return;
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Payment/Delete",
+                data: {
+                    Id : Id
+                }
+            }).then(res => {
+                LoadPaymentTable();
+            }, err => {
+                alert(err.responseJSON);
+            })
+           
+        }
+
+        function getPaymentData() {
+            $("#AddPayment").show();
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Payment/GetById",
+                data: { "Id": paymentId }
+            }).then(function (res) {
+                if (res) {
+                    $("#Amount").val(res.Amount);
+                    $("#ChequeNo").val(res.ChequeNo);
+                    $("#Bank").val(res.Bank);
+
+                    var now = new Date(res.DateOfIssue)
+                    var day = ("0" + now.getDate()).slice(-2);
+                    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                    var today = now.getFullYear() + "-" + (month) + "-" + (day);
+                    $('#DateOfIssue').val(today);
+
+                    now = new Date(res.ChequeDate)
+                    day = ("0" + now.getDate()).slice(-2);
+                    month = ("0" + (now.getMonth() + 1)).slice(-2);
+                    today = now.getFullYear() + "-" + (month) + "-" + (day);
+                    $('#ChequeDate').val(today);
+
+                    $("#Part").val(res.Part);
+                }
+            })
+        }
+
         function LoadPaymentTable() {
             if (oPayTable) {
                 $('#tblPaymentList').DataTable().clear().destroy();
@@ -455,7 +498,12 @@
 
                     $(".btneditPay").click(function () {
                         paymentId = $(this).attr("data-id");
-                        savePaymentData(id);
+                        getPaymentData();
+                    });
+
+                    $(".btndelPay").click(function () {
+                        let Id = $(this).attr("data-id");
+                        DeletePayment(Id);
                     });
                 },
                 "columns": [
@@ -465,9 +513,9 @@
                         class: "text-center actioncol",
                         render: (data, display, alldata) => {
                             return ` <button class ='btneditPay actionbtn btn  btn-sm' data-id='${data}' title="Edit"><i class ='fa fa-edit'></i></button>
-                                                                                             <button class ='btndelPay actionbtn btn  btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
-                                                                                             <button class ='btndownloadPay actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
-                                                                                             <button class ='btnemailPay actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
+                                                                                                 <button class ='btndelPay actionbtn btn  btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
+                                                                                                 <button class ='btndownloadPay actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
+                                                                                                 <button class ='btnemailPay actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
                         }
                     },
                     //{
@@ -574,6 +622,7 @@
             }).then(res => {
                 alert("Saved successfully");
                 //$('a[href="#Payment"]').click();
+                $("#saleAmountLbl").text($(".SaleAmount", $custdiv).val());
             }, err => {
                 alert(err.responseJSON);
             })
@@ -613,7 +662,7 @@
             ajaxcall.post({
                 url: AppConfig.ApiPath + "Payment/AddData",
                 data: {
-                    Id: id,
+                    Id: paymentId,
                     PlotID: $("#PlotID").val(),
                     Amount: $("#Amount").val(),
                     ChequeNo: $("#ChequeNo").val(),

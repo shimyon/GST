@@ -27,10 +27,5 @@ namespace models.DatabaseTable
         [StringLength(50)]
         public string OwnerName { get; set; }
 
-        [StringLength(50)]
-        public string Developer { get; set; }
-
-        [StringLength(50)]
-        public string WebSite { get; set; }
     }
 }
