@@ -122,7 +122,7 @@ namespace GST.Controllers
                                 Installments = 10,
                                 CreatedBy = userDet.UserId,
                                 UpdatedBy = userDet.UserId,
-                                PlotNo = row["PlotNo"].Cast<string>(),
+                                PlotNo = row["UnitNo"].Cast<string>(),
                                 CarpetArea = row["CarpetArea"].Cast<string>(),
                                 ConstructionArea = row["ConstructionArea"].Cast<string>(),
                                 UndividedLand = row["UndividedLand"].Cast<string>(),

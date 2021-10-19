@@ -192,6 +192,16 @@
                                 <input type="date" class="form-control" id="ChequeDate">
                             </div>
                         </div>
+                        <div class="col-md-4 ">
+                            <div class="form-group">
+                                <label>Payment Type</label>
+                                <select class="form-control" id="Part">
+                                    <option value="Part">Part</option>
+                                    <option value="Full">Full</option>
+                                    <option value="Advance">Advance</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -609,7 +619,8 @@
                     ChequeNo: $("#ChequeNo").val(),
                     Bank: $("#Bank").val(),
                     DateOfIssue: $("#DateOfIssue").val(),
-                    ChequeDate: $("#ChequeDate").val()
+                    ChequeDate: $("#ChequeDate").val(),
+                    Part: $("#Part").val()
                 }
             }).then(res => {
                 alert("Saved successfully");

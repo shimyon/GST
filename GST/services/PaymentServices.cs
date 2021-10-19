@@ -130,10 +130,16 @@ namespace services
 
             string words = "";
 
-            if ((number / 1000000) > 0)
+            if ((number / 10000000) > 0)
             {
-                words += NumberToWords(number / 1000000) + " million ";
-                number %= 1000000;
+                words += NumberToWords(number / 10000000) + " crore ";
+                number %= 10000000;
+            }
+
+            if ((number / 100000) > 0)
+            {
+                words += NumberToWords(number / 100000) + " lakh ";
+                number %= 100000;
             }
 
             if ((number / 1000) > 0)
