@@ -183,11 +183,16 @@ namespace services
                     var plotDetails = ctx.plot.First(f => f.Id == plotData.Id);
                     if (plotDetails != null)
                     {
+                        tokens["Payment.Floor"] = plotDetails.Floor;
                         tokens["Payment.Unit.No"] = plotDetails.PlotNo;
                         tokens["Payment.CarpetArea"] = plotDetails.CarpetArea;
                         tokens["Payment.ConstructionArea"] = plotDetails.ConstructionArea;
                         tokens["Payment.UndividedLand"] = plotDetails.UndividedLand;
                         tokens["Payment.SuperBuildUp"] = plotDetails.SuperBuildUp;
+                        tokens["Payment.DirectionsNorth"] = plotDetails.DirectionsNorth;
+                        tokens["Payment.DirectionsSouth"] = plotDetails.DirectionsSouth;
+                        tokens["Payment.DirectionsEast"] = plotDetails.DirectionsEast;
+                        tokens["Payment.DirectionsWest"] = plotDetails.DirectionsWest;
 
                         customer = ctx.customer.FirstOrDefault(f => f.PlotID == plotDetails.Id);
                         tokens["Payment.Customer"] = customer.CustomerName;
@@ -213,12 +218,24 @@ namespace services
                         tokens["Payment.Part"] = objPay.Part;
                         tokens["Payment.Amount.word"] = NumberToWords(objPay.Amount ?? 0).ToUpperInvariant() + " Only/-";
                     }
+                    string paymentTable = @"<table><tr><th>Sr.No.</th> <th>Amount (Rs.)</th> <th>Cheque No.</th> <th>Cheque Date</th> <th>Bank</th></tr>";
 
-                   
+                    double totPay = 0;
+                    var objPayList = ctx.payment.Where(f => f.PlotID == plotData.Id).ToList();
+                    foreach (var item in objPayList.Select((val, i) => new { val, i }))
+                    {
+                        totPay += item.val.Amount ?? 0;
+                        paymentTable += "<tr><th>" + item.i + "</th> <th>" + item.val.Amount + "</th> <th>" + item.val.ChequeNo + "</th> <th>" + item.val.ChequeDateformate + "</th> <th>" + item.val.Bank + "</th>";
+                    }
+                    paymentTable += "</table>";
+                    tokens["Payment.Table"] = paymentTable;
+                    tokens["Payment.TotalPayment"] = Convert.ToString(totPay);
+
+
                     var template = ctx.template.FirstOrDefault(f => f.TemplateName == "Allotment Letter");
                     if (template != null)
                     {
-                        data = template.TemplateData;
+                        data = ReplaceToken(template.TemplateData, tokens);
                     }
 
 
@@ -249,7 +266,7 @@ namespace services
                     }
 
                     var objPay = ctx.payment.Where(f => f.PlotID == plotDetails.Id).ToList();
-                    
+
                     var template = ctx.template.FirstOrDefault(f => f.TemplateName == "ONE WEST-Banakhat");
                     if (template != null)
                     {
@@ -276,21 +293,62 @@ namespace services
                     TemplateService templateService = new TemplateService();
                     var tokens = templateService.GetTokensByModulName("Sale Deed");
 
-                    List<customer> customer;
+                    tokens["Common.CurrentDate"] = DateTime.Now.ToString("dd-MM-yyyy");
+
+                    customer customer;
                     var plotDetails = ctx.plot.First(f => f.Id == plotData.Id);
                     if (plotDetails != null)
                     {
-                        customer = ctx.customer.Where(f => f.PlotID == plotDetails.Id).ToList();
+                        tokens["Payment.Floor"] = plotDetails.Floor;
+                        tokens["Payment.Unit.No"] = plotDetails.PlotNo;
+                        tokens["Payment.CarpetArea"] = plotDetails.CarpetArea;
+                        tokens["Payment.ConstructionArea"] = plotDetails.ConstructionArea;
+                        tokens["Payment.UndividedLand"] = plotDetails.UndividedLand;
+                        tokens["Payment.SuperBuildUp"] = plotDetails.SuperBuildUp;
+
+                        customer = ctx.customer.FirstOrDefault(f => f.PlotID == plotDetails.Id);
+                        tokens["Payment.Customer"] = customer.CustomerName;
+
+                        var siteDetails = ctx.site.First(f => f.Id == plotDetails.SiteID);
+                        Random random = new Random();
+                        int randomNumber = random.Next(0, 1000);
+                        tokens["Site.Logo"] = "Content/Images/SiteLogos/" + plotDetails.SiteID + ".png?v=" + randomNumber;
+                        tokens["Site.Address"] = siteDetails.Address;
+                        tokens["Site.Developer"] = siteDetails.Developer;
+                        tokens["Site.WebSite"] = siteDetails.WebSite;
                     }
 
-                    var objPay = ctx.payment.Where(f => f.PlotID == plotDetails.Id).ToList();
+                    var objPay = ctx.payment.FirstOrDefault(f => f.PlotID == plotData.Id);
+                    if (objPay != null)
+                    {
+                        tokens["Payment.Id"] = Convert.ToString(objPay.Id);
+                        tokens["Payment.Amount"] = Convert.ToString(objPay.Amount);
+                        tokens["Payment.ChaqueueNo"] = Convert.ToString(objPay.ChequeNo);
+                        tokens["Payment.ChaqueueDate"] = objPay.ChequeDateformate;
+                        tokens["Payment.Drawn.On"] = objPay.DateOfIssueformate;
+                        tokens["Payment.Bank"] = objPay.Bank;
+                        tokens["Payment.Part"] = objPay.Part;
+                        tokens["Payment.Amount.word"] = NumberToWords(objPay.Amount ?? 0).ToUpperInvariant() + " Only/-";
+                    }
+                    string paymentTable = @"<table><tr><th>Sr.No.</th> <th>Amount (Rs.)</th> <th>Cheque No.</th> <th>Cheque Date</th> <th>Bank</th></tr>";
+
+                    double totPay = 0;
+                    var objPayList = ctx.payment.Where(f => f.PlotID == plotData.Id).ToList();
+                    foreach (var item in objPayList.Select((val, i) => new { val, i }))
+                    {
+                        totPay += item.val.Amount ?? 0;
+                        paymentTable += "<tr><th>" + item.i + "</th> <th>" + item.val.Amount + "</th> <th>" + item.val.ChequeNo + "</th> <th>" + item.val.ChequeDateformate + "</th> <th>" + item.val.Bank + "</th>";
+                    }
+                    paymentTable += "</table>";
+                    tokens["Payment.Table"] = paymentTable;
+                    tokens["Payment.TotalPayment"] = Convert.ToString(totPay);
+
 
                     var template = ctx.template.FirstOrDefault(f => f.TemplateName == "ONE WEST-Sale Deed");
                     if (template != null)
                     {
-                        data = template.TemplateData;
+                        data = ReplaceToken(template.TemplateData, tokens);
                     }
-
 
                     return data;
                 }

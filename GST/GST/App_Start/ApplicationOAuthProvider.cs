@@ -100,7 +100,8 @@ namespace GST
             IDictionary<string, string> data = new Dictionary<string, string>
             {
                 { "userid", usr.Id.ToString() },
-                { "userName", usr.Username }
+                { "userName", usr.Username },
+                { "userRole", usr.Role }
             };
             return new AuthenticationProperties(data);
         }

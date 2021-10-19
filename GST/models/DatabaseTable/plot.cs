@@ -14,6 +14,9 @@ namespace models.DatabaseTable
         public int SiteID { get; set; }
 
         [StringLength(50)]
+        public String Floor { get; set; }
+        
+        [StringLength(50)]
         public String PlotNo { get; set; }
 
         [StringLength(50)]
