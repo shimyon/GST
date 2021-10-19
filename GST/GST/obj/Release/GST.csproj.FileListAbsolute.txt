@@ -258,3 +258,11 @@ E:\Emoiss_wish\GST\GST\GST\bin\Remotion.dll
 E:\Emoiss_wish\GST\GST\GST\bin\Remotion.Interfaces.dll
 E:\Emoiss_wish\GST\GST\GST\bin\LinqToExcel.xml
 E:\Emoiss_wish\GST\GST\GST\bin\log4net.xml
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\LinqToExcel.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\log4net.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Microsoft.VisualBasic.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Remotion.Data.Linq.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Remotion.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Remotion.Interfaces.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\LinqToExcel.xml
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\log4net.xml
