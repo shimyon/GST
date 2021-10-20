@@ -38,6 +38,8 @@ namespace services
                 {
                     throw new Exception("User already exists, Click on forgot password for regenerate your password!");
                 }
+                services.Common.PasswordCryptoService crypto = new services.Common.PasswordCryptoService();
+                usr.Password = crypto.EncryptText(usr.Password);
                 db.users.Add(usr);
                 var rec = db.SaveChanges();
                 return rec;
