@@ -170,7 +170,6 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\System.Memory.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.csproj.CoreCompileInputs.cache
-D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.csproj.CopyComplete
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.pdb
 E:\shimyon\Other\emoiss\gst\GST\models\bin\Debug\models.dll.config
@@ -233,3 +232,4 @@ E:\shimyon\Other\emoiss\gst\GST\models\obj\Debug\models.csproj.CopyComplete
 E:\shimyon\Other\emoiss\gst\GST\models\obj\Debug\models.dll
 E:\shimyon\Other\emoiss\gst\GST\models\obj\Debug\models.pdb
 E:\shimyon\Other\emoiss\gst\GST\models\obj\Debug\models.csproj.AssemblyReference.cache
+D:\Shimyon\Emoiss\emoiss\GST\GST\models\obj\Debug\models.csproj.AssemblyReference.cache

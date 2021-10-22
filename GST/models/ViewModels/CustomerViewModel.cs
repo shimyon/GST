@@ -25,7 +25,20 @@ namespace GST.Controllers
 
         public string Email { get; set; }
 
+        public string Occupation { get; set; }
+
+        public string RegNo { get; set; }
+
         public int? SellAmount { get; set; }
+
+        public DateTime? RegDate { get; set; }
+
+        public DateTime? AllotmentLtDt { get; set; }
+
+        public DateTime? TitleClearFrom { get; set; }
+
+        public DateTime? TitleClearDt { get; set; }
+
     }
 
     public class CustomerSearch : DataTableSearch
@@ -59,6 +72,19 @@ namespace GST.Controllers
 
         public string Email { get; set; }
 
+        public string Occupation { get; set; }
+
+        public string RegNo { get; set; }
+
         public int? SellAmount { get; set; }
+
+        public DateTime? RegDate { get; set; }
+
+        public DateTime? AllotmentLtDt { get; set; }
+
+        public DateTime? TitleClearFrom { get; set; }
+
+        public DateTime? TitleClearDt { get; set; }
+
     }
 }

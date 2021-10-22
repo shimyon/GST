@@ -26,6 +26,16 @@ namespace GST.Controllers
         public int SellAmount { get; set; }
 
         public int Installments { get; set; }
+
+        public string RegNo { get; set; }
+
+        public DateTime? RegDate { get; set; }
+
+        public DateTime? AllotmentLtDt { get; set; }
+
+        public DateTime? TitleClearFrom { get; set; }
+
+        public DateTime? TitleClearDt { get; set; }
     }
 
     public class PlotSearch : DataTableSearch
@@ -56,5 +66,15 @@ namespace GST.Controllers
         public int SellAmount { get; set; }
 
         public int Installments { get; set; }
+
+        public string RegNo { get; set; }
+
+        public DateTime? RegDate { get; set; }
+
+        public DateTime? AllotmentLtDt { get; set; }
+
+        public DateTime? TitleClearFrom { get; set; }
+
+        public DateTime? TitleClearDt { get; set; }
     }
 }

@@ -46,12 +46,32 @@ namespace services
                         ctx.customer.Add(customerData);
                     }
 
-                    if (customerData.SellAmount != null)
+                    var plot = ctx.plot.FirstOrDefault(f => f.Id == customerData.PlotID);
+                    if (plot != null)
                     {
-                        var plot = ctx.plot.FirstOrDefault(f => f.Id == customerData.PlotID);
-                        if (plot != null)
+                        if (customerData.SellAmount != null)
                         {
                             plot.SellAmount = customerData.SellAmount ?? 0;
+                        }
+                        if (customerData.RegNo != null)
+                        {
+                            plot.RegNo = customerData.RegNo ;
+                        }
+                        if (customerData.RegDate != null)
+                        {
+                            plot.RegDate = customerData.RegDate ;
+                        }
+                        if (customerData.AllotmentLtDt != null)
+                        {
+                            plot.AllotmentLtDt = customerData.AllotmentLtDt;
+                        }
+                        if (customerData.TitleClearFrom != null)
+                        {
+                            plot.TitleClearFrom = customerData.TitleClearFrom;
+                        }
+                        if (customerData.TitleClearDt != null)
+                        {
+                            plot.TitleClearDt = customerData.TitleClearDt;
                         }
                     }
                     var intSave = ctx.SaveChanges();
@@ -87,12 +107,13 @@ namespace services
             }
         }
 
-        public List<customer> GetAllByPlotId(int? PlotId)
+        public object GetAllByPlotId(int? PlotId)
         {
             using (var db = new AppDb())
             {
                 var data = db.customer.Where(f => f.PlotID == PlotId).ToList();
-                return data;
+                var plot = db.plot.FirstOrDefault(f => f.Id == PlotId);
+                return new { customer = data, plot=plot };
             }
         }
 
