@@ -20,6 +20,9 @@ namespace models.DatabaseTable
 
         public int Age { get; set; }
 
+        [StringLength(100)] 
+        public string Occupation { get; set; }
+
         [StringLength(50)]
         public string AdharCard { get; set; }
 

@@ -232,3 +232,4 @@ E:\shimyon\Other\emoiss\gst\GST\models\obj\Debug\models.csproj.CoreCompileInputs
 E:\shimyon\Other\emoiss\gst\GST\models\obj\Debug\models.csproj.CopyComplete
 E:\shimyon\Other\emoiss\gst\GST\models\obj\Debug\models.dll
 E:\shimyon\Other\emoiss\gst\GST\models\obj\Debug\models.pdb
+E:\shimyon\Other\emoiss\gst\GST\models\obj\Debug\models.csproj.AssemblyReference.cache

@@ -1,22 +1,30 @@
 ﻿var ajaxcall = {
-	file: (param) => {
-		return new Promise((resolve, reject) => {
-			fetch(param.url, {
-				body: JSON.stringify(param.data),
-				method: 'POST',
-				headers: {
-                    'Content-Type': 'application/json; charset=utf-8',
-                    'Authorization': 'Bearer ' + (localStorage['Token'] || '')
-				}
-			})
-			.then(response => response.blob())
-            .then(response => {
-				resolve(response);
-			}, error => {
-				reject(response);
-			});
-		});
-	},
+    file: (param) => {
+        return new Promise((resolve, reject) => {
+            $('#waitLoading').show();
+            try {
+                fetch(param.url, {
+                    body: JSON.stringify(param.data),
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8',
+                        'Authorization': 'Bearer ' + (localStorage['Token'] || '')
+                    }
+                })
+                    .then(response => response.blob())
+                    .then(response => {
+                        $('#waitLoading').hide();
+                        resolve(response);
+                    }, error => {
+                        $('#waitLoading').hide();
+                        reject(response);
+                    });
+            } catch (e) {
+                $('#waitLoading').hide();
+                reject(e);
+            }
+        });
+    },
     post: (param) => {
         return new Promise((resolve, reject) => {
             var usreid = localStorage.getItem('userid') || "";
@@ -65,7 +73,7 @@
 // Global ajax settings....
 $(function () {
     var title = document.title;
-	$.ajaxSetup({
+    $.ajaxSetup({
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + (localStorage['Token'] || ''));
         }
@@ -81,11 +89,11 @@ $(function () {
     });
 
     $(document).ajaxError(function (xhr, stats, urls, data) {
-		if (data == "Unauthorized" ) {	
-			alert('Session expired please login again.');
+        if (data == "Unauthorized") {
+            alert('Session expired please login again.');
             location.replace("/Login");
-		}
-		document.title = title;
-		$('#waitLoading').hide();
+        }
+        document.title = title;
+        $('#waitLoading').hide();
     });
 });

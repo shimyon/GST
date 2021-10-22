@@ -86,9 +86,50 @@
                 font-size: 3.5rem;
             }
         }
+
+
+        #waitLoading {
+            position: fixed;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            z-index: 100000;
+            /*display:block!important;*/
+        }
+
+            #waitLoading .background-shadow {
+                position: absolute;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                background: #000;
+                opacity: 0.2;
+            }
+
+            #waitLoading .pleasewait-div {
+                margin: auto;
+                position: absolute;
+                color: white;
+                height: 50px;
+                width: 50px;
+                vertical-align: middle;
+                display: block;
+                top: 30%;
+                /*bottom: 0;*/
+                left: 0;
+                right: 0;
+            }
+
+
     </style>
 </head>
 <body class="text-center">
+    <div id="waitLoading" style="display:none">
+        <div class="background-shadow"></div>
+        <div class="pleasewait-div" role="status">
+            <div class="spinner-border text-danger" role="status"></div>
+        </div>
+    </div>
     <form class="form-signin">
         <img class="mb-4 rounded shadow-sm" src="~/Content/images/logoemoiss.jpg" alt="" height="200">
 
