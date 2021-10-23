@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Emoiss Wishes</title>
+    <title>One West</title>
     <script type="text/javascript">
         if (localStorage['Token']) {
             var GlobalExpirydate = new Date(localStorage['.expires']);
@@ -14,6 +14,12 @@
             if (GlobalExpirydate < GlobalCurdate) {
                 alert('Session expired please login again.');
                 location.replace("/Login");
+            }
+            if (localStorage['userRole'] == "Sale") {
+                document.write("<style> .noSales { display: none !important; } </style>");
+            }
+            if (localStorage['userRole'] == "Manager") {
+                document.write("<style> .noManager { display: none !important; } </style>");
             }
         } else {
             location.replace("/Login");
@@ -258,7 +264,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item noManager noSales">
                             <a href="#" class="nav-link">
                                 <i class="fas fa-cogs"></i>
                                 <p>
@@ -281,7 +287,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item noManager noSales">
                             <a class="nav-link text-white" href="~/Template_List">
                                 <i class="fa fa-clone"></i>
                                 <span id="nav-label">Template</span>
