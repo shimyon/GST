@@ -88,6 +88,12 @@
                         </div>
                         <div class="col-md-4 SaleAmountDiv">
                             <div class="form-group">
+                                <label>Occupation</label>
+                                <input type="text" class="form-control Occupation" id="Occupation">
+                            </div>
+                        </div>
+                        <div class="col-md-4 SaleAmountDiv">
+                            <div class="form-group">
                                 <label>Sale Amount</label>
                                 <input type="number" class="form-control SaleAmount" value="1000000" id="SaleAmount">
                             </div>
@@ -95,7 +101,7 @@
                         <div class="col-md-4 SaleAmountDiv">
                             <div class="form-group">
                                 <label>Reg No</label>
-                                <input type="number" class="form-control RegNo" value="" id="RegNo">
+                                <input type="text" class="form-control RegNo" value="" id="RegNo">
                             </div>
                         </div>
                         <div class="col-md-4 SaleAmountDiv">
@@ -107,19 +113,19 @@
                         <div class="col-md-4 SaleAmountDiv">
                             <div class="form-group">
                                 <label>Allotment Letter Date</label>
-                                <input type="number" class="form-control AllotmentLtDt" value="" id="AllotmentLtDt">
+                                <input type="date" class="form-control AllotmentLtDt" value="" id="AllotmentLtDt">
                             </div>
                         </div>
                         <div class="col-md-4 SaleAmountDiv">
                             <div class="form-group">
                                 <label>Title Clearence From</label>
-                                <input type="number" class="form-control TitleClearFrom" value="" id="TitleClearFrom">
+                                <input type="date" class="form-control TitleClearFrom" value="" id="TitleClearFrom">
                             </div>
                         </div>
                         <div class="col-md-4 SaleAmountDiv">
                             <div class="form-group">
                                 <label>Title Clearence Date</label>
-                                <input type="number" class="form-control TitleClearDt" value="" id="TitleClearDt">
+                                <input type="date" class="form-control TitleClearDt" value="" id="TitleClearDt">
                             </div>
                         </div>
                     </div>
@@ -393,6 +399,7 @@
                     $("#Address").val(res.Address);
                     $("#Mobile").val(res.Mobile);
                     $("#Email").val(res.Email);
+                    $("#Occupation").val(res.Occupation);
                 }
             })
         }
@@ -406,7 +413,7 @@
             }).then(function (response) {
                 if (response) {
                     $(".CustomerDiv:gt(0)").remove();
-                    response.forEach((res, i) => {
+                    response.customer.forEach((res, i) => {
                         if (i > 0) {
                             AddJointHolder();
                         }
@@ -419,7 +426,37 @@
                         $(".Address", $custdiv).val(res.Address);
                         $(".Mobile", $custdiv).val(res.Mobile);
                         $(".Email", $custdiv).val(res.Email);
+                        $(".Occupation", $custdiv).val(res.Occupation);
                     });
+                    $(".RegNo").val(response.plot.RegNo);
+                    $(".RegDate").val(response.plot.RegDate);
+                    $(".AllotmentLtDt").val(response.plot.AllotmentLtDt);
+                    $(".TitleClearFrom").val(response.plot.TitleClearFrom);
+                    $(".TitleClearDt").val(response.plot.TitleClearDt);
+
+                    var now = new Date(response.plot.RegDate)
+                    var day = ("0" + now.getDate()).slice(-2);
+                    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                    var today = now.getFullYear() + "-" + (month) + "-" + (day);
+                    $('#RegDate').val(today);
+
+                    now = new Date(response.plot.AllotmentLtDt)
+                    day = ("0" + now.getDate()).slice(-2);
+                    month = ("0" + (now.getMonth() + 1)).slice(-2);
+                    today = now.getFullYear() + "-" + (month) + "-" + (day);
+                    $('#AllotmentLtDt').val(today);
+
+                    now = new Date(response.plot.TitleClearFrom)
+                    day = ("0" + now.getDate()).slice(-2);
+                    month = ("0" + (now.getMonth() + 1)).slice(-2);
+                    today = now.getFullYear() + "-" + (month) + "-" + (day);
+                    $('#TitleClearFrom').val(today);
+
+                    now = new Date(response.plot.TitleClearDt)
+                    day = ("0" + now.getDate()).slice(-2);
+                    month = ("0" + (now.getMonth() + 1)).slice(-2);
+                    today = now.getFullYear() + "-" + (month) + "-" + (day);
+                    $('#TitleClearDt').val(today);
                 }
             })
         }
@@ -625,7 +662,12 @@
                     Address: $(".Address", $custdiv).val(),
                     Mobile: $(".Mobile", $custdiv).val(),
                     Email: $(".Email", $custdiv).val(),
-                    SellAmount: $(".SaleAmount", $custdiv).val()
+                    Occupation: $(".Occupation", $custdiv).val(),
+                    RegNo: $(".RegNo", $custdiv).val(),
+                    RegDate: $(".RegDate", $custdiv).val(),
+                    AllotmentLtDt: $(".AllotmentLtDt", $custdiv).val(),
+                    TitleClearFrom: $(".TitleClearFrom", $custdiv).val(),
+                    TitleClearDt: $(".TitleClearDt", $custdiv).val()
                 }
             }).then(res => {
                 alert("Saved successfully");

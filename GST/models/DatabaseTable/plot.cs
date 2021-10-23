@@ -51,5 +51,69 @@ namespace models.DatabaseTable
 
         [NotMapped]
         public string DocumentType { get; set; }
+
+        [StringLength(50)]
+        public string RegNo { get; set; }
+
+        public DateTime? RegDate { get; set; }
+
+        [NotMapped]
+        public string RegDateformate
+        {
+            get
+            {
+                if (RegDate.HasValue)
+                {
+                    return RegDate.Value.ToString("dd-MM-yyyy");
+                }
+                return string.Empty;
+            }
+        }
+
+        public DateTime? AllotmentLtDt { get; set; }
+
+        [NotMapped]
+        public string AllotmentLtDtformate
+        {
+            get
+            {
+                if (AllotmentLtDt.HasValue)
+                {
+                    return AllotmentLtDt.Value.ToString("dd-MM-yyyy");
+                }
+                return string.Empty;
+            }
+        }
+
+        public DateTime? TitleClearFrom { get; set; }
+
+        [NotMapped]
+        public string TitleClearFromformate
+        {
+            get
+            {
+                if (TitleClearFrom.HasValue)
+                {
+                    return TitleClearFrom.Value.ToString("dd-MM-yyyy");
+                }
+                return string.Empty;
+            }
+        }
+
+        public DateTime? TitleClearDt { get; set; }
+
+        [NotMapped]
+        public string TitleClearDtformate
+        {
+            get
+            {
+                if (TitleClearDt.HasValue)
+                {
+                    return TitleClearDt.Value.ToString("dd-MM-yyyy");
+                }
+                return string.Empty;
+            }
+        }
+
     }
 }

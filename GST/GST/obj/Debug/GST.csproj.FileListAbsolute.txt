@@ -383,7 +383,6 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.csproj.AssemblyReference.cach
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.csproj.CoreCompileInputs.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.pdb
-D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.csproj.CopyComplete
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\ApplicationInsights.config
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\roslyn\csc.exe
 E:\shimyon\Other\emoiss\gst\GST\GST\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll

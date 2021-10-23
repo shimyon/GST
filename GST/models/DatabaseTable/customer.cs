@@ -39,6 +39,74 @@ namespace models.DatabaseTable
         public string Email { get; set; }
 
         [NotMapped]
+        public string RegNo { get; set; }
+
+        [NotMapped]
         public int? SellAmount { get; set; }
+
+        [NotMapped]
+        public DateTime? RegDate { get; set; }
+
+        [NotMapped]
+        public string RegDateformate
+        {
+            get
+            {
+                if (RegDate.HasValue)
+                {
+                    return RegDate.Value.ToString("dd-MM-yyyy");
+                }
+                return string.Empty;
+            }
+        }
+
+        [NotMapped]
+        public DateTime? AllotmentLtDt { get; set; }
+
+        [NotMapped]
+        public string AllotmentLtDtformate
+        {
+            get
+            {
+                if (AllotmentLtDt.HasValue)
+                {
+                    return AllotmentLtDt.Value.ToString("dd-MM-yyyy");
+                }
+                return string.Empty;
+            }
+        }
+        
+        [NotMapped]
+        public DateTime? TitleClearFrom { get; set; }
+
+        [NotMapped]
+        public string TitleClearFromformate
+        {
+            get
+            {
+                if (TitleClearFrom.HasValue)
+                {
+                    return TitleClearFrom.Value.ToString("dd-MM-yyyy");
+                }
+                return string.Empty;
+            }
+        }
+
+        [NotMapped]
+        public DateTime? TitleClearDt { get; set; }
+
+        [NotMapped]
+        public string TitleClearDtformate
+        {
+            get
+            {
+                if (TitleClearDt.HasValue)
+                {
+                    return TitleClearDt.Value.ToString("dd-MM-yyyy");
+                }
+                return string.Empty;
+            }
+        }
+
     }
 }
