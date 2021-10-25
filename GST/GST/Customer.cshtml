@@ -133,8 +133,8 @@
                     <div class="row">
                         <div class="col col-md-4">
                             <input type="hidden" class="customerid" value="0" />
-                            <button type="button" class="btn btn-primary" onclick="saveCustomerData(this);">Save</button>
-                            <button type="button" class="btn btn-warning btnjointholder" onclick="AddJointHolder()">Joint Holder</button>
+                            <button type="button" class="btn btn-primary noSales" onclick="saveCustomerData(this);">Save</button>
+                            <button type="button" class="btn btn-warning btnjointholder noSales" onclick="AddJointHolder()">Joint Holder</button>
                             <button type="button" class="btn btn-danger btndelcustomer" onclick="DeleteCustomer(this)" style="display: none;">Delete</button>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                 </div>
 
                 <div class="row mt-4 mb-4">
-                    <button type="button" id="AddPaymentButton" class="btn btn-primary">Add New Payment</button>
+                    <button type="button" id="AddPaymentButton" class="btn btn-primary noSales">Add New Payment</button>
                 </div>
 
                 <div class="container" id="AddPayment" style="display:none;">
@@ -210,7 +210,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row noSales">
                         <div class="col col-md-1">
                             <button type="button" class="btn btn-primary" onclick="savePaymentData();">Save</button>
                         </div>
@@ -557,10 +557,10 @@
                         data: "Id",
                         class: "text-center actioncol",
                         render: (data, display, alldata) => {
-                            return ` <button class ='btneditPay actionbtn btn  btn-sm' data-id='${data}' title="Edit"><i class ='fa fa-edit'></i></button>
-                                                                                                 <button class ='btndelPay actionbtn btn  btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
-                                                                                                 <button class ='btndownloadPay actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
-                                                                                                 <button class ='btnemailPay actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
+                            return `<button class ='btneditPay noSales actionbtn btn  btn-sm' data-id='${data}' title="Edit"><i class ='fa fa-edit'></i></button>
+                                    <button class ='btndelPay noSales actionbtn btn btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
+                                    <button class ='btndownloadPay actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
+                                    <button class ='btnemailPay actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
                         }
                     },
                     //{
@@ -748,7 +748,7 @@
             }).then(blobData => {
                 var path = GenBlobURL(blobData);
                 $('#the-frame').attr('src', path);
-                $("#PrintPreview").modal('show')
+                $("#PrintPreview").modal('show');
             }, err => {
                 alert(err.responseJSON);
             })
@@ -823,10 +823,10 @@
                     DocumentType: DocumentType
                 }
             }).then(blobData => {
-                //var path = GenBlobURL(blobData);
-                //$('#the-frame').attr('src', path);
-                //$("#PrintPreview").modal('show');
-                DownloadFileFromURL(blobData);
+                var path = GenBlobURL(blobData);
+                $('#the-frame').attr('src', path);
+                $("#PrintPreview").modal('show');
+                //DownloadFileFromURL(blobData);
             }, err => {
                 alert(err.responseJSON);
             })

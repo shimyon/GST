@@ -180,6 +180,8 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.csproj.AssemblyRefe
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.csproj.CoreCompileInputs.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.pdb
+E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\EntityFramework.xml
+E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\Renci.SshNet.xml
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\services.dll.config
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\services.dll
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\services.pdb
@@ -216,7 +218,6 @@ E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\Ubiety.Dns.Core.dll
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\Zstandard.Net.dll
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\models.pdb
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\models.dll.config
-E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\EntityFramework.xml
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\EntityFramework.SqlServer.xml
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\Google.Protobuf.xml
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\itextsharp.xml
@@ -233,7 +234,6 @@ E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\Microsoft.Owin.Security.OAuth
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\MySql.Data.xml
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\MySql.Data.EntityFramework.xml
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\Newtonsoft.Json.xml
-E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\Renci.SshNet.xml
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\System.Buffers.xml
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\System.Memory.xml
 E:\shimyon\Other\emoiss\gst\GST\services\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
