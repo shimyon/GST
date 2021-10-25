@@ -209,14 +209,40 @@ namespace services
                     tokens["Payment.DirectionsSouth"] = plotDetails.DirectionsSouth;
                     tokens["Payment.DirectionsEast"] = plotDetails.DirectionsEast;
                     tokens["Payment.DirectionsWest"] = plotDetails.DirectionsWest;
+                    tokens["Payment.RegNo"] = plotDetails.RegNo;
+                    tokens["Payment.RegDate"] = plotDetails.RegDate.HasValue ? plotDetails.RegDate.Value.ToString("dd-MM-yyyy") : "";
+                    tokens["Payment.AllotmentLtDt"] = plotDetails.AllotmentLtDt.HasValue ? plotDetails.AllotmentLtDt.Value.ToString("dd-MM-yyyy") : "";
+                    tokens["Payment.TitleClearFrom"] = plotDetails.TitleClearFrom.HasValue? plotDetails.TitleClearFrom.Value.ToString("dd-MM-yyyy") : "";
+                    tokens["Payment.TitleClearDt"] = plotDetails.TitleClearDt.HasValue? plotDetails.TitleClearDt.Value.ToString("dd-MM-yyyy") : "";
+
+                    tokens["Sale.Amount"] = plotDetails.SellAmount.ToString("#.##");
+                    double outstanding = plotDetails.SellAmount - (plotDetails.SellAmount * 0.10);
+                    tokens["Amount.Outstanding"] = outstanding.ToString("#.##");
+                    tokens["Amount.10"] = (plotDetails.SellAmount * 0.10).ToString("#.##");
+                    tokens["Amount.30"] = (plotDetails.SellAmount * 0.20).ToString("#.##");
+                    tokens["Amount.45"] = (plotDetails.SellAmount * 0.15).ToString("#.##");
+                    tokens["Amount.70"] = (plotDetails.SellAmount * 0.25).ToString("#.##");
+
+                    double slabAmount = (plotDetails.SellAmount * 0.25);
+
+                    tokens["Amount.FirstSlab"] = (slabAmount * 0.40).ToString("#.##");
+                    tokens["Amount.ThirdSlab"] = (slabAmount * 0.40).ToString("#.##");
+                    tokens["Amount.FifthSlab"] = (slabAmount * 0.20).ToString("#.##");
+
+
+                    tokens["Amount.75"] = (plotDetails.SellAmount * 0.5).ToString("#.##");
+                    tokens["Amount.80"] = (plotDetails.SellAmount * 0.5).ToString("#.##");
+                    tokens["Amount.85"] = (plotDetails.SellAmount * 0.5).ToString("#.##");
+                    tokens["Amount.95"] = (plotDetails.SellAmount * 0.10).ToString("#.##");
+                    tokens["Amount.5"] = (plotDetails.SellAmount * 0.5).ToString("#.##");
 
                     List<customer> customers = ctx.customer.Where(f => f.PlotID == plotDetails.Id).ToList();
-                    string customerDetails = "<table border='1' style='width:100%;'>";
+                    string customerDetails = "<table  cellspacing ='5' cellpadding='5' border='1' style='width:80%; border-collapse: collapse; margin : 20px 10px;'>";
                     foreach (var item in customers.Select((val, i) => new { val, i }))
                     {
                         customerDetails += "<tr><td>" + (item.i + 1) + ".</td><td>";
 
-                        customerDetails += "<table>";
+                        customerDetails += "<table cellspacing ='5' cellpadding='5'>";
                         customerDetails += "<tr>";
                         customerDetails += "<td>" + item.val.CustomerName + ", Aged: Adult (" + item.val.Age + " years), Occuption:" + item.val.Occupation + "</td>";
                         customerDetails += "</tr><tr>";
@@ -262,7 +288,7 @@ namespace services
                     tokens["Payment.Part"] = objPay.Part;
                     tokens["Payment.Amount.word"] = NumberToWords(objPay.Amount ?? 0).ToUpperInvariant() + " Only/-";
                 }
-                string paymentTable = @"<table border='1' style='width:100%;'><tr><th>Sr.No.</th> <th>Amount (Rs.)</th> <th>Cheque No.</th> <th>Cheque Date</th> <th>Bank</th></tr>";
+                string paymentTable = @"<table border='1' style='width:80%; border-collapse:collapse; margin : 10px 10px;''><tr><th>Sr.No.</th> <th>Amount (Rs.)</th> <th>Cheque No.</th> <th>Cheque Date</th> <th>Bank</th></tr>";
 
                 double totPay = 0;
                 var objPayList = ctx.payment.Where(f => f.PlotID == plotId).ToList();
