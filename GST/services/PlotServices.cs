@@ -211,7 +211,7 @@ namespace services
                     tokens["Payment.DirectionsWest"] = plotDetails.DirectionsWest;
 
                     List<customer> customers = ctx.customer.Where(f => f.PlotID == plotDetails.Id).ToList();
-                    string customerDetails = "<table>";
+                    string customerDetails = "<table border='1' style='width:100%;'>";
                     foreach (var item in customers.Select((val, i) => new { val, i }))
                     {
                         customerDetails += "<tr><td>" + (item.i + 1) + ".</td><td>";
@@ -262,7 +262,7 @@ namespace services
                     tokens["Payment.Part"] = objPay.Part;
                     tokens["Payment.Amount.word"] = NumberToWords(objPay.Amount ?? 0).ToUpperInvariant() + " Only/-";
                 }
-                string paymentTable = @"<table style='width:100%;'><tr><th>Sr.No.</th> <th>Amount (Rs.)</th> <th>Cheque No.</th> <th>Cheque Date</th> <th>Bank</th></tr>";
+                string paymentTable = @"<table border='1' style='width:100%;'><tr><th>Sr.No.</th> <th>Amount (Rs.)</th> <th>Cheque No.</th> <th>Cheque Date</th> <th>Bank</th></tr>";
 
                 double totPay = 0;
                 var objPayList = ctx.payment.Where(f => f.PlotID == plotId).ToList();

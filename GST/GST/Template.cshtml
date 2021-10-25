@@ -11,7 +11,8 @@
         </div>
         <div class="form-group col-md-6">
             <label for="inputAddress">Template For</label>
-            <select class="form-control" id="TemplateFor" >  @*onclick="GetTokenType(TemplateFor.id);"*@
+            <select class="form-control" id="TemplateFor">
+                @*onclick="GetTokenType(TemplateFor.id);"*@
                 <option>Quotation</option>
                 <option>Invoice</option>
                 <option>Banakhat</option>
@@ -33,7 +34,7 @@
             <button type="submit" style="width: 100%" class="btn btn-danger " onclick="goBack();">Cancel</button>
         </div>
     </div>
-    
+
 </div>
 
 
@@ -41,7 +42,6 @@
 @section scripts {
     <script src="~/Content/ckeditor/ckeditor/ckeditor.js"></script>
     <script type="text/javascript">
-
         var id = querySt("id");
         $(function () {
             CKEDITOR.replace('TemplateData');
@@ -58,14 +58,13 @@
                 if (res) {
                     $("#TemplateName").val(res.TemplateName);
                     $("#TemplateFor").val(res.TemplateFor);
-                    debugger
                     CKEDITOR.instances['TemplateData'].setData(res.TemplateData);
+                    CKEDITOR.instances['TemplateData'].updateElement();
                 }
-
             })
         }
-        function saveData() {
 
+        function saveData() {
             if (!$("#TemplateName").val()) {
                 alert('Please enter Template Name');
                 $("#TemplateName").focus()
@@ -78,7 +77,7 @@
                 return false;
             }
 
-            var value = CKEDITOR.instances['TemplateData'].getData()
+            var value = CKEDITOR.instances['TemplateData'].getData();
             if (!value) {
                 alert('Please enter Template Data');
                 return false;
@@ -100,8 +99,8 @@
             })
         }
 
-         function goBack() {
-                 window.history.back();
+        function goBack() {
+            window.history.back();
         }
 
     </script>

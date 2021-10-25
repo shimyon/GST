@@ -748,7 +748,7 @@
             }).then(blobData => {
                 var path = GenBlobURL(blobData);
                 $('#the-frame').attr('src', path);
-                $("#PrintPreview").modal('show')
+                $("#PrintPreview").modal('show');
             }, err => {
                 alert(err.responseJSON);
             })
@@ -823,10 +823,10 @@
                     DocumentType: DocumentType
                 }
             }).then(blobData => {
-                //var path = GenBlobURL(blobData);
-                //$('#the-frame').attr('src', path);
-                //$("#PrintPreview").modal('show');
-                DownloadFileFromURL(blobData);
+                var path = GenBlobURL(blobData);
+                $('#the-frame').attr('src', path);
+                $("#PrintPreview").modal('show');
+                //DownloadFileFromURL(blobData);
             }, err => {
                 alert(err.responseJSON);
             })
