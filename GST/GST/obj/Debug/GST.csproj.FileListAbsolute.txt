@@ -510,3 +510,4 @@ E:\shimyon\Other\emoiss\gst\GST\GST\obj\Debug\GST.csproj.CoreCompileInputs.cache
 E:\shimyon\Other\emoiss\gst\GST\GST\obj\Debug\GST.csproj.CopyComplete
 E:\shimyon\Other\emoiss\gst\GST\GST\obj\Debug\GST.dll
 E:\shimyon\Other\emoiss\gst\GST\GST\obj\Debug\GST.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Debug\GST.csproj.CopyComplete
