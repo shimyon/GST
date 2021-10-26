@@ -181,8 +181,6 @@ E:\shimyon\Other\emoiss\gst\GST\services\obj\Debug\services.csproj.CoreCompileIn
 E:\shimyon\Other\emoiss\gst\GST\services\obj\Debug\services.csproj.CopyComplete
 E:\shimyon\Other\emoiss\gst\GST\services\obj\Debug\services.dll
 E:\shimyon\Other\emoiss\gst\GST\services\obj\Debug\services.pdb
-D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\services.dll.config
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\services.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\services.pdb
@@ -195,6 +193,7 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\itextsharp.xmlworker.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\K4os.Compression.LZ4.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\K4os.Compression.LZ4.Streams.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\K4os.Hash.xxHash.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Microsoft.Owin.dll
@@ -231,6 +230,7 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Microsoft.AspNet.Identity.Ow
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Microsoft.Owin.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Microsoft.Owin.Security.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Microsoft.Owin.Security.Cookies.xml
+D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\MySql.Data.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\MySql.Data.EntityFramework.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\Newtonsoft.Json.xml
@@ -241,5 +241,6 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\System.Runtime.CompilerServi
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.csproj.AssemblyReference.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.csproj.CoreCompileInputs.cache
+D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.csproj.CopyComplete
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Debug\services.pdb

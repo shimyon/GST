@@ -26,12 +26,13 @@
 
 @section scripts {
     <script type="text/javascript">
+        var oTable;
         $(function () {
             LoadTable();
         })
 
         function LoadTable() {
-            $('#tblCustomerList').DataTable({
+            oTable = $('#tblCustomerList').DataTable({
                 //dom: "<'row'<'col-sm-3'l><'col-sm-6'p><'col-sm-3 text-align-right'f>>" +
                 //    "<'row'<'col-sm-12'tr>>" +
                 //    "<'row'<'col-sm-5'i>>",
@@ -135,21 +136,29 @@
                         data: "Id",
                         class: "text-center",
                         render: (data, display, alldata) => {
-                            return `<button class ='btnedit actionbtn btn  btn-sm' data-plotid="${alldata.PlotID}" data-siteid="${alldata.SiteID}" data-id='${data}'><i class ='fa fa-edit'></i>&nbsp;Edit</button>`;
+                            return `<button class ='btnedit actionbtn btn  btn-sm' onclick="EditClick(this);" data-plotid="${alldata.PlotID}" data-siteid="${alldata.SiteID}" data-id='${data}'><i class ='fa fa-edit'></i>&nbsp;Edit</button>`;
                         }
                     }
                 ]
             });
+            oTable.on('responsive-resize', function (e, datatable, columns) {
+                setTimeout(AfterDrawTable, 500);
+            });
+
+        }
+
+        function EditClick(obj) {
+
+            let id = $(obj).attr('data-id');
+            let plotid = $(obj).attr('data-plotid');
+            let siteid = $(obj).attr('data-siteid');
+            window.location.assign(`./Customer?siteid=${siteid}&plotid=${plotid}`);
         }
 
         function AfterDrawTable() {
-            var that = this;
-            $(".btnedit").click(function () {
-                let id = $(this).attr('data-id');
-                let plotid = $(this).attr('data-plotid');
-                let siteid = $(this).attr('data-siteid');
-                window.location.assign(`./Customer?siteid=${siteid}&plotid=${plotid}`);
-            })
+            //var that = this;
+            //$(".btnedit").click(function () {
+            //})
         }
 
         function AddCustomer() {

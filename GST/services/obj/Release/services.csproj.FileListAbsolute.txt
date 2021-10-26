@@ -118,6 +118,5 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Release\System.Runtime.CompilerSer
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\bin\Release\System.Threading.Tasks.Extensions.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Release\services.csproj.AssemblyReference.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Release\services.csproj.CoreCompileInputs.cache
-D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Release\services.csproj.CopyComplete
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Release\services.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Release\services.pdb

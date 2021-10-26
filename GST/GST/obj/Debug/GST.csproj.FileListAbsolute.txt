@@ -375,7 +375,6 @@ E:\shimyon\Other\emoiss\gst\GST\GST\obj\Debug\GST.csproj.CoreCompileInputs.cache
 E:\shimyon\Other\emoiss\gst\GST\GST\obj\Debug\GST.csproj.CopyComplete
 E:\shimyon\Other\emoiss\gst\GST\GST\obj\Debug\GST.dll
 E:\shimyon\Other\emoiss\gst\GST\GST\obj\Debug\GST.pdb
-D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Web.Http.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\ApplicationInsights.config
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\roslyn\csc.exe
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -444,6 +443,7 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Net.Http.Formatting.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Runtime.CompilerServices.Unsafe.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Threading.Tasks.Extensions.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Web.Helpers.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Web.Http.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Web.Http.WebHost.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Web.Mvc.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.Web.Optimization.dll
