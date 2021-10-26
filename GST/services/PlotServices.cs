@@ -237,7 +237,7 @@ namespace services
                     tokens["Amount.5"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
 
                     List<customer> customers = ctx.customer.Where(f => f.PlotID == plotDetails.Id).ToList();
-                    string customerDetails = "<table  cellspacing ='5' cellpadding='5' border='1' style='width:80%; border-collapse: collapse; margin : 20px 10px;'>";
+                    string customerDetails = "<table  cellspacing ='5' cellpadding='5'  style='width:80%; border-collapse: collapse; margin : 20px 10px;'>";
                     foreach (var item in customers.Select((val, i) => new { val, i }))
                     {
                         customerDetails += "<tr><td>" + (item.i + 1) + ".</td><td>";
