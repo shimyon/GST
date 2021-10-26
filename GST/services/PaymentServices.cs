@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 using services.Interface;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,6 +72,11 @@ namespace services
         {
             try
             {
+                string appPath = ConfigurationManager.AppSettings["AppPath"];
+                if (!ConfigurationManager.AppSettings.AllKeys.Any(a => a == "AppPath"))
+                {
+                    throw new Exception("AppPath not defined in web.config file.");
+                }
                 using (var ctx = new AppDb())
                 {
                     string data = string.Empty;
@@ -103,7 +109,7 @@ namespace services
                         var siteDetails = ctx.site.First(f => f.Id == plotDetails.SiteID);
                         Random random = new Random();
                         int randomNumber = random.Next(0, 1000);
-                        tokens["Site.Logo"] = "Content/Images/SiteLogos/" + plotDetails.SiteID + ".png?v=" + randomNumber;
+                        tokens["Site.Logo"] = appPath + "Content/Images/SiteLogos/" + plotDetails.SiteID + ".png?v=" + randomNumber;
                         tokens["Site.Address"] = siteDetails.Address;
                         tokens["Site.Developer"] = siteDetails.Developer;
                         tokens["Site.WebSite"] = siteDetails.WebSite;

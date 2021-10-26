@@ -662,6 +662,7 @@
                     Address: $(".Address", $custdiv).val(),
                     Mobile: $(".Mobile", $custdiv).val(),
                     Email: $(".Email", $custdiv).val(),
+                    SellAmount: $(".SaleAmount", $custdiv).val(),
                     Occupation: $(".Occupation", $custdiv).val(),
                     RegNo: $(".RegNo", $custdiv).val(),
                     RegDate: $(".RegDate", $custdiv).val(),
@@ -815,7 +816,6 @@
         }
 
         function DocumentDownload(DocumentType) {
-            debugger
             ajaxcall.file({
                 url: AppConfig.ApiPath + "Plot/DocumentDownload",
                 data: {

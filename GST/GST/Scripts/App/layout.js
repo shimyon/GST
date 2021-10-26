@@ -1,5 +1,5 @@
 ﻿var layout = {
-    checklogin : () =>{
+    checklogin: () => {
         if (localStorage["Token"]) {
             return true;
         }
@@ -11,28 +11,32 @@
     }
 }
 
-$(function() {
-    if (layout.checklogin()) 
-    {
+$(function () {
+    if (layout.checklogin()) {
         $("#layoutuseraction").show();
     }
-    else 
-    {
+    else {
         $("#layoutlogin").show();
     }
 })
 
 
 function GenBlobURL(blobData) {
-	let blob = new Blob([blobData], {type: 'application/pdf'});
-	return downloadUrl = URL.createObjectURL(blob);
+    let blob = new Blob([blobData], { type: 'application/pdf' });
+    let downloadUrl = null;
+    if (window.webkitURL) {
+        downloadUrl = window.webkitURL.createObjectURL(blob);
+    } else if (window.URL && window.URL.createObjectURL) {
+        downloadUrl = window.URL.createObjectURL(blob);
+    }
+    return downloadUrl;
 }
 
 function DownloadFileFromURL(blobData) {
-	let downloadUrl = GenBlobURL(blobData);
-	let a = document.createElement("a");
-	a.href = downloadUrl;
-	a.download = "file.pdf";
-	document.body.appendChild(a);
-	a.click();
+    let downloadUrl = GenBlobURL(blobData);
+    let a = document.createElement("a");
+    a.href = downloadUrl;
+    a.download = "file.pdf";
+    document.body.appendChild(a);
+    a.click();
 }
