@@ -11,12 +11,12 @@ using System.Net;
 
 namespace services.Common
 {
-    public class EmailService
+    public static class EmailService
     {
         public static void SendMail(MailSettingViewModel settings)
         {
             var smtpSection = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
-            
+
             var fromAddress = new MailAddress(smtpSection.Network.UserName, smtpSection.Network.UserName);
             var toAddress = new MailAddress(settings.ToMailId, settings.ToMailName);
 
@@ -31,12 +31,25 @@ namespace services.Common
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
             };
+
+
+
             using (var message = new MailMessage(fromAddress, toAddress)
             {
                 Subject = settings.Subject,
-                Body = settings.Body
+                Body = settings.Body,
+                IsBodyHtml = true
             })
             {
+                if (settings.AttchPath != null && settings.AttchPath.Count > 0)
+                {
+                    foreach (var filepath in settings.AttchPath)
+                    {
+                        System.Net.Mail.Attachment attachment;
+                        attachment = new System.Net.Mail.Attachment(filepath);
+                        message.Attachments.Add(attachment);
+                    }
+                }
                 smtp.Send(message);
             }
         }

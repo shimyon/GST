@@ -236,19 +236,19 @@
                             <td>1</td>
                             <td>Banakhat</td>
                             <td><button type="button" onclick="DocumentDownload('Banakhat');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
-                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
+                            <td><button type="button" onclick="EmailDocument('Banakhat');" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Sale Deed</td>
                             <td><button type="button" onclick="DocumentDownload('Sale Deed');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
-                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
+                            <td><button type="button" onclick="EmailDocument('Sale Deed');" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>Allotment Latter</td>
                             <td><button type="button" onclick="DocumentDownload('AllotmentLetter');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
-                            <td><button type="button" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
+                            <td><button type="button" onclick="EmailDocument('AllotmentLetter');" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -550,6 +550,11 @@
                         let Id = $(this).attr("data-id");
                         DeletePayment(Id);
                     });
+
+                    $(".btnemailPay").click(function () {
+                        let Id = $(this).attr("data-id");
+                        SendReceipt(Id);
+                    });                    
                 },
                 "columns": [
                     {
@@ -560,7 +565,7 @@
                             return `<button class ='btneditPay noSales actionbtn btn  btn-sm' data-id='${data}' title="Edit"><i class ='fa fa-edit'></i></button>
                                     <button class ='btndelPay noSales actionbtn btn btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
                                     <button class ='btndownloadPay actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
-                                    <button class ='btnemailPay actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
+                                    <button class ='btnemailPay noSales actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
                         }
                     },
                     //{
@@ -755,6 +760,19 @@
             })
         }
 
+        function SendReceipt(paymentId) {
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Payment/EmailReceipt",
+                data: {
+                    Id: paymentId
+                }
+            }).then(res => {
+                alert(res);
+            }, err => {
+                alert(err.responseJSON);
+            })
+        }
+
         function convertDataURIToBinary(base64) {
             var raw = window.atob(base64);
             var rawLength = raw.length;
@@ -831,5 +849,20 @@
                 alert(err.responseJSON);
             })
         }
+
+        function EmailDocument(DocumentType) {
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Plot/EmailReceipt",
+                data: {
+                    Id: $("#PlotID").val(),
+                    DocumentType: DocumentType
+                }
+            }).then(res => {
+                alert(res);
+            }, err => {
+                alert(err.responseJSON);
+            })
+        }
+
     </script>
 }

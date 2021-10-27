@@ -203,5 +203,17 @@ namespace services
             }
         }
 
+        public customer GetCustomerByPlotId(int Id)
+        {
+            using (var db = new AppDb())
+            {
+                var data = (from cst in db.customer
+                            join pay in db.payment on cst.PlotID equals pay.PlotID
+                            where pay.Id == Id
+                            select cst).FirstOrDefault();
+                return data;
+            }
+        }
+
     }
 }

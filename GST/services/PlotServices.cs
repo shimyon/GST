@@ -189,6 +189,15 @@ namespace services
             }
         }
 
+        public customer GetCustomerByPlotId(int PlotId)
+        {
+            using (var ctx = new AppDb())
+            {
+                return ctx.customer.FirstOrDefault(f => f.PlotID == PlotId);
+            }
+
+        }
+
         public Dictionary<string, string> TokenData(int plotId, string tokenTemplate)
         {
             string appPath = ConfigurationManager.AppSettings["AppPath"];
@@ -318,7 +327,7 @@ namespace services
                         saleDeedSignature += @"</tbody></table></div>";
                     }
                     saleDeedSignature = saleDeedSignature.Replace("{{Face.Image}}", FaceImage).Replace("{{Thumb.Image}}", ThumbImage);
-                   
+
                     tokens["SaleDeed.Signature"] = saleDeedSignature;
 
                     customerDetails += "</table>";
