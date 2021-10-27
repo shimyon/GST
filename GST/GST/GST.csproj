@@ -2715,7 +2715,9 @@
     <Content Include="Content\images\ngcp.png" />
     <Content Include="Content\images\ngcp.svg" />
     <Content Include="Content\images\nopatient.svg" />
+    <Content Include="Content\images\photo.jpg" />
     <Content Include="Content\images\spacer.gif" />
+    <Content Include="Content\images\thumb.jpg" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.theme.css" />

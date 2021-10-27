@@ -5,6 +5,7 @@ using MySql.Data.MySqlClient;
 using services.Interface;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -190,6 +191,13 @@ namespace services
 
         public Dictionary<string, string> TokenData(int plotId, string tokenTemplate)
         {
+            string appPath = ConfigurationManager.AppSettings["AppPath"];
+            if (!ConfigurationManager.AppSettings.AllKeys.Any(a => a == "AppPath"))
+            {
+                throw new Exception("AppPath not defined in web.config file.");
+            }
+            string FaceImage = appPath + "Content/Images/photo.jpg";
+            string ThumbImage = appPath + "Content/Images/thumb.jpg";
             TemplateService templateService = new TemplateService();
             Dictionary<string, string> tokens = templateService.GetTokensByModulName(tokenTemplate);
             using (var ctx = new AppDb())
@@ -212,36 +220,69 @@ namespace services
                     tokens["Payment.RegNo"] = plotDetails.RegNo;
                     tokens["Payment.RegDate"] = plotDetails.RegDate.HasValue ? plotDetails.RegDate.Value.ToString("dd-MM-yyyy") : "";
                     tokens["Payment.AllotmentLtDt"] = plotDetails.AllotmentLtDt.HasValue ? plotDetails.AllotmentLtDt.Value.ToString("dd-MM-yyyy") : "";
-                    tokens["Payment.TitleClearFrom"] = plotDetails.TitleClearFrom.HasValue? plotDetails.TitleClearFrom.Value.ToString("dd-MM-yyyy") : "";
-                    tokens["Payment.TitleClearDt"] = plotDetails.TitleClearDt.HasValue? plotDetails.TitleClearDt.Value.ToString("dd-MM-yyyy") : "";
+                    tokens["Payment.TitleClearFrom"] = plotDetails.TitleClearFrom.HasValue ? plotDetails.TitleClearFrom.Value.ToString("dd-MM-yyyy") : "";
+                    tokens["Payment.TitleClearDt"] = plotDetails.TitleClearDt.HasValue ? plotDetails.TitleClearDt.Value.ToString("dd-MM-yyyy") : "";
+
+                    tokens["Maintenance.Amount"] = plotDetails.MaintenanceAmount.ToString("#.##");
+                    tokens["Maintenance.Amount.word"] = NumberToWords(Convert.ToInt32(plotDetails.MaintenanceAmount));
 
                     tokens["Sale.Amount"] = plotDetails.SellAmount.ToString("#.##");
+                    tokens["Sale.Amount.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount));
+
                     double outstanding = plotDetails.SellAmount - (plotDetails.SellAmount * 0.10);
                     tokens["Amount.Outstanding"] = outstanding.ToString("#.##");
+                    tokens["Amount.Outstanding.word"] = NumberToWords(Convert.ToInt32(outstanding));
+
+
                     tokens["Amount.10"] = (plotDetails.SellAmount * 0.10).ToString("#.##");
+                    tokens["Amount.10.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.10));
+
                     tokens["Amount.30"] = (plotDetails.SellAmount * 0.20).ToString("#.##");
+                    tokens["Amount.30.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.20));
+
                     tokens["Amount.45"] = (plotDetails.SellAmount * 0.15).ToString("#.##");
+                    tokens["Amount.45.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.15));
+
                     tokens["Amount.70"] = (plotDetails.SellAmount * 0.25).ToString("#.##");
+                    tokens["Amount.70.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.25));
+
 
                     double slabAmount = (plotDetails.SellAmount * 0.25);
 
                     tokens["Amount.FirstSlab"] = (slabAmount * 0.40).ToString("#.##");
+                    tokens["Amount.FirstSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.40)));
+
                     tokens["Amount.ThirdSlab"] = (slabAmount * 0.40).ToString("#.##");
+                    tokens["Amount.ThirdSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.40)));
+
                     tokens["Amount.FifthSlab"] = (slabAmount * 0.20).ToString("#.##");
+                    tokens["Amount.FifthSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.20)));
+
 
 
                     tokens["Amount.75"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
+                    tokens["Amount.75.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.05)));
+
                     tokens["Amount.80"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
+                    tokens["Amount.80.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.05)));
+
                     tokens["Amount.85"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
+                    tokens["Amount.85.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.05)));
+
                     tokens["Amount.95"] = (plotDetails.SellAmount * 0.10).ToString("#.##");
+                    tokens["Amount.95.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.10)));
+
                     tokens["Amount.5"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
+                    tokens["Amount.5.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.05)));
 
                     List<customer> customers = ctx.customer.Where(f => f.PlotID == plotDetails.Id).ToList();
+
+                    string saleDeedSignature = "";
+
                     string customerDetails = "<table  cellspacing ='5' cellpadding='5'  style='width:80%; border-collapse: collapse; margin : 20px 10px;'>";
                     foreach (var item in customers.Select((val, i) => new { val, i }))
                     {
                         customerDetails += "<tr><td>" + (item.i + 1) + ".</td><td>";
-
                         customerDetails += "<table cellspacing ='5' cellpadding='5'>";
                         customerDetails += "<tr>";
                         customerDetails += "<td>" + item.val.CustomerName + ", Aged: Adult (" + item.val.Age + " years), Occuption:" + item.val.Occupation + "</td>";
@@ -250,11 +291,37 @@ namespace services
                         customerDetails += "</tr><tr>";
                         customerDetails += "<td>Email ID: " + item.val.Email + "</td>";
                         customerDetails += "</tr></table>";
-
                         customerDetails += "</td></tr>";
-                    }
-                    customerDetails += "</table>";
 
+                        saleDeedSignature += @"<div style='margin-top: 50px;'><br />
+                                            <table style='width:100%;'>
+	                                        <thead>
+		                                        <tr>
+			                                        <th scope='col' style='width:40%'>Signature</th>
+			                                        <th scope='col' style='text-align:center; width:30%'>Photo</th>
+			                                        <th scope='col' style='text-align:center; width:30%'>Left Hand Thumb</th>
+		                                        </tr>
+	                                        </thead>
+	                                        <tbody>
+		                                        <tr>
+			                                        <td>&nbsp;</td>
+			                                        <td style='text-align:center'><img alt='' src='{{Face.Image}}' style='height:170px; width:150px' /></td>
+			                                        <td style='text-align:center'><img alt='' src='{{Thumb.Image}}' style='height:150px; width:150px' /></td>
+		                                        </tr>";
+                        saleDeedSignature += @"<tr>
+			                                        <td>_________________________<br /></td>
+			                                        <td style='text-align:center'></td>
+			                                        <td style='text-align:center'></td>
+		                                        </tr>";
+                        saleDeedSignature += @"<tr><td><br />(" + item.val.CustomerName + ")</td></tr>";
+
+                        saleDeedSignature += @"</tbody></table></div>";
+                    }
+                    saleDeedSignature = saleDeedSignature.Replace("{{Face.Image}}", FaceImage).Replace("{{Thumb.Image}}", ThumbImage);
+                   
+                    tokens["SaleDeed.Signature"] = saleDeedSignature;
+
+                    customerDetails += "</table>";
                     tokens["Customer.Details"] = customerDetails;
 
                     var customer = customers.FirstOrDefault();
@@ -270,7 +337,7 @@ namespace services
                     var siteDetails = ctx.site.First(f => f.Id == plotDetails.SiteID);
                     Random random = new Random();
                     int randomNumber = random.Next(0, 1000);
-                    tokens["Site.Logo"] = "Content/Images/SiteLogos/" + plotDetails.SiteID + ".png?v=" + randomNumber;
+                    tokens["Site.Logo"] = appPath + "Content/Images/SiteLogos/" + plotDetails.SiteID + ".png?v=" + randomNumber;
                     tokens["Site.Address"] = siteDetails.Address;
                     tokens["Site.Developer"] = siteDetails.Developer;
                     tokens["Site.WebSite"] = siteDetails.WebSite;
@@ -288,7 +355,7 @@ namespace services
                     tokens["Payment.Part"] = objPay.Part;
                     tokens["Payment.Amount.word"] = NumberToWords(objPay.Amount ?? 0).ToUpperInvariant() + " Only/-";
                 }
-                string paymentTable = @"<table border='1' style='width:80%; border-collapse:collapse; margin : 10px 10px;''><tr><th>Sr.No.</th> <th>Amount (Rs.)</th> <th>Cheque No.</th> <th>Cheque Date</th> <th>Bank</th></tr>";
+                string paymentTable = @"<table border='1' style='width:80%; border-collapse:collapse; margin : 10px 10px;'><tr><th>Sr.No.</th> <th>Amount (Rs.)</th> <th>Cheque No.</th> <th>Cheque Date</th> <th>Bank</th></tr>";
 
                 double totPay = 0;
                 var objPayList = ctx.payment.Where(f => f.PlotID == plotId).ToList();
@@ -300,6 +367,10 @@ namespace services
                 paymentTable += "</table>";
                 tokens["Payment.Table"] = paymentTable;
                 tokens["Payment.TotalPayment"] = Convert.ToString(totPay);
+                tokens["Payment.TotalPayment.word"] = NumberToWords(Convert.ToInt32(totPay));
+                tokens["Face.Image"] = appPath + "Content/Images/photo.jpg";
+                tokens["Thumb.Image"] = appPath + "Content/Images/thumb.jpg";
+
             }
             return tokens;
         }

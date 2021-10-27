@@ -20,7 +20,10 @@ namespace GST.Controllers
             AuthDetails authdet = LoginUserDetails();
             var filters = new List<MySqlParameter>
             {
-                datatableService.CreateSqlParameter("@pUserId", authdet.UserId,  MySqlDbType.Int32)
+                datatableService.CreateSqlParameter("@pUserId", authdet.UserId,  MySqlDbType.Int32),
+                datatableService.CreateSqlParameter("@pName", search.Name,  MySqlDbType.VarChar),
+                datatableService.CreateSqlParameter("@pMobile", search.Mobile,  MySqlDbType.VarChar),
+                datatableService.CreateSqlParameter("@pShop", search.Shop,  MySqlDbType.VarChar)
             };
             var result = service.GetList(search, filters);
             return Ok(result);

@@ -12,6 +12,23 @@
         </button>
     </div>
 </div>
+<div class="row shadow-sm p-3">
+    <div class="col">
+        <input type="text" class="form-control" id="nameSearch" placeholder="Name">
+    </div>
+    <div class="col">
+        <input type="text" class="form-control" id="mobileSearch" placeholder="Mobile">
+    </div>
+    <div class="col">
+        <input type="text" class="form-control" id="shopSearch" placeholder="Shop/Office">
+    </div>
+    <div class="col">
+        <button type="button"
+                class="btn btn-info" onclick="LoadTable()">
+            Search
+        </button>
+    </div>
+</div>
 <div class="row">
     <div style="width:100%;padding:15px;">
         <table class="table table-hover"
@@ -32,6 +49,9 @@
         })
 
         function LoadTable() {
+            if (oTable) {
+                $('#tblCustomerList').DataTable().clear().destroy();
+            }
             oTable = $('#tblCustomerList').DataTable({
                 //dom: "<'row'<'col-sm-3'l><'col-sm-6'p><'col-sm-3 text-align-right'f>>" +
                 //    "<'row'<'col-sm-12'tr>>" +
@@ -42,59 +62,59 @@
                 "responsive": true,
                 initComplete: function () {
 
-                    $('#tblCustomerList thead tr')
-                        //.clone(true)
-                        .addClass('filters')
-                        //.appendTo('#tblCustomerList thead')
-                        ;
+                    //$('#tblCustomerList thead tr')
+                    //    //.clone(true)
+                    //    .addClass('filters')
+                    //    //.appendTo('#tblCustomerList thead')
+                    //    ;
 
-                    var api = this.api();
+                    //var api = this.api();
 
-                    // For each column
-                    api
-                        .columns()
-                        .eq(0)
-                        .each(function (colIdx) {
-                            if (colIdx == 4) return;
-                            // Set the header cell to contain the input element
-                            var cell = $('.filters th').eq(
-                                $(api.column(colIdx).header()).index()
-                            );
-                            var title = $(cell).text();
-                            //$(cell).html('<input type="text" placeholder="' + title + '" />');
-                            $(cell).append('<br><input type="text" placeholder="' + title + '" />');
+                    //// For each column
+                    //api
+                    //    .columns()
+                    //    .eq(0)
+                    //    .each(function (colIdx) {
+                    //        if (colIdx == 4) return;
+                    //        // Set the header cell to contain the input element
+                    //        var cell = $('.filters th').eq(
+                    //            $(api.column(colIdx).header()).index()
+                    //        );
+                    //        var title = $(cell).text();
+                    //        //$(cell).html('<input type="text" placeholder="' + title + '" />');
+                    //        $(cell).append('<br><input type="text" placeholder="' + title + '" />');
 
-                            // On every keypress in this input
-                            $(
-                                'input',
-                                $('.filters th').eq($(api.column(colIdx).header()).index())
-                            )
-                                .off('keyup change')
-                                .on('keyup change', function (e) {
-                                    e.stopPropagation();
+                    //        // On every keypress in this input
+                    //        $(
+                    //            'input',
+                    //            $('.filters th').eq($(api.column(colIdx).header()).index())
+                    //        )
+                    //            .off('keyup change')
+                    //            .on('keyup change', function (e) {
+                    //                e.stopPropagation();
 
-                            //        //// Get the search value
-                            //        //$(this).attr('title', $(this).val());
-                            //        //var regexr = '({search})'; //$(this).parents('th').find('select').val();
+                    //        //        //// Get the search value
+                    //        //        //$(this).attr('title', $(this).val());
+                    //        //        //var regexr = '({search})'; //$(this).parents('th').find('select').val();
 
-                            //        //var cursorPosition = this.selectionStart;
-                            //        //// Search the column for that value
-                            //        //api
-                            //        //    .column(colIdx)
-                            //        //    .search(
-                            //        //        this.value != ''
-                            //        //            ? regexr.replace('{search}', '(((' + this.value + ')))')
-                            //        //            : '',
-                            //        //        this.value != '',
-                            //        //        this.value == ''
-                            //        //    )
-                            //        //    .draw();
+                    //        //        //var cursorPosition = this.selectionStart;
+                    //        //        //// Search the column for that value
+                    //        //        //api
+                    //        //        //    .column(colIdx)
+                    //        //        //    .search(
+                    //        //        //        this.value != ''
+                    //        //        //            ? regexr.replace('{search}', '(((' + this.value + ')))')
+                    //        //        //            : '',
+                    //        //        //        this.value != '',
+                    //        //        //        this.value == ''
+                    //        //        //    )
+                    //        //        //    .draw();
 
-                            //        //$(this)
-                            //        //    .focus()[0]
-                            //        //    .setSelectionRange(cursorPosition, cursorPosition);
-                                });
-                        });
+                    //        //        //$(this)
+                    //        //        //    .focus()[0]
+                    //        //        //    .setSelectionRange(cursorPosition, cursorPosition);
+                    //            });
+                    //    });
                 },
                 "ajax": {
                     "url": AppConfig.ApiPath + "Customer/GetList",
@@ -102,7 +122,11 @@
                     "processing": true,
                     "serverSide": true,
                     "datetype": "json",
-                    "data": {}
+                    "data": {
+                        Name: $("#nameSearch").val(),
+                        Mobile: $("#mobileSearch").val(),
+                        Shop: $("#shopSearch").val(),
+                    }
                 },
                 "drawCallback": function () {
                     $(".paginate_button.current").addClass(" actionbtn hor mr-0 ml-1 active").removeClass("paginate_button current");
