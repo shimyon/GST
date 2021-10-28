@@ -44,7 +44,7 @@ namespace models.DatabaseTable
         [StringLength(50)]
         public string DirectionsWest { get; set; }
 
-        public int MaintenanceAmount { get; set; }
+        public int? MaintenanceAmount { get; set; }
 
         public int SellAmount { get; set; }
 

@@ -131,12 +131,12 @@ namespace GST.Controllers
                                 DirectionsNorth = row["DirectionsNorth"].Cast<string>(),
                                 DirectionsSouth = row["DirectionsSouth"].Cast<string>(),
                                 DirectionsEast = row["DirectionsEast"].Cast<string>(),
-                                DirectionsWest = row["DirectionsWest"].Cast<string>()
+                                DirectionsWest = row["DirectionsWest"].Cast<string>(),
+                                MaintenanceAmount = Convert.ToInt32(row["MaintenanceAmount"])
                             }
                             select item;
                         var listplot = query.ToList();
                         uploaded = plotservice.AddPlots(listplot);
-
                     }
                     else
                     {
@@ -149,10 +149,7 @@ namespace GST.Controllers
             {
                 result = Request.CreateResponse(HttpStatusCode.BadRequest);
             }
-
             return result;
-
         }
     }
-
 }

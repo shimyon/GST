@@ -189,6 +189,15 @@ namespace services
             }
         }
 
+        public customer GetCustomerByPlotId(int PlotId)
+        {
+            using (var ctx = new AppDb())
+            {
+                return ctx.customer.FirstOrDefault(f => f.PlotID == PlotId);
+            }
+
+        }
+
         public Dictionary<string, string> TokenData(int plotId, string tokenTemplate)
         {
             string appPath = ConfigurationManager.AppSettings["AppPath"];
@@ -223,8 +232,8 @@ namespace services
                     tokens["Payment.TitleClearFrom"] = plotDetails.TitleClearFrom.HasValue ? plotDetails.TitleClearFrom.Value.ToString("dd-MM-yyyy") : "";
                     tokens["Payment.TitleClearDt"] = plotDetails.TitleClearDt.HasValue ? plotDetails.TitleClearDt.Value.ToString("dd-MM-yyyy") : "";
 
-                    tokens["Maintenance.Amount"] = plotDetails.MaintenanceAmount.ToString("#.##");
-                    tokens["Maintenance.Amount.word"] = NumberToWords(Convert.ToInt32(plotDetails.MaintenanceAmount));
+                    tokens["Maintenance.Amount"] = plotDetails.MaintenanceAmount.HasValue ? plotDetails.MaintenanceAmount.Value.ToString("#.##") : "0.00";
+                    tokens["Maintenance.Amount.word"] = NumberToWords(Convert.ToInt32(plotDetails.MaintenanceAmount ?? 0));
 
                     tokens["Sale.Amount"] = plotDetails.SellAmount.ToString("#.##");
                     tokens["Sale.Amount.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount));
@@ -318,7 +327,7 @@ namespace services
                         saleDeedSignature += @"</tbody></table></div>";
                     }
                     saleDeedSignature = saleDeedSignature.Replace("{{Face.Image}}", FaceImage).Replace("{{Thumb.Image}}", ThumbImage);
-                   
+
                     tokens["SaleDeed.Signature"] = saleDeedSignature;
 
                     customerDetails += "</table>";

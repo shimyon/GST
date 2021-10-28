@@ -12,5 +12,12 @@ namespace models.ViewModels
         public string Subject { get; set; }
         public string ToMailId { get; set; }
         public string ToMailName { get; set; }
+
+        public List<string> AttchPath { get; set; }
+
+        public MailSettingViewModel()
+        {
+            AttchPath = new List<string>();
+        }
     }
 }
