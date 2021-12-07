@@ -5,6 +5,23 @@
         }
         return false;
     },
+    changepass: () => {
+        //ajaxcall.post({
+        //    url: AppConfig.ApiPath + "Site/AddData",
+        //    data: {
+        //        SiteName: $("#SiteName").val(),
+        //        Address: $("#Address").val(),
+        //        OwnerName: $("#OwnerName").val(),
+        //        Developer: $("#Developer").val(),
+        //        WebSite: $("#WebSite").val()
+        //    }
+        //}).then(res => {
+        //    alert("Saved successfully");
+        //    window.history.back();
+        //}, err => {
+        //    alert(err.responseJSON);
+        //})
+    },
     logout: () => {
         localStorage.clear();
         location.replace("./");

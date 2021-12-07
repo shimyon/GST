@@ -113,6 +113,7 @@ namespace GST.Controllers
                         postedFile.SaveAs(temppath);
                         var book = new LinqToExcel.ExcelQueryFactory(temppath);
                         int siteId = int.Parse(httpRequest.Form["siteid"]);
+                        int MaintenanceAmount = 0;
                         var query =
                             from row in book.Worksheet(0)
                             let item = new plot
@@ -132,7 +133,7 @@ namespace GST.Controllers
                                 DirectionsSouth = row["DirectionsSouth"].Cast<string>(),
                                 DirectionsEast = row["DirectionsEast"].Cast<string>(),
                                 DirectionsWest = row["DirectionsWest"].Cast<string>(),
-                                MaintenanceAmount = Convert.ToInt32(row["MaintenanceAmount"])
+                                MaintenanceAmount = int.TryParse(row["MaintenanceAmount"], out MaintenanceAmount) ? Convert.ToInt32(row["MaintenanceAmount"]) : 0
                             }
                             select item;
                         var listplot = query.ToList();
