@@ -36,23 +36,23 @@
             </div>
         </div>
         @* <div class="row">
-            <div class="col-md-4">
-                <label>Upload CSC</label>
-                <input type="file" class="form-control" id="CSC">
-            </div>
-            <div class="col-md-4 ">
-                <div class="form-group">
-                    <label>Upload Banakhat</label>
-                    <input type="file" class="form-control" id="Banakhat">
+                <div class="col-md-4">
+                    <label>Upload CSC</label>
+                    <input type="file" class="form-control" id="CSC">
                 </div>
-            </div>
-            <div class="col-md-4 ">
-                <div class="form-group">
-                    <label for="inputAddress2">Upload Sale Deed</label>
-                    <input type="file" class="form-control" id="SaleDeed">
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <label>Upload Banakhat</label>
+                        <input type="file" class="form-control" id="Banakhat">
+                    </div>
                 </div>
-            </div>
-        </div>*@
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <label for="inputAddress2">Upload Sale Deed</label>
+                        <input type="file" class="form-control" id="SaleDeed">
+                    </div>
+                </div>
+            </div>*@
         <div class="row" style="display:none;" id="logodiv">
             <div class="col-md-4 ">
                 <div class="form-group">
@@ -64,15 +64,24 @@
                 <img src="~/Content/ClientLogo/emoiss/" alt="Client Logo" style="height:100px;" class="rounded shadow-sm" id="logoimg" />
             </div>
         </div>
-        <div class="row" style="display:none;" id="shopdiv">
-            <div class="col-md-4 ">
-                <div class="form-group">
-                    <label for="uploadlogo">Upload Shop/Office excel file</label>
-                    <input type="file" class="form-control" id="shopexcel" onchange="shopfilechange()">
+        <div class="row" style="display:none; margin-top:10px;" id="shopdiv">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Upload Shop/CSV file</span>
+                    </div>
+                    <div class="custom-file">
+                        <label for="uploadlogo">Upload Shop/CSV file</label>
+                        <input type="file" class="custom-file-input" id="shopexcel" onchange="shopfilechange()" aria-describedby="inputGroupFileAddon04">
+                        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-dark" type="button" id="inputGroupFileAddon04" onclick="clearUploadPlot();">Clear</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="margin-top:10px;">
             <div class="col col-md-4">
                 <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
                 <button type="button" class="btn btn-danger" style="margin-left:5px;" onclick="goBack();">Cancel</button>
@@ -98,6 +107,10 @@
         function setLogo() {
             let rondom = Math.round(Math.random() * 100000);
             $("#logoimg").attr("src", `./Content/Images/SiteLogos/${id}.png?v=${rondom}`);
+        }
+
+        function clearUploadPlot() {
+            $("#shopexcel").val('');
         }
 
         function GetById() {
@@ -194,6 +207,10 @@
         }
 
         function shopfilechange() {
+            if ($('#shopexcel').val() == null || $('#shopexcel').val() == "") {
+                alert("return");
+                return;
+            }
             var data = new FormData();
             var file = $('#shopexcel')[0].files[0];
             data.append('file', file);
