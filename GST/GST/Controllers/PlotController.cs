@@ -105,19 +105,19 @@ namespace GST.Controllers
             var example_html = "<html><body></body></html>";
             var example_css = @".headline{font-size:200%}";
             string filename = "Sample";
-            if (plotObj.DocumentType == "AllotmentLetter")
+            if (plotObj.DocumentType.Contains("Allotment Letter"))
             {
                 var result = service.DownloadAllotmentLetter(plotObj);
                 example_html = "<html><body>" + result + "</body></html>";
                 example_css = @".headline{font-size:200%}";
             }
-            else if (plotObj.DocumentType == "Banakhat")
+            else if (plotObj.DocumentType.Contains("Banakhat"))
             {
                 var result = service.DownloadBanakhat(plotObj);
                 example_html = "<html><body>" + result + "</body></html>";
                 example_css = @".headline{font-size:200%}";
             }
-            else if (plotObj.DocumentType == "Sale Deed")
+            else if (plotObj.DocumentType.Contains("Sale Deed"))
             {
                 var result = service.DownloadSaleDeed(plotObj);
                 example_html = "<html><body>" + result + "</body></html>";

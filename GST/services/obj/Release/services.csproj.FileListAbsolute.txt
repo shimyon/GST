@@ -120,3 +120,4 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Release\services.csproj.AssemblyRe
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Release\services.csproj.CoreCompileInputs.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Release\services.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Release\services.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\services\obj\Release\services.csproj.CopyComplete

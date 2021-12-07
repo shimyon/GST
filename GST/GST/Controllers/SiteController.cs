@@ -11,6 +11,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using LINQtoCSV;
+
 namespace GST.Controllers
 {
     public class SiteController : BaseApiController
@@ -101,47 +103,59 @@ namespace GST.Controllers
             var httpRequest = HttpContext.Current.Request;
             if (httpRequest.Files.Count > 0)
             {
+
                 string uploaded = "Uploaded";
                 foreach (string file in httpRequest.Files)
+
                 {
                     var postedFile = httpRequest.Files[file];
                     string extension = System.IO.Path.GetExtension(postedFile.FileName);
-                    List<string> extionList = new List<string> { ".xls", ".xlsx" };
+                    List<string> extionList = new List<string> { ".csv" };
                     if (extionList.Contains(extension.ToLower()))
                     {
                         string temppath = Path.Combine(Path.GetTempPath(), postedFile.FileName);
                         postedFile.SaveAs(temppath);
-                        var book = new LinqToExcel.ExcelQueryFactory(temppath);
+                        CsvFileDescription inputFileDescription = new CsvFileDescription
+                        {
+                            IgnoreUnknownColumns = true,
+                            SeparatorChar = ',',
+                            FirstLineHasColumnNames = true
+                        };
+                        CsvContext cc = new CsvContext();
+                        IEnumerable<PlotCSV> plotsList = cc.Read<PlotCSV>(temppath, inputFileDescription);
+                        //var count = products.Count();
+                        //var book = new LinqToExcel.ExcelQueryFactory(temppath);
+                        //var book = new CsvHelper.CsvContext(temppath);
                         int siteId = int.Parse(httpRequest.Form["siteid"]);
                         int MaintenanceAmount = 0;
-                        var query =
-                            from row in book.Worksheet(0)
-                            let item = new plot
-                            {
-                                SiteID = siteId,
-                                SellAmount = 10000,
-                                Installments = 10,
-                                CreatedBy = userDet.UserId,
-                                UpdatedBy = userDet.UserId,
-                                Floor = row["Floor"].Cast<string>(),
-                                PlotNo = row["UnitNo"].Cast<string>(),
-                                CarpetArea = row["CarpetArea"].Cast<string>(),
-                                ConstructionArea = row["ConstructionArea"].Cast<string>(),
-                                UndividedLand = row["UndividedLand"].Cast<string>(),
-                                SuperBuildUp = row["SuperBuildUp"].Cast<string>(),
-                                DirectionsNorth = row["DirectionsNorth"].Cast<string>(),
-                                DirectionsSouth = row["DirectionsSouth"].Cast<string>(),
-                                DirectionsEast = row["DirectionsEast"].Cast<string>(),
-                                DirectionsWest = row["DirectionsWest"].Cast<string>(),
-                                MaintenanceAmount = int.TryParse(row["MaintenanceAmount"], out MaintenanceAmount) ? Convert.ToInt32(row["MaintenanceAmount"]) : 0
-                            }
-                            select item;
+
+                        var query = from row in plotsList
+                                    let item = new plot
+                                    {
+                                        SiteID = siteId,
+                                        SellAmount = 10000,
+                                        Installments = 10,
+                                        CreatedBy = userDet.UserId,
+                                        UpdatedBy = userDet.UserId,
+                                        Floor = row.Floor,
+                                        PlotNo = row.UnitNo,
+                                        CarpetArea = row.CarpetArea,
+                                        ConstructionArea = row.ConstructionArea,
+                                        UndividedLand = row.UndividedLand,
+                                        SuperBuildUp = row.SuperBuildUp,
+                                        DirectionsNorth = row.DirectionsNorth,
+                                        DirectionsSouth = row.DirectionsSouth,
+                                        DirectionsEast = row.DirectionsEast,
+                                        DirectionsWest = row.DirectionsWest,
+                                        MaintenanceAmount = int.TryParse(row.MaintenanceAmount, out MaintenanceAmount) ? Convert.ToInt32(row.MaintenanceAmount) : 0
+                                    }
+                                    select item;
                         var listplot = query.ToList();
                         uploaded = plotservice.AddPlots(listplot);
                     }
                     else
                     {
-                        uploaded = "Only following file will be uploaded: .xls, .xlsx";
+                        uploaded = "Only following file will be uploaded: .csv";
                     }
                 }
                 result = Request.CreateResponse(HttpStatusCode.Created, uploaded);

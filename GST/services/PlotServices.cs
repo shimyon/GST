@@ -110,12 +110,12 @@ namespace services
         {
             try
             {
+                
                 using (var ctx = new AppDb())
                 {
                     string data = string.Empty;
                     Dictionary<string, string> tokens = TokenData(plotData.Id, "Payment");
-
-                    var template = ctx.template.FirstOrDefault(f => f.TemplateName == "Allotment Letter");
+                    var template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Allotment Letter" && f.TemplateName== plotData.DocumentType);
                     if (template != null)
                     {
                         data = ReplaceToken(template.TemplateData, tokens);
@@ -150,7 +150,7 @@ namespace services
 
                     var objPay = ctx.payment.Where(f => f.PlotID == plotDetails.Id).ToList();
 
-                    var template = ctx.template.FirstOrDefault(f => f.TemplateName == "ONE WEST-Banakhat");
+                    var template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Banakhat" && f.TemplateName == plotData.DocumentType);
                     if (template != null)
                     {
                         data = ReplaceToken(template.TemplateData, tokens);
@@ -174,7 +174,7 @@ namespace services
                     string data = string.Empty;
                     var tokens = TokenData(plotData.Id, "Sale Deed");
 
-                    var template = ctx.template.FirstOrDefault(f => f.TemplateName == "ONE WEST-Sale Deed");
+                    var template = ctx.template.FirstOrDefault (f => f.TemplateFor == "Sale Deed" && f.TemplateName == plotData.DocumentType);
                     if (template != null)
                     {
                         data = ReplaceToken(template.TemplateData, tokens);
