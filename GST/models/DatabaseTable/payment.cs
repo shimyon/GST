@@ -25,6 +25,10 @@ namespace models.DatabaseTable
         [StringLength(15)]
         public string Part { get; set; }
 
+
+        [NotMapped]
+        public string SiteName { get; set; }
+
         public DateTime? DateOfIssue { get; set; }
 
         [NotMapped]

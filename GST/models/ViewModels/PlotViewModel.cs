@@ -77,4 +77,21 @@ namespace GST.Controllers
 
         public DateTime? TitleClearDt { get; set; }
     }
+
+    public class PlotCSV
+    {
+        public string Floor { get; set; }
+        public string UnitNo { get; set; }
+        public string CarpetArea { get; set; }
+        public string Undevided { get; set; }
+        public string ConstructionArea { get; set; }
+        public string UndividedLand { get; set; }
+        public string SuperBuildUp { get; set; }
+        public string DirectionsNorth { get; set; }
+        public string DirectionsSouth { get; set; }
+        public string DirectionsEast { get; set; }
+        public string DirectionsWest { get; set; }
+        public string MaintenanceAmount { get; set; }
+
+    }
 }

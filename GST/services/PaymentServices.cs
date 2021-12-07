@@ -114,7 +114,8 @@ namespace services
                         tokens["Site.Developer"] = siteDetails.Developer;
                         tokens["Site.WebSite"] = siteDetails.WebSite;
                     }
-                    var template = ctx.template.FirstOrDefault(f => f.TemplateName == "AIM DEVLOPERD-Payment Receipt");
+
+                    var template = ctx.template.FirstOrDefault (f => f.TemplateFor == "Payment" && f.TemplateName == (paymentData.SiteName == "ONE WEST"? "ONE WEST -Payment Receipt": "INFINITY PARK -Payment Recipt"));
                     if (template != null)
                     {
                         data = ReplaceToken(template.TemplateData, tokens);

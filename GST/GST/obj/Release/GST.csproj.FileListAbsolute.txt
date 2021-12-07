@@ -263,6 +263,10 @@ D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\Microsoft.Owin.Security.MicrosoftAccoun
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\MySql.Data.EntityFramework.xml
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.csproj.AssemblyReference.cache
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.csproj.CoreCompileInputs.cache
-D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.csproj.CopyComplete
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.dll
 D:\Shimyon\Emoiss\emoiss\GST\GST\GST\obj\Release\GST.pdb
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\LINQtoCSV.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\CsvHelper.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.ValueTuple.dll
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\CsvHelper.xml
+D:\Shimyon\Emoiss\emoiss\GST\GST\GST\bin\System.ValueTuple.xml

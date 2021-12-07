@@ -57,6 +57,7 @@ namespace GST.Controllers
         public HttpResponseMessage DownloadReceipt(payment paymentobj)
         {
             string filename = "Sample";
+            //paymentobj.SiteName.Contains("Payment");
             var result = service.DownloadReceipt(paymentobj);
             var example_html = "<html><body>" + result + "</body></html>";
             byte[] buffer = GetTemplate(paymentobj, example_html);
