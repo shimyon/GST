@@ -103,7 +103,15 @@ namespace GST.Controllers
         private byte[] GetTemplate(plot plotObj)
         {
             var example_html = "<html><body></body></html>";
-            var example_css = @".headline{font-size:200%}";
+            var example_css = @"
+                    body { 
+                        padding: 20px 30px;
+                        font-size: 14px;
+                        font-family:""Calibri, sans-serif"";
+                    }
+                    .headline{font-size:200%}, 
+                    td,th{ padding: 2px; }
+                    ";
             string filename = "Sample";
             if (plotObj.DocumentType.Contains("Allotment Letter"))
             {

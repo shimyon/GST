@@ -113,6 +113,7 @@ namespace services
                         tokens["Site.Address"] = siteDetails.Address;
                         tokens["Site.Developer"] = siteDetails.Developer;
                         tokens["Site.WebSite"] = siteDetails.WebSite;
+                        tokens["Site.SiteName"] = siteDetails.SiteName;
                     }
 
                     var template = ctx.template.FirstOrDefault (f => f.TemplateFor == "Payment" && f.TemplateName == (paymentData.SiteName == "ONE WEST"? "ONE WEST -Payment Receipt": "INFINITY PARK -Payment Recipt"));

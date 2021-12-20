@@ -1,0 +1,2 @@
+Floor,UnitNo,CarpetArea,ConstructionArea,ProportionateLand,UndividedLand,SuperBuildUp,DirectionsNorth,DirectionsSouth,DirectionsEast,DirectionsWest,MaintenanceAmount
+1st Floor,HF1,1000,900,200,100,1400,Passage,Constructed Wall,GF2,Wall,5000

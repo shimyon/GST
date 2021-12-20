@@ -55,11 +55,11 @@ namespace services
                         }
                         if (customerData.RegNo != null)
                         {
-                            plot.RegNo = customerData.RegNo ;
+                            plot.RegNo = customerData.RegNo;
                         }
                         if (customerData.RegDate != null)
                         {
-                            plot.RegDate = customerData.RegDate ;
+                            plot.RegDate = customerData.RegDate;
                         }
                         if (customerData.AllotmentLtDt != null)
                         {
@@ -73,6 +73,8 @@ namespace services
                         {
                             plot.TitleClearDt = customerData.TitleClearDt;
                         }
+                        plot.Bank = customerData.Bank;
+
                     }
                     var intSave = ctx.SaveChanges();
                     return intSave;
@@ -113,7 +115,7 @@ namespace services
             {
                 var data = db.customer.Where(f => f.PlotID == PlotId).ToList();
                 var plot = db.plot.FirstOrDefault(f => f.Id == PlotId);
-                return new { customer = data, plot=plot };
+                return new { customer = data, plot = plot };
             }
         }
 
