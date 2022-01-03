@@ -27,5 +27,10 @@ namespace models.DatabaseTable
         [StringLength(50)]
         public string OwnerName { get; set; }
 
+        public Int16? BanakhatId { get; set; }
+        public Int16? SaleDeedId { get; set; }
+        public Int16? AllotmentId { get; set; }
+        public Int16? PaymentId { get; set; }
+
     }
 }

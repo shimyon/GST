@@ -228,7 +228,6 @@ E:\shimyon\Other\emoiss\gst\GST\models\bin\Debug\System.Buffers.xml
 E:\shimyon\Other\emoiss\gst\GST\models\bin\Debug\System.Memory.xml
 E:\shimyon\Other\emoiss\gst\GST\models\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 E:\shimyon\Other\emoiss\gst\GST\models\bin\Debug\System.Threading.Tasks.Extensions.xml
-E:\shimyon\Other\emoiss\gst\GST\models\obj\Debug\models.csproj.AssemblyReference.cache
 E:\shimyon\Other\emoiss\gst\GST\models\obj\Debug\models.csproj.CoreCompileInputs.cache
 E:\shimyon\Other\emoiss\gst\GST\models\obj\Debug\models.csproj.CopyComplete
 E:\shimyon\Other\emoiss\gst\GST\models\obj\Debug\models.dll

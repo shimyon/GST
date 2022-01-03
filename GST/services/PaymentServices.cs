@@ -97,6 +97,7 @@ namespace services
                         tokens["Payment.Amount.word"] = NumberToWords(objPay.Amount ?? 0).ToUpperInvariant() + " Only/-";
                     }
 
+                    Int16? paymentTmplId = null;
                     customer customer;
                     var plotDetails = ctx.plot.First(f => f.Id == objPay.PlotID);
                     if (plotDetails != null)
@@ -114,9 +115,17 @@ namespace services
                         tokens["Site.Developer"] = siteDetails.Developer;
                         tokens["Site.WebSite"] = siteDetails.WebSite;
                         tokens["Site.SiteName"] = siteDetails.SiteName;
+                        paymentTmplId = siteDetails.PaymentId;
                     }
-
-                    var template = ctx.template.FirstOrDefault (f => f.TemplateFor == "Payment" && f.TemplateName == (paymentData.SiteName == "ONE WEST"? "ONE WEST -Payment Receipt": "INFINITY PARK -Payment Recipt"));
+                    template template = null;
+                    if (paymentTmplId != null)
+                    {
+                        template = ctx.template.FirstOrDefault(f => f.Id == paymentTmplId);
+                    }
+                    else
+                    {
+                        template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Payment" && f.TemplateName == (paymentData.SiteName + "-Payment Receipt"));
+                    }
                     if (template != null)
                     {
                         data = ReplaceToken(template.TemplateData, tokens);
