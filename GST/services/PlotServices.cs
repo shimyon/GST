@@ -254,21 +254,50 @@ namespace services
                     tokens["Amount.45"] = (plotDetails.SellAmount * 0.15).ToString("#.##");
                     tokens["Amount.45.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.15));
 
-                    tokens["Amount.70"] = (plotDetails.SellAmount * 0.25).ToString("#.##");
-                    tokens["Amount.70.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.25));
+                    tokens["Amount.50"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
+                    tokens["Amount.50.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.05));
+
+                    tokens["Amount.55"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
+                    tokens["Amount.55.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.05));
+
+                    tokens["Amount.60"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
+                    tokens["Amount.60.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.05));
+
+                    tokens["Amount.65"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
+                    tokens["Amount.65.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.05));
+
+                    tokens["Amount.70"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
+                    tokens["Amount.70.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.05));
 
 
-                    double slabAmount = (plotDetails.SellAmount * 0.25);
+                    double slabAmount = (plotDetails.SellAmount * 0.10);
 
-                    tokens["Amount.FirstSlab"] = (slabAmount * 0.40).ToString("#.##");
-                    tokens["Amount.FirstSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.40)));
+                    tokens["Amount.FirstSlab"] = (slabAmount * 0.05).ToString("#.##");
+                    tokens["Amount.FirstSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
 
-                    tokens["Amount.ThirdSlab"] = (slabAmount * 0.40).ToString("#.##");
-                    tokens["Amount.ThirdSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.40)));
+                    tokens["Amount.SecondSlab"] = (slabAmount * 0.05).ToString("#.##");
+                    tokens["Amount.SecondSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
+                    
+                    tokens["Amount.ThirdSlab"] = (slabAmount * 0.05).ToString("#.##");
+                    tokens["Amount.ThirdSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
 
-                    tokens["Amount.FifthSlab"] = (slabAmount * 0.20).ToString("#.##");
-                    tokens["Amount.FifthSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.20)));
-
+                    tokens["Amount.FourSlab"] = (slabAmount * 0.05).ToString("#.##");
+                    tokens["Amount.FourSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
+                    
+                    tokens["Amount.FifthSlab"] = (slabAmount * 0.05).ToString("#.##");
+                    tokens["Amount.FifthSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
+                    
+                    tokens["Amount.SixSlab"] = (slabAmount * 0.05).ToString("#.##");
+                    tokens["Amount.SixSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
+                    
+                    tokens["Amount.SevenSlab"] = (slabAmount * 0.05).ToString("#.##");
+                    tokens["Amount.SevenSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
+                    
+                    tokens["Amount.EightSlab"] = (slabAmount * 0.05).ToString("#.##");
+                    tokens["Amount.EightSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
+                    
+                    tokens["Amount.NineSlab"] = (slabAmount * 0.05).ToString("#.##");
+                    tokens["Amount.NineSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
 
 
                     tokens["Amount.75"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
@@ -279,9 +308,15 @@ namespace services
 
                     tokens["Amount.85"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
                     tokens["Amount.85.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.05)));
+                    
+                    tokens["Amount.90"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
+                    tokens["Amount.90.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.05)));
+                    
+                    tokens["Amount.94"] = (plotDetails.SellAmount * 0.04).ToString("#.##");
+                    tokens["Amount.94.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.04)));
 
-                    tokens["Amount.95"] = (plotDetails.SellAmount * 0.10).ToString("#.##");
-                    tokens["Amount.95.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.10)));
+                    tokens["Amount.97"] = (plotDetails.SellAmount * 0.03).ToString("#.##");
+                    tokens["Amount.97.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.03)));
 
                     tokens["Amount.5"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
                     tokens["Amount.5.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.05)));
