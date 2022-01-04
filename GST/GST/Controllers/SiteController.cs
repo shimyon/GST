@@ -103,10 +103,8 @@ namespace GST.Controllers
             var httpRequest = HttpContext.Current.Request;
             if (httpRequest.Files.Count > 0)
             {
-
                 string uploaded = "Uploaded";
                 foreach (string file in httpRequest.Files)
-
                 {
                     var postedFile = httpRequest.Files[file];
                     string extension = System.IO.Path.GetExtension(postedFile.FileName);
@@ -144,6 +142,7 @@ namespace GST.Controllers
                                         UndividedLand = row.UndividedLand,
                                         UndividedLandCommArea = row.UndividedLandCommArea,
                                         SuperBuildUp = row.SuperBuildUp,
+                                        ProportionateLand = row.ProportionateLand,
                                         DirectionsNorth = row.DirectionsNorth,
                                         DirectionsSouth = row.DirectionsSouth,
                                         DirectionsEast = row.DirectionsEast,

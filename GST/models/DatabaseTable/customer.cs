@@ -29,7 +29,7 @@ namespace models.DatabaseTable
         [StringLength(50)]
         public string PANCard { get; set; }
 
-        [StringLength(50)]
+        [StringLength(1000)]
         public string Address { get; set; }
 
         [StringLength(15)]
@@ -43,6 +43,9 @@ namespace models.DatabaseTable
 
         [NotMapped]
         public int? SellAmount { get; set; }
+
+        [NotMapped]
+        public string Bank { get; set; }
 
         [NotMapped]
         public DateTime? RegDate { get; set; }

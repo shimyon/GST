@@ -36,11 +36,11 @@ namespace GST.Controllers
 
         public string PlotNo { get; set; }
 
-        public int Amount { get; set; }
+        public int? Amount { get; set; }
 
         //public string Name { get; set; }
 
-        public int ChequeNo { get; set; }
+        public int? ChequeNo { get; set; }
 
         public string Bank { get; set; }
 

@@ -88,6 +88,7 @@ namespace GST.Controllers
         public string UndividedLand { get; set; }
         public string UndividedLandCommArea { get; set; }
         public string SuperBuildUp { get; set; }
+        public string ProportionateLand { get; set; }
         public string DirectionsNorth { get; set; }
         public string DirectionsSouth { get; set; }
         public string DirectionsEast { get; set; }

@@ -10,6 +10,14 @@
         .actioncol {
             width: 200px;
         }
+
+        .TitleDiv {
+            display: none !important;
+        }
+
+        .bankDiv.hidediv {
+            display: none !important;
+        }
     </style>
 }
 <div class="container mt-3">
@@ -116,21 +124,35 @@
                                 <input type="date" class="form-control AllotmentLtDt" value="" id="AllotmentLtDt">
                             </div>
                         </div>
-                        <div class="col-md-4 SaleAmountDiv">
+                        <div class="col-md-4 SaleAmountDiv TitleDiv">
                             <div class="form-group">
                                 <label>Title Clearence From</label>
                                 <input type="date" class="form-control TitleClearFrom" value="" id="TitleClearFrom">
                             </div>
                         </div>
-                        <div class="col-md-4 SaleAmountDiv">
+                        <div class="col-md-4 SaleAmountDiv TitleDiv">
                             <div class="form-group">
                                 <label>Title Clearence Date</label>
                                 <input type="date" class="form-control TitleClearDt" value="" id="TitleClearDt">
                             </div>
                         </div>
+                        <div class="col-md-4 SaleAmountDiv">
+                            <div class="form-group">
+                                <div class="icheck-primary">
+                                    <input type="checkbox" id="loancheck" class="loancheck" onchange="isLoanChange();" />
+                                    <label for="loancheck">Loan</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 SaleAmountDiv bankDiv hidediv">
+                            <div class="form-group">
+                                <label>Bank Name</label>
+                                <input type="text" class="form-control bankname" value="" id="bankname">
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row mt-5">
                         <div class="col col-md-4">
                             <input type="hidden" class="customerid" value="0" />
                             <button type="button" class="btn btn-primary noSales" onclick="saveCustomerData(this);">Save</button>
@@ -350,6 +372,14 @@
             }
         }
 
+        function isLoanChange() {
+            if ($("#loancheck").is(":checked")) {
+                $(".bankDiv").removeClass("hidediv");
+            } else {
+                $(".bankDiv").addClass("hidediv");
+            }
+        }
+
         function PlotIDDropDownAll() {
             return new Promise((result, error) => {
                 ajaxcall.get({
@@ -358,7 +388,6 @@
                         Id: $("#SiteName").val()
                     }
                 }).then((res) => {
-                    debugger
                     if (res) {
                         $("#PlotID").empty();
                         $("<option>").val("0").text("Select").appendTo("#PlotID");
@@ -436,6 +465,14 @@
                     $(".TitleClearFrom").val(response.plot.TitleClearFrom);
                     $(".TitleClearDt").val(response.plot.TitleClearDt);
 
+                    $(".loancheck").prop("checked", false);
+                    isLoanChange();
+                    $(".bankname").val('');
+                    if (response.plot.Bank) {
+                        $(".loancheck").prop("checked", true);
+                        isLoanChange();
+                        $(".bankname").val(response.plot.Bank);
+                    }
                     var now = new Date(response.plot.RegDate)
                     var day = ("0" + now.getDate()).slice(-2);
                     var month = ("0" + (now.getMonth() + 1)).slice(-2);
@@ -468,14 +505,14 @@
             ajaxcall.post({
                 url: AppConfig.ApiPath + "Payment/Delete",
                 data: {
-                    Id : Id
+                    Id: Id
                 }
             }).then(res => {
                 LoadPaymentTable();
             }, err => {
                 alert(err.responseJSON);
             })
-           
+
         }
 
         function getPaymentData() {
@@ -556,7 +593,7 @@
                     $(".btnemailPay").click(function () {
                         let Id = $(this).attr("data-id");
                         SendReceipt(Id);
-                    });                    
+                    });
                 },
                 "columns": [
                     {
@@ -565,9 +602,9 @@
                         class: "text-center actioncol",
                         render: (data, display, alldata) => {
                             return `<button class ='btneditPay noSales actionbtn btn  btn-sm' data-id='${data}' title="Edit"><i class ='fa fa-edit'></i></button>
-                                    <button class ='btndelPay noSales actionbtn btn btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
-                                    <button class ='btndownloadPay actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
-                                    <button class ='btnemailPay noSales actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
+                                            <button class ='btndelPay noSales actionbtn btn btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
+                                            <button class ='btndownloadPay actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
+                                            <button class ='btnemailPay noSales actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
                         }
                     },
                     //{
@@ -675,7 +712,8 @@
                     RegDate: $(".RegDate", $custdiv).val(),
                     AllotmentLtDt: $(".AllotmentLtDt", $custdiv).val(),
                     TitleClearFrom: $(".TitleClearFrom", $custdiv).val(),
-                    TitleClearDt: $(".TitleClearDt", $custdiv).val()
+                    TitleClearDt: $(".TitleClearDt", $custdiv).val(),
+                    Bank: $(".bankname", $custdiv).val()
                 }
             }).then(res => {
                 alert("Saved successfully");
@@ -748,7 +786,6 @@
         }
 
         function DownloadReceipt(paymentId) {
-            debugger
             ajaxcall.file({
                 url: AppConfig.ApiPath + "Payment/DownloadReceipt",
                 data: {
@@ -844,7 +881,7 @@
                 url: AppConfig.ApiPath + "Plot/DocumentDownload",
                 data: {
                     Id: $("#PlotID").val(),
-                    DocumentType: $("#SiteName option:selected").text()+"-"+DocumentType
+                    DocumentType: $("#SiteName option:selected").text() + "-" + DocumentType
                 }
             }).then(blobData => {
                 var path = GenBlobURL(blobData);

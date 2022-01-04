@@ -35,6 +35,9 @@ namespace models.DatabaseTable
         [StringLength(50)]
         public string SuperBuildUp { get; set; }
 
+        [StringLength(50)] 
+        public string ProportionateLand { get; set; }
+
         [StringLength(50)]
         public string DirectionsNorth { get; set; }
 
@@ -120,5 +123,6 @@ namespace models.DatabaseTable
             }
         }
 
+        public string Bank { get; set; }
     }
 }
