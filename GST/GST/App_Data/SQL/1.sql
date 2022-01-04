@@ -1,0 +1,4 @@
+ALTER TABLE `site`
+	ADD COLUMN `BanakhatId` INT NULL DEFAULT NULL COMMENT 'Template Id' AFTER `LogoPath`,
+	ADD COLUMN `SaleDeedId` INT NULL DEFAULT NULL COMMENT 'Template Id' AFTER `BanakhatId`,
+	ADD COLUMN `AllotmentId` INT NULL DEFAULT NULL COMMENT 'Template Id' AFTER `SaleDeedId`;
