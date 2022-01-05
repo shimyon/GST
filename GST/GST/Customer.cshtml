@@ -208,12 +208,12 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4 ">
+                        @*<div class="col-md-4 ">
                             <div class="form-group">
                                 <label>Date of Issue</label>
                                 <input type="date" class="form-control" id="DateOfIssue">
                             </div>
-                        </div>
+                        </div>*@
                         <div class="col-md-4 ">
                             <div class="form-group">
                                 <label>Check Date</label>
@@ -375,6 +375,7 @@
                 $(".bankDiv").removeClass("hidediv");
             } else {
                 $(".bankDiv").addClass("hidediv");
+                $(".bankname").val('');
             }
         }
 
@@ -524,11 +525,11 @@
                     $("#ChequeNo").val(res.ChequeNo);
                     $("#Bank").val(res.Bank);
 
-                    var now = new Date(res.DateOfIssue)
-                    var day = ("0" + now.getDate()).slice(-2);
-                    var month = ("0" + (now.getMonth() + 1)).slice(-2);
-                    var today = now.getFullYear() + "-" + (month) + "-" + (day);
-                    $('#DateOfIssue').val(today);
+                    //var now = new Date(res.DateOfIssue)
+                    //var day = ("0" + now.getDate()).slice(-2);
+                    //var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                    //var today = now.getFullYear() + "-" + (month) + "-" + (day);
+                    //$('#DateOfIssue').val(today);
 
                     now = new Date(res.ChequeDate)
                     day = ("0" + now.getDate()).slice(-2);
@@ -625,11 +626,11 @@
                         data: "Bank",
                         class: "text-center"
                     },
-                    {
-                        title: "Date Of Issue",
-                        data: "DateOfIssueformate",
-                        class: "text-center"
-                    },
+                    //{
+                    //    title: "Date Of Issue",
+                    //    data: "DateOfIssueformate",
+                    //    class: "text-center"
+                    //},
                     {
                         title: "Cheque Date",
                         data: "ChequeDateformate",
@@ -741,11 +742,11 @@
                 return false;
             }
 
-            if (!$("#DateOfIssue").val()) {
-                alert('Please enter Date Of Issue');
-                $("#DateOfIssue").focus()
-                return false;
-            }
+            //if (!$("#DateOfIssue").val()) {
+            //    alert('Please enter Date Of Issue');
+            //    $("#DateOfIssue").focus()
+            //    return false;
+            //}
 
             if (!$("#ChequeDate").val()) {
                 alert('Please enter Check Date');
@@ -761,7 +762,7 @@
                     Amount: $("#Amount").val(),
                     ChequeNo: $("#ChequeNo").val(),
                     Bank: $("#Bank").val(),
-                    DateOfIssue: $("#DateOfIssue").val(),
+                    //DateOfIssue: $("#DateOfIssue").val(),
                     ChequeDate: $("#ChequeDate").val(),
                     Part: $("#Part").val()
                 }
@@ -779,7 +780,7 @@
             $("#Amount").val('0');
             $("#ChequeNo").val('');
             $("#Bank").val('');
-            $("#DateOfIssue").val('');
+            //$("#DateOfIssue").val('');
             $("#ChequeDate").val('');
         }
 

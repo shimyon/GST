@@ -39,7 +39,13 @@ namespace services
                     var obj = ctx.site.FirstOrDefault(f => f.Id == sitetData.Id);
                     if (obj != null)
                     {
-                        ctx.Entry(obj).CurrentValues.SetValues(sitetData);
+                        ctx.site.Attach(obj);
+                        obj.SiteName = sitetData.SiteName;
+                        obj.Address = sitetData.Address;
+                        obj.OwnerName = sitetData.OwnerName;
+                        obj.Developer = sitetData.Developer;
+                        obj.WebSite = sitetData.WebSite;
+                        //ctx.Entry(obj).CurrentValues.SetValues(sitetData);
                     }
                     else
                     {

@@ -110,12 +110,12 @@ namespace services
         {
             try
             {
-                
+
                 using (var ctx = new AppDb())
                 {
                     string data = string.Empty;
                     Dictionary<string, string> tokens = TokenData(plotData.Id, "Payment");
-                    var template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Allotment Letter" && f.TemplateName== plotData.DocumentType);
+                    var template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Allotment Letter" && f.TemplateName == plotData.DocumentType);
                     if (template != null)
                     {
                         data = ReplaceToken(template.TemplateData, tokens);
@@ -174,7 +174,7 @@ namespace services
                     string data = string.Empty;
                     var tokens = TokenData(plotData.Id, "Sale Deed");
 
-                    var template = ctx.template.FirstOrDefault (f => f.TemplateFor == "Sale Deed" && f.TemplateName == plotData.DocumentType);
+                    var template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Sale Deed" && f.TemplateName == plotData.DocumentType);
                     if (template != null)
                     {
                         data = ReplaceToken(template.TemplateData, tokens);
@@ -233,6 +233,15 @@ namespace services
                     tokens["Payment.AllotmentLtDt"] = plotDetails.AllotmentLtDt.HasValue ? plotDetails.AllotmentLtDt.Value.ToString("dd-MM-yyyy") : "";
                     tokens["Payment.TitleClearFrom"] = plotDetails.TitleClearFrom.HasValue ? plotDetails.TitleClearFrom.Value.ToString("dd-MM-yyyy") : "";
                     tokens["Payment.TitleClearDt"] = plotDetails.TitleClearDt.HasValue ? plotDetails.TitleClearDt.Value.ToString("dd-MM-yyyy") : "";
+                    tokens["Plot.Loan"] = plotDetails.Bank;
+                    if (string.IsNullOrEmpty(plotDetails.Bank))
+                    {
+                        tokens["Plot.LoanDetails"] = String.Empty;
+                    }
+                    else
+                    {
+                        tokens["Plot.LoanDetails"] = "The Purchaser(s) has/have obtained a loan from " + plotDetails.Bank + " Bank for purchasing the said flat. And at the request of the Purchaser(s) the said Institution / Bank has paid certain sum to the Seller cum Promoter. The Seller cum Promoter has adjusted the said payment towards the sale consideration. The Purchaser(s) alone shall be responsible for the repayment of the said loan";
+                    }
 
                     tokens["Maintenance.Amount"] = plotDetails.MaintenanceAmount.HasValue ? plotDetails.MaintenanceAmount.Value.ToString("#.##") : "0.00";
                     tokens["Maintenance.Amount.word"] = NumberToWords(Convert.ToInt32(plotDetails.MaintenanceAmount ?? 0));
@@ -277,25 +286,25 @@ namespace services
 
                     tokens["Amount.SecondSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.SecondSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
-                    
+
                     tokens["Amount.ThirdSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.ThirdSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
 
                     tokens["Amount.FourSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.FourSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
-                    
+
                     tokens["Amount.FifthSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.FifthSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
-                    
+
                     tokens["Amount.SixSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.SixSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
-                    
+
                     tokens["Amount.SevenSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.SevenSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
-                    
+
                     tokens["Amount.EightSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.EightSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
-                    
+
                     tokens["Amount.NineSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.NineSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
 
@@ -308,10 +317,10 @@ namespace services
 
                     tokens["Amount.85"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
                     tokens["Amount.85.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.05)));
-                    
+
                     tokens["Amount.90"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
                     tokens["Amount.90.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.05)));
-                    
+
                     tokens["Amount.94"] = (plotDetails.SellAmount * 0.04).ToString("#.##");
                     tokens["Amount.94.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.04)));
 
