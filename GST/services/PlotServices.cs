@@ -222,6 +222,7 @@ namespace services
                     tokens["Payment.Construction.Area"] = plotDetails.ConstructionArea;
                     tokens["Payment.ConstructionArea"] = plotDetails.ConstructionArea;
                     tokens["Payment.UndividedLand"] = plotDetails.UndividedLand;
+                    tokens["Payment.UndividedLandCommArea"] = plotDetails.UndividedLandCommArea;
                     tokens["Payment.SuperBuildUp"] = plotDetails.SuperBuildUp;
                     tokens["Payment.Proportionate.Land"] = plotDetails.ProportionateLand;
                     tokens["Payment.DirectionsNorth"] = plotDetails.DirectionsNorth;
@@ -240,7 +241,7 @@ namespace services
                     }
                     else
                     {
-                        tokens["Plot.LoanDetails"] = "The Purchaser(s) has/have obtained a loan from " + plotDetails.Bank + " Bank for purchasing the said flat. And at the request of the Purchaser(s) the said Institution / Bank has paid certain sum to the Seller cum Promoter. The Seller cum Promoter has adjusted the said payment towards the sale consideration. The Purchaser(s) alone shall be responsible for the repayment of the said loan";
+                        tokens["Plot.LoanDetails"] = "The Purchaser(s) has/have obtained a loan from <b>" + plotDetails.Bank + "</b> Bank for purchasing the said flat. And at the request of the Purchaser(s) the said Institution / Bank has paid certain sum to the Seller cum Promoter. The Seller cum Promoter has adjusted the said payment towards the sale consideration. The Purchaser(s) alone shall be responsible for the repayment of the said loan";
                     }
 
                     tokens["Maintenance.Amount"] = plotDetails.MaintenanceAmount.HasValue ? plotDetails.MaintenanceAmount.Value.ToString("#.##") : "0.00";
@@ -248,11 +249,14 @@ namespace services
 
                     tokens["Sale.Amount"] = plotDetails.SellAmount.ToString("#.##");
                     tokens["Sale.Amount.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount));
+                    tokens["Sale.Amount.word.upper"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount)).ToUpper();
 
                     double outstanding = plotDetails.SellAmount - (plotDetails.SellAmount * 0.10);
                     tokens["Amount.Outstanding"] = outstanding.ToString("#.##");
                     tokens["Amount.Outstanding.word"] = NumberToWords(Convert.ToInt32(outstanding));
 
+                    tokens["Amount.45%"] = (plotDetails.SellAmount * 0.45).ToString("#.##");
+                    tokens["Amount.45%.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.45));
 
                     tokens["Amount.10"] = (plotDetails.SellAmount * 0.10).ToString("#.##");
                     tokens["Amount.10.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.10));
@@ -279,7 +283,8 @@ namespace services
                     tokens["Amount.70.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.05));
 
 
-                    double slabAmount = (plotDetails.SellAmount * 0.10);
+                    double slabAmount = plotDetails.SellAmount ;
+                    //double slabAmount = (plotDetails.SellAmount * 0.45);
 
                     tokens["Amount.FirstSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.FirstSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
@@ -343,8 +348,10 @@ namespace services
                         customerDetails += "<td>" + item.val.CustomerName + ", Aged: Adult (" + item.val.Age + " years), Occuption:" + item.val.Occupation + "</td>";
                         customerDetails += "</tr><tr>";
                         customerDetails += "<td>PAN: " + item.val.PANCard + ", ADHAR CARD:" + item.val.AdharCard + "</td>";
-                        customerDetails += "</tr><tr>";
-                        customerDetails += "<td>Email ID: " + item.val.Email + "</td>";
+                        customerDetails += "</tr>";
+                        //customerDetails += "<tr><td>Email ID: " + item.val.Email + "</td></tr>";
+                        customerDetails += "<tr>";
+                        customerDetails += "<td>Address: " + item.val.Address + "</td>";
                         customerDetails += "</tr></table>";
                         customerDetails += "</td></tr>";
 
@@ -368,7 +375,7 @@ namespace services
 			                                        <td style='text-align:center'></td>
 			                                        <td style='text-align:center'></td>
 		                                        </tr>";
-                        saleDeedSignature += @"<tr><td><br />(" + item.val.CustomerName + ")</td></tr>";
+                        saleDeedSignature += @"<tr><td><br /><b>" + item.val.CustomerName + "</b></td></tr>";
 
                         saleDeedSignature += @"</tbody></table></div>";
                     }
