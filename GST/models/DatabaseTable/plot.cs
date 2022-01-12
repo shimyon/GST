@@ -60,6 +60,9 @@ namespace models.DatabaseTable
         [NotMapped]
         public string DocumentType { get; set; }
 
+        [NotMapped]
+        public int? SiteOwnerId { get; set; }
+
         [StringLength(50)]
         public string RegNo { get; set; }
 

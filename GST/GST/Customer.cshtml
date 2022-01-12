@@ -257,19 +257,19 @@
                         <tr>
                             <td>1</td>
                             <td>Banakhat</td>
-                            <td><button type="button" onclick="DocumentDownload('Banakhat');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
+                            <td><button type="button" onclick="PopupModel('Banakhat');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
                             <td><button type="button" onclick="EmailDocument('Banakhat');" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Sale Deed</td>
-                            <td><button type="button" onclick="DocumentDownload('Sale Deed');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
+                            <td><button type="button" onclick="PopupModel('Sale Deed');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
                             <td><button type="button" onclick="EmailDocument('Sale Deed');" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>Allotment Latter</td>
-                            <td><button type="button" onclick="DocumentDownload('Allotment Letter');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
+                            <td><button type="button" onclick="PopupModel('Allotment Letter');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
                             <td><button type="button" onclick="EmailDocument('Allotment Letter');" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                     </tbody>
@@ -295,11 +295,32 @@
     </div>
 </div>
 
+<div id="PopModel" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select Owner</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <select class="form-control" id="siteower"></select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="DownloadDocument()" class="btn btn-primary">Okay</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 @section scripts{
     <script type="text/javascript">
         var oPayTable,
+            docName,
             id = querySt("id"),
             siteid = querySt("siteid"),
             plotid = querySt("plotid"),
@@ -307,6 +328,7 @@
         $(function () {
             $('a[href="#Customer"]').click();
             init();
+            GetOwnerListBySiteId();
         })
 
         //const targetDiv = document.getElementById("AddCusromer");
@@ -511,7 +533,6 @@
             }, err => {
                 alert(err.responseJSON);
             })
-
         }
 
         function getPaymentData() {
@@ -880,7 +901,8 @@
                 url: AppConfig.ApiPath + "Plot/DocumentDownload",
                 data: {
                     Id: $("#PlotID").val(),
-                    DocumentType: $("#SiteName option:selected").text() + "-" + DocumentType
+                    DocumentType: $("#SiteName option:selected").text() + "-" + DocumentType,
+                    SiteOwnerId: $("#siteower").val()
                 }
             }).then(blobData => {
                 var path = GenBlobURL(blobData);
@@ -904,6 +926,32 @@
             }, err => {
                 alert(err.responseJSON);
             })
+        }
+
+        function GetOwnerListBySiteId(){
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Site/GetOwnerListBySiteId",
+                data: {
+                    SiteId: siteid
+                }
+            }).then(res => {
+                console.log(res);
+                res.forEach((ownObj,ownIndex)=>{
+                    $("<option>").val(ownObj.Id).html(ownObj.SiteOwnerName + ` (${ownObj.IsMainOwner ? 'Main Owner' : 'POA Holder'})`).appendTo("#siteower");
+                });
+            }, err => {
+                alert(err.responseJSON);
+            })
+        }
+
+        function PopupModel(documentName){
+            docName=documentName;
+            $("#PopModel").modal('show');
+        }
+
+        function DownloadDocument() {
+            $("#PopModel").modal('hide');
+            DocumentDownload(docName);
         }
 
     </script>
