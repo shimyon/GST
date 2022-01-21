@@ -198,7 +198,7 @@
                         <div class="col-md-4 ">
                             <div class="form-group">
                                 <label for="inputAddress2">Cheque No</label>
-                                <input type="number" class="form-control" id="ChequeNo">
+                                <input type="text" class="form-control" id="ChequeNo">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -729,7 +729,7 @@
                 $("#Amount").focus()
                 return false;
             }
-
+            debugger
             if (!$("#ChequeNo").val()) {
                 alert('Please enter ChequeNo');
                 $("#ChequeNo").focus()
@@ -753,7 +753,7 @@
                 $("#ChequeDate").focus()
                 return false;
             }
-
+            debugger
             ajaxcall.post({
                 url: AppConfig.ApiPath + "Payment/AddData",
                 data: {
