@@ -114,7 +114,7 @@ namespace services
                 using (var ctx = new AppDb())
                 {
                     string data = string.Empty;
-                    Dictionary<string, string> tokens = TokenData(plotData.Id, "Payment");
+                    Dictionary<string, string> tokens = TokenData(plotData.Id, "Payment", plotData.SiteOwnerId);
                     var template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Allotment Letter" && f.TemplateName == plotData.DocumentType);
                     if (template != null)
                     {
@@ -139,7 +139,7 @@ namespace services
                 {
                     string data = string.Empty;
 
-                    Dictionary<string, string> tokens = TokenData(plotData.Id, "Banakhat");
+                    Dictionary<string, string> tokens = TokenData(plotData.Id, "Banakhat", plotData.SiteOwnerId);
 
                     List<customer> customer;
                     var plotDetails = ctx.plot.First(f => f.Id == plotData.Id);
@@ -172,7 +172,7 @@ namespace services
                 using (var ctx = new AppDb())
                 {
                     string data = string.Empty;
-                    var tokens = TokenData(plotData.Id, "Sale Deed");
+                    var tokens = TokenData(plotData.Id, "Sale Deed", plotData.SiteOwnerId);
 
                     var template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Sale Deed" && f.TemplateName == plotData.DocumentType);
                     if (template != null)
@@ -198,7 +198,7 @@ namespace services
 
         }
 
-        public Dictionary<string, string> TokenData(int plotId, string tokenTemplate)
+        public Dictionary<string, string> TokenData(int plotId, string tokenTemplate, int? SiteOwnerId)
         {
             string appPath = ConfigurationManager.AppSettings["AppPath"];
             if (!ConfigurationManager.AppSettings.AllKeys.Any(a => a == "AppPath"))
@@ -283,7 +283,7 @@ namespace services
                     tokens["Amount.70.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.05));
 
 
-                    double slabAmount = plotDetails.SellAmount ;
+                    double slabAmount = plotDetails.SellAmount;
                     //double slabAmount = (plotDetails.SellAmount * 0.45);
 
                     tokens["Amount.FirstSlab"] = (slabAmount * 0.05).ToString("#.##");
@@ -403,6 +403,29 @@ namespace services
                     tokens["Site.Address"] = siteDetails.Address;
                     tokens["Site.Developer"] = siteDetails.Developer;
                     tokens["Site.WebSite"] = siteDetails.WebSite;
+
+                    tokens["POAHolder"] = "";
+
+                    int mainOwnerId = 0;
+                    var siteOwner = ctx.site_owner.FirstOrDefault(f => f.IsMainOwner == true);
+                    if (siteOwner != null)
+                    {
+                        tokens["ThroughHolderOrOwner"] = "Through its Proprietor and Land Owner";
+                        tokens["OwnerPanNo"] = siteOwner.PANCard;
+                        tokens["OwnerNameWithLabel"] = siteOwner.SiteOwnerName;
+                        mainOwnerId = siteOwner.Id;
+                    }
+                    if (SiteOwnerId != null && mainOwnerId != SiteOwnerId)  //Main site owner is not POA (mainOwnerId != SiteOwnerId);
+                    {
+                        siteOwner = ctx.site_owner.FirstOrDefault(f => f.Id == SiteOwnerId);
+                        if (siteOwner != null)
+                        {
+                            tokens["POAHolder"] = "Throught its POA Holder <b>" + siteOwner.SiteOwnerName + "</b>";
+                            tokens["ThroughHolderOrOwner"] = "Through its POA Holder";
+                            tokens["OwnerPanNo"] = siteOwner.PANCard;
+                            tokens["OwnerNameWithLabel"] = "POA Holder " + siteOwner.SiteOwnerName;
+                        }
+                    }
                 }
 
                 var objPay = ctx.payment.FirstOrDefault(f => f.PlotID == plotId);

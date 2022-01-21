@@ -36,23 +36,23 @@
             </div>
         </div>
         @* <div class="row">
-                <div class="col-md-4">
-                    <label>Upload CSC</label>
-                    <input type="file" class="form-control" id="CSC">
+            <div class="col-md-4">
+                <label>Upload CSC</label>
+                <input type="file" class="form-control" id="CSC">
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label>Upload Banakhat</label>
+                    <input type="file" class="form-control" id="Banakhat">
                 </div>
-                <div class="col-md-4 ">
-                    <div class="form-group">
-                        <label>Upload Banakhat</label>
-                        <input type="file" class="form-control" id="Banakhat">
-                    </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                    <label for="inputAddress2">Upload Sale Deed</label>
+                    <input type="file" class="form-control" id="SaleDeed">
                 </div>
-                <div class="col-md-4 ">
-                    <div class="form-group">
-                        <label for="inputAddress2">Upload Sale Deed</label>
-                        <input type="file" class="form-control" id="SaleDeed">
-                    </div>
-                </div>
-            </div>*@
+            </div>
+        </div>*@
         <div class="row" style="display:none;" id="logodiv">
             <div class="col-md-4 ">
                 <div class="form-group">
@@ -84,18 +84,73 @@
         <div class="row" style="margin-top:10px;">
             <div class="col col-md-4">
                 <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
-                <button type="button" class="btn btn-danger" style="margin-left:5px;" onclick="goBack();">Cancel</button>
+                <button type="button" class="btn btn-danger" style="margin-left:5px;" onclick="goToSiteList();">Cancel</button>
             </div>
+        </div>
+
+        <div class="mt-5">
+            <h3>Site Owners</h3>
+        </div>
+        
+        <div class="row">
+            <div style="width:100%;padding:15px;">
+                <table class="table table-hover"
+                       id="tblSiteOwnerList"
+                       cellspacing="0"
+                       align="center"
+                       width="100%"></table>
+            </div>
+        </div>
+
+        <div class="row mt-4 mb-4">
+            <button type="button" id="AddSiteOwnerButton" class="btn btn-primary noSales">Add Site Owner</button>
+        </div>
+
+        <div class="container" id="AddOwner" style="display:none;">
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Site Owner Name</label>
+                    <input type="text" class="form-control" id="SiteOwnerName" maxlength="50">
+                </div>
+                <div class="col-md-4">
+                    <label>Adharcard</label>
+                    <input type="text" class="form-control AdharCard" id="AdharCard" maxlength="50">
+                </div>
+                <div class="col-md-4 ">
+                    <label>PAN Card</label>
+                    <input type="text" class="form-control PANCard" id="PANCard" maxlength="50">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="ismainowner" class="ismainowner" />
+                            <label for="ismainowner">Is main owner</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+                <div class="col col-md-4">
+                    <button type="button" class="btn btn-primary" onclick="saveOwnerData();">Save</button>
+                    <button type="button" class="btn btn-danger" style="margin-left:5px;" onclick="cancelOwner();">Cancel</button>
+                </div>
+            </div>
+
+
         </div>
 
     </div>
 
-</div>
-
-@section scripts{
+    @section scripts{
     <script type="text/javascript">
+        $(function () {
+            LoadOwnerTable();
+        })
         var id = querySt("id");
-
+        var ownerid=0;
         $(function () {
             if (id) {
                 $("#logodiv, #shopdiv").show();
@@ -177,9 +232,7 @@
             })
         }
 
-
-
-        function goBack() {
+        function goToSiteList() {
             window.history.back();
         }
 
@@ -226,6 +279,163 @@
             }).fail(function (a, b, c) {
                 console.log(a, b, c);
             });
+        }
+
+        const targetDiv1 = document.getElementById("AddOwner");
+        const btn1 = document.getElementById("AddSiteOwnerButton");
+        btn1.onclick = function () {
+            if (targetDiv1.style.display !== "none") {
+                targetDiv1.style.display = "none";
+            } else {
+                targetDiv1.style.display = "block";
+            }
+        };
+
+        function saveOwnerData() {
+            if (!$("#SiteOwnerName").val()) {
+                alert('Please enter Site Owner Name');
+                $("#SiteOwnerName").focus()
+                return false;
+            }
+
+            if (!$("#AdharCard").val()) {
+                alert('Please enter Adharcard number');
+                $("#AdharCard").focus()
+                return false;
+            }
+
+            if (!$("#PANCard").val()) {
+                alert('Please enter Pancard number');
+                $("#PANCard").focus()
+                return false;
+            }
+
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Site/AddOwnerData",
+                data: {
+                    Id: ownerid,
+                    SiteId: id,
+                    SiteOwnerName: $("#SiteOwnerName").val(),
+                    AdharCard: $("#AdharCard").val(),
+                    PANCard: $("#PANCard").val(),
+                    IsMainOwner: $("#ismainowner").is(":checked")
+                }
+            }).then(res => {
+                alert("Saved successfully");
+                window.location.reload();
+            }, err => {
+                alert(err.responseJSON);
+            })
+        }
+
+        function goBackTo() {
+            window.history.back();
+        }
+
+        function LoadOwnerTable() {
+             $('#tblSiteOwnerList').DataTable({
+                dom: "<'row'<'col-sm-3'l><'col-sm-6'p><'col-sm-3 text-align-right'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i>>",
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": AppConfig.ApiPath + "Site/GetOwnerList",
+                    "type": "POST",
+                    "processing": true,
+                    "serverSide": true,
+                    "datetype": "json",
+                    "data": {
+                        SiteId : id
+                    }
+                },
+                "drawCallback": function () {
+                    $(".paginate_button.current").addClass(" actionbtn hor mr-0 ml-1 active").removeClass("paginate_button current");
+                    $(".paginate_button").addClass(" actionbtn hor mr-0 ml-1").removeClass("paginate_button");
+                    $('.dropdown').dropdown()
+                    // AfterDrawTable();
+
+                    $(".btneditowner").click(function () {
+                        let Id = $(this).attr("data-id");
+                        ownerid = Id;
+                        GetBySiteId(Id);
+                    });
+
+                    $(".btndelowner").click(function () {
+                        let Id = $(this).attr("data-id");
+                        DeleteOwner(Id);
+                    });
+
+                },
+                "columns": [
+                    {
+                        title: "",
+                        data: "Id",
+                        class: "text-center actioncol",
+                        render: (data, display, alldata) => {
+                            return `<button class ='btneditowner noSales actionbtn btn  btn-sm' data-id='${data}' title="Edit"><i class ='fa fa-edit'></i></button>
+                                            <button class ='btndelowner noSales actionbtn btn btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>`;
+                        }
+                    },
+                    {
+                        title: "Name",
+                        data: "SiteOwnerName",
+                        class: "text-center"
+                    }, {
+                        title: "Is main owner",
+                        data: "IsMainOwner",
+                        class: "text-center actioncol",
+                        render: (data, display, alldata) => {
+                            return `<span style='${data ? 'color:green; font-weight: bold;' : ''}'>${data ? 'Yes' : 'No'}</span>`;
+                        }
+                    },
+                    {
+                        title: "Adhar card",
+                        data: "AdharCard",
+                        class: "text-center"
+                    },
+
+                    {
+                        title: "Pan card",
+                        data: "PANCard",
+                        class: "text-center"
+                    },
+                ]
+            });
+        }
+
+        function GetBySiteId(Id) {
+            $("#AddOwner").show();
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Site/GetBySiteId",
+                data: { "Id": Id }
+            }).then(function (res) {
+                if (res) {
+                    $("#SiteId").val(res.SiteId);
+                    $("#SiteOwnerName").val(res.SiteOwnerName);
+                    $("#AdharCard").val(res.AdharCard);
+                    $("#PANCard").val(res.PANCard);
+                    $("#ismainowner").prop("checked", res.IsMainOwner);
+                }
+            })
+        }
+
+        async function DeleteOwner(Id) {
+            if (!confirm("Are you sure?")) return;
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Site/Delete",
+                data: {
+                    Id: Id
+                }
+            }).then(res => {
+                 window.location.reload();
+            }, err => {
+                alert(err.responseJSON);
+            })
+        }
+
+        function cancelOwner(){
+            window.location.reload();
         }
     </script>
 }

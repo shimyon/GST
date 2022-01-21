@@ -32,5 +32,17 @@ namespace models.DatabaseTable
         public Int16? AllotmentId { get; set; }
         public Int16? PaymentId { get; set; }
 
+
+    }
+
+    [Table("site_owner")]
+    public class site_owner : BaseEntity
+    {
+        public Int16? SiteId { get; set; }
+        public string SiteOwnerName { get; set; }
+        public string AdharCard { get; set; }
+        public string PANCard { get; set; }
+        public bool? IsMainOwner { get; set; }
+
     }
 }
