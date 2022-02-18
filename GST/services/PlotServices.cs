@@ -366,7 +366,7 @@ namespace services
                     tokens["Payment.Part"] = objPay.Part;
                     tokens["Payment.Amount.word"] = NumberToWords(objPay.Amount ?? 0).ToUpperInvariant() + " Only/-";
                 }
-                string paymentTable = @"<table border='1' cellpadding='2' style='width:90%; border-collapse:collapse; margin : 10px 10px;'><tr><th>Sr.No.</th> <th>Amount (Rs.)</th> <th>Cheque No.</th> <th>Cheque Date</th> <th>Bank</th></tr>";
+                string paymentTable = @"<table border='1' cellpadding='2' style='width:80%; border-collapse:collapse; margin : 10px 10px;'><tr><th>Sr.No.</th> <th>Amount (Rs.)</th> <th>Cheque No.</th> <th>Cheque Date</th> <th>Bank</th></tr>";
 
                 double totPay = 0;
                 var objPayList = ctx.payment.Where(f => f.PlotID == plotId).ToList();
