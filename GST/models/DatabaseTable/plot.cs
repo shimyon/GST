@@ -27,6 +27,9 @@ namespace models.DatabaseTable
         public string UndividedLand { get; set; }
 
         [StringLength(50)]
+        public string UndividedLandCommArea { get; set; }
+
+        [StringLength(50)]
         public string CarpetArea { get; set; }
 
         [StringLength(50)]

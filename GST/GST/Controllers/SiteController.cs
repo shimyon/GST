@@ -140,6 +140,7 @@ namespace GST.Controllers
                                         CarpetArea = row.CarpetArea,
                                         ConstructionArea = row.ConstructionArea,
                                         UndividedLand = row.UndividedLand,
+                                        UndividedLandCommArea = row.UndividedLandCommArea,
                                         SuperBuildUp = row.SuperBuildUp,
                                         ProportionateLand = row.ProportionateLand,
                                         DirectionsNorth = row.DirectionsNorth,

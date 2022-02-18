@@ -305,6 +305,8 @@
             plotid = querySt("plotid"),
             paymentId;
         $(function () {
+            let curdate = moment(new Date()).format('YYYY-MM-DD')
+            $("#RegNo,#RegDate,#AllotmentLtDt,#TitleClearFrom,#TitleClearDt").val(curdate);
             $('a[href="#Customer"]').click();
             init();
         })
