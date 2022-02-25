@@ -233,6 +233,15 @@ namespace services
                     tokens["Payment.AllotmentLtDt"] = plotDetails.AllotmentLtDt.HasValue ? plotDetails.AllotmentLtDt.Value.ToString("dd-MM-yyyy") : "";
                     tokens["Payment.TitleClearFrom"] = plotDetails.TitleClearFrom.HasValue ? plotDetails.TitleClearFrom.Value.ToString("dd-MM-yyyy") : "";
                     tokens["Payment.TitleClearDt"] = plotDetails.TitleClearDt.HasValue ? plotDetails.TitleClearDt.Value.ToString("dd-MM-yyyy") : "";
+                    tokens["Plot.Loan"] = plotDetails.Bank;
+                    if (string.IsNullOrEmpty(plotDetails.Bank))
+                    {
+                        tokens["Plot.LoanDetails"] = String.Empty;
+                    }
+                    else
+                    {
+                        tokens["Plot.LoanDetails"] = "The Purchaser(s) has/have obtained a loan from <b>" + plotDetails.Bank + "</b> Bank for purchasing the said flat. And at the request of the Purchaser(s) the said Institution / Bank has paid certain sum to the Seller cum Promoter. The Seller cum Promoter has adjusted the said payment towards the sale consideration. The Purchaser(s) alone shall be responsible for the repayment of the said loan";
+                    }
 
                     tokens["Maintenance.Amount"] = plotDetails.MaintenanceAmount.HasValue ? plotDetails.MaintenanceAmount.Value.ToString("#.##") : "0.00";
                     tokens["Maintenance.Amount.word"] = NumberToWords(Convert.ToInt32(plotDetails.MaintenanceAmount ?? 0));
