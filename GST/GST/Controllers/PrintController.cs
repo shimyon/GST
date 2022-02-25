@@ -35,5 +35,20 @@ namespace GST.Controllers
             //string pdfBase64= PDFbase64String(buffer);
             //return Ok(pdfBase64);
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public HttpResponseMessage PrintPDFGet()
+        {
+            //IHttpActionResult
+            string filename = "Sample";
+            var example_html = "<h1>Sample</h1>";
+            var example_css = @".headline{font-size:200%}";
+            byte[] buffer = commsrv.PdfGenerate(example_html, example_css);
+            HttpResponseMessage response = PDFResponse(filename, buffer);
+            return response;
+            //string pdfBase64= PDFbase64String(buffer);
+            //return Ok(pdfBase64);
+        }
     }
 }
