@@ -110,12 +110,12 @@ namespace services
         {
             try
             {
-                
+
                 using (var ctx = new AppDb())
                 {
                     string data = string.Empty;
                     Dictionary<string, string> tokens = TokenData(plotData.Id, "Payment");
-                    var template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Allotment Letter" && f.TemplateName== plotData.DocumentType);
+                    var template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Allotment Letter" && f.TemplateName == plotData.DocumentType);
                     if (template != null)
                     {
                         data = ReplaceToken(template.TemplateData, tokens);
@@ -174,7 +174,7 @@ namespace services
                     string data = string.Empty;
                     var tokens = TokenData(plotData.Id, "Sale Deed");
 
-                    var template = ctx.template.FirstOrDefault (f => f.TemplateFor == "Sale Deed" && f.TemplateName == plotData.DocumentType);
+                    var template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Sale Deed" && f.TemplateName == plotData.DocumentType);
                     if (template != null)
                     {
                         data = ReplaceToken(template.TemplateData, tokens);
@@ -300,18 +300,33 @@ namespace services
                     string saleDeedSignature = "";
 
                     string customerDetails = "<table  cellspacing ='5' cellpadding='5'  style='width:80%; border-collapse: collapse; margin : 20px 10px;'>";
+                    string AllotteTable = string.Empty;
                     foreach (var item in customers.Select((val, i) => new { val, i }))
                     {
                         customerDetails += "<tr><td>" + (item.i + 1) + ".</td><td>";
-                        customerDetails += "<table cellspacing ='5' cellpadding='5'>";
+                        customerDetails += "<table cellspacing ='5' cellpadding='5' style='width:100%;'>";
                         customerDetails += "<tr>";
-                        customerDetails += "<td>" + item.val.CustomerName + ", Aged: Adult (" + item.val.Age + " years), Occuption:" + item.val.Occupation + "</td>";
+                        customerDetails += "<td><b>" + item.val.CustomerName + "</b></td></tr>" +
+                            "<tr><td>Aged: Adult (" + item.val.Age + " years)</td></tr>" +
+                            "<tr><td> Occuption:" + item.val.Occupation + "</td>";
                         customerDetails += "</tr><tr>";
-                        customerDetails += "<td>PAN: " + item.val.PANCard + ", ADHAR CARD:" + item.val.AdharCard + "</td>";
+                        customerDetails += "<td>PAN: " + item.val.PANCard + ",</td></tr>" +
+                            "<tr><td> ADHAR CARD:" + item.val.AdharCard + "</td>";
                         customerDetails += "</tr><tr>";
                         customerDetails += "<td>Email ID: " + item.val.Email + "</td>";
                         customerDetails += "</tr></table>";
                         customerDetails += "</td></tr>";
+
+                        AllotteTable += "<table border='1' cellspacing ='5' cellpadding='5'  style='width:100%; border:1px solid #000; border-collapse: collapse; margin : 20px 10px;'>";
+                        AllotteTable += @"<tr><td></td><td>ALLOTTEE - " + (item.i + 1) + "</td></tr>";
+                        AllotteTable += @"<tr><td>NAME</td><td>" + item.val.CustomerName + "</td></tr>";
+                        AllotteTable += @"<tr><td>AGE</td><td>" + item.val.Age + "</td></tr>";
+                        AllotteTable += @"<tr><td>ADDRESS</td><td>" + item.val.Address + "</td></tr>";
+                        AllotteTable += @"<tr><td>PAN NO.</td><td>" + item.val.PANCard + "</td></tr>";
+                        AllotteTable += @"<tr><td style='width: 100px;'><div style='white-space:nowrap;'>ADHAR NO.</div></td><td>" + item.val.AdharCard + "</td></tr>";
+                        AllotteTable += @"<tr><td>EMAIL ID</td><td>" + item.val.Email + "</td></tr>";
+                        AllotteTable += "</table>";
+
 
                         saleDeedSignature += @"<div style='margin-top: 50px;'><br />
                                             <table style='width:100%;'>
@@ -343,6 +358,8 @@ namespace services
 
                     customerDetails += "</table>";
                     tokens["Customer.Details"] = customerDetails;
+
+                    tokens["Customer.AllotteTable"] = AllotteTable;
 
                     var customer = customers.FirstOrDefault();
                     tokens["Payment.Customer"] = customer.CustomerName;
