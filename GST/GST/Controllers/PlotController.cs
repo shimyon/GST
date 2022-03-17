@@ -106,6 +106,7 @@ namespace GST.Controllers
             var example_css = @"
                     body { 
                         padding: 20px 30px;
+                        padding-left: 35px;
                         font-size: 14px;
                         font-family:""Calibri, sans-serif"";
                     }

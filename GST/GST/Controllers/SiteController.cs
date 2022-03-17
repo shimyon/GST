@@ -19,6 +19,7 @@ namespace GST.Controllers
     {
         SiteServices service = new SiteServices();
         PlotServices plotservice = new PlotServices();
+        CommonService commsrv = new CommonService();
         DatatableService datatableService = new DatatableService();
         [HttpPost]
         public IHttpActionResult GetList(SiteSearch search)
@@ -29,6 +30,18 @@ namespace GST.Controllers
                 datatableService.CreateSqlParameter("@pUserId", authdet.UserId,  MySqlDbType.Int32)
             };
             var result = service.GetList(search, filters);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public IHttpActionResult GetOwnerList(SiteSearch search)
+        {
+            //AuthDetails authdet = LoginUserDetails();
+            var filters = new List<MySqlParameter>
+            {
+                datatableService.CreateSqlParameter("@pSiteId", search.SiteId,  MySqlDbType.Int32)
+            };
+            var result = service.GetOwnerList(search, filters);
             return Ok(result);
         }
 
@@ -54,6 +67,37 @@ namespace GST.Controllers
             siteobj.CreatedBy = authdet.UserId;
             var result = service.Add(siteobj);
             return Ok(result);
+        }
+
+        [HttpPost]
+        public IHttpActionResult AddOwnerData(site_owner siteidobj)
+        {
+            AuthDetails authdet = LoginUserDetails();
+            siteidobj.UpdatedBy = authdet.UserId;
+            siteidobj.CreatedBy = authdet.UserId;
+            var result = service.AddOwner(siteidobj);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public IHttpActionResult GetBySiteId(SiteOwnerViewModel obj)
+        {
+            var getSite = service.GetBySiteId(obj.Id);
+            return Ok(getSite);
+        }
+
+        [HttpPost]
+        public IHttpActionResult GetOwnerListBySiteId(SiteOwnerViewModel obj)
+        {
+            var owners = service.GetOwnerListBySiteId(obj.SiteId);
+            return Ok(owners);
+        }
+
+        [HttpPost]
+        public IHttpActionResult Delete(SiteOwnerDatatable obj)
+        {
+            var ownerdel = service.Delete(obj.Id);
+            return Ok(ownerdel);
         }
 
         [HttpPost]

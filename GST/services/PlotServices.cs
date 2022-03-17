@@ -110,12 +110,12 @@ namespace services
         {
             try
             {
-                
+
                 using (var ctx = new AppDb())
                 {
                     string data = string.Empty;
-                    Dictionary<string, string> tokens = TokenData(plotData.Id, "Payment");
-                    var template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Allotment Letter" && f.TemplateName== plotData.DocumentType);
+                    Dictionary<string, string> tokens = TokenData(plotData.Id, "Payment", plotData.SiteOwnerId);
+                    var template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Allotment Letter" && f.TemplateName == plotData.DocumentType);
                     if (template != null)
                     {
                         data = ReplaceToken(template.TemplateData, tokens);
@@ -139,7 +139,7 @@ namespace services
                 {
                     string data = string.Empty;
 
-                    Dictionary<string, string> tokens = TokenData(plotData.Id, "Banakhat");
+                    Dictionary<string, string> tokens = TokenData(plotData.Id, "Banakhat", plotData.SiteOwnerId);
 
                     List<customer> customer;
                     var plotDetails = ctx.plot.First(f => f.Id == plotData.Id);
@@ -172,9 +172,9 @@ namespace services
                 using (var ctx = new AppDb())
                 {
                     string data = string.Empty;
-                    var tokens = TokenData(plotData.Id, "Sale Deed");
+                    var tokens = TokenData(plotData.Id, "Sale Deed", plotData.SiteOwnerId);
 
-                    var template = ctx.template.FirstOrDefault (f => f.TemplateFor == "Sale Deed" && f.TemplateName == plotData.DocumentType);
+                    var template = ctx.template.FirstOrDefault(f => f.TemplateFor == "Sale Deed" && f.TemplateName == plotData.DocumentType);
                     if (template != null)
                     {
                         data = ReplaceToken(template.TemplateData, tokens);
@@ -198,7 +198,7 @@ namespace services
 
         }
 
-        public Dictionary<string, string> TokenData(int plotId, string tokenTemplate)
+        public Dictionary<string, string> TokenData(int plotId, string tokenTemplate, int? SiteOwnerId)
         {
             string appPath = ConfigurationManager.AppSettings["AppPath"];
             if (!ConfigurationManager.AppSettings.AllKeys.Any(a => a == "AppPath"))
@@ -222,6 +222,7 @@ namespace services
                     tokens["Payment.Construction.Area"] = plotDetails.ConstructionArea;
                     tokens["Payment.ConstructionArea"] = plotDetails.ConstructionArea;
                     tokens["Payment.UndividedLand"] = plotDetails.UndividedLand;
+                    tokens["Payment.UndividedLandCommArea"] = plotDetails.UndividedLandCommArea;
                     tokens["Payment.SuperBuildUp"] = plotDetails.SuperBuildUp;
                     tokens["Payment.Proportionate.Land"] = plotDetails.ProportionateLand;
                     tokens["Payment.DirectionsNorth"] = plotDetails.DirectionsNorth;
@@ -233,17 +234,29 @@ namespace services
                     tokens["Payment.AllotmentLtDt"] = plotDetails.AllotmentLtDt.HasValue ? plotDetails.AllotmentLtDt.Value.ToString("dd-MM-yyyy") : "";
                     tokens["Payment.TitleClearFrom"] = plotDetails.TitleClearFrom.HasValue ? plotDetails.TitleClearFrom.Value.ToString("dd-MM-yyyy") : "";
                     tokens["Payment.TitleClearDt"] = plotDetails.TitleClearDt.HasValue ? plotDetails.TitleClearDt.Value.ToString("dd-MM-yyyy") : "";
+                    tokens["Plot.Loan"] = plotDetails.Bank;
+                    if (string.IsNullOrEmpty(plotDetails.Bank))
+                    {
+                        tokens["Plot.LoanDetails"] = String.Empty;
+                    }
+                    else
+                    {
+                        tokens["Plot.LoanDetails"] = "The Purchaser(s) has/have obtained a loan from <b>" + plotDetails.Bank + "</b> Bank for purchasing the said flat. And at the request of the Purchaser(s) the said Institution / Bank has paid certain sum to the Seller cum Promoter. The Seller cum Promoter has adjusted the said payment towards the sale consideration. The Purchaser(s) alone shall be responsible for the repayment of the said loan";
+                    }
 
                     tokens["Maintenance.Amount"] = plotDetails.MaintenanceAmount.HasValue ? plotDetails.MaintenanceAmount.Value.ToString("#.##") : "0.00";
                     tokens["Maintenance.Amount.word"] = NumberToWords(Convert.ToInt32(plotDetails.MaintenanceAmount ?? 0));
 
                     tokens["Sale.Amount"] = plotDetails.SellAmount.ToString("#.##");
                     tokens["Sale.Amount.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount));
+                    tokens["Sale.Amount.word.upper"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount)).ToUpper();
 
                     double outstanding = plotDetails.SellAmount - (plotDetails.SellAmount * 0.10);
                     tokens["Amount.Outstanding"] = outstanding.ToString("#.##");
                     tokens["Amount.Outstanding.word"] = NumberToWords(Convert.ToInt32(outstanding));
 
+                    tokens["Amount.45%"] = (plotDetails.SellAmount * 0.45).ToString("#.##");
+                    tokens["Amount.45%.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.45));
 
                     tokens["Amount.10"] = (plotDetails.SellAmount * 0.10).ToString("#.##");
                     tokens["Amount.10.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.10));
@@ -270,32 +283,33 @@ namespace services
                     tokens["Amount.70.word"] = NumberToWords(Convert.ToInt32(plotDetails.SellAmount * 0.05));
 
 
-                    double slabAmount = (plotDetails.SellAmount * 0.10);
+                    double slabAmount = plotDetails.SellAmount;
+                    //double slabAmount = (plotDetails.SellAmount * 0.45);
 
                     tokens["Amount.FirstSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.FirstSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
 
                     tokens["Amount.SecondSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.SecondSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
-                    
+
                     tokens["Amount.ThirdSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.ThirdSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
 
                     tokens["Amount.FourSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.FourSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
-                    
+
                     tokens["Amount.FifthSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.FifthSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
-                    
+
                     tokens["Amount.SixSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.SixSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
-                    
+
                     tokens["Amount.SevenSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.SevenSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
-                    
+
                     tokens["Amount.EightSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.EightSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
-                    
+
                     tokens["Amount.NineSlab"] = (slabAmount * 0.05).ToString("#.##");
                     tokens["Amount.NineSlab.word"] = NumberToWords(Convert.ToInt32((slabAmount * 0.05)));
 
@@ -308,10 +322,10 @@ namespace services
 
                     tokens["Amount.85"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
                     tokens["Amount.85.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.05)));
-                    
+
                     tokens["Amount.90"] = (plotDetails.SellAmount * 0.05).ToString("#.##");
                     tokens["Amount.90.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.05)));
-                    
+
                     tokens["Amount.94"] = (plotDetails.SellAmount * 0.04).ToString("#.##");
                     tokens["Amount.94.word"] = NumberToWords(Convert.ToInt32((plotDetails.SellAmount * 0.04)));
 
@@ -334,8 +348,10 @@ namespace services
                         customerDetails += "<td>" + item.val.CustomerName + ", Aged: Adult (" + item.val.Age + " years), Occuption:" + item.val.Occupation + "</td>";
                         customerDetails += "</tr><tr>";
                         customerDetails += "<td>PAN: " + item.val.PANCard + ", ADHAR CARD:" + item.val.AdharCard + "</td>";
-                        customerDetails += "</tr><tr>";
-                        customerDetails += "<td>Email ID: " + item.val.Email + "</td>";
+                        customerDetails += "</tr>";
+                        //customerDetails += "<tr><td>Email ID: " + item.val.Email + "</td></tr>";
+                        customerDetails += "<tr>";
+                        customerDetails += "<td>Address: " + item.val.Address + "</td>";
                         customerDetails += "</tr></table>";
                         customerDetails += "</td></tr>";
 
@@ -359,7 +375,7 @@ namespace services
 			                                        <td style='text-align:center'></td>
 			                                        <td style='text-align:center'></td>
 		                                        </tr>";
-                        saleDeedSignature += @"<tr><td><br />(" + item.val.CustomerName + ")</td></tr>";
+                        saleDeedSignature += @"<tr><td><br /><b>" + item.val.CustomerName + "</b></td></tr>";
 
                         saleDeedSignature += @"</tbody></table></div>";
                     }
@@ -387,6 +403,29 @@ namespace services
                     tokens["Site.Address"] = siteDetails.Address;
                     tokens["Site.Developer"] = siteDetails.Developer;
                     tokens["Site.WebSite"] = siteDetails.WebSite;
+
+                    tokens["POAHolder"] = "";
+
+                    int mainOwnerId = 0;
+                    var siteOwner = ctx.site_owner.FirstOrDefault(f => f.IsMainOwner == true);
+                    if (siteOwner != null)
+                    {
+                        tokens["ThroughHolderOrOwner"] = "Through its Proprietor and Land Owner";
+                        tokens["OwnerPanNo"] = siteOwner.PANCard;
+                        tokens["OwnerNameWithLabel"] = siteOwner.SiteOwnerName;
+                        mainOwnerId = siteOwner.Id;
+                    }
+                    if (SiteOwnerId != null && mainOwnerId != SiteOwnerId)  //Main site owner is not POA (mainOwnerId != SiteOwnerId);
+                    {
+                        siteOwner = ctx.site_owner.FirstOrDefault(f => f.Id == SiteOwnerId);
+                        if (siteOwner != null)
+                        {
+                            tokens["POAHolder"] = "Throught its POA Holder <b>" + siteOwner.SiteOwnerName + "</b>";
+                            tokens["ThroughHolderOrOwner"] = "Through its POA Holder";
+                            tokens["OwnerPanNo"] = siteOwner.PANCard;
+                            tokens["OwnerNameWithLabel"] = "POA Holder " + siteOwner.SiteOwnerName;
+                        }
+                    }
                 }
 
                 var objPay = ctx.payment.FirstOrDefault(f => f.PlotID == plotId);

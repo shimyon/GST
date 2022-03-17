@@ -27,6 +27,9 @@ namespace models.DatabaseTable
         public string UndividedLand { get; set; }
 
         [StringLength(50)]
+        public string UndividedLandCommArea { get; set; }
+
+        [StringLength(50)]
         public string CarpetArea { get; set; }
 
         [StringLength(50)]
@@ -56,6 +59,9 @@ namespace models.DatabaseTable
 
         [NotMapped]
         public string DocumentType { get; set; }
+
+        [NotMapped]
+        public int? SiteOwnerId { get; set; }
 
         [StringLength(50)]
         public string RegNo { get; set; }

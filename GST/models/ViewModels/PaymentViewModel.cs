@@ -40,7 +40,7 @@ namespace GST.Controllers
 
         //public string Name { get; set; }
 
-        public int? ChequeNo { get; set; }
+        public string ChequeNo { get; set; }
 
         public string Bank { get; set; }
 
