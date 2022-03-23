@@ -56,8 +56,5 @@ namespace GST.Controllers
             string base64EncodedPDF = System.Convert.ToBase64String(pdfByteArray);
             return base64EncodedPDF;
         }
-
-
-     
     }
 }

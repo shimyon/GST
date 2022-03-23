@@ -29,12 +29,12 @@ namespace GST.Controllers
         }
 
         // POST: api/Login
-        public void Post([FromBody]string value)
+        public void Post([FromBody] string value)
         {
         }
 
         // PUT: api/Login/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 
@@ -86,7 +86,6 @@ namespace GST.Controllers
                         Password = encpass,
                         CreatedDate = DateTime.Now
                     });
-                    
                 }
                 return Ok();
             }

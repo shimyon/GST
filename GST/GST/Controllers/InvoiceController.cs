@@ -47,7 +47,8 @@ namespace GST.Controllers
                 var result = service.AddItems(InvoObj.invoice_itemsobj);
                 return Ok(result);
             }
-            else {
+            else
+            {
                 return Ok(0);
             }
         }

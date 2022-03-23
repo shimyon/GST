@@ -11,7 +11,7 @@ using System.Web.Http;
 namespace GST.Controllers
 {
     public class QuotationController : BaseApiController
-    { 
+    {
         Quotation_itemsServices service = new Quotation_itemsServices();
         DatatableService datatableService = new DatatableService();
         [HttpPost]
@@ -52,7 +52,6 @@ namespace GST.Controllers
                 return Ok(0);
             }
 
-            
         }
 
         QuotationServices service1 = new QuotationServices();

@@ -277,7 +277,7 @@
                 <table class="table table-hover dataTable no-footer">
                     <thead>
                         <tr>
-                            <th>UPLOAD YOUR Document</th>
+                            <th>Upload your Document</th>
                             <th></th>
                            
                         </tr>
@@ -285,7 +285,7 @@
                     <tbody>
                       
                         <tr>
-                            <td><input type="file"/></td>
+                            <td><input type="file" id="document"/></td>
                             <td><button type="button" onclick="uploaddocument();" class="actionbtn btn  btn-sm"><i class="fa fa-upload"></i>&nbsp;Upload</button></td>
                         </tr>
                     </tbody>
@@ -699,6 +699,29 @@
             var Amt = $(this).find('#Amount').val();
             var amount = parseInt(SaleAmt) - parseInt(Amt);
             $(this).find('#Outstanding').val(amount);
+        }
+
+        function uploaddocument() {
+            var data = new FormData();
+            var file = $('#document')[0].files[0];
+            data.append('file', file);
+            data.append('plotid', id);
+            $.ajax({
+                url: AppConfig.ApiPath + '/cutomer/uploaddocument',
+                processData: false,
+                contentType: false,
+                data: data,
+                type: 'POST'
+            }).done(function (result) {
+                if (result == "Uploaded") {
+                    setLogo();
+                    alert("Document uploaded successfully!");
+                } else {
+                    alert(result);
+                }
+            }).fail(function (a, b, c) {
+                console.log(a, b, c);
+            });
         }
 
         function saveCustomerData(obj) {
