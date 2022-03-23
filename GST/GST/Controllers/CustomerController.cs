@@ -5,6 +5,7 @@ using services;
 using services.Common;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -71,6 +72,12 @@ namespace GST.Controllers
         }
         public HttpResponseMessage uploaddocument()
         {
+            string acceptFiles = ConfigurationManager.AppSettings["acceptfiles"];
+            if (!ConfigurationManager.AppSettings.AllKeys.Any(a => a == "acceptfiles"))
+            {
+                throw new Exception("acceptfiles not defined in web.config file.");
+            }
+
             HttpResponseMessage result = null;
             var httpRequest = HttpContext.Current.Request;
             if (httpRequest.Files.Count > 0)
@@ -80,7 +87,7 @@ namespace GST.Controllers
                 {
                     var postedFile = httpRequest.Files[file];
                     string extension = System.IO.Path.GetExtension(postedFile.FileName);
-                    List<string> extionList = new List<string> { ".png", ".jpg", ".jpeg" };
+                    List<string> extionList = acceptFiles.Split(',').ToList();
                     if (extionList.Contains(extension.ToLower()))
                     {
                         int hasheddate = DateTime.Now.GetHashCode();
