@@ -321,6 +321,7 @@ namespace services
                         AllotteTable += @"<tr><td></td><td>ALLOTTEE - " + (item.i + 1) + "</td></tr>";
                         AllotteTable += @"<tr><td>NAME</td><td>" + item.val.CustomerName + "</td></tr>";
                         AllotteTable += @"<tr><td>AGE</td><td>" + item.val.Age + "</td></tr>";
+                        AllotteTable += @"<tr><td>Occupation</td><td>" + item.val.Occupation + "</td></tr>";
                         AllotteTable += @"<tr><td>ADDRESS</td><td>" + item.val.Address + "</td></tr>";
                         AllotteTable += @"<tr><td>PAN NO.</td><td>" + item.val.PANCard + "</td></tr>";
                         AllotteTable += @"<tr><td style='width: 100px;'><div style='white-space:nowrap;'>ADHAR NO.</div></td><td>" + item.val.AdharCard + "</td></tr>";
@@ -365,6 +366,7 @@ namespace services
                     tokens["Payment.Customer"] = customer.CustomerName;
                     tokens["Customer.Name"] = customer.CustomerName;
                     tokens["Customer.Age"] = Convert.ToString(customer.Age);
+                    tokens["Customer.Occupation"] = Convert.ToString(customer.Occupation);
                     tokens["Customer.Address"] = Convert.ToString(customer.Address);
                     tokens["Customer.PANNo"] = Convert.ToString(customer.PANCard);
                     tokens["Customer.AdharNo"] = Convert.ToString(customer.AdharCard);
