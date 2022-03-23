@@ -352,3 +352,4 @@ C:\Project\GST\GST\models\obj\Debug\models.csproj.CoreCompileInputs.cache
 C:\Project\GST\GST\models\obj\Debug\models.csproj.CopyComplete
 C:\Project\GST\GST\models\obj\Debug\models.dll
 C:\Project\GST\GST\models\obj\Debug\models.pdb
+C:\Project\GST\GST\models\obj\Debug\models.csproj.AssemblyReference.cache
