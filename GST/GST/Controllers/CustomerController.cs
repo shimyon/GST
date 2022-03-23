@@ -6,6 +6,8 @@ using services.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 namespace GST.Controllers
@@ -66,6 +68,43 @@ namespace GST.Controllers
             customerobj.CreatedBy = authdet.UserId;
             var result = service.Add(customerobj);
             return Ok(result);
+        }
+        public HttpResponseMessage uploaddocument()
+        {
+            HttpResponseMessage result = null;
+            var httpRequest = HttpContext.Current.Request;
+            if (httpRequest.Files.Count > 0)
+            {
+                string uploaded = "Uploaded";
+                foreach (string file in httpRequest.Files)
+                {
+                    var postedFile = httpRequest.Files[file];
+                    string extension = System.IO.Path.GetExtension(postedFile.FileName);
+                    List<string> extionList = new List<string> { ".png", ".jpg", ".jpeg" };
+                    if (extionList.Contains(extension.ToLower()))
+                    {
+                        int hasheddate = DateTime.Now.GetHashCode();
+                        //Good to use an updated name always, since many can use the same file name to upload.
+                        string changed_name = hasheddate.ToString() + "_" + postedFile.FileName;
+                        changed_name = httpRequest.Form["plotid"] + "_"+ postedFile.FileName;
+                        var filePath = HttpContext.Current.Server.MapPath("~/Content/Images/custometdocument/" + changed_name);
+                        postedFile.SaveAs(filePath); // save the file to a folder "Images" in the root of your app
+                        uploaded = "Uploaded";
+                    }
+                    else
+                    {
+                        uploaded = "Only following file will be uploaded: .png, .jpg, jpeg, txt, doc";
+                    }
+                }
+                result = Request.CreateResponse(HttpStatusCode.Created, uploaded);
+            }
+            else
+            {
+                result = Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+
+            return result;
+
         }
     }
 
