@@ -309,8 +309,10 @@ namespace services
                         customerDetails += "<td><b>" + item.val.CustomerName + "</b></td></tr>" +
                             "<tr><td>Aged: Adult (" + item.val.Age + " years)</td></tr>" +
                             "<tr><td> Occuption:" + item.val.Occupation + "</td>";
-                        customerDetails += "</tr><tr>";
-                        customerDetails += "<td>Address: " + item.val.Address + ",</td></tr>";
+                        customerDetails += "</tr>";
+                        customerDetails += "<tr>";
+                        customerDetails += "<td>Address: " + item.val.Address + "</td>";
+                        customerDetails += "</tr>";
                         customerDetails += "<tr>";
                         customerDetails += "<td>PAN: " + item.val.PANCard + ",</td></tr>" +
                             "<tr><td> ADHAR CARD:" + item.val.AdharCard + "</td>";
