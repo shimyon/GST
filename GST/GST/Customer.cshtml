@@ -94,7 +94,7 @@
                                 <input type="email" class="form-control Email" id="Email">
                             </div>
                         </div>
-                        <div class="col-md-4 SaleAmountDiv">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>Occupation</label>
                                 <input type="text" class="form-control Occupation" id="Occupation">
@@ -340,8 +340,12 @@
             id = querySt("id"),
             siteid = querySt("siteid"),
             plotid = querySt("plotid"),
-            paymentId;
+            paymentId,
+            curdate;
+
         $(function () {
+            curdate = moment(new Date()).format('YYYY-MM-DD')
+            $("#RegDate,#AllotmentLtDt,#TitleClearFrom,#TitleClearDt").val(curdate);
             $('a[href="#Customer"]').click();
             init();
             GetOwnerListBySiteId();
@@ -473,6 +477,7 @@
         }
 
         function GetAllByPlotId() {
+            $("#RegDate,#AllotmentLtDt,#TitleClearFrom,#TitleClearDt").val(curdate);
             ajaxcall.post({
                 url: AppConfig.ApiPath + "Customer/GetAllByPlotId",
                 data: {
@@ -497,11 +502,12 @@
                         $(".Occupation", $custdiv).val(res.Occupation);
                     });
                     $(".RegNo").val(response.plot.RegNo);
+                    /*
                     $(".RegDate").val(response.plot.RegDate);
                     $(".AllotmentLtDt").val(response.plot.AllotmentLtDt);
                     $(".TitleClearFrom").val(response.plot.TitleClearFrom);
                     $(".TitleClearDt").val(response.plot.TitleClearDt);
-
+                    */
                     $(".loancheck").prop("checked", false);
                     isLoanChange();
                     $(".bankname").val('');
@@ -510,29 +516,39 @@
                         isLoanChange();
                         $(".bankname").val(response.plot.Bank);
                     }
-                    var now = new Date(response.plot.RegDate)
-                    var day = ("0" + now.getDate()).slice(-2);
-                    var month = ("0" + (now.getMonth() + 1)).slice(-2);
-                    var today = now.getFullYear() + "-" + (month) + "-" + (day);
-                    $('#RegDate').val(today);
 
-                    now = new Date(response.plot.AllotmentLtDt)
-                    day = ("0" + now.getDate()).slice(-2);
-                    month = ("0" + (now.getMonth() + 1)).slice(-2);
-                    today = now.getFullYear() + "-" + (month) + "-" + (day);
-                    $('#AllotmentLtDt').val(today);
+                    if (response.plot.RegDate) {
+                        var now = new Date(response.plot.RegDate)
+                        var day = ("0" + now.getDate()).slice(-2);
+                        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                        var today = now.getFullYear() + "-" + (month) + "-" + (day);
+                        $('#RegDate').val(today);
+                    }
 
-                    now = new Date(response.plot.TitleClearFrom)
-                    day = ("0" + now.getDate()).slice(-2);
-                    month = ("0" + (now.getMonth() + 1)).slice(-2);
-                    today = now.getFullYear() + "-" + (month) + "-" + (day);
-                    $('#TitleClearFrom').val(today);
+                    if (response.plot.AllotmentLtDt) {
+                        now = new Date(response.plot.AllotmentLtDt)
+                        day = ("0" + now.getDate()).slice(-2);
+                        month = ("0" + (now.getMonth() + 1)).slice(-2);
+                        today = now.getFullYear() + "-" + (month) + "-" + (day);
+                        $('#AllotmentLtDt').val(today);
+                    }
 
-                    now = new Date(response.plot.TitleClearDt)
-                    day = ("0" + now.getDate()).slice(-2);
-                    month = ("0" + (now.getMonth() + 1)).slice(-2);
-                    today = now.getFullYear() + "-" + (month) + "-" + (day);
-                    $('#TitleClearDt').val(today);
+
+                    if (response.plot.TitleClearFrom) {
+                        now = new Date(response.plot.TitleClearFrom)
+                        day = ("0" + now.getDate()).slice(-2);
+                        month = ("0" + (now.getMonth() + 1)).slice(-2);
+                        today = now.getFullYear() + "-" + (month) + "-" + (day);
+                        $('#TitleClearFrom').val(today);
+                    }
+
+                    if (response.plot.TitleClearDt) {
+                        now = new Date(response.plot.TitleClearDt)
+                        day = ("0" + now.getDate()).slice(-2);
+                        month = ("0" + (now.getMonth() + 1)).slice(-2);
+                        today = now.getFullYear() + "-" + (month) + "-" + (day);
+                        $('#TitleClearDt').val(today);
+                    }
                 }
             })
         }
