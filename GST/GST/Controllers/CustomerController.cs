@@ -70,6 +70,8 @@ namespace GST.Controllers
             var result = service.Add(customerobj);
             return Ok(result);
         }
+
+        [HttpPost]
         public HttpResponseMessage uploaddocument()
         {
             string acceptFiles = ConfigurationManager.AppSettings["acceptfiles"];
