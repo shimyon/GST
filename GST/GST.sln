@@ -9,7 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "models", "models\models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "services", "services\services.csproj", "{6B46B059-26E4-443B-B213-5CEC70C2A2F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveData", "LiveData\LiveData.csproj", "{7CFBA74D-B64A-41B7-A717-B09EB0814DDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveData", "LiveData\LiveData.csproj", "{7CFBA74D-B64A-41B7-A717-B09EB0814DDA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CA34B397-4976-4B53-A179-C000304A1A6A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
