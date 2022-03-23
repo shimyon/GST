@@ -94,7 +94,7 @@ namespace GST.Controllers
                         //Good to use an updated name always, since many can use the same file name to upload.
                         string changed_name = hasheddate.ToString() + "_" + postedFile.FileName;
                         changed_name = httpRequest.Form["plotid"] + "_" + postedFile.FileName;
-                        var filePath = HttpContext.Current.Server.MapPath("~/Content/Images/custometdocument/" + changed_name);
+                        var filePath = HttpContext.Current.Server.MapPath("~/Content/images/CustomerDocument/" + changed_name);
                         postedFile.SaveAs(filePath); // save the file to a folder "Images" in the root of your app
                         uploaded = "Uploaded";
                     }

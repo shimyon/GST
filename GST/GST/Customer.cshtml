@@ -705,16 +705,15 @@
             var data = new FormData();
             var file = $('#document')[0].files[0];
             data.append('file', file);
-            data.append('plotid', id);
+            data.append('plotid', plotid);
             $.ajax({
-                url: AppConfig.ApiPath + '/cutomer/uploaddocument',
+                url: AppConfig.ApiPath + '/customer/uploaddocument',
                 processData: false,
                 contentType: false,
                 data: data,
                 type: 'POST'
             }).done(function (result) {
                 if (result == "Uploaded") {
-                    setLogo();
                     alert("Document uploaded successfully!");
                 } else {
                     alert(result);
