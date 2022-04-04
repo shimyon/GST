@@ -1,0 +1,262 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+<div class="sechead pb5 fs14 mt20 "><h4><b>Upload CSV</b></h4></div>
+
+<div class="container mt-5">
+        <div class="col-md-6" id="shopdiv">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Upload Shop/CSV file</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="shopexcel" onchange="shopfilechange()" aria-describedby="inputGroupFileAddon04">
+                    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                </div>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-dark" type="button" id="inputGroupFileAddon04" onclick="clearUploadPlot();">Clear</button>
+                </div>
+            </div>
+        
+    </div>
+    <div class="card mt-5">
+
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Floor</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="Floor"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Plot Number</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="PlotNo"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Carpet Area</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="CarpetArea"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Construction Area</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="ConstructionArea"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Undivided Land</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="UndividedLand"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Undivided Land CommArea</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="UndividedLandCommArea"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>SuperBuildUp</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="SuperBuildUp"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Directions North</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="DirectionsNorth"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Directions South</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="DirectionsSouth"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Directions East</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="DirectionsEast"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Directions West</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="DirectionsWest"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>SellAmount</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="SellAmount"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Installments</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="Installments"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Maintenance Amount</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="MaintenanceAmount"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-md-1">
+                        <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
+                    </div>
+                    <div class="col col-md-1">
+                        <button type="button" class="btn btn-danger" onclick="goBack();">Cancel</button>
+                    </div>
+
+                </div>
+            </blockquote>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+         var id = querySt("id");
+        
+        function shopfilechange() {
+            if ($('#shopexcel').val() == null || $('#shopexcel').val() == "") {
+                alert("return");
+                return;
+            }
+            var data = new FormData();
+            var file = $('#shopexcel')[0].files[0];
+            var reader = new FileReader();
+            reader.addEventListener('load', function (e) {
+
+                let data = e.target.result;
+
+                let newLinebrk = data.split("\n");
+                for (let i = 0; i < 1; i++) {
+                    let columns = newLinebrk[i].split(",");
+                    for (let j = 0; j < columns.length; j++) {                       
+                        $("<option>" + columns[j] + "</option>").appendTo(".selectfield");
+                    }
+                }
+
+            });
+
+            reader.readAsBinaryString(file);
+        }
+
+        function saveData() {
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "Plot/AddData",
+                data: {
+                    Id: id,
+                    SiteName: $("#SiteName").val(),
+                    PlotNo: $("#PlotNo").val(),
+                    SquareArea: $("#SquareArea").val(),
+                    SuperBuildUp: $("#SuperBuildUp").val(),
+                    DirectionsNorth: $("#DirectionsNorth").val(),
+                    DirectionsSouth: $("#DirectionsSouth").val(),
+                    DirectionsEast: $("#DirectionsEast").val(),
+                    DirectionsWest: $("#DirectionsWest").val(),
+                    SellAmount: $("#SellAmount").val(),
+                    Installments: $("#Installments").val()
+                }
+            }).then(res => {
+                alert("Saved successfully");
+                 window.history.back();
+            }, err => {
+                alert(err.responseJSON);
+            })
+        }
+       
+    </script>
+}
