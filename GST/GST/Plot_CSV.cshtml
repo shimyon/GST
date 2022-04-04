@@ -110,6 +110,18 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
+                            <label>Proportionate Land</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select class="form-control selectfield" id="ProportionateLand"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
                             <label>Directions North</label>
                         </div>
                     </div>
@@ -208,7 +220,9 @@
 @section scripts{
     <script type="text/javascript">
          var id = querySt("id");
-        
+        $(function () {
+            
+        })
         function shopfilechange() {
             if ($('#shopexcel').val() == null || $('#shopexcel').val() == "") {
                 alert("return");
@@ -233,22 +247,27 @@
 
             reader.readAsBinaryString(file);
         }
-
+      
         function saveData() {
             ajaxcall.post({
                 url: AppConfig.ApiPath + "Plot/AddData",
                 data: {
                     Id: id,
-                    SiteName: $("#SiteName").val(),
+                    Floor: $("#Floor").val(),
                     PlotNo: $("#PlotNo").val(),
-                    SquareArea: $("#SquareArea").val(),
+                    CarpetArea: $("#CarpetArea").val(),
+                    ConstructionArea: $("#ConstructionArea").val(),
+                    UndividedLand: $("#UndividedLand").val(),
+                    UndividedLandCommArea: $("#UndividedLandCommArea").val(),
                     SuperBuildUp: $("#SuperBuildUp").val(),
+                    ProportionateLand: $("#ProportionateLand").val(),
                     DirectionsNorth: $("#DirectionsNorth").val(),
                     DirectionsSouth: $("#DirectionsSouth").val(),
                     DirectionsEast: $("#DirectionsEast").val(),
                     DirectionsWest: $("#DirectionsWest").val(),
                     SellAmount: $("#SellAmount").val(),
-                    Installments: $("#Installments").val()
+                    Installments: $("#Installments").val(),
+                    MaintenanceAmount: $("#MaintenanceAmount").val()
                 }
             }).then(res => {
                 alert("Saved successfully");
