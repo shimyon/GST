@@ -11,16 +11,22 @@
         <div class="card-body">
             <blockquote class="blockquote mb-0">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Site ID</label>
-                            <select class="form-control" id="SiteName"></select>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
+                    @*<div class="col-md-6">
+            <div class="form-group">
+                <label>Site ID</label>
+                <select class="form-control" id="SiteName"></select>
+            </div>
+        </div>*@
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Plot Number</label>
                             <input type="text" class="form-control" id="PlotNo">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Floor</label>
+                            <input type="text" class="form-control" id="Floor">
                         </div>
                     </div>
                 </div>
@@ -35,18 +41,42 @@
         <div class="card-body">
             <blockquote class="blockquote mb-0">
                 <div class="row">
-                    <div class="col-md-4 ">
+                    <div class="col-md-3">
                         <div class="form-group">
-                            <label>Square Area</label>
-                            <input type="number" class="form-control" id="SquareArea">
+                            <label>Carpet Area</label>
+                            <input type="text" class="form-control" id="CarpetArea">
+                        </div>
+                    </div> <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Construction Area</label>
+                            <input type="text" class="form-control" id="ConstructionArea">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
-                            <label>SuperBuildUp</label>
+                            <label>Super BuildUp</label>
                             <input type="text" class="form-control" id="SuperBuildUp">
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>ProportionateLand</label>
+                            <input type="text" class="form-control" id="ProportionateLand">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>UndividedLand</label>
+                            <input type="text" class="form-control" id="UndividedLand">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>UndividedLandCommArea</label>
+                            <input type="text" class="form-control" id="UndividedLandCommArea">
+                        </div>
+                    </div>
+
                 </div>
             </blockquote>
         </div>
@@ -88,45 +118,44 @@
         </div>
     </div>
 
-    <div class="card mt-5">
-        <div class="card-header">
-            Area
+    @*<div class="card mt-5">
+            <div class="card-header">
+                Area
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <div class="row">
+                        <div class="col-md-4 ">
+                            <div class="form-group">
+                                <label>SellAmount</label>
+                                <input type="number" class="form-control" id="SellAmount">
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <div class="form-group">
+                                <label>Installments</label>
+                                <input type="number" class="form-control" value="10" id="Installments">
+                            </div>
+                        </div>
+                    </div>
+                </blockquote>
+            </div>
         </div>
-        <div class="card-body">
-            <blockquote class="blockquote mb-0">
-                <div class="row">
-                    <div class="col-md-4 ">
-                        <div class="form-group">
-                            <label>SellAmount</label>
-                            <input type="number" class="form-control" id="SellAmount">
-                        </div>
-                    </div>
-                    <div class="col-md-4 ">
-                        <div class="form-group">
-                            <label>Installments</label>
-                            <input type="number" class="form-control" value="10" id="Installments">
-                        </div>
-                    </div>
-                </div>
-            </blockquote>
+    *@
+    <div class="row mt-5">
+        <div class="col col-md-1">
+            <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
+        </div>
+        <div class="col col-md-1">
+            <button type="button" class="btn btn-danger" onclick="goBack();">Cancel</button>
         </div>
     </div>
 
-        <div class="row mt-5">
-            <div class="col col-md-1">
-                <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
-            </div>
-            <div class="col col-md-1">
-                <button type="button" class="btn btn-danger" onclick="goBack();">Cancel</button>
-            </div>
-        </div>
-  
 </div>
 
 @section scripts{
     <script type="text/javascript">
-         var id = querySt("id");
-
+        var id = querySt("id");
         $(function () {
             init();
         })
@@ -161,7 +190,12 @@
                 if (res) {
                     $("#SiteName").val(res.SiteName);
                     $("#PlotNo").val(res.PlotNo);
-                    $("#SquareArea").val(res.SquareArea);
+                    $("#Floor").val(res.Floor);
+                    $("#CarpetArea").val(res.CarpetArea);
+                    $("#ConstructionArea").val(res.ConstructionArea);
+                    $("#UndividedLand").val(res.UndividedLand);
+                    $("#UndividedLandCommArea").val(res.UndividedLandCommArea);
+                    $("#ProportionateLand").val(res.ProportionateLand);
                     $("#SuperBuildUp").val(res.SuperBuildUp);
                     $("#DirectionsNorth").val(res.DirectionsNorth);
                     $("#DirectionsSouth").val(res.DirectionsSouth);
@@ -182,72 +216,97 @@
                 return false;
             }
 
-             if (!$("#SquareArea").val()) {
-                alert('Please enter Square Area');
-                $("#SquareArea").focus()
+            if (!$("#CarpetArea").val()) {
+                alert('Please enter Carpet Area');
+                $("#CarpetArea").focus()
                 return false;
             }
-
-             if (!$("#SuperBuildUp").val()) {
+            if (!$("#ConstructionArea").val()) {
+                alert('Please enterConstruction Area');
+                $("#ConstructionArea").focus()
+                return false;
+            }
+            if (!$("#UndividedLand").val()) {
+                alert('Please enter UndividedLand');
+                $("#UndividedLand").focus()
+                return false;
+            }
+            if (!$("#UndividedLandCommArea").val()) {
+                alert('Please enter UndividedLandCommArea');
+                $("#UndividedLandCommArea").focus()
+                return false;
+            }
+            if (!$("#ProportionateLand").val()) {
+                alert('Please enter ProportionateLand');
+                $("#ProportionateLand").focus()
+                return false;
+            }
+            if (!$("#SuperBuildUp").val()) {
                 alert('Please enter SuperBuildUp');
                 $("#SuperBuildUp").focus()
                 return false;
             }
 
-             if (!$("#DirectionsNorth").val()) {
+            if (!$("#DirectionsNorth").val()) {
                 alert('Please enter Directions North');
                 $("#DirectionsNorth").focus()
                 return false;
             }
 
-             if (!$("#DirectionsSouth").val()) {
+            if (!$("#DirectionsSouth").val()) {
                 alert('Please enter Directions South');
                 $("#DirectionsSouth").focus()
                 return false;
             }
 
-             if (!$("#DirectionsEast").val()) {
+            if (!$("#DirectionsEast").val()) {
                 alert('Please enter Directions East');
                 $("#PlotNo").focus()
                 return false;
             }
 
-             if (!$("#DirectionsWest").val()) {
+            if (!$("#DirectionsWest").val()) {
                 alert('Please enter Directions West');
                 $("#DirectionsWest").focus()
                 return false;
             }
 
-             if (!$("#SellAmount").val()) {
+            @*if (!$("#SellAmount").val()) {
                 alert('Please enter Sell Amount');
                 $("#SellAmount").focus()
                 return false;
-            }
+            }*@
 
             ajaxcall.post({
                 url: AppConfig.ApiPath + "Plot/AddData",
                 data: {
                     Id: id,
-                    SiteName: $("#SiteName").val(),
+                    //SiteName: $("#SiteName").val(),
+                   // SiteID: $("#SiteID").val(),
                     PlotNo: $("#PlotNo").val(),
-                    SquareArea: $("#SquareArea").val(),
+                    Floor: $("#Floor").val(),
+                    CarpetArea: $("#CarpetArea").val(),
+                    ConstructionArea: $("#ConstructionArea").val(),
+                    UndividedLand: $("#UndividedLand").val(),
+                    UndividedLandCommArea: $("#UndividedLandCommArea").val(),
+                    ProportionateLand: $("#ProportionateLand").val(),
                     SuperBuildUp: $("#SuperBuildUp").val(),
                     DirectionsNorth: $("#DirectionsNorth").val(),
                     DirectionsSouth: $("#DirectionsSouth").val(),
                     DirectionsEast: $("#DirectionsEast").val(),
                     DirectionsWest: $("#DirectionsWest").val(),
-                    SellAmount: $("#SellAmount").val(),
-                    Installments: $("#Installments").val()
+                    //SellAmount: $("#SellAmount").val(),
+                    //Installments: $("#Installments").val()
                 }
             }).then(res => {
                 alert("Saved successfully");
-                 window.history.back();
+                window.history.back();
             }, err => {
                 alert(err.responseJSON);
             })
         }
         function goBack() {
-                 window.history.back();
+            window.history.back();
         }
     </script>
 }

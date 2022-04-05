@@ -1,24 +1,16 @@
 ﻿@{
     Layout = "_Layout.cshtml";
 }
-<div class="sechead pb5 fs14 mt20 "><h4><b>Upload CSV</b></h4></div>
+<div class="sechead pb5 fs14 mt20 "><h4><b>Upload Shop/CSV file</b></h4></div>
 
 <div class="container mt-5">
         <div class="col-md-6" id="shopdiv">
             <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">Upload Shop/CSV file</span>
-                </div>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="shopexcel" onchange="shopfilechange()" aria-describedby="inputGroupFileAddon04">
-                    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
-                </div>
-                <div class="input-group-append">
-                    <button class="btn btn-outline-dark" type="button" id="inputGroupFileAddon04" onclick="clearUploadPlot();">Clear</button>
+                    <input type="file" id="shopexcel" onchange="shopfilechange()" aria-describedby="inputGroupFileAddon04">
                 </div>
             </div>
-        
-    </div>
+        </div>
     <div class="card mt-5">
 
         <div class="card-body">
@@ -207,10 +199,7 @@
                     <div class="col col-md-1">
                         <button type="button" class="btn btn-primary" onclick="saveData();">Save</button>
                     </div>
-                    <div class="col col-md-1">
-                        <button type="button" class="btn btn-danger" onclick="goBack();">Cancel</button>
-                    </div>
-
+                   
                 </div>
             </blockquote>
         </div>

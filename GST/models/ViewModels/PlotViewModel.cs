@@ -11,7 +11,17 @@ namespace GST.Controllers
 
         public int PlotNo { get; set; }
 
-        public int SquareArea { get; set; }
+        public int CarpetArea { get; set; }
+
+        public int ConstructionArea { get; set; }
+
+        public int UndividedLand { get; set; }
+
+        public int UndividedLandCommArea { get; set; }
+
+        public int ProportionateLand { get; set; }
+
+        public string Floor { get; set; }
 
         public string SuperBuildUp { get; set; }
 
@@ -51,7 +61,17 @@ namespace GST.Controllers
 
         public String PlotNo { get; set; }
 
-        public String SquareArea { get; set; }
+        public String CarpetArea { get; set; }
+
+        public String ConstructionArea { get; set; }
+
+        public String UndividedLand { get; set; }
+
+        public String UndividedLandCommArea { get; set; }
+
+        public String ProportionateLand { get; set; }
+
+        public string Floor { get; set; }
 
         public string SuperBuildUp { get; set; }
 
@@ -93,6 +113,6 @@ namespace GST.Controllers
         public string DirectionsEast { get; set; }
         public string DirectionsWest { get; set; }
         public string MaintenanceAmount { get; set; }
-
+        public string UndividedLandCommArea { get; set; }
     }
 }

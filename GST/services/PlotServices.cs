@@ -40,7 +40,22 @@ namespace services
                     var obj = ctx.plot.FirstOrDefault(f => f.Id == plotData.Id);
                     if (obj != null)
                     {
-                        ctx.Entry(obj).CurrentValues.SetValues(plotData);
+                        ctx.plot.Attach(obj);
+                        obj.Floor = plotData.Floor;
+                        obj.PlotNo = plotData.PlotNo;
+                        obj.CarpetArea = plotData.CarpetArea;
+                        obj.ConstructionArea = plotData.ConstructionArea;
+                        obj.UndividedLand = plotData.UndividedLand;
+                        obj.UndividedLandCommArea = plotData.UndividedLandCommArea;
+                        obj.ProportionateLand = plotData.ProportionateLand;
+                        obj.SuperBuildUp = plotData.SuperBuildUp;
+                        obj.DirectionsNorth = plotData.DirectionsNorth;
+                        obj.DirectionsSouth = plotData.DirectionsSouth;
+                        obj.DirectionsEast = plotData.DirectionsEast;
+                        obj.DirectionsWest = plotData.DirectionsWest;
+
+
+                        //ctx.Entry(obj).CurrentValues.SetValues(plotData);
                     }
                     else
                     {

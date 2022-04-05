@@ -61,7 +61,7 @@
                         }
                     },
                     {
-                        title: "Site ID",
+                        title: "Site Name",
                         data: "SiteName",
                         class: "text-center"
                     },
@@ -71,8 +71,33 @@
                         class: "text-center"
                     },
                     {
-                        title: "Square Area",
-                        data: "SquareArea",
+                        title: "Floor",
+                        data: "Floor",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Carpet Area",
+                        data: "CarpetArea",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Construction Area",
+                        data: "ConstructionArea",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Undivided Land",
+                        data: "UndividedLand",
+                        class: "text-center"
+                    },
+                    {
+                        title: "UndividedLand CommArea",
+                        data: "UndividedLandCommArea",
+                        class: "text-center"
+                    },
+                    {
+                        title: "Proportionate Land",
+                        data: "ProportionateLand",
                         class: "text-center"
                     },
                     {
@@ -100,7 +125,7 @@
                         data: "DirectionsWest",
                         class: "text-center"
                     },
-                    {
+                   @*{
                         title: "Sell Amount",
                         data: "SellAmount",
                         class: "text-center"
@@ -109,11 +134,11 @@
                         title: "Installments",
                         data: "Installments",
                         class: "text-center"
-                    }
+                    }*@
                 ]
             });
         }
-        
+       
         function AfterDrawTable() {
             var that = this;
             $(".btnedit").click(function () {

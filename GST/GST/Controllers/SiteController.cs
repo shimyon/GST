@@ -12,6 +12,8 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using LINQtoCSV;
+using System.Data;
+using Microsoft.VisualBasic.FileIO;
 
 namespace GST.Controllers
 {
@@ -163,7 +165,22 @@ namespace GST.Controllers
                             SeparatorChar = ',',
                             FirstLineHasColumnNames = true
                         };
-                        CsvContext cc = new CsvContext();
+                        using (TextFieldParser parser = new TextFieldParser(temppath))
+                        {
+                            parser.TextFieldType = FieldType.Delimited;
+                            parser.SetDelimiters(",");
+                            while (!parser.EndOfData)
+                            {
+                                //Processing row
+                                string[] fields = parser.ReadFields();
+                                foreach (string field in fields)
+                                {
+                                    //TODO: Process field
+                                }
+                            }
+                        }
+                        LINQtoCSV.CsvContext cc = new LINQtoCSV.CsvContext();
+                        IEnumerable<Dictionary<string, string>> plotsList1 = cc.Read<Dictionary<string, string>>(temppath, inputFileDescription);
                         IEnumerable<PlotCSV> plotsList = cc.Read<PlotCSV>(temppath, inputFileDescription);
                         //var count = products.Count();
                         //var book = new LinqToExcel.ExcelQueryFactory(temppath);
@@ -185,6 +202,7 @@ namespace GST.Controllers
                                         ConstructionArea = row.ConstructionArea,
                                         UndividedLand = row.UndividedLand,
                                         SuperBuildUp = row.SuperBuildUp,
+                                        UndividedLandCommArea = row.UndividedLandCommArea,
                                         ProportionateLand = row.ProportionateLand,
                                         DirectionsNorth = row.DirectionsNorth,
                                         DirectionsSouth = row.DirectionsSouth,
