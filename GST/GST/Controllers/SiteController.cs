@@ -103,6 +103,7 @@ namespace GST.Controllers
         }
 
         [HttpPost]
+        [HttpPost]
         public HttpResponseMessage UploadLogo()
         {
             HttpResponseMessage result = null;
@@ -120,14 +121,14 @@ namespace GST.Controllers
                         int hasheddate = DateTime.Now.GetHashCode();
                         //Good to use an updated name always, since many can use the same file name to upload.
                         string changed_name = hasheddate.ToString() + "_" + postedFile.FileName;
-                        changed_name = httpRequest.Form["plotid"] + "_" + postedFile.FileName;
-                        var filePath = HttpContext.Current.Server.MapPath("~/Content/Images/CustomerDocument/" + changed_name);
+                        changed_name = httpRequest.Form["siteid"] + ".png";
+                        var filePath = HttpContext.Current.Server.MapPath("~/Content/Images/SiteLogos/" + changed_name);
                         postedFile.SaveAs(filePath); // save the file to a folder "Images" in the root of your app
                         uploaded = "Uploaded";
                     }
                     else
                     {
-                        uploaded = "Only following file will be uploaded: .png, .jpg, jpeg, txt, doc";
+                        uploaded = "Only following file will be uploaded: .png, .jpg, jpeg";
                     }
                 }
                 result = Request.CreateResponse(HttpStatusCode.Created, uploaded);
