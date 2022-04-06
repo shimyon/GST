@@ -103,7 +103,6 @@ namespace GST.Controllers
         }
 
         [HttpPost]
-        [HttpPost]
         public HttpResponseMessage UploadLogo()
         {
             HttpResponseMessage result = null;
