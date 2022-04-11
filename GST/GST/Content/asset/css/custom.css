@@ -1,0 +1,16 @@
+.bg-login-image {
+    background-image: url("/Content/images/logoemoiss.jpg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #007bff;
+}
+
+.bg-register-image {
+    background-image: url("/asset/image/trading1.jpg");
+    background-position: center;
+    background-size: cover
+}
+.col-xl-4.col-md-6.mb-4{
+    margin-left: 313px;
+}
