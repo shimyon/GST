@@ -106,6 +106,8 @@
                                 <input type="number" class="form-control SaleAmount" value="1000000" id="SaleAmount">
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-4 SaleAmountDiv">
                             <div class="form-group">
                                 <label>Reg No</label>
@@ -124,18 +126,29 @@
                                 <input type="date" class="form-control AllotmentLtDt" value="" id="AllotmentLtDt">
                             </div>
                         </div>
-                        <div class="col-md-4 SaleAmountDiv TitleDiv">
+                    </div>
+                    <div class="col-md-4 SaleAmountDiv TitleDiv">
+                        <div class="form-group">
+                            <label>Title Clearence From</label>
+                            <input type="date" class="form-control TitleClearFrom" value="" id="TitleClearFrom">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label>Title Clearence From</label>
-                                <input type="date" class="form-control TitleClearFrom" value="" id="TitleClearFrom">
+                                <label>Status</label>
+                                <select id="Status" class="form-control Status">
+                                    <option>--- Status---</option>
+                                    <option value="Book">Book</option>
+                                    <option value="Unbook">Unbook</option>
+                                    <option value="Dastavej">Dastavej</option>
+                                    <option value="Banakhat">Banakhat</option>
+                                    <option value="Cancelled">Cancelled</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-md-4 SaleAmountDiv TitleDiv">
-                            <div class="form-group">
-                                <label>Title Clearence Date</label>
-                                <input type="date" class="form-control TitleClearDt" value="" id="TitleClearDt">
-                            </div>
-                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-4 SaleAmountDiv">
                             <div class="form-group">
                                 <div class="icheck-primary">
@@ -435,6 +448,7 @@
                     $("#Mobile").val(res.Mobile);
                     $("#Email").val(res.Email);
                     $("#Occupation").val(res.Occupation);
+                    $("#Status").val(res.Status);
                 }
             })
         }
@@ -463,6 +477,7 @@
                         $(".Mobile", $custdiv).val(res.Mobile);
                         $(".Email", $custdiv).val(res.Email);
                         $(".Occupation", $custdiv).val(res.Occupation);
+                        $(".Status", $custdiv).val(res.Status);
                     });
                     $(".RegNo").val(response.plot.RegNo);
                    @* $(".RegDate").val(response.plot.RegDate);
@@ -743,6 +758,7 @@
                     Occupation: $(".Occupation", $custdiv).val(),
                     RegNo: $(".RegNo", $custdiv).val(),
                     RegDate: $(".RegDate", $custdiv).val(),
+                    Status: $(".Status", $custdiv).val(),
                     AllotmentLtDt: $(".AllotmentLtDt", $custdiv).val(),
                     TitleClearFrom: $(".TitleClearFrom", $custdiv).val(),
                     TitleClearDt: $(".TitleClearDt", $custdiv).val(),

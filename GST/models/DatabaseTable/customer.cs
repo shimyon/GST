@@ -41,6 +41,9 @@ namespace models.DatabaseTable
         [NotMapped]
         public string RegNo { get; set; }
 
+        
+        public string Status { get; set; }
+
         [NotMapped]
         public int? SellAmount { get; set; }
 

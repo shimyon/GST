@@ -77,6 +77,7 @@ namespace GST.Controllers
 
         public string Occupation { get; set; }
 
+        public string Status { get; set; }
         public string RegNo { get; set; }
 
         public int? SellAmount { get; set; }

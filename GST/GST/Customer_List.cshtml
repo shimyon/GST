@@ -26,6 +26,16 @@
         <input type="text" class="form-control" id="shopSearch" placeholder="Shop/Office">
     </div>
     <div class="col">
+        <select id="StatusSearch" class="form-control Status">
+            <option>--- Status---</option>
+            <option value="Book">Book</option>
+            <option value="Unbook">Unbook</option>
+            <option value="Dastavej">Dastavej</option>
+            <option value="Banakhat">Banakhat</option>
+            <option value="Cancelled">Cancelled</option>
+        </select>
+    </div>
+    <div class="col">
         <button type="button"
                 class="btn btn-info" onclick="LoadTable()">
             Search
@@ -130,6 +140,7 @@
                         Name: $("#nameSearch").val(),
                         Mobile: $("#mobileSearch").val(),
                         Shop: $("#shopSearch").val(),
+                        //Status: $("#StatusSearch").val(),
                     }
                 },
                 "drawCallback": function () {
