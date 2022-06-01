@@ -94,7 +94,7 @@
                                 <input type="email" class="form-control Email" id="Email">
                             </div>
                         </div>
-                        <div class="col-md-4 SaleAmountDiv">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>Occupation</label>
                                 <input type="text" class="form-control Occupation" id="Occupation">
@@ -198,7 +198,7 @@
                         <div class="col-md-4 ">
                             <div class="form-group">
                                 <label for="inputAddress2">Cheque No</label>
-                                <input type="number" class="form-control" id="ChequeNo">
+                                <input type="text" class="form-control" id="ChequeNo">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -303,12 +303,15 @@
             id = querySt("id"),
             siteid = querySt("siteid"),
             plotid = querySt("plotid"),
-            paymentId;
+            paymentId,
+            curdate;
+
         $(function () {
-            let curdate = moment(new Date()).format('YYYY-MM-DD')
-            $("#RegNo,#RegDate,#AllotmentLtDt,#TitleClearFrom,#TitleClearDt").val(curdate);
+            curdate = moment(new Date()).format('YYYY-MM-DD')
+            $("#RegDate,#AllotmentLtDt,#TitleClearFrom,#TitleClearDt").val(curdate);
             $('a[href="#Customer"]').click();
             init();
+            GetOwnerListBySiteId();
         })
 
         //const targetDiv = document.getElementById("AddCusromer");
@@ -377,6 +380,7 @@
                 $(".bankDiv").removeClass("hidediv");
             } else {
                 $(".bankDiv").addClass("hidediv");
+                $(".bankname").val('');
             }
         }
 
@@ -436,6 +440,7 @@
         }
 
         function GetAllByPlotId() {
+            $("#RegDate,#AllotmentLtDt,#TitleClearFrom,#TitleClearDt").val(curdate);
             ajaxcall.post({
                 url: AppConfig.ApiPath + "Customer/GetAllByPlotId",
                 data: {
@@ -460,10 +465,10 @@
                         $(".Occupation", $custdiv).val(res.Occupation);
                     });
                     $(".RegNo").val(response.plot.RegNo);
-                    $(".RegDate").val(response.plot.RegDate);
+                   @* $(".RegDate").val(response.plot.RegDate);
                     $(".AllotmentLtDt").val(response.plot.AllotmentLtDt);
                     $(".TitleClearFrom").val(response.plot.TitleClearFrom);
-                    $(".TitleClearDt").val(response.plot.TitleClearDt);
+                    $(".TitleClearDt").val(response.plot.TitleClearDt);*@
 
                     $(".loancheck").prop("checked", false);
                     isLoanChange();
@@ -473,7 +478,35 @@
                         isLoanChange();
                         $(".bankname").val(response.plot.Bank);
                     }
-                    var now = new Date(response.plot.RegDate)
+                    if (response.plot.RegDate) {
+                        var now = new Date(response.plot.RegDate)
+                        var day = ("0" + now.getDate()).slice(-2);
+                        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+                        var today = now.getFullYear() + "-" + (month) + "-" + (day);
+                        $('#RegDate').val(today);
+                    }
+                    if (response.plot.AllotmentLtDt) {
+                        now = new Date(response.plot.AllotmentLtDt)
+                        day = ("0" + now.getDate()).slice(-2);
+                        month = ("0" + (now.getMonth() + 1)).slice(-2);
+                        today = now.getFullYear() + "-" + (month) + "-" + (day);
+                        $('#AllotmentLtDt').val(today);
+                    }
+                    if (response.plot.TitleClearFrom) {
+                        now = new Date(response.plot.TitleClearFrom)
+                        day = ("0" + now.getDate()).slice(-2);
+                        month = ("0" + (now.getMonth() + 1)).slice(-2);
+                        today = now.getFullYear() + "-" + (month) + "-" + (day);
+                        $('#TitleClearFrom').val(today);
+                    }
+                    if (response.plot.TitleClearDt) {
+                        now = new Date(response.plot.TitleClearDt)
+                        day = ("0" + now.getDate()).slice(-2);
+                        month = ("0" + (now.getMonth() + 1)).slice(-2);
+                        today = now.getFullYear() + "-" + (month) + "-" + (day);
+                        $('#TitleClearDt').val(today);
+                    }
+                    @*var now = new Date(response.plot.RegDate)
                     var day = ("0" + now.getDate()).slice(-2);
                     var month = ("0" + (now.getMonth() + 1)).slice(-2);
                     var today = now.getFullYear() + "-" + (month) + "-" + (day);
@@ -495,7 +528,7 @@
                     day = ("0" + now.getDate()).slice(-2);
                     month = ("0" + (now.getMonth() + 1)).slice(-2);
                     today = now.getFullYear() + "-" + (month) + "-" + (day);
-                    $('#TitleClearDt').val(today);
+                    $('#TitleClearDt').val(today);*@
                 }
             })
         }
@@ -681,11 +714,11 @@
                 return false;
             }
 
-            if (!$(".Mobile", $custdiv).val()) {
-                alert('Please enter Mobile');
-                $(".Mobile", $custdiv).focus()
-                return false;
-            }
+            //if (!$(".Mobile", $custdiv).val()) {
+            //    alert('Please enter Mobile');
+            //    $(".Mobile", $custdiv).focus()
+            //    return false;
+            //}
 
             //if (!$(".Email", $custdiv).val()) {
             //    alert('Please enter Email');

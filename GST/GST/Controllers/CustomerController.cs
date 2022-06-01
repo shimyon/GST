@@ -21,6 +21,7 @@ namespace GST.Controllers
             var filters = new List<MySqlParameter>
             {
                 datatableService.CreateSqlParameter("@pUserId", authdet.UserId,  MySqlDbType.Int32),
+                datatableService.CreateSqlParameter("@pSite", search.Site,  MySqlDbType.VarChar),
                 datatableService.CreateSqlParameter("@pName", search.Name,  MySqlDbType.VarChar),
                 datatableService.CreateSqlParameter("@pMobile", search.Mobile,  MySqlDbType.VarChar),
                 datatableService.CreateSqlParameter("@pShop", search.Shop,  MySqlDbType.VarChar)

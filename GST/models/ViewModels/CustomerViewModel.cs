@@ -43,6 +43,7 @@ namespace GST.Controllers
 
     public class CustomerSearch : DataTableSearch
     {
+        public string Site { get; set; }
         public string Name { get; set; }
         public string Mobile { get; set; }
         public string Shop { get; set; }

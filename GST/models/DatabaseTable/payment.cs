@@ -15,7 +15,7 @@ namespace models.DatabaseTable
 
         //public string Name { get; set; }
 
-        public int? ChequeNo { get; set; }
+        public string ChequeNo { get; set; }
 
         public int? Amount { get; set; }
 
