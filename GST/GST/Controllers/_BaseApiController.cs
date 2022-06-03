@@ -51,6 +51,24 @@ namespace GST.Controllers
             return response;
         }
 
+        public HttpResponseMessage DOCResponse(string filename, byte[] buffer)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.BadRequest);
+            var statuscode = HttpStatusCode.OK;
+            response = Request.CreateResponse(statuscode);
+            response.Content = new StreamContent(new MemoryStream(buffer));
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/doc");
+            response.Content.Headers.ContentLength = buffer.Length;
+            ContentDispositionHeaderValue contentDisposition = null;
+            //inline
+            if (ContentDispositionHeaderValue.TryParse("inline; filename=" + filename + ".doc", out contentDisposition))
+            {
+                response.Content.Headers.ContentDisposition = contentDisposition;
+            }
+            return response;
+        }
+
+
         public string PDFbase64String(byte[] pdfByteArray)
         {
             string base64EncodedPDF = System.Convert.ToBase64String(pdfByteArray);

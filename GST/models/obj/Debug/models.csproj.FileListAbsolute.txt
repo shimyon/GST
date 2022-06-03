@@ -348,8 +348,12 @@ D:\Projects\GST\GST\models\bin\Debug\System.Buffers.xml
 D:\Projects\GST\GST\models\bin\Debug\System.Memory.xml
 D:\Projects\GST\GST\models\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Projects\GST\GST\models\bin\Debug\System.Threading.Tasks.Extensions.xml
-D:\Projects\GST\GST\models\obj\Debug\models.csproj.AssemblyReference.cache
 D:\Projects\GST\GST\models\obj\Debug\models.csproj.CoreCompileInputs.cache
 D:\Projects\GST\GST\models\obj\Debug\models.csproj.CopyComplete
 D:\Projects\GST\GST\models\obj\Debug\models.dll
 D:\Projects\GST\GST\models\obj\Debug\models.pdb
+D:\Projects\GST\GST\models\bin\Debug\DocumentFormat.OpenXml.dll
+D:\Projects\GST\GST\models\bin\Debug\HtmlToOpenXml.dll
+D:\Projects\GST\GST\models\bin\Debug\DocumentFormat.OpenXml.xml
+D:\Projects\GST\GST\models\bin\Debug\HtmlToOpenXml.xml
+D:\Projects\GST\GST\models\obj\Debug\models.csproj.AssemblyReference.cache

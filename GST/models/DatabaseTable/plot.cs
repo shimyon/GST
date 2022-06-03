@@ -15,7 +15,7 @@ namespace models.DatabaseTable
 
         [StringLength(50)]
         public String Floor { get; set; }
-        
+
         [StringLength(50)]
         public String PlotNo { get; set; }
 
@@ -35,7 +35,7 @@ namespace models.DatabaseTable
         [StringLength(50)]
         public string SuperBuildUp { get; set; }
 
-        [StringLength(50)] 
+        [StringLength(50)]
         public string ProportionateLand { get; set; }
 
         [StringLength(50)]
@@ -124,5 +124,8 @@ namespace models.DatabaseTable
         }
 
         public string Bank { get; set; }
+
+        [NotMapped]
+        public string DocumentDownloadType { get; set; } //PDF OR DOC
     }
 }

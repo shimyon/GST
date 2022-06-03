@@ -780,3 +780,8 @@ D:\Projects\GST\GST\GST\obj\Debug\GST.csproj.CoreCompileInputs.cache
 D:\Projects\GST\GST\GST\obj\Debug\GST.csproj.CopyComplete
 D:\Projects\GST\GST\GST\obj\Debug\GST.dll
 D:\Projects\GST\GST\GST\obj\Debug\GST.pdb
+D:\Projects\GST\GST\GST\bin\DocumentFormat.OpenXml.dll
+D:\Projects\GST\GST\GST\bin\HtmlToOpenXml.dll
+D:\Projects\GST\GST\GST\bin\DocumentFormat.OpenXml.xml
+D:\Projects\GST\GST\GST\bin\System.Numerics.Vectors.dll
+D:\Projects\GST\GST\GST\bin\HtmlToOpenXml.xml

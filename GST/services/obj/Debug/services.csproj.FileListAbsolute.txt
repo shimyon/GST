@@ -370,3 +370,7 @@ D:\Projects\GST\GST\services\obj\Debug\services.csproj.CoreCompileInputs.cache
 D:\Projects\GST\GST\services\obj\Debug\services.csproj.CopyComplete
 D:\Projects\GST\GST\services\obj\Debug\services.dll
 D:\Projects\GST\GST\services\obj\Debug\services.pdb
+D:\Projects\GST\GST\services\bin\Debug\DocumentFormat.OpenXml.dll
+D:\Projects\GST\GST\services\bin\Debug\HtmlToOpenXml.dll
+D:\Projects\GST\GST\services\bin\Debug\DocumentFormat.OpenXml.xml
+D:\Projects\GST\GST\services\bin\Debug\HtmlToOpenXml.xml

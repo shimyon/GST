@@ -58,6 +58,8 @@ namespace models.DatabaseTable
                 return string.Empty;
             }
         }
+        [NotMapped]
+        public string DocumentDownloadType { get; set; } //PDF OR DOC
 
     }
 }
