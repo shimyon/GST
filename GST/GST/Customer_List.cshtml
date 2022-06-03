@@ -27,7 +27,7 @@
     </div>
     <div class="col">
         <select id="StatusSearch" class="form-control Status">
-            <option>--- Status---</option>
+            <option value="">--- Status---</option>
             <option value="Book">Book</option>
             <option value="Unbook">Unbook</option>
             <option value="Dastavej">Dastavej</option>
@@ -140,7 +140,7 @@
                         Name: $("#nameSearch").val(),
                         Mobile: $("#mobileSearch").val(),
                         Shop: $("#shopSearch").val(),
-                        //Status: $("#StatusSearch").val(),
+                        Status: $("#StatusSearch").val(),
                     }
                 },
                 "drawCallback": function () {

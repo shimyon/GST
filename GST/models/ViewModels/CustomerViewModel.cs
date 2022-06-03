@@ -26,6 +26,7 @@ namespace GST.Controllers
         public string Email { get; set; }
 
         public string Occupation { get; set; }
+        public string Status { get; set; }
 
         public string RegNo { get; set; }
 
@@ -47,6 +48,7 @@ namespace GST.Controllers
         public string Name { get; set; }
         public string Mobile { get; set; }
         public string Shop { get; set; }
+        public string Status { get; set; }
     }
 
     public class CustomerDatatable : DatatableCommon
