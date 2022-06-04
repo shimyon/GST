@@ -74,6 +74,7 @@ namespace services
                             plot.TitleClearDt = customerData.TitleClearDt;
                         }
                         plot.Bank = customerData.Bank;
+                        plot.Status = customerData.Status;
 
                     }
                     var intSave = ctx.SaveChanges();

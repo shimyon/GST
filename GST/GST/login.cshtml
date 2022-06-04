@@ -220,7 +220,7 @@
                 localStorage.setItem("userid", res['userid']);
                 localStorage.setItem("userName", res['userName']);
                 localStorage.setItem("userRole", res['userRole']);
-                location.replace("./Customer_List");
+                location.replace("./Dashboard");
 
             }, err => {
                 alertify.error(err.responseJSON.error_description);

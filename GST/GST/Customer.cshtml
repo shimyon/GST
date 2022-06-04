@@ -447,7 +447,6 @@
                     $("#Mobile").val(res.Mobile);
                     $("#Email").val(res.Email);
                     $("#Occupation").val(res.Occupation);
-                    $("#Status").val(res.Status);
                 }
             })
         }
@@ -476,8 +475,8 @@
                         $(".Mobile", $custdiv).val(res.Mobile);
                         $(".Email", $custdiv).val(res.Email);
                         $(".Occupation", $custdiv).val(res.Occupation);
-                        $(".Status", $custdiv).val(res.Status);
                     });
+                    $(".Status").val(response.plot.Status);
                     $(".RegNo").val(response.plot.RegNo);
                    @* $(".RegDate").val(response.plot.RegDate);
                     $(".AllotmentLtDt").val(response.plot.AllotmentLtDt);

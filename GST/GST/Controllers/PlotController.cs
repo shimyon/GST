@@ -44,6 +44,16 @@ namespace GST.Controllers
             return Ok(getPlot);
         }
 
+        [HttpGet]
+        public IHttpActionResult GetdashboardSummary()
+        {
+            var filters = new List<MySqlParameter>
+            {
+               
+            };
+            var result = service.GetdashboardSummary(filters);
+            return Ok(result);
+        }
         [HttpPost]
         public IHttpActionResult AddData(plot plotobj)
         {
@@ -134,7 +144,6 @@ namespace GST.Controllers
             byte[] buffer = commsrv.PdfGenerate(example_html, example_css);
             return buffer;
         }
-
     }
 
 }

@@ -41,7 +41,7 @@ namespace models.DatabaseTable
         [NotMapped]
         public string RegNo { get; set; }
 
-        
+        [NotMapped]
         public string Status { get; set; }
 
         [NotMapped]

@@ -28,6 +28,7 @@ namespace GST.Controllers
         public int Installments { get; set; }
 
         public string RegNo { get; set; }
+        public string Status { get; set; }
 
         public DateTime? RegDate { get; set; }
 
@@ -68,6 +69,7 @@ namespace GST.Controllers
         public int Installments { get; set; }
 
         public string RegNo { get; set; }
+        public string Status { get; set; }
 
         public DateTime? RegDate { get; set; }
 

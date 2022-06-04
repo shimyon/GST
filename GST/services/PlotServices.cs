@@ -15,6 +15,7 @@ namespace services
     public class PlotServices : iCRUD<plot>
     {
         services.Common.DatatableService datatableService = new Common.DatatableService();
+
         public DataTable<PlotDatatable> GetList(PlotSearch search, List<MySqlParameter> filters)
         {
             try
@@ -450,6 +451,20 @@ namespace services
 
             return words;
         }
-
+        public DashboardViewModel GetdashboardSummary( List<MySqlParameter> filters)
+        {
+            try
+            {
+                using (var ctx = new AppDb())
+                {
+                    var result = datatableService.GetSPFirstRecord<DashboardViewModel>("dashboard_list_sp", filters);
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

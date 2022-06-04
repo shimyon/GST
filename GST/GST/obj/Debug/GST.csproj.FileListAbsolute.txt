@@ -780,3 +780,4 @@ D:\Projects\GST\GST\GST\obj\Debug\GST.csproj.CoreCompileInputs.cache
 D:\Projects\GST\GST\GST\obj\Debug\GST.csproj.CopyComplete
 D:\Projects\GST\GST\GST\obj\Debug\GST.dll
 D:\Projects\GST\GST\GST\obj\Debug\GST.pdb
+D:\Projects\GST\GST\GST\bin\System.Numerics.Vectors.dll

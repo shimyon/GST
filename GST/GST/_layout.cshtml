@@ -241,6 +241,12 @@
                                                 </li>
                         *@
                         <li class="nav-item">
+                            <a class="nav-link text-white" href="~/Dashboard.cshtml">
+                                <i class="fa fa-tachometer-alt"></i>
+                                <span id="nav-label">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-white" href="~/Customer_List.cshtml">
                                 <i class="fa fa-user-friends"></i>
                                 <span id="nav-label">Customer</span>
@@ -266,6 +272,12 @@
                                     <a href="~/Site_List.cshtml" class="nav-link">
                                         <i class="fa fa-building"></i>
                                         <p>Site</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="~/Backup.cshtml" class="nav-link">
+                                        <i class="fa fa-database"></i>
+                                        <p>Backup</p>
                                     </a>
                                 </li>
                             </ul>
@@ -466,6 +478,9 @@
     <script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 
+
+
+
     <!-- ChartJS -->
     <script src="~/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
@@ -487,7 +502,7 @@
 
     <!-- AdminLTE App -->
     <script src="~/Content/adminlte/js/adminlte.js"></script>
-
+    <script src="~/Content/adminlte/js/dashboard3.js"></script>
 
 
     <script src="~/Scripts/App/config.js?v=@version"></script>

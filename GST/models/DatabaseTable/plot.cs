@@ -15,7 +15,7 @@ namespace models.DatabaseTable
 
         [StringLength(50)]
         public String Floor { get; set; }
-        
+
         [StringLength(50)]
         public String PlotNo { get; set; }
 
@@ -35,7 +35,7 @@ namespace models.DatabaseTable
         [StringLength(50)]
         public string SuperBuildUp { get; set; }
 
-        [StringLength(50)] 
+        [StringLength(50)]
         public string ProportionateLand { get; set; }
 
         [StringLength(50)]
@@ -56,13 +56,13 @@ namespace models.DatabaseTable
 
         public int Installments { get; set; }
 
-
         [NotMapped]
         public string DocumentType { get; set; }
 
         [StringLength(50)]
         public string RegNo { get; set; }
-
+        [StringLength(50)]
+        public string Status { get; set; }
         public DateTime? RegDate { get; set; }
 
         [NotMapped]
