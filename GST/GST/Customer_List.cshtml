@@ -36,6 +36,12 @@
         </select>
     </div>
     <div class="col">
+        <input type="date" class="form-control" id="rdateSearch" placeholder="Date">
+    </div>
+    <div class="col">
+        <input type="date" class="form-control" id="todateSearch" placeholder="Date">
+    </div>
+    <div class="col">
         <button type="button"
                 class="btn btn-info" onclick="LoadTable()">
             Search
@@ -141,6 +147,8 @@
                         Mobile: $("#mobileSearch").val(),
                         Shop: $("#shopSearch").val(),
                         Status: $("#StatusSearch").val(),
+                        rdate: $("#rdateSearch").val(),
+                        todate: $("#todateSearch").val()
                     }
                 },
                 "drawCallback": function () {

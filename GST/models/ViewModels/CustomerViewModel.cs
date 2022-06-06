@@ -7,8 +7,6 @@ namespace GST.Controllers
     {
         public int Id { get; set; }
 
-        public int? SiteID { get; set; }
-
         public int? PlotID { get; set; }
 
         public string CustomerName { get; set; }
@@ -49,6 +47,9 @@ namespace GST.Controllers
         public string Mobile { get; set; }
         public string Shop { get; set; }
         public string Status { get; set; }
+        /*public DateTime? rdate { get; set; }
+        public DateTime? todate { get; set; }*/
+
     }
 
     public class CustomerDatatable : DatatableCommon

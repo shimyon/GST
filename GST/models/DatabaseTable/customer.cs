@@ -11,7 +11,7 @@ namespace models.DatabaseTable
     [Table("customer")]
     public class customer : BaseEntity
     {
-        public int SiteID { get; set; }
+       
 
         public int PlotID { get; set; }
 
