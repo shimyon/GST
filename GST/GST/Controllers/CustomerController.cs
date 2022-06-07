@@ -26,8 +26,8 @@ namespace GST.Controllers
                 datatableService.CreateSqlParameter("@pMobile", search.Mobile,  MySqlDbType.VarChar),
                 datatableService.CreateSqlParameter("@pShop", search.Shop,  MySqlDbType.VarChar),
                 datatableService.CreateSqlParameter("@pStatus", search.Status,  MySqlDbType.VarChar),
-               /* datatableService.CreateSqlParameter("@prdate", search.rdate,  MySqlDbType.DateTime),
-                datatableService.CreateSqlParameter("@ptodate", search.todate,  MySqlDbType.DateTime),*/
+                datatableService.CreateSqlParameter("@prdate", search.rdate,  MySqlDbType.VarChar),
+                datatableService.CreateSqlParameter("@ptodate", search.todate,  MySqlDbType.VarChar),
             };
             var result = service.GetList(search, filters);
             return Ok(result);

@@ -47,8 +47,8 @@ namespace GST.Controllers
         public string Mobile { get; set; }
         public string Shop { get; set; }
         public string Status { get; set; }
-        /*public DateTime? rdate { get; set; }
-        public DateTime? todate { get; set; }*/
+        public string rdate { get; set; }
+        public string todate { get; set; }
 
     }
 
