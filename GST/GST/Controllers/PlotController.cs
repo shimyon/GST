@@ -44,16 +44,19 @@ namespace GST.Controllers
             return Ok(getPlot);
         }
 
-        [HttpGet]
-        public IHttpActionResult GetdashboardSummary()
+        [HttpPost]
+        public IHttpActionResult GetdashboardSummary(DashboardSearch search)
         {
             var filters = new List<MySqlParameter>
             {
-               
+               datatableService.CreateSqlParameter("@prdate", search.rdate,  MySqlDbType.VarChar),
+               datatableService.CreateSqlParameter("@ptodate", search.todate,  MySqlDbType.VarChar),
+               datatableService.CreateSqlParameter("@pdays", search.rdays,  MySqlDbType.VarChar),
             };
-            var result = service.GetdashboardSummary(filters);
+            var result = service.GetdashboardSummary(search,filters);
             return Ok(result);
         }
+
         [HttpPost]
         public IHttpActionResult AddData(plot plotobj)
         {

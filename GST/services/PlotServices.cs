@@ -451,13 +451,13 @@ namespace services
 
             return words;
         }
-        public DashboardViewModel GetdashboardSummary( List<MySqlParameter> filters)
+        public DashboardViewModel GetdashboardSummary(DashboardSearch search, List<MySqlParameter> filters)
         {
             try
             {
                 using (var ctx = new AppDb())
                 {
-                    var result = datatableService.GetSPFirstRecord<DashboardViewModel>("dashboard_list_sp", filters);
+                    var result = datatableService.GetSPFirstRecord<DashboardViewModel>("dashboard_list_sp", search, filters);
                     return result;
                 }
             }

@@ -62,7 +62,7 @@ namespace services.Common
             }
         }
 
-        public T GetSPFirstRecord<T>(string procedureName, List<MySqlParameter> filters)
+        public T GetSPFirstRecord<T>(string procedureName, DashboardSearch search, List<MySqlParameter> filters)
         {
             using (var context = new AppDb())
             {

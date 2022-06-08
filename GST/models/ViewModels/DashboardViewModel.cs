@@ -15,5 +15,11 @@ namespace GST.Controllers
 
         public int Banakhat { get; set; }
     }
-
+    public class DashboardSearch: DataTableSearch
+    {
+        public string rdate { get; set; }
+        public string todate { get; set; }
+        public string rdays { get; set; }
+     
+    }
 }

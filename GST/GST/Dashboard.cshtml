@@ -11,14 +11,14 @@
     <div class="col">
         <input type="date" class="form-control" id="todateSearch" placeholder="Date">
     </div>
-    @*<div class="col">
-            <select id="StatusSearch" class="form-control Status">
-                <option value="">--- Status---</option>
-                <option value="1Week">1 Week</option>
-                <option value="1Month">1 Month</option>
-                <option value="2Month">2 Month</option>
-            </select>
-        </div>*@
+    <div class="col">
+        <select id="daysSearch" class="form-control Status">
+            <option value="">--- Select---</option>
+            <option value="1Week">1 Week</option>
+            <option value="1Month">1 Month</option>
+            <option value="2Month">2 Month</option>
+        </select>
+    </div>
     <div class="col">
         <button type="button"
                 class="btn btn-info" onclick="LoadTable()">
@@ -122,18 +122,39 @@
 </section>
 @section scripts{
     <script type="text/javascript">
-       $(function () {
-            ajaxcall.get({
+        var oTable;
+        $(function () {
+            LoadTable();
+
+        })
+        function LoadTable() {
+            if (oTable) {
+                $('#rdateSearch').clear().destroy();
+                $('#todateSearch').clear().destroy();
+                $('#daysSearch').clear().destroy();
+            }
+            ajaxcall.post({
                 url: AppConfig.ApiPath + "plot/GetdashboardSummary",
-            }).then(res => {
-                $("#totalPaid").text(res.AmountReceived);
-                $("#Book").text(res.Book);
-                $("#Unbook").text(res.Unbook);
-                $("#Dastavej").text(res.Dastavej);
-                $("#Banakhat").text(res.Banakhat);
+                "type": "POST",
+                "processing": true,
+                "serverSide": true,
+                "datetype": "json",
+                "data": {
+                    rdate: $("#rdateSearch").val(),
+                    todate: $("#todateSearch").val(),
+                    rdays: $("#daysSearch").val(),
+                }
+            }).then(function (res) {
+                if (res) {
+                    $("#totalPaid").text(res.AmountReceived);
+                    $("#Book").text(res.Book);
+                    $("#Unbook").text(res.Unbook);
+                    $("#Dastavej").text(res.Dastavej);
+                    $("#Banakhat").text(res.Banakhat);
+                }
             }, err => {
                 alertify.notify("Error while getting Dashboard summary date");
             });
-        })
+        }
     </script>
 }
