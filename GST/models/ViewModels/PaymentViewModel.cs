@@ -27,7 +27,11 @@ namespace GST.Controllers
         public int PlotId { get; set; }
 
     }
+    public class totalamount
+    {
+        public int Amount { get; set; }
 
+    }
     public class PaymentDatatable : DatatableCommon
     {
         public int Id { get; set; }

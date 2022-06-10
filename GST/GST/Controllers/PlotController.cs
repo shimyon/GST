@@ -29,7 +29,7 @@ namespace GST.Controllers
             var result = service.GetList(search, filters);
             return Ok(result);
         }
-
+        
         [HttpGet]
         public IHttpActionResult PlotIDDropDownAll(int Id)
         {

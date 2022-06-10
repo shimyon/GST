@@ -30,7 +30,21 @@ namespace services
                 throw ex;
             }
         }
-
+        public DataTable<totalamount> totalamount(PaymentSearch search, List<MySqlParameter> filters)
+        {
+            try
+            {
+                using (var ctx = new AppDb())
+                {
+                    var result = datatableService.GetDataTableResult<totalamount>("totalpayment_sp", search, filters);
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public int Add(payment paymentData)
         {
             try
