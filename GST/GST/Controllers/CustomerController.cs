@@ -48,7 +48,7 @@ namespace GST.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult GetAllByPlotId(CustomerViewModel obj)
+        public IHttpActionResult GetAllByPlotId(PaymentViewModel obj)
         {
             var getCustomer = service.GetAllByPlotId(obj.PlotID);
             return Ok(getCustomer);

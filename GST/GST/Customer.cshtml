@@ -179,7 +179,6 @@
             </div>
 
             <div class="tab-pane fade" id="Payment">
-                <span id="totalamount"></span>
                 <div class="row" style="width:100%">
                     <div class="col col-6 text-success" style="font-size: 20px">
                         <span>Sale Amount:</span> <span id="saleAmountLbl">0</span>
@@ -292,20 +291,6 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="paymentPreview">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h4 class="modal-title">Banakhat</h4>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="modal fade" id="PrintPreview">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -355,6 +340,7 @@
         btn1.onclick = function () {
             if (targetDiv1.style.display !== "none") {
                 targetDiv1.style.display = "none";
+                ResetPayment();
             } else {
                 targetDiv1.style.display = "block";
             }
@@ -603,25 +589,6 @@
             })
         }
       
-        function LoadTable() {
-            ajaxcall.post({
-                url: AppConfig.ApiPath + "Payment/totalamount",
-                "type": "POST",
-                "processing": true,
-                "serverSide": true,
-                "datetype": "json",
-                "data": {
-                    "PlotID": $("#PlotID").val()
-                }
-            }).then(function (res) {
-                if (res) {
-                    $("#totalamount").text(res.Amount);
-                    paymentcheck();
-                }
-            }, err => {
-
-            });
-        }
         function LoadPaymentTable() {
             if (oPayTable) {
                 $('#tblPaymentList').DataTable().clear().destroy();
@@ -847,19 +814,23 @@
                     ChequeDate: $("#ChequeDate").val(),
                     Part: $("#Part").val()
                 }
-            }).then(res => {
-                alert("Saved successfully");
-                ResetPayment();
-                LoadPaymentTable();
-                LoadTable();
+            }).then(function (res) {
+                if (res) {
+                    alert("Saved successfully");
+                    debugger
+                    ResetPayment();
+                    LoadPaymentTable();
+                    paymentcheck();
+                }
             }, err => {
                 alert(err.responseJSON);
             })
         }
         function paymentcheck() {
             payment = $("#SaleAmount").val() * 10 / 100;
-            if (payment <= $("#totalamount").val()) {
-                PopupModel();
+            totalpayment = $("#SaleAmount").val() - $("#ountStandingAmountLbl").text();
+            if (payment <= totalpayment) {
+                alert("your payment is complete 10% so please check banakhat");
             }
             else {
 
@@ -995,8 +966,6 @@
                 alert(err.responseJSON);
             })
         }
-        function PopupModel() {
-            $("#paymentPreview").modal('show');
-        }
+        
     </script>
 }

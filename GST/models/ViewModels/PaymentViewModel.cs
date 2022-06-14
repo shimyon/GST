@@ -7,7 +7,7 @@ namespace GST.Controllers
     {
         public int Id { get; set; }
 
-        public string PlotID { get; set; }
+        public int PlotID { get; set; }
 
         public int Amount { get; set; }
 
@@ -25,11 +25,6 @@ namespace GST.Controllers
     public class PaymentSearch : DataTableSearch
     {
         public int PlotId { get; set; }
-
-    }
-    public class totalamount
-    {
-        public int Amount { get; set; }
 
     }
     public class PaymentDatatable : DatatableCommon

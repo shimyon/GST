@@ -28,17 +28,7 @@ namespace GST.Controllers
             var result = service.GetList(search, filters);
             return Ok(result);
         }
-        [HttpPost]
-        public IHttpActionResult totalamount(PaymentSearch search)
-        {
-            AuthDetails authdet = LoginUserDetails();
-            var filters = new List<MySqlParameter>
-            {
-                datatableService.CreateSqlParameter("@pPlotId", search.PlotId,  MySqlDbType.Int32)
-            };
-            var result = service.totalamount(search, filters);
-            return Ok(result);
-        }
+        
         [HttpPost]
         public IHttpActionResult GetById(PaymentViewModel obj)
         {
