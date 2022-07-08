@@ -60,8 +60,16 @@ namespace GST.Controllers
         {
             string filename = "sample";
             var buffer = GetTemplate(plotObj);
-            HttpResponseMessage response = PDFResponse(filename, buffer);
-            return response;
+            if (plotObj.DocumentDownloadType == "PDF")
+            {
+                HttpResponseMessage response = PDFResponse(filename, buffer);
+                return response;
+            }
+            else
+            {
+                HttpResponseMessage response = DOCResponse(filename, buffer);
+                return response;
+            }
         }
 
 

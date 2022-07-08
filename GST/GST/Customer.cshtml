@@ -209,11 +209,11 @@
 
                     <div class="row">
                         @*<div class="col-md-4 ">
-                            <div class="form-group">
-                                <label>Date of Issue</label>
-                                <input type="date" class="form-control" id="DateOfIssue">
-                            </div>
-                        </div>*@
+                                <div class="form-group">
+                                    <label>Date of Issue</label>
+                                    <input type="date" class="form-control" id="DateOfIssue">
+                                </div>
+                            </div>*@
                         <div class="col-md-4 ">
                             <div class="form-group">
                                 <label>Check Date</label>
@@ -257,19 +257,19 @@
                         <tr>
                             <td>1</td>
                             <td>Banakhat</td>
-                            <td><button type="button" onclick="DocumentDownload('Banakhat');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
+                            <td><button type="button" onclick="PopupModel('Banakhat');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
                             <td><button type="button" onclick="EmailDocument('Banakhat');" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Sale Deed</td>
-                            <td><button type="button" onclick="DocumentDownload('Sale Deed');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
+                            <td><button type="button" onclick="PopupModel('Sale Deed');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
                             <td><button type="button" onclick="EmailDocument('Sale Deed');" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>Allotment Latter</td>
-                            <td><button type="button" onclick="DocumentDownload('Allotment Letter');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
+                            <td><button type="button" onclick="PopupModel('Allotment Letter');" class="actionbtn btn  btn-sm"><i class="fa fa-download"></i>&nbsp;Download</button></td>
                             <td><button type="button" onclick="EmailDocument('Allotment Letter');" class="actionbtn btn  btn-sm"><i class="fa fa-envelope"></i>&nbsp;Email</button></td>
                         </tr>
                     </tbody>
@@ -279,6 +279,28 @@
     </div>
 </div>
 
+<div id="PopModel" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Download Format</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input class="" type="radio" id="PDF" value="PDF" name="type" checked>
+                <label class="" for="PDF">&nbsp;PDF</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input class="" type="radio" id="DOC" value="DOC" name="type">
+                <label class="" for="DOC">&nbsp;Doc</label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="DownloadDocument()" class="btn btn-primary">Okay</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="PrintPreview">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -601,9 +623,9 @@
                         class: "text-center actioncol",
                         render: (data, display, alldata) => {
                             return `<button class ='btneditPay noSales actionbtn btn  btn-sm' data-id='${data}' title="Edit"><i class ='fa fa-edit'></i></button>
-                                            <button class ='btndelPay noSales actionbtn btn btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
-                                            <button class ='btndownloadPay actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
-                                            <button class ='btnemailPay noSales actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
+                                                <button class ='btndelPay noSales actionbtn btn btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
+                                                <button class ='btndownloadPay actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
+                                                <button class ='btnemailPay noSales actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
                         }
                     },
                     //{
@@ -874,19 +896,31 @@
                 $custdiv.remove();
             }
         }
+        function PopupModel(documentName) {
+            docName = documentName;
+            $("#PopModel").modal('show');
+        }
 
+        function DownloadDocument() {
+            $("#PopModel").modal('hide');
+            DocumentDownload(docName);
+        }
         function DocumentDownload(DocumentType) {
             ajaxcall.file({
                 url: AppConfig.ApiPath + "Plot/DocumentDownload",
                 data: {
                     Id: $("#PlotID").val(),
-                    DocumentType: $("#SiteName option:selected").text() + "-" + DocumentType
+                    DocumentType: $("#SiteName option:selected").text() + "-" + DocumentType,
+                    DocumentDownloadType: $("[name='type']:checked").val(),
                 }
             }).then(blobData => {
-                var path = GenBlobURL(blobData);
-                $('#the-frame').attr('src', path);
-                $("#PrintPreview").modal('show');
-                //DownloadFileFromURL(blobData);
+                if ($("[name='type']:checked").val() == "PDF") {
+                    var path = GenBlobURL(blobData);
+                    $('#the-frame').attr('src', path);
+                    $("#PrintPreview").modal('show');
+                } else {
+                    DownloadFileFromURL(blobData, $("#SiteName option:selected").text() + "-" + DocumentType + ".doc");
+                }
             }, err => {
                 alert(err.responseJSON);
             })

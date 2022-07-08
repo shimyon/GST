@@ -49,11 +49,11 @@ function GenBlobURL(blobData) {
     return downloadUrl;
 }
 
-function DownloadFileFromURL(blobData) {
+function DownloadFileFromURL(blobData, filename) {
     let downloadUrl = GenBlobURL(blobData);
     let a = document.createElement("a");
     a.href = downloadUrl;
-    a.download = "file.pdf";
+    a.download = filename || "file.pdf";
     document.body.appendChild(a);
     a.click();
 }
