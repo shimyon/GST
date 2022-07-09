@@ -28,7 +28,7 @@ namespace GST.Controllers
             var result = service.GetList(search, filters);
             return Ok(result);
         }
-
+        
         [HttpPost]
         public IHttpActionResult GetById(PaymentViewModel obj)
         {
