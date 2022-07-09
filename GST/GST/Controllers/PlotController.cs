@@ -115,7 +115,6 @@ namespace GST.Controllers
             var example_css = @"
                     body { 
                         padding: 20px 30px;
-                        padding-left: 25px;
                         font-size: 14px;
                         font-family:""Calibri, sans-serif"";
                     }
@@ -141,8 +140,16 @@ namespace GST.Controllers
                 example_html = "<html><body>" + result + "</body></html>";
                 example_css = @".headline{font-size:200%}";
             }
-            byte[] buffer = commsrv.PdfGenerate(example_html, example_css);
-            return buffer;
+            if (plotObj.DocumentDownloadType == "PDF")
+            {
+                byte[] buffer = commsrv.PdfGenerate(example_html, example_css);
+                return buffer;
+            }
+            else
+            {
+                byte[] buffer = WordHelper.HtmlToWord(example_html, example_css);
+                return buffer;
+            }
         }
 
     }
