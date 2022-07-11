@@ -127,5 +127,8 @@ namespace models.DatabaseTable
         }
 
         public string Bank { get; set; }
+
+        [NotMapped]
+        public string DocumentDownloadType { get; set; } //PDF OR DOC
     }
 }

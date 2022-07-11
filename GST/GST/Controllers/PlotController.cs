@@ -60,8 +60,16 @@ namespace GST.Controllers
         {
             string filename = "sample";
             var buffer = GetTemplate(plotObj);
-            HttpResponseMessage response = PDFResponse(filename, buffer);
-            return response;
+            if (plotObj.DocumentDownloadType == "PDF")
+            {
+                HttpResponseMessage response = PDFResponse(filename, buffer);
+                return response;
+            }
+            else
+            {
+                HttpResponseMessage response = DOCResponse(filename, buffer);
+                return response;
+            }
         }
 
 
@@ -132,8 +140,16 @@ namespace GST.Controllers
                 example_html = "<html><body>" + result + "</body></html>";
                 example_css = @".headline{font-size:200%}";
             }
-            byte[] buffer = commsrv.PdfGenerate(example_html, example_css);
-            return buffer;
+            if (plotObj.DocumentDownloadType == "PDF")
+            {
+                byte[] buffer = commsrv.PdfGenerate(example_html, example_css);
+                return buffer;
+            }
+            else
+            {
+                byte[] buffer = WordHelper.HtmlToWord(example_html, example_css);
+                return buffer;
+            }
         }
 
     }

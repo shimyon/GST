@@ -306,6 +306,10 @@
             </div>
             <div class="modal-body">
                 <select class="form-control" id="siteower"></select>
+                <input class="" style="margin-top: 25px;margin-left: 20px;" type="radio" id="PDF" value="PDF" name="type" checked>
+                <label class="" for="PDF" style="margin-right: 100px;margin-left: 0px;">&nbsp;PDF</label>
+                <input class="" type="radio" id="DOC" value="DOC" name="type">
+                <label class="" for="DOC">&nbsp;Doc</label>
             </div>
             <div class="modal-footer">
                 <button type="button" onclick="DownloadDocument()" class="btn btn-primary">Okay</button>
@@ -918,13 +922,17 @@
                 data: {
                     Id: $("#PlotID").val(),
                     DocumentType: $("#SiteName option:selected").text() + "-" + DocumentType,
-                    SiteOwnerId: $("#siteower").val()
+                    SiteOwnerId: $("#siteower").val(),
+                    DocumentDownloadType: $("[name='type']:checked").val(),
                 }
             }).then(blobData => {
-                var path = GenBlobURL(blobData);
-                $('#the-frame').attr('src', path);
-                $("#PrintPreview").modal('show');
-                //DownloadFileFromURL(blobData);
+                if ($("[name='type']:checked").val() == "PDF") {
+                    var path = GenBlobURL(blobData);
+                    $('#the-frame').attr('src', path);
+                    $("#PrintPreview").modal('show');
+                } else {
+                    DownloadFileFromURL(blobData, $("#SiteName option:selected").text() + "-" + DocumentType + ".doc");
+                }
             }, err => {
                 alert(err.responseJSON);
             })
