@@ -152,6 +152,15 @@ namespace GST.Controllers
             }
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public IHttpActionResult GetPath()
+        {
+            String path = HttpContext.Current.Server.MapPath("~/");
+
+            return Ok(path);
+        }
+
     }
 
 }

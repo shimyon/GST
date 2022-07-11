@@ -453,8 +453,8 @@ namespace services
                 tokens["Payment.Table"] = paymentTable;
                 tokens["Payment.TotalPayment"] = tokens["Payment.Total"] = Convert.ToString(totPay);
                 tokens["Payment.TotalPayment.word"] = tokens["Payment.Total.word"] = NumberToWords(Convert.ToInt32(totPay));
-                tokens["Face.Image"] = appPath + "Content/Images/photo.jpg";
-                tokens["Thumb.Image"] = appPath + "Content/Images/thumb.jpg";
+                tokens["Face.Image"] = appPath + "Content/images/photo.jpg";
+                tokens["Thumb.Image"] = appPath + "Content/images/thumb.jpg";
 
             }
             return tokens;
