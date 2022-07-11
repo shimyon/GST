@@ -163,6 +163,7 @@
     <Compile Include="Common\DatatableService.cs" />
     <Compile Include="Common\EmailService.cs" />
     <Compile Include="Common\PasswordCryptoService.cs" />
+    <Compile Include="Common\WordHelper.cs" />
     <Compile Include="PaymentServices.cs" />
     <Compile Include="InvoiceServices.cs" />
     <Compile Include="CustomerServices.cs" />
