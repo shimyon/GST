@@ -339,6 +339,7 @@ namespace services
                     tokens["Payment.Customer"] = customer.CustomerName;
                     tokens["Customer.Name"] = customer.CustomerName;
                     tokens["Customer.Age"] = Convert.ToString(customer.Age);
+                    tokens["Customer.Occupation"] = Convert.ToString(customer.Occupation);
                     tokens["Customer.Address"] = Convert.ToString(customer.Address);
                     tokens["Customer.PANNo"] = Convert.ToString(customer.PANCard);
                     tokens["Customer.AdharNo"] = Convert.ToString(customer.AdharCard);
