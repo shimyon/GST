@@ -58,6 +58,18 @@ namespace GST.Controllers
         }
 
         [HttpPost]
+        public IHttpActionResult GetChartSummary(ChartSearch search)
+        {
+            var filters = new List<MySqlParameter>
+            {
+               datatableService.CreateSqlParameter("@prdate", search.rdate,  MySqlDbType.VarChar),
+               datatableService.CreateSqlParameter("@ptodate", search.todate,  MySqlDbType.VarChar),
+            };
+            var result = service.GetChartSummary(search, filters);
+            return Ok(result);
+        }
+
+        [HttpPost]
         public IHttpActionResult AddData(plot plotobj)
         {
             AuthDetails authdet = LoginUserDetails();
@@ -125,7 +137,6 @@ namespace GST.Controllers
                     .headline{font-size:200%}, 
                     td,th{ padding: 2px; }
                     ";
-            string filename = "Sample";
             if (plotObj.DocumentType.Contains("Allotment Letter"))
             {
                 var result = service.DownloadAllotmentLetter(plotObj);

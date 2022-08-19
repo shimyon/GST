@@ -13,7 +13,7 @@
     </div>
     <div class="col">
         <select id="daysSearch" class="form-control Status">
-            <option value="">--- Select---</option>
+            <option value="default">--- Select---</option>
             <option value="1Week">1 Week</option>
             <option value="1Month">1 Month</option>
             <option value="2Month">2 Month</option>
@@ -92,7 +92,7 @@
             <div class="card-body">
                 <div class="d-flex">
                     <p class="d-flex flex-column">
-                        <span class="text-bold text-lg">$18,230.00</span>
+                        <span id="chartAmount" class="text-bold text-lg"></span>
                         <span>Sales Over Time</span>
                     </p>
                     <p class="ml-auto d-flex flex-column text-right">
@@ -120,13 +120,132 @@
 
     </div>
 </section>
+<div id="piechart" style="width: 800px; height: 500px;"></div>
+<button class="callChart" value="chart">chart</button>
+
+
+
+
 @section scripts{
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['bar'] });
+        google.charts.setOnLoadCallback(LoadChart);
+
+        function LoadChart() {
+            //if (oTable) {
+            //    $('#rdateSearch').clear().destroy();
+            //    $('#todateSearch').clear().destroy();
+            //    $('#daysSearch').clear().destroy();
+            //}
+            ajaxcall.post({
+                url: AppConfig.ApiPath + "plot/GetChartSummary",
+                "type": "POST",
+                "processing": true,
+                "serverSide": true,
+                "datetype": "json",
+                "data": {
+                    rdate: $("#rdateSearch").val(),
+                    todate: $("#todateSearch").val(),
+                }
+            }).then(function (res) {
+                if (res) {
+
+                    var dataArray = [['Year', 'Amount', 'Book']];
+                    $.each(res, function (index, table) {
+
+                        dataArray.push([res.Year, res.AmountReceived, res.Book]);
+                    });
+                    debugger
+                    var data = google.visualization.arrayToDataTable(dataArray);
+
+                    var options = {
+                        chart: {
+                            title: 'Company Performance',
+                            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                        }
+                    };
+
+                    var chart = new google.charts.Bar(document.getElementById('piechart'));
+
+                    chart.draw(data, google.charts.Bar.convertOptions(options));
+
+
+
+                }
+            }, err => {
+                alertify.notify("Error while getting Dashboard summary date");
+            });
+        }
+    </script>
+
+
+
+    @*<script type="text/javascript">
+
         var oTable;
         $(function () {
             LoadTable();
 
         })
+
+        $('#daysSearch').on('change', function (e) {
+
+
+            var now = new Date();
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+            var today = now.getFullYear() + "-" + (month) + "-" + (day);
+            debugger
+            $('#todateSearch').val(today);
+
+
+            var BeforeWeek = new Date(today);
+            BeforeWeek = new Date(BeforeWeek.getFullYear(), now.getMonth(), now.getDate() - 6)
+            var Weekday = ("0" + BeforeWeek.getDate()).slice(-2);
+            var Weekmonth = ("0" + (BeforeWeek.getMonth() + 1)).slice(-2);
+            var WeekDate = BeforeWeek.getFullYear() + "-" + (Weekmonth) + "-" + (Weekday);
+
+
+            var BeforeMonthDate = new Date(today);
+            BeforeMonthDate = new Date(BeforeMonthDate.setMonth(BeforeMonthDate.getMonth() - 1))
+            var Monthday = ("0" + BeforeMonthDate.getDate()).slice(-2);
+            var Monthmonth = ("0" + (BeforeMonthDate.getMonth() + 1)).slice(-2);
+            var beforeMonth = BeforeMonthDate.getFullYear() + "-" + (Monthmonth) + "-" + (Monthday);
+
+
+
+            var BeforeTwoMonth = new Date(today);
+            BeforeTwoMonth = new Date(BeforeTwoMonth.setMonth(BeforeTwoMonth.getMonth() - 2))
+            var TwoMonthDay = ("0" + BeforeTwoMonth.getDate()).slice(-2);
+            var TwoMonthMonth = ("0" + (BeforeTwoMonth.getMonth() + 1)).slice(-2);
+            var beforeTwo = BeforeTwoMonth.getFullYear() + "-" + (TwoMonthMonth) + "-" + (TwoMonthDay);
+
+            var option = $(this).val();
+
+
+            switch (option) {
+                case '1Week':
+                    $('#rdateSearch').val(WeekDate);
+                    break;
+                case '1Month':
+                    $('#rdateSearch').val(beforeMonth);
+                    break;
+                case '2Month':
+                    $('#rdateSearch').val(beforeTwo);
+                    break;
+                default:
+                    $('#todateSearch').val("");
+                    $('#rdateSearch').val("");
+            }
+
+            LoadTable()
+
+
+        });
+
         function LoadTable() {
             if (oTable) {
                 $('#rdateSearch').clear().destroy();
@@ -151,10 +270,15 @@
                     $("#Unbook").text(res.Unbook);
                     $("#Dastavej").text(res.Dastavej);
                     $("#Banakhat").text(res.Banakhat);
+                    $("#chartAmount").text(res.AmountReceived);
+
                 }
             }, err => {
                 alertify.notify("Error while getting Dashboard summary date");
             });
         }
-    </script>
+
+
+
+    </script>*@
 }

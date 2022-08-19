@@ -466,5 +466,23 @@ namespace services
                 throw ex;
             }
         }
+
+
+
+        public ChartViewModel GetChartSummary(ChartSearch search, List<MySqlParameter> filters)
+        {
+            try
+            {
+                using (var ctx = new AppDb())
+                {
+                    var result = datatableService.GetSPChart<ChartViewModel>("ChartProcedure", search, filters);
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

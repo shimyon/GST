@@ -91,6 +91,36 @@ namespace services.Common
             }
         }
 
+        public T GetSPChart<T>(string procedureName, ChartSearch search, List<MySqlParameter> filters)
+        {
+            using (var context = new AppDb())
+            {
+                string connectionstring = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                MySqlConnection sql = new MySqlConnection(connectionstring);
+                MySqlCommand cmd = new MySqlCommand(procedureName, sql)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    // CommandTimeout=0
+                };
+
+
+                cmd.Parameters.Clear();
+                foreach (var param in filters)
+                {
+                    cmd.Parameters.Add(param);
+                }
+
+                sql.Open();
+                var reader = cmd.ExecuteReader();
+                //Getting records
+                var result = ((IObjectContextAdapter)context).ObjectContext.Translate<T>(reader).FirstOrDefault();
+                sql.Close();
+                cmd.Dispose();
+                return result;
+            }
+        }
+
+
 
         public MySqlParameter CreateSqlParameter(string name, object value, MySqlDbType type)
         {

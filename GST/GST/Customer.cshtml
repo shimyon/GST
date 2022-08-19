@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "_Layout.cshtml";
+    var o = 500;
 }
 @section style{
     <style type="text/css">
@@ -42,7 +43,7 @@
     <div class="" id="subdetails" style="display:none;">
         <ul id="myTab" class="nav nav-tabs">
             <li class="active"><a class="nav-link" href="#Customer" data-toggle="tab" aria-selected="true">Customer</a></li>
-            <li><a class="nav-link" href="#Payment" data-toggle="tab">Payment</a></li>
+            <li><a class="nav-link" id="paymentLink" href="#Payment" onclick="paymentcheck()"  data-toggle="tab">Payment</a></li>
             <li><a class="nav-link" href="#Document" data-toggle="tab">Document</a></li>
         </ul>
         <div id="Content" class="tab-content" style="height: 100%;">
@@ -260,7 +261,7 @@
                 <table class="table table-hover dataTable no-footer">
                     <thead>
                         <tr>
-                            <th> SR No.</th>
+                            <th>SR No.</th>
                             <th>Document</th>
                             <th>Download</th>
                             <th>Email</th>
@@ -307,7 +308,24 @@
     </div>
 </div>
 
-
+<div class="modal" id="PaymentAlert" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Payment alert</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Your Payment detail</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts{
     <script type="text/javascript">
@@ -317,7 +335,7 @@
             plotid = querySt("plotid"),
             paymentId,
             curdate;
-
+        var count = 0;
         $(function () {
             curdate = moment(new Date()).format('YYYY-MM-DD')
             $("#RegDate,#AllotmentLtDt,#TitleClearFrom,#TitleClearDt").val(curdate);
@@ -374,14 +392,22 @@
                 $("#Address").val('');
                 $("#Mobile").val('');
                 $("#Email").val('');
+                
+                
+                /*model changes*/
 
                 var saleAmount = $("#PlotID").find(":selected").attr("SaleAmount");
+
                 $("#saleAmountLbl").text(saleAmount);
                 $("#SaleAmount").val(saleAmount);
 
                 $("#subdetails").show();
                 GetAllByPlotId();
+                
                 LoadPaymentTable();
+                
+    
+                
             } else {
                 $("#subdetails").hide();
             }
@@ -590,100 +616,105 @@
         }
       
         function LoadPaymentTable() {
-            if (oPayTable) {
-                $('#tblPaymentList').DataTable().clear().destroy();
-            }
-            oPayTable = $('#tblPaymentList').DataTable({
-                dom: "<'row'<'col-sm-3'l><'col-sm-6'p><'col-sm-3 text-align-right'f>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-5'i>>",
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
-                    "url": AppConfig.ApiPath + "Payment/GetList",
-                    "type": "POST",
+            return new Promise(function (resolve) {
+                if (oPayTable) {
+                    $('#tblPaymentList').DataTable().clear().destroy();
+                }
+                oPayTable = $('#tblPaymentList').DataTable({
+                    dom: "<'row'<'col-sm-3'l><'col-sm-6'p><'col-sm-3 text-align-right'f>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-5'i>>",
                     "processing": true,
                     "serverSide": true,
-                    "datetype": "json",
-                    "data": {
-                        PlotId: $("#PlotID").val()
-                    }
-                },
-                "drawCallback": function () {
-                    $(".paginate_button.current").addClass(" actionbtn hor mr-0 ml-1 active").removeClass("paginate_button current");
-                    $(".paginate_button").addClass(" actionbtn hor mr-0 ml-1").removeClass("paginate_button");
-                    $('.dropdown').dropdown()
-                    // AfterDrawTable();
-                    let totAmount = 0;
-                    $("td.amount-cell").each(function () {
-                        totAmount += parseFloat($(this).text());
-                    });
-                    let outStanding = parseFloat($("#SaleAmount").val()) - totAmount;
-                    $("#ountStandingAmountLbl").text(outStanding);
+                    "ajax": {
+                        "url": AppConfig.ApiPath + "Payment/GetList",
+                        "type": "POST",
+                        "processing": true,
+                        "serverSide": true,
+                        "datetype": "json",
+                        "data": {
+                            PlotId: $("#PlotID").val()
+                        }
+                    },
+                    "drawCallback": function () {
+                        $(".paginate_button.current").addClass(" actionbtn hor mr-0 ml-1 active").removeClass("paginate_button current");
+                        $(".paginate_button").addClass(" actionbtn hor mr-0 ml-1").removeClass("paginate_button");
+                        $('.dropdown').dropdown()
+                        // AfterDrawTable();
+                        let totAmount = 0;
+                        $("td.amount-cell").each(function () {
+                            totAmount += parseFloat($(this).text());
+                        });
+                        let outStanding = parseFloat($("#SaleAmount").val()) - totAmount;
 
-                    $(".btndownloadPay").click(function () {
-                        let id = $(this).attr("data-id");
-                        DownloadReceipt(id);
-                    });
+                        $("#ountStandingAmountLbl").text(outStanding);
+                        debugger
 
-                    $(".btneditPay").click(function () {
-                        paymentId = $(this).attr("data-id");
-                        getPaymentData();
-                    });
+                        $(".btndownloadPay").click(function () {
+                            let id = $(this).attr("data-id");
+                            DownloadReceipt(id);
+                        });
 
-                    $(".btndelPay").click(function () {
-                        let Id = $(this).attr("data-id");
-                        DeletePayment(Id);
-                    });
+                        $(".btneditPay").click(function () {
+                            paymentId = $(this).attr("data-id");
+                            getPaymentData();
+                        });
 
-                    $(".btnemailPay").click(function () {
-                        let Id = $(this).attr("data-id");
-                        SendReceipt(Id);
-                    });
-                },
-                "columns": [
-                    {
-                        title: "",
-                        data: "Id",
-                        class: "text-center actioncol",
-                        render: (data, display, alldata) => {
-                            return `<button class ='btneditPay noSales actionbtn btn  btn-sm' data-id='${data}' title="Edit"><i class ='fa fa-edit'></i></button>
+                        $(".btndelPay").click(function () {
+                            let Id = $(this).attr("data-id");
+                            DeletePayment(Id);
+                        });
+
+                        $(".btnemailPay").click(function () {
+                            let Id = $(this).attr("data-id");
+                            SendReceipt(Id);
+                        });
+                        resolve();
+                    },
+                    "columns": [
+                        {
+                            title: "",
+                            data: "Id",
+                            class: "text-center actioncol",
+                            render: (data, display, alldata) => {
+                                return `<button class ='btneditPay noSales actionbtn btn  btn-sm' data-id='${data}' title="Edit"><i class ='fa fa-edit'></i></button>
                                             <button class ='btndelPay noSales actionbtn btn btn-sm' data-id='${data}' title="Delete"><i class ='fa fa-trash'></i></button>
                                             <button class ='btndownloadPay actionbtn btn  btn-sm' data-id='${data}' title="Download"><i class ='fa fa-download'></i></button>
                                             <button class ='btnemailPay noSales actionbtn btn  btn-sm' data-id='${data}' title="Email"><i class ='fa fa-envelope'></i></button>`;
+                            }
+                        },
+                        //{
+                        //    title: "Shop/Office",
+                        //    data: "PlotNo",
+                        //    class: "text-center"
+                        //},
+                        {
+                            title: "Amount",
+                            data: "Amount",
+                            class: "text-center amount-cell"
+                        },
+                        {
+                            title: "Cheque No",
+                            data: "ChequeNo",
+                            class: "text-center"
+                        },
+                        {
+                            title: "Bank",
+                            data: "Bank",
+                            class: "text-center"
+                        },
+                        {
+                            title: "Date Of Issue",
+                            data: "DateOfIssueformate",
+                            class: "text-center"
+                        },
+                        {
+                            title: "Cheque Date",
+                            data: "ChequeDateformate",
+                            class: "text-center"
                         }
-                    },
-                    //{
-                    //    title: "Shop/Office",
-                    //    data: "PlotNo",
-                    //    class: "text-center"
-                    //},
-                    {
-                        title: "Amount",
-                        data: "Amount",
-                        class: "text-center amount-cell"
-                    },
-                    {
-                        title: "Cheque No",
-                        data: "ChequeNo",
-                        class: "text-center"
-                    },
-                    {
-                        title: "Bank",
-                        data: "Bank",
-                        class: "text-center"
-                    },
-                    {
-                        title: "Date Of Issue",
-                        data: "DateOfIssueformate",
-                        class: "text-center"
-                    },
-                    {
-                        title: "Cheque Date",
-                        data: "ChequeDateformate",
-                        class: "text-center"
-                    }
-                ]
+                    ]
+                });
             });
         }
 
@@ -814,23 +845,35 @@
                     ChequeDate: $("#ChequeDate").val(),
                     Part: $("#Part").val()
                 }
-            }).then(function (res) {
+            }).then(async function (res) {
                 if (res) {
                     alert("Saved successfully");
                     debugger
                     ResetPayment();
-                    LoadPaymentTable();
+                    await LoadPaymentTable();
+                    count = 0;
                     paymentcheck();
                 }
+                
             }, err => {
+                debugger
                 alert(err.responseJSON);
             })
+            
         }
+        
         function paymentcheck() {
+            debugger
+            count++;
             payment = $("#SaleAmount").val() * 10 / 100;
             totalpayment = $("#SaleAmount").val() - $("#ountStandingAmountLbl").text();
             if (payment <= totalpayment) {
-                alert("your payment is complete 10% so please check banakhat");
+                
+                if (count == 1 )
+                {
+                    alert("your payment is complete 10% so please check banakhat");
+                }
+                
             }
             else {
 
